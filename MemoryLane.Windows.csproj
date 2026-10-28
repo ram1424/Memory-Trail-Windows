@@ -10,4 +10,7 @@
     <RootNamespace>MemoryLane.Windows</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <ItemGroup>
+    <Resource Include="Assets\MemoryLaneIcon.png" />
+  </ItemGroup>
 </Project>

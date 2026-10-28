@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Welcome to Memory Lane"
+        Icon="Assets/MemoryLaneIcon.png"
         Width="920" Height="620"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
@@ -21,24 +22,10 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel VerticalAlignment="Center" Margin="12,0,48,0">
-          <Border Width="120" Height="120" CornerRadius="30" HorizontalAlignment="Left">
-            <Border.Background>
-              <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                <GradientStop Color="#0E2A4A" Offset="0"/>
-                <GradientStop Color="#153D6D" Offset="0.55"/>
-                <GradientStop Color="#3A1E62" Offset="1"/>
-              </LinearGradientBrush>
-            </Border.Background>
-            <Grid>
-              <Ellipse Width="70" Height="70" Stroke="#7AD7FF" StrokeThickness="5"/>
-              <Path Data="M 31,61 C 43,42 68,44 78,61 C 88,80 73,95 57,95 C 43,95 31,83 31,69"
-                    Stroke="#B86BFF" StrokeThickness="5" Fill="Transparent"
-                    StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
-              <Path Data="M 55,73 C 72,83 74,101 61,112"
-                    Stroke="White" StrokeThickness="4" Fill="Transparent"
-                    StrokeDashArray="2 2" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
-            </Grid>
-          </Border>
+          <Image Source="Assets/MemoryLaneIcon.png"
+                 Width="120" Height="120"
+                 HorizontalAlignment="Left"
+                 Stretch="Uniform"/>
 
           <TextBlock Text="Welcome to Memory Lane"
                      Margin="0,28,0,0"
@@ -143,11 +130,10 @@
                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Ellipse Width="190" Height="190" Stroke="#1A2A3C" StrokeThickness="1"
                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Border Width="92" Height="92" CornerRadius="24" Background="#183B65"
-                    HorizontalAlignment="Center" VerticalAlignment="Center">
-              <TextBlock Text="ML" FontSize="28" FontWeight="Bold" Foreground="#7FD6FF"
-                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Border>
+            <Image Source="Assets/MemoryLaneIcon.png"
+                   Width="92" Height="92"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Stretch="Uniform"/>
 
             <Border Width="92" Height="48" CornerRadius="12" Background="#1A2330"
                     HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,72,0,0">

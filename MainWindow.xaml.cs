@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
+using System.Runtime.InteropServices;
 using Forms = System.Windows.Forms;
 
 namespace MemoryLane.Windows;
@@ -30,7 +31,7 @@ public partial class MainWindow : Window
         {
             Text = "Memory Lane",
             Visible = true,
-            Icon = System.Drawing.SystemIcons.Application
+            Icon = CreateTrayIcon()
         };
 
         var menu = new Forms.ContextMenuStrip();
@@ -48,6 +49,36 @@ public partial class MainWindow : Window
 
         _initializingSettings = false;
     }
+
+    private static System.Drawing.Icon CreateTrayIcon()
+    {
+        try
+        {
+            var resource = Application.GetResourceStream(
+                new Uri("pack://application:,,,/Assets/MemoryLaneIcon.png"));
+            if (resource?.Stream is null)
+                return System.Drawing.SystemIcons.Application;
+
+            using var bitmap = new System.Drawing.Bitmap(resource.Stream);
+            var handle = bitmap.GetHicon();
+            try
+            {
+                using var icon = System.Drawing.Icon.FromHandle(handle);
+                return (System.Drawing.Icon)icon.Clone();
+            }
+            finally
+            {
+                DestroyIcon(handle);
+            }
+        }
+        catch
+        {
+            return System.Drawing.SystemIcons.Application;
+        }
+    }
+
+    [DllImport("user32.dll", CharSet = CharSet.Auto)]
+    private static extern bool DestroyIcon(IntPtr handle);
 
     private void LoadSettingsIntoUi()
     {
