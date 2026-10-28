@@ -26,6 +26,7 @@ public partial class MainWindow : Window
 
         LoadSettingsIntoUi();
         UpdateCaptureState();
+        UpdateNavSelection("Timeline");
 
         _trayIcon = new Forms.NotifyIcon
         {
@@ -52,56 +53,12 @@ public partial class MainWindow : Window
     {
         try
         {
-            using var bitmap = new System.Drawing.Bitmap(64, 64);
-            using var g = System.Drawing.Graphics.FromImage(bitmap);
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            g.Clear(System.Drawing.Color.Transparent);
+            var resource = Application.GetResourceStream(
+                new Uri("pack://application:,,,/Assets/MemoryLaneReferenceIcon.png"));
+            if (resource?.Stream is null)
+                return System.Drawing.SystemIcons.Application;
 
-            using var bg = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(10, 76, 156));
-            using var rounded = new System.Drawing.Drawing2D.GraphicsPath();
-            const int radius = 14;
-            rounded.AddArc(1, 1, radius * 2, radius * 2, 180, 90);
-            rounded.AddArc(63 - radius * 2, 1, radius * 2, radius * 2, 270, 90);
-            rounded.AddArc(63 - radius * 2, 63 - radius * 2, radius * 2, radius * 2, 0, 90);
-            rounded.AddArc(1, 63 - radius * 2, radius * 2, radius * 2, 90, 90);
-            rounded.CloseFigure();
-            g.FillPath(bg, rounded);
-
-            using var whitePen = new System.Drawing.Pen(System.Drawing.Color.FromArgb(234, 249, 255), 4)
-            {
-                StartCap = System.Drawing.Drawing2D.LineCap.Round,
-                EndCap = System.Drawing.Drawing2D.LineCap.Round
-            };
-            g.DrawEllipse(whitePen, 21, 13, 28, 28);
-            g.DrawLine(whitePen, 35, 27, 35, 18);
-            g.DrawLine(whitePen, 35, 27, 43, 22);
-            g.DrawLines(whitePen, new[]
-            {
-                new System.Drawing.Point(12, 50),
-                new System.Drawing.Point(24, 42),
-                new System.Drawing.Point(35, 45),
-                new System.Drawing.Point(52, 35)
-            });
-
-            using var cyanPen = new System.Drawing.Pen(System.Drawing.Color.FromArgb(142, 232, 255), 5)
-            {
-                StartCap = System.Drawing.Drawing2D.LineCap.Round,
-                EndCap = System.Drawing.Drawing2D.LineCap.Round
-            };
-            g.DrawArc(cyanPen, 18, 7, 40, 31, 195, 245);
-
-            using var arrowBrush = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(234, 249, 255));
-            g.FillPolygon(arrowBrush, new[]
-            {
-                new System.Drawing.Point(15, 29),
-                new System.Drawing.Point(26, 23),
-                new System.Drawing.Point(25, 35)
-            });
-
-            using var warm = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(255, 180, 84));
-            foreach (var p in new[] { new System.Drawing.Point(24, 42), new System.Drawing.Point(35, 45), new System.Drawing.Point(52, 35) })
-                g.FillEllipse(warm, p.X - 3, p.Y - 3, 6, 6);
-
+            using var bitmap = new System.Drawing.Bitmap(resource.Stream);
             var handle = bitmap.GetHicon();
             try
             {
@@ -164,6 +121,7 @@ public partial class MainWindow : Window
         if (sender is not Button button || button.Tag is not string mode) return;
 
         _mode = mode;
+        UpdateNavSelection(mode);
         PageTitle.Text = mode;
         SearchBox.Visibility = mode == "Settings" ? Visibility.Collapsed : Visibility.Visible;
         SettingsPanel.Visibility = mode == "Settings" ? Visibility.Visible : Visibility.Collapsed;
@@ -174,7 +132,7 @@ public partial class MainWindow : Window
         {
             "Timeline" => "Your recent activity",
             "Search" => "Find anything Memory Lane remembers",
-            "Favorites" => "Keep important memories close",
+            "Applications" => "Browse your captured activity by application",
             "Settings" => "Control what Memory Lane remembers and how it behaves",
             _ => ""
         };
@@ -182,12 +140,32 @@ public partial class MainWindow : Window
         _view.Refresh();
     }
 
+    private void UpdateNavSelection(string mode)
+    {
+        var buttons = new[]
+        {
+            (Button: TimelineNavButton, Mode: "Timeline"),
+            (Button: SearchNavButton, Mode: "Search"),
+            (Button: ApplicationsNavButton, Mode: "Applications"),
+            (Button: SettingsNavButton, Mode: "Settings")
+        };
+
+        foreach (var entry in buttons)
+        {
+            var selected = entry.Mode == mode;
+            entry.Button.Background = selected
+                ? new SolidColorBrush(Color.FromRgb(222, 239, 255))
+                : Brushes.Transparent;
+            entry.Button.Foreground = selected
+                ? new SolidColorBrush(Color.FromRgb(18, 111, 205))
+                : new SolidColorBrush(Color.FromRgb(62, 84, 106));
+            entry.Button.FontWeight = selected ? FontWeights.SemiBold : FontWeights.Normal;
+        }
+    }
+
     private bool FilterItem(object item)
     {
         if (item is not MemoryItem memory) return false;
-
-        if (_mode == "Favorites" && !memory.IsFavorite)
-            return false;
 
         var q = SearchBox.Text?.Trim().ToLowerInvariant();
         if (!string.IsNullOrWhiteSpace(q) && !memory.SearchableText.Contains(q))
