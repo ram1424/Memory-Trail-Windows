@@ -24,7 +24,7 @@
 
     <Style TargetType="TextBox">
       <Setter Property="Background" Value="#FFFFFF"/>
-      <Setter Property="Foreground" Value="#182235"/>
+      <Setter Property="Foreground" Value="#2D241F"/>
       <Setter Property="BorderBrush" Value="#E7D7C9"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="Padding" Value="11,9"/>
@@ -33,7 +33,7 @@
 
     <Style TargetType="ComboBox">
       <Setter Property="Background" Value="#FFFFFF"/>
-      <Setter Property="Foreground" Value="#182235"/>
+      <Setter Property="Foreground" Value="#2D241F"/>
       <Setter Property="BorderBrush" Value="#E7D7C9"/>
       <Setter Property="Padding" Value="8"/>
       <Setter Property="MinHeight" Value="38"/>
