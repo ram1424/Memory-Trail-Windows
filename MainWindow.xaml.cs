@@ -52,12 +52,49 @@ public partial class MainWindow : Window
     {
         try
         {
-            var resource = Application.GetResourceStream(
-                new Uri("pack://application:,,,/Assets/MemoryLaneWindowsClockIcon.png"));
-            if (resource?.Stream is null)
-                return System.Drawing.SystemIcons.Application;
+            using var bitmap = new System.Drawing.Bitmap(64, 64);
+            using var g = System.Drawing.Graphics.FromImage(bitmap);
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            g.Clear(System.Drawing.Color.Transparent);
 
-            using var bitmap = new System.Drawing.Bitmap(resource.Stream);
+            using var bg = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(10, 76, 156));
+            g.FillRoundedRectangle(bg, new System.Drawing.Rectangle(1, 1, 62, 62), 14);
+
+            using var whitePen = new System.Drawing.Pen(System.Drawing.Color.FromArgb(234, 249, 255), 4)
+            {
+                StartCap = System.Drawing.Drawing2D.LineCap.Round,
+                EndCap = System.Drawing.Drawing2D.LineCap.Round
+            };
+            g.DrawEllipse(whitePen, 21, 13, 28, 28);
+            g.DrawLine(whitePen, 35, 27, 35, 18);
+            g.DrawLine(whitePen, 35, 27, 43, 22);
+            g.DrawLines(whitePen, new[]
+            {
+                new System.Drawing.Point(12, 50),
+                new System.Drawing.Point(24, 42),
+                new System.Drawing.Point(35, 45),
+                new System.Drawing.Point(52, 35)
+            });
+
+            using var cyanPen = new System.Drawing.Pen(System.Drawing.Color.FromArgb(142, 232, 255), 5)
+            {
+                StartCap = System.Drawing.Drawing2D.LineCap.Round,
+                EndCap = System.Drawing.Drawing2D.LineCap.Round
+            };
+            g.DrawArc(cyanPen, 18, 7, 40, 31, 195, 245);
+
+            using var arrowBrush = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(234, 249, 255));
+            g.FillPolygon(arrowBrush, new[]
+            {
+                new System.Drawing.Point(15, 29),
+                new System.Drawing.Point(26, 23),
+                new System.Drawing.Point(25, 35)
+            });
+
+            using var warm = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(255, 180, 84));
+            foreach (var p in new[] { new System.Drawing.Point(24, 42), new System.Drawing.Point(35, 45), new System.Drawing.Point(52, 35) })
+                g.FillEllipse(warm, p.X - 3, p.Y - 3, 6, 6);
+
             var handle = bitmap.GetHicon();
             try
             {

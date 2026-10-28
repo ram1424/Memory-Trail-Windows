@@ -5,36 +5,41 @@
     <DrawingImage x:Key="MemoryLaneBrandIcon">
       <DrawingImage.Drawing>
         <DrawingGroup>
-          <GeometryDrawing Brush="#071F58">
-            <GeometryDrawing.Geometry>
-              <RectangleGeometry Rect="1,1,62,62" RadiusX="14" RadiusY="14"/>
-            </GeometryDrawing.Geometry>
-          </GeometryDrawing>
           <GeometryDrawing Brush="#0A4C9C">
             <GeometryDrawing.Geometry>
-              <EllipseGeometry Center="34,24" RadiusX="15" RadiusY="15"/>
+              <RectangleGeometry Rect="0,0,64,64" RadiusX="14" RadiusY="14"/>
             </GeometryDrawing.Geometry>
           </GeometryDrawing>
           <GeometryDrawing Brush="{x:Null}">
             <GeometryDrawing.Pen>
-              <Pen Brush="#8EE8FF" Thickness="3"/>
+              <Pen Brush="#EAF9FF" Thickness="4" StartLineCap="Round" EndLineCap="Round"/>
             </GeometryDrawing.Pen>
             <GeometryDrawing.Geometry>
               <GeometryGroup>
-                <EllipseGeometry Center="34,24" RadiusX="15" RadiusY="15"/>
-                <PathGeometry Figures="M34,24 L27,20 M34,24 L43,16"/>
-                <PathGeometry Figures="M14,25 A21,21 0 1 1 29,7"/>
-                <PathGeometry Figures="M10,57 C20,50 20,42 31,36 C39,31 49,36 56,28"/>
+                <EllipseGeometry Center="35,27" RadiusX="14" RadiusY="14"/>
+                <LineGeometry StartPoint="35,27" EndPoint="35,18"/>
+                <LineGeometry StartPoint="35,27" EndPoint="43,22"/>
+                <LineGeometry StartPoint="12,50" EndPoint="24,42"/>
+                <LineGeometry StartPoint="24,42" EndPoint="35,45"/>
+                <LineGeometry StartPoint="35,45" EndPoint="52,35"/>
               </GeometryGroup>
             </GeometryDrawing.Geometry>
           </GeometryDrawing>
-          <GeometryDrawing Brush="#EAF9FF" Geometry="M11,24 L25,15 L23,31 Z"/>
+          <GeometryDrawing Brush="{x:Null}">
+            <GeometryDrawing.Pen>
+              <Pen Brush="#8EE8FF" Thickness="5" StartLineCap="Round" EndLineCap="Round"/>
+            </GeometryDrawing.Pen>
+            <GeometryDrawing.Geometry>
+              <PathGeometry Figures="M18,29 C18,16 27,9 39,9 C48,9 55,15 57,23"/>
+            </GeometryDrawing.Geometry>
+          </GeometryDrawing>
+          <GeometryDrawing Brush="#EAF9FF" Geometry="M15,29 L26,23 L25,35 Z"/>
           <GeometryDrawing Brush="#FFB454">
             <GeometryDrawing.Geometry>
               <GeometryGroup>
-                <EllipseGeometry Center="31,36" RadiusX="2.5" RadiusY="2.5"/>
-                <EllipseGeometry Center="46,34" RadiusX="2.5" RadiusY="2.5"/>
-                <EllipseGeometry Center="55,28" RadiusX="2.5" RadiusY="2.5"/>
+                <EllipseGeometry Center="24,42" RadiusX="3" RadiusY="3"/>
+                <EllipseGeometry Center="35,45" RadiusX="3" RadiusY="3"/>
+                <EllipseGeometry Center="52,35" RadiusX="3" RadiusY="3"/>
               </GeometryGroup>
             </GeometryDrawing.Geometry>
           </GeometryDrawing>
