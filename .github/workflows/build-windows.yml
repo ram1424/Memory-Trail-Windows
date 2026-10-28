@@ -1,4 +1,4 @@
-name: Build and Release Memory Lane Windows
+name: Build and Release Memory Trail Windows
 
 on:
   push:
@@ -29,26 +29,26 @@ jobs:
         run: dotnet build MemoryLane.Windows.csproj -c Release --no-restore
 
       - name: Publish self-contained Windows x64 app
-        run: dotnet publish MemoryLane.Windows.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:EnableCompressionInSingleFile=true -o artifacts/Memory-Lane-Windows-x64
+        run: dotnet publish MemoryLane.Windows.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:EnableCompressionInSingleFile=true -o artifacts/Memory-Trail-Windows-x64
 
       - name: Zip build
         shell: pwsh
-        run: Compress-Archive -Path "artifacts/Memory-Lane-Windows-x64/*" -DestinationPath "artifacts/Memory-Lane-Windows-v0.1.15-x64.zip"
+        run: Compress-Archive -Path "artifacts/Memory-Trail-Windows-x64/*" -DestinationPath "artifacts/Memory-Trail-Windows-v0.2.0-x64.zip"
 
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Memory-Lane-Windows-v0.1.15-x64
-          path: artifacts/Memory-Lane-Windows-v0.1.15-x64.zip
+          name: Memory-Trail-Windows-v0.2.0-x64
+          path: artifacts/Memory-Trail-Windows-v0.2.0-x64.zip
 
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v0.1.15
+          tag_name: v0.2.0
           target_commitish: main
-          name: Memory Lane for Windows v0.1.15
+          name: Memory Trail for Windows v0.2.0
           body: |
-            Startup-safe hotfix for the reference-matched Windows 11 redesign and exact Memory Lane icon.
+            Rebrand release: Memory Trail for Windows, with migration support for existing Memory Lane data.
 
             - Activity timeline and focused-window tracking
             - Search, Favorites, and Add Memory
@@ -58,4 +58,4 @@ jobs:
             - First-launch tutorial
             - Start-with-Windows option
             - Local-only storage
-          files: artifacts/Memory-Lane-Windows-v0.1.15-x64.zip
+          files: artifacts/Memory-Trail-Windows-v0.2.0-x64.zip

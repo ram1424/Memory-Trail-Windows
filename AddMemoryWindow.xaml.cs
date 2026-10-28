@@ -20,7 +20,7 @@ public partial class AddMemoryWindow : Window
         var title = TitleBox.Text.Trim();
         if (string.IsNullOrWhiteSpace(title))
         {
-            MessageBox.Show("Enter a title first.", "Memory Lane");
+            MessageBox.Show("Enter a title first.", "Memory Trail");
             return;
         }
 
@@ -31,7 +31,7 @@ public partial class AddMemoryWindow : Window
         {
             Title = title,
             Body = BodyBox.Text.Trim(),
-            SourceApp = "Memory Lane",
+            SourceApp = "Memory Trail",
             SourceKind = kind,
             SourceUrl = string.IsNullOrWhiteSpace(UrlBox.Text) ? null : UrlBox.Text.Trim()
         };

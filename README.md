@@ -1,6 +1,6 @@
-# Memory Lane for Windows
+# Memory Trail for Windows
 
-Memory Lane is a private, local-first activity timeline for Windows. It is the Windows-native companion to the macOS Memory Lane project.
+Memory Trail is a private, local-first activity timeline for Windows. It is the Windows-native companion to the macOS Memory Trail project.
 
 ## What it does
 
@@ -18,16 +18,16 @@ Memory Lane is a private, local-first activity timeline for Windows. It is the W
 
 ## Privacy
 
-Memory Lane is designed to remain local-first.
+Memory Trail is designed to remain local-first.
 
-- Timeline data is stored locally under `%LOCALAPPDATA%\Memory Lane`.
+- Timeline data is stored locally under `%LOCALAPPDATA%\Memory Trail`.
 - Preferences are stored locally.
 - No account is required.
 - No analytics SDK is included.
 - No advertising SDK is included.
 - Capture can be paused at any time.
 - Clipboard capture can be disabled.
-- Process exclusions let you control which apps Memory Lane intentionally ignores.
+- Process exclusions let you control which apps Memory Trail intentionally ignores.
 - The app does not implement keylogging, screen recording, or hidden browser-history scraping.
 
 ## Windows implementation
@@ -68,8 +68,8 @@ dotnet publish .\MemoryLane.Windows.csproj -c Release -r win-x64 --self-containe
 
 ## Automated Windows build
 
-Every push to `main` runs the GitHub Actions workflow in `.github/workflows/build-windows.yml`. A successful run publishes a downloadable `Memory-Lane-Windows-x64.zip` workflow artifact.
+Every push to `main` runs the GitHub Actions workflow in `.github/workflows/build-windows.yml`. A successful run publishes a downloadable `Memory-Trail-Windows-x64.zip` workflow artifact.
 
 ## Related project
 
-macOS version: `ram1424/Memory-Lane`
+macOS version: `ram1424/Memory-Trail`

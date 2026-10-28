@@ -46,7 +46,7 @@ public partial class MemoryDetailWindow : Window
         }
         catch
         {
-            MessageBox.Show("Windows could not open this source.", "Memory Lane", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Windows could not open this source.", "Memory Trail", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 

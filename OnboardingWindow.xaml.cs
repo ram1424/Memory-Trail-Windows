@@ -42,7 +42,7 @@ public partial class OnboardingWindow : Window
         Page4.Visibility = _page == 4 ? Visibility.Visible : Visibility.Collapsed;
 
         BackButton.Visibility = _page == 1 ? Visibility.Hidden : Visibility.Visible;
-        NextButton.Content = _page == 4 ? "Start Using Memory Lane" : "Next";
+        NextButton.Content = _page == 4 ? "Start Using Memory Trail" : "Next";
 
         var active = new SolidColorBrush(Color.FromRgb(105, 191, 255));
         var inactive = new SolidColorBrush(Color.FromRgb(51, 65, 83));
