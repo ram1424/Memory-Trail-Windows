@@ -158,7 +158,6 @@
                           Content="Pause all capture"
                           Margin="0,14,0,8"
                           Foreground="{StaticResource PrimaryTextBrush}"
-                          TextWrapping="Wrap"
                           Checked="SettingChanged" Unchecked="SettingChanged"/>
                 <CheckBox x:Name="AppCaptureCheckBox"
                           Content="Remember app switches and focused windows"
