@@ -1,0 +1,61 @@
+<Window x:Class="MemoryLane.Windows.AddMemoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add Memory"
+        Width="520" Height="450"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="{StaticResource BackgroundBrush}">
+  <Grid Margin="24">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <TextBlock Text="Add Memory"
+               FontSize="26" FontWeight="SemiBold"
+               Foreground="{StaticResource PrimaryTextBrush}"/>
+
+    <TextBox x:Name="TitleBox"
+             Grid.Row="1"
+             Margin="0,18,0,10"
+             Padding="10"
+             Background="{StaticResource PanelBrush}"
+             Foreground="{StaticResource PrimaryTextBrush}"/>
+
+    <TextBox x:Name="BodyBox"
+             Grid.Row="2"
+             Height="140"
+             AcceptsReturn="True"
+             TextWrapping="Wrap"
+             Padding="10"
+             Background="{StaticResource PanelBrush}"
+             Foreground="{StaticResource PrimaryTextBrush}"/>
+
+    <ComboBox x:Name="KindBox"
+              Grid.Row="3"
+              Margin="0,10,0,10"
+              SelectedIndex="0">
+      <ComboBoxItem Content="Note"/>
+      <ComboBoxItem Content="Link"/>
+      <ComboBoxItem Content="File"/>
+      <ComboBoxItem Content="Screenshot"/>
+    </ComboBox>
+
+    <TextBox x:Name="UrlBox"
+             Grid.Row="4"
+             VerticalAlignment="Top"
+             Padding="10"
+             Background="{StaticResource PanelBrush}"
+             Foreground="{StaticResource PrimaryTextBrush}"/>
+
+    <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right">
+      <Button Content="Cancel" Click="Cancel_Click"/>
+      <Button Content="Save" Click="Save_Click"/>
+    </StackPanel>
+  </Grid>
+</Window>
