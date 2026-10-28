@@ -2,9 +2,6 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Application.Resources>
-    <BitmapImage x:Key="MemoryLaneBrandIcon"
-                 UriSource="pack://application:,,,/Assets/MemoryLaneReferenceIcon.png"
-                 CacheOption="OnLoad"/>
     <SolidColorBrush x:Key="BackgroundBrush" Color="#EEF6FF"/>
     <SolidColorBrush x:Key="SidebarBrush" Color="#F7FBFF"/>
     <SolidColorBrush x:Key="PanelBrush" Color="#FFFFFF"/>

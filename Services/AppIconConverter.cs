@@ -38,7 +38,7 @@ public sealed class AppIconConverter : IValueConverter
             {
                 var bitmap = new BitmapImage();
                 bitmap.BeginInit();
-                bitmap.UriSource = new Uri("pack://application:,,,/Assets/MemoryLaneReferenceIcon.png");
+                bitmap.UriSource = new Uri("/Assets/MemoryLaneReferenceIcon.png", UriKind.Relative);
                 bitmap.CacheOption = BitmapCacheOption.OnLoad;
                 bitmap.EndInit();
                 bitmap.Freeze();

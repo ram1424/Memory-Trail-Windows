@@ -33,22 +33,22 @@ jobs:
 
       - name: Zip build
         shell: pwsh
-        run: Compress-Archive -Path "artifacts/Memory-Lane-Windows-x64/*" -DestinationPath "artifacts/Memory-Lane-Windows-v0.1.14-x64.zip"
+        run: Compress-Archive -Path "artifacts/Memory-Lane-Windows-x64/*" -DestinationPath "artifacts/Memory-Lane-Windows-v0.1.15-x64.zip"
 
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Memory-Lane-Windows-v0.1.14-x64
-          path: artifacts/Memory-Lane-Windows-v0.1.14-x64.zip
+          name: Memory-Lane-Windows-v0.1.15-x64
+          path: artifacts/Memory-Lane-Windows-v0.1.15-x64.zip
 
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v0.1.14
+          tag_name: v0.1.15
           target_commitish: main
-          name: Memory Lane for Windows v0.1.14
+          name: Memory Lane for Windows v0.1.15
           body: |
-            Reference-matched Windows 11 redesign using the exact approved Memory Lane icon and polished tutorial.
+            Startup-safe hotfix for the reference-matched Windows 11 redesign and exact Memory Lane icon.
 
             - Activity timeline and focused-window tracking
             - Search, Favorites, and Add Memory
@@ -58,4 +58,4 @@ jobs:
             - First-launch tutorial
             - Start-with-Windows option
             - Local-only storage
-          files: artifacts/Memory-Lane-Windows-v0.1.14-x64.zip
+          files: artifacts/Memory-Lane-Windows-v0.1.15-x64.zip
