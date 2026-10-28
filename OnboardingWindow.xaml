@@ -1,0 +1,56 @@
+<Window x:Class="MemoryLane.Windows.OnboardingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Welcome to Memory Lane"
+        Width="820" Height="560"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#0B0F16">
+  <Grid Margin="40">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="650">
+      <Border Width="112" Height="112" CornerRadius="28" Background="#13294B" Margin="0,0,0,24">
+        <TextBlock Text="ML"
+                   FontSize="38"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="#7EC8FF"/>
+      </Border>
+
+      <TextBlock Text="Welcome to Memory Lane"
+                 FontSize="34"
+                 FontWeight="SemiBold"
+                 HorizontalAlignment="Center"
+                 Foreground="White"/>
+
+      <TextBlock Text="A private, local-first timeline that helps you retrace the apps, windows, conversations, pages, copied text, and notes that make up your day."
+                 Margin="0,18,0,0"
+                 FontSize="16"
+                 TextWrapping="Wrap"
+                 TextAlignment="Center"
+                 Foreground="#B3BDCA"/>
+
+      <Border Background="#141A24" CornerRadius="14" Padding="20" Margin="0,28,0,0">
+        <StackPanel>
+          <TextBlock Text="• Automatically remembers focused app and window titles"
+                     Foreground="White" Margin="0,0,0,8"/>
+          <TextBlock Text="• Captures copied text when clipboard capture is enabled"
+                     Foreground="White" Margin="0,0,0,8"/>
+          <TextBlock Text="• Search, favorite, and add your own memories"
+                     Foreground="White" Margin="0,0,0,8"/>
+          <TextBlock Text="• Stores your timeline locally on this PC"
+                     Foreground="White"/>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+
+    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+      <Button Content="Get Started" Padding="20,9" Click="GetStarted_Click"/>
+    </StackPanel>
+  </Grid>
+</Window>
