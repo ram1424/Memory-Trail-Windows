@@ -1,7 +1,7 @@
 <Window x:Class="MemoryLane.Windows.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Memory Lane"
+        Title="Memory Lane v0.1.7"
         Icon="Assets/MemoryLaneIcon.png"
         Width="1280" Height="820"
         MinWidth="1020" MinHeight="680"
@@ -26,11 +26,16 @@
                    Width="34" Height="34"
                    Stretch="Uniform"
                    Margin="0,0,10,0"/>
-            <TextBlock Text="Memory Lane"
-                       FontSize="18"
-                       FontWeight="SemiBold"
-                       Foreground="#10203B"
-                       VerticalAlignment="Center"/>
+            <StackPanel VerticalAlignment="Center">
+              <TextBlock Text="Memory Lane"
+                         FontSize="18"
+                         FontWeight="SemiBold"
+                         Foreground="#10203B"/>
+              <TextBlock Text="v0.1.7 · Windows UI"
+                         Margin="0,2,0,0"
+                         FontSize="10"
+                         Foreground="#6F87A3"/>
+            </StackPanel>
           </StackPanel>
 
           <Button Content="⌂  Timeline"
