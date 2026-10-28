@@ -20,6 +20,20 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
+        try
+        {
+            var brand = Branding.LoadImage();
+            if (brand is not null)
+            {
+                Icon = brand;
+                BrandLogo.Source = brand;
+            }
+        }
+        catch (Exception ex)
+        {
+            App.LogNonFatal("MainWindow branding", ex);
+        }
+
         _view = CollectionViewSource.GetDefaultView(App.Store.Items);
         _view.Filter = FilterItem;
         TimelineList.ItemsSource = _view;

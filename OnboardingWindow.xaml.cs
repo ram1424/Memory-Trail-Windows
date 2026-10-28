@@ -10,6 +10,20 @@ public partial class OnboardingWindow : Window
     public OnboardingWindow()
     {
         InitializeComponent();
+        try
+        {
+            var brand = Branding.LoadImage();
+            if (brand is not null)
+            {
+                Icon = brand;
+                WelcomeBrandLogo.Source = brand;
+                PrivacyBrandLogo.Source = brand;
+            }
+        }
+        catch (Exception ex)
+        {
+            App.LogNonFatal("Onboarding branding", ex);
+        }
         UpdatePage();
     }
 
