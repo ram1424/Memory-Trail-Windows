@@ -13,14 +13,30 @@ public partial class App : Application
         base.OnStartup(e);
         ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
-        Preferences.Load();
-        Store.Load();
+        try
+        {
+            Preferences.Load();
+            Store.Load();
 
-        var window = new MainWindow();
-        MainWindow = window;
-        window.Show();
+            var window = new MainWindow();
+            MainWindow = window;
+            window.Show();
 
-        Capture.Start();
+            Capture.Start();
+        }
+        catch (Exception ex)
+        {
+            try
+            {
+                var folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Memory Lane");
+                Directory.CreateDirectory(folder);
+                File.AppendAllText(Path.Combine(folder, "crash.log"), $"[{DateTimeOffset.Now:O}]\r\n{ex}\r\n\r\n");
+            }
+            catch { }
+
+            MessageBox.Show("Memory Lane could not start. A crash log was saved under Local AppData > Memory Lane > crash.log.", "Memory Lane", MessageBoxButton.OK, MessageBoxImage.Error);
+            Shutdown();
+        }
     }
 
     protected override void OnExit(ExitEventArgs e)

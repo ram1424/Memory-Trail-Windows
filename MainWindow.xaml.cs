@@ -43,9 +43,7 @@ public partial class MainWindow : Window
         _trayIcon.DoubleClick += (_, _) => Dispatcher.Invoke(ShowFromTray);
 
         Closing += OnClosing;
-
-        if (!App.Preferences.HasCompletedOnboarding)
-            ShowOnboarding();
+        Loaded += MainWindow_Loaded;
 
         _initializingSettings = false;
     }
@@ -79,6 +77,13 @@ public partial class MainWindow : Window
 
     [DllImport("user32.dll", CharSet = CharSet.Auto)]
     private static extern bool DestroyIcon(IntPtr handle);
+
+    private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+    {
+        Loaded -= MainWindow_Loaded;
+        if (!App.Preferences.HasCompletedOnboarding)
+            ShowOnboarding();
+    }
 
     private void LoadSettingsIntoUi()
     {
