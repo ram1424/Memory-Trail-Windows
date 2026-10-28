@@ -44,11 +44,11 @@ jobs:
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v0.1.4
+          tag_name: v0.1.5
           target_commitish: main
-          name: Memory Lane for Windows v0.1.4
+          name: Memory Lane for Windows v0.1.5
           body: |
-            Windows-native blue glass UI and icon alignment release of Memory Lane.
+            Windows-native blue glass UI with clickable timeline details.
 
             - Activity timeline and focused-window tracking
             - Search, Favorites, and Add Memory

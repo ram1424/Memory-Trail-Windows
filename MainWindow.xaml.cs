@@ -164,6 +164,24 @@ public partial class MainWindow : Window
             App.Store.Add(window.CreatedItem);
     }
 
+    private void TimelineList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+    {
+        if (TimelineList.SelectedItem is MemoryItem item)
+            ShowDetails(item);
+    }
+
+    private void Details_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is Button { Tag: MemoryItem item })
+            ShowDetails(item);
+    }
+
+    private void ShowDetails(MemoryItem item)
+    {
+        var window = new MemoryDetailWindow(item) { Owner = this };
+        window.ShowDialog();
+    }
+
     private void Favorite_Click(object sender, RoutedEventArgs e)
     {
         if (sender is Button { Tag: MemoryItem item })
