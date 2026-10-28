@@ -75,27 +75,17 @@ public partial class MainWindow : Window
     {
         try
         {
-            var resource = Application.GetResourceStream(
-                new Uri("/Assets/MemoryTrailIcon.png", UriKind.Relative));
-            if (resource?.Stream is null)
-                return System.Drawing.SystemIcons.Application;
+            var executable = Environment.ProcessPath;
+            if (!string.IsNullOrWhiteSpace(executable))
+            {
+                using var associated = System.Drawing.Icon.ExtractAssociatedIcon(executable);
+                if (associated is not null)
+                    return (System.Drawing.Icon)associated.Clone();
+            }
+        }
+        catch { }
 
-            using var bitmap = new System.Drawing.Bitmap(resource.Stream);
-            var handle = bitmap.GetHicon();
-            try
-            {
-                using var icon = System.Drawing.Icon.FromHandle(handle);
-                return (System.Drawing.Icon)icon.Clone();
-            }
-            finally
-            {
-                DestroyIcon(handle);
-            }
-        }
-        catch
-        {
-            return System.Drawing.SystemIcons.Application;
-        }
+        return System.Drawing.SystemIcons.Application;
     }
 
     [DllImport("user32.dll", CharSet = CharSet.Auto)]

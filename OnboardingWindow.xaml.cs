@@ -58,8 +58,8 @@ public partial class OnboardingWindow : Window
         BackButton.Visibility = _page == 1 ? Visibility.Hidden : Visibility.Visible;
         NextButton.Content = _page == 4 ? "Start Using Memory Trail" : "Next";
 
-        var active = new SolidColorBrush(Color.FromRgb(105, 191, 255));
-        var inactive = new SolidColorBrush(Color.FromRgb(51, 65, 83));
+        var active = new SolidColorBrush(Color.FromRgb(22, 119, 255));
+        var inactive = new SolidColorBrush(Color.FromRgb(208, 218, 230));
 
         Dot1.Fill = _page == 1 ? active : inactive;
         Dot2.Fill = _page == 2 ? active : inactive;

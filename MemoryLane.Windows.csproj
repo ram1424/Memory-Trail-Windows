@@ -9,12 +9,14 @@
     <AssemblyName>Memory Trail</AssemblyName>
     <RootNamespace>MemoryLane.Windows</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
-    <Version>0.3.0</Version>
-    <AssemblyVersion>0.3.0.0</AssemblyVersion>
-    <FileVersion>0.3.0.0</FileVersion>
-    <InformationalVersion>0.3.0</InformationalVersion>
+    <ApplicationIcon>Assets\MemoryTrailApp.ico</ApplicationIcon>
+    <Version>0.3.1</Version>
+    <AssemblyVersion>0.3.1.0</AssemblyVersion>
+    <FileVersion>0.3.1.0</FileVersion>
+    <InformationalVersion>0.3.1</InformationalVersion>
   </PropertyGroup>
   <ItemGroup>
     <Resource Include="Assets\MemoryTrailIcon.png" />
+    <Resource Include="Assets\MemoryTrailApp.ico" />
   </ItemGroup>
 </Project>

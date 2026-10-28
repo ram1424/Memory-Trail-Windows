@@ -5,322 +5,294 @@
         Width="980" Height="650"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
-        Background="#EEF6FF">
-  <Grid Margin="28">
+        Background="#F5F8FC">
+  <Grid Margin="26">
     <Grid.RowDefinitions>
       <RowDefinition Height="*"/>
       <RowDefinition Height="Auto"/>
     </Grid.RowDefinitions>
 
-    <!-- Page 1 -->
     <Grid x:Name="Page1">
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="0.92*"/>
-        <ColumnDefinition Width="1.08*"/>
+        <ColumnDefinition Width="0.9*"/>
+        <ColumnDefinition Width="1.1*"/>
       </Grid.ColumnDefinitions>
 
-      <StackPanel VerticalAlignment="Center" Margin="10,0,34,0">
-        <Image x:Name="WelcomeBrandLogo"
-               Width="92" Height="92"
-               Stretch="Uniform"
-               HorizontalAlignment="Left"
-               Margin="0,0,0,22"/>
-
+      <StackPanel VerticalAlignment="Center" Margin="12,0,34,0">
+        <Border Width="98" Height="98" CornerRadius="24"
+                Background="#0B1F4A"
+                HorizontalAlignment="Left"
+                Margin="0,0,0,22">
+          <Image x:Name="WelcomeBrandLogo" Width="92" Height="92" Stretch="Uniform"/>
+        </Border>
         <TextBlock Text="Welcome to&#x0a;Memory Trail"
-                   FontSize="38"
-                   FontWeight="SemiBold"
-                   Foreground="#10203B"
-                   LineHeight="42"/>
-
-        <TextBlock Text="Retrace your digital day without trying to remember where you saw something."
+                   FontSize="38" FontWeight="SemiBold"
+                   LineHeight="42" Foreground="#172033"/>
+        <TextBlock Text="A simple, private way to retrace your digital day."
                    Margin="0,16,0,0"
-                   FontSize="18"
-                   LineHeight="27"
-                   Foreground="#334F6B"
+                   FontSize="18" LineHeight="27"
+                   Foreground="#405268"
                    TextWrapping="Wrap"/>
-
-        <TextBlock Text="Memory Trail quietly builds a private timeline of the apps and windows you use, then makes that history searchable."
+        <TextBlock Text="Memory Trail quietly keeps a searchable history of the apps and windows you use so you can find your way back."
                    Margin="0,14,0,0"
-                   FontSize="14"
-                   LineHeight="22"
-                   Foreground="#6C8096"
+                   FontSize="14" LineHeight="22"
+                   Foreground="#748399"
                    TextWrapping="Wrap"/>
       </StackPanel>
 
       <Border Grid.Column="1"
               Background="#FFFFFF"
-              BorderBrush="#D6E7F8"
+              BorderBrush="#E1E8F0"
               BorderThickness="1"
               CornerRadius="20"
               Padding="22"
-              Margin="4,22,4,22">
+              Margin="4,20,4,20">
         <StackPanel>
-          <TextBlock Text="See your activity in context"
-                     FontSize="19"
-                     FontWeight="SemiBold"
-                     Foreground="#10203B"
+          <TextBlock Text="Your day, at a glance"
+                     FontSize="19" FontWeight="SemiBold"
+                     Foreground="#172033"
                      Margin="0,0,0,16"/>
 
-          <Border Background="#F8FBFF" CornerRadius="13" Padding="13" Margin="0,0,0,10">
+          <Border Background="#F8FBFF" CornerRadius="14" Padding="14" Margin="0,0,0,10">
             <Grid>
               <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="42"/>
+                <ColumnDefinition Width="48"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="70"/>
                 <ColumnDefinition Width="Auto"/>
               </Grid.ColumnDefinitions>
-              <Border Width="34" Height="34" CornerRadius="9" Background="#E4F3FF">
-                <TextBlock Text="E" Foreground="#0A84FF" FontWeight="Bold" FontSize="17"
+              <Border Width="38" Height="38" CornerRadius="10">
+                <Border.Background>
+                  <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#16C7C8" Offset="0"/>
+                    <GradientStop Color="#1577FF" Offset="0.55"/>
+                    <GradientStop Color="#22C55E" Offset="1"/>
+                  </LinearGradientBrush>
+                </Border.Background>
+                <TextBlock Text="e" Foreground="White" FontSize="24" FontWeight="Bold"
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
               </Border>
-              <StackPanel Grid.Column="1" Margin="9,0,6,0">
-                <TextBlock Text="Microsoft Edge" FontWeight="SemiBold" Foreground="#10203B"/>
-                <TextBlock Text="Product Documentation" Margin="0,3,0,0" Foreground="#6A7F95"/>
+              <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                <TextBlock Text="Microsoft Edge" FontWeight="SemiBold" Foreground="#172033"/>
+                <TextBlock Text="Project documentation" Margin="0,3,0,0" Foreground="#6B7A90"/>
               </StackPanel>
-              <Border Grid.Column="2" Width="60" Height="34" CornerRadius="6"
-                      BorderBrush="#D6E7F8" BorderThickness="1" Background="#FFFFFF">
-                <StackPanel Margin="7,6">
-                  <Border Height="3" Background="#9FC8EE" CornerRadius="2" Margin="0,0,0,4"/>
-                  <Border Height="3" Background="#D0E2F2" CornerRadius="2" Margin="0,0,8,0"/>
-                </StackPanel>
-              </Border>
-              <TextBlock Grid.Column="3" Text="9:14 AM" FontSize="11" Foreground="#7F92A6"
-                         Margin="10,0,0,0" VerticalAlignment="Center"/>
+              <TextBlock Grid.Column="2" Text="9:14 AM" FontSize="11" Foreground="#98A2B3"
+                         VerticalAlignment="Center"/>
             </Grid>
           </Border>
 
-          <Border Background="#F8FBFF" CornerRadius="13" Padding="13" Margin="0,0,0,10">
+          <Border Background="#F8FBFF" CornerRadius="14" Padding="14" Margin="0,0,0,10">
             <Grid>
               <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="42"/>
+                <ColumnDefinition Width="48"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="70"/>
                 <ColumnDefinition Width="Auto"/>
               </Grid.ColumnDefinitions>
-              <Border Width="34" Height="34" CornerRadius="9" Background="#E7F1FF">
-                <TextBlock Text="O" Foreground="#1768C4" FontWeight="Bold" FontSize="17"
+              <Border Width="38" Height="38" CornerRadius="10" Background="#1677E8">
+                <TextBlock Text="O" Foreground="White" FontSize="19" FontWeight="Bold"
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
               </Border>
-              <StackPanel Grid.Column="1" Margin="9,0,6,0">
-                <TextBlock Text="Outlook" FontWeight="SemiBold" Foreground="#10203B"/>
-                <TextBlock Text="Weekly Project Update" Margin="0,3,0,0" Foreground="#6A7F95"/>
+              <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                <TextBlock Text="Outlook" FontWeight="SemiBold" Foreground="#172033"/>
+                <TextBlock Text="Weekly project update" Margin="0,3,0,0" Foreground="#6B7A90"/>
               </StackPanel>
-              <Border Grid.Column="2" Width="60" Height="34" CornerRadius="6"
-                      BorderBrush="#D6E7F8" BorderThickness="1" Background="#FFFFFF">
-                <StackPanel Margin="7,6">
-                  <Border Height="3" Background="#9FC8EE" CornerRadius="2" Margin="0,0,0,4"/>
-                  <Border Height="3" Background="#D0E2F2" CornerRadius="2" Margin="0,0,8,0"/>
-                </StackPanel>
-              </Border>
-              <TextBlock Grid.Column="3" Text="10:27 AM" FontSize="11" Foreground="#7F92A6"
-                         Margin="10,0,0,0" VerticalAlignment="Center"/>
+              <TextBlock Grid.Column="2" Text="10:27 AM" FontSize="11" Foreground="#98A2B3"
+                         VerticalAlignment="Center"/>
             </Grid>
           </Border>
 
-          <Border Background="#F8FBFF" CornerRadius="13" Padding="13">
+          <Border Background="#F8FBFF" CornerRadius="14" Padding="14" Margin="0,0,0,10">
             <Grid>
               <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="42"/>
+                <ColumnDefinition Width="48"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="70"/>
                 <ColumnDefinition Width="Auto"/>
               </Grid.ColumnDefinitions>
-              <Border Width="34" Height="34" CornerRadius="9" Background="#EEEAFE">
-                <TextBlock Text="T" Foreground="#6757D7" FontWeight="Bold" FontSize="17"
+              <Border Width="38" Height="38" CornerRadius="10" Background="#6554C0">
+                <TextBlock Text="T" Foreground="White" FontSize="19" FontWeight="Bold"
                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
               </Border>
-              <StackPanel Grid.Column="1" Margin="9,0,6,0">
-                <TextBlock Text="Microsoft Teams" FontWeight="SemiBold" Foreground="#10203B"/>
-                <TextBlock Text="Team Planning Discussion" Margin="0,3,0,0" Foreground="#6A7F95"/>
+              <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                <TextBlock Text="Microsoft Teams" FontWeight="SemiBold" Foreground="#172033"/>
+                <TextBlock Text="Design review discussion" Margin="0,3,0,0" Foreground="#6B7A90"/>
               </StackPanel>
-              <Border Grid.Column="2" Width="60" Height="34" CornerRadius="6"
-                      BorderBrush="#D6E7F8" BorderThickness="1" Background="#FFFFFF">
-                <StackPanel Margin="7,6">
-                  <Border Height="3" Background="#AFA4F5" CornerRadius="2" Margin="0,0,0,4"/>
-                  <Border Height="3" Background="#D8D2F8" CornerRadius="2" Margin="0,0,8,0"/>
-                </StackPanel>
+              <TextBlock Grid.Column="2" Text="11:03 AM" FontSize="11" Foreground="#98A2B3"
+                         VerticalAlignment="Center"/>
+            </Grid>
+          </Border>
+
+          <Border Background="#F8FBFF" CornerRadius="14" Padding="14">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="48"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+              </Grid.ColumnDefinitions>
+              <Border Width="38" Height="38" CornerRadius="10" Background="#F4B63D">
+                <TextBlock Text="F" Foreground="White" FontSize="19" FontWeight="Bold"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
               </Border>
-              <TextBlock Grid.Column="3" Text="11:03 AM" FontSize="11" Foreground="#7F92A6"
-                         Margin="10,0,0,0" VerticalAlignment="Center"/>
+              <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
+                <TextBlock Text="File Explorer" FontWeight="SemiBold" Foreground="#172033"/>
+                <TextBlock Text="Project Phoenix" Margin="0,3,0,0" Foreground="#6B7A90"/>
+              </StackPanel>
+              <TextBlock Grid.Column="2" Text="11:41 AM" FontSize="11" Foreground="#98A2B3"
+                         VerticalAlignment="Center"/>
             </Grid>
           </Border>
         </StackPanel>
       </Border>
     </Grid>
 
-    <!-- Page 2 -->
     <Grid x:Name="Page2" Visibility="Collapsed">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="0.9*"/>
         <ColumnDefinition Width="1.1*"/>
       </Grid.ColumnDefinitions>
 
-      <StackPanel VerticalAlignment="Center" Margin="10,0,32,0">
+      <StackPanel VerticalAlignment="Center" Margin="12,0,34,0">
         <TextBlock Text="Remember what you&#x0a;were doing"
-                   FontSize="35"
-                   FontWeight="SemiBold"
-                   Foreground="#10203B"
-                   LineHeight="41"/>
-        <TextBlock Text="Memory Trail watches the active application and focused window title, then records meaningful changes in your timeline."
-                   Margin="0,16,0,0"
-                   FontSize="16"
-                   LineHeight="25"
-                   Foreground="#536A83"
-                   TextWrapping="Wrap"/>
-        <Border Background="#FFFFFF" CornerRadius="14" Padding="16" Margin="0,24,0,0"
-                BorderBrush="#D6E7F8" BorderThickness="1">
-          <StackPanel>
-            <TextBlock Text="Examples" FontWeight="SemiBold" Foreground="#10203B"/>
-            <TextBlock Text="• Browser: Product Documentation" Margin="0,10,0,0" Foreground="#657B92"/>
-            <TextBlock Text="• Email: Weekly Project Update" Margin="0,6,0,0" Foreground="#657B92"/>
-            <TextBlock Text="• Chat: Team Planning Discussion" Margin="0,6,0,0" Foreground="#657B92"/>
-          </StackPanel>
+                   FontSize="36" FontWeight="SemiBold"
+                   LineHeight="41" Foreground="#172033"/>
+        <TextBlock Text="Memory Trail records meaningful app and window changes so your history stays useful instead of noisy."
+                   Margin="0,16,0,0" FontSize="16" LineHeight="25"
+                   Foreground="#53667C" TextWrapping="Wrap"/>
+        <Border Background="#EAF3FF" CornerRadius="12" Padding="14" Margin="0,22,0,0">
+          <TextBlock Text="Tip: double-click any timeline item to open its details."
+                     Foreground="#245B9B" TextWrapping="Wrap"/>
         </Border>
       </StackPanel>
 
-      <Border Grid.Column="1"
-              Background="#FFFFFF"
-              BorderBrush="#D6E7F8"
-              BorderThickness="1"
-              CornerRadius="20"
-              Padding="28"
-              Margin="6,24,4,24">
+      <Border Grid.Column="1" Background="#FFFFFF" BorderBrush="#E1E8F0"
+              BorderThickness="1" CornerRadius="20" Padding="26" Margin="4,22,4,22">
         <Grid>
-          <Border Width="3" Background="#D6E8F9" HorizontalAlignment="Left" Margin="22,12,0,12"/>
-          <StackPanel Margin="0,18,0,0">
-            <Border Background="#F8FBFF" BorderBrush="#D6E7F8" BorderThickness="1"
-                    CornerRadius="13" Padding="13" Margin="46,0,0,14">
-              <StackPanel>
-                <TextBlock Text="Microsoft Edge" FontWeight="SemiBold" Foreground="#10203B"/>
-                <TextBlock Text="Product Documentation" Margin="0,3,0,0" Foreground="#60758C"/>
-                <TextBlock Text="9:14 AM" Margin="0,4,0,0" FontSize="11" Foreground="#8294A7"/>
-              </StackPanel>
-            </Border>
-            <Border Background="#F8FBFF" BorderBrush="#D6E7F8" BorderThickness="1"
-                    CornerRadius="13" Padding="13" Margin="46,0,0,14">
-              <StackPanel>
-                <TextBlock Text="Outlook" FontWeight="SemiBold" Foreground="#10203B"/>
-                <TextBlock Text="Weekly Project Update" Margin="0,3,0,0" Foreground="#60758C"/>
-                <TextBlock Text="10:27 AM" Margin="0,4,0,0" FontSize="11" Foreground="#8294A7"/>
-              </StackPanel>
-            </Border>
-            <Border Background="#F8FBFF" BorderBrush="#D6E7F8" BorderThickness="1"
-                    CornerRadius="13" Padding="13" Margin="46,0,0,0">
-              <StackPanel>
-                <TextBlock Text="Microsoft Teams" FontWeight="SemiBold" Foreground="#10203B"/>
-                <TextBlock Text="Team Planning Discussion" Margin="0,3,0,0" Foreground="#60758C"/>
-                <TextBlock Text="11:03 AM" Margin="0,4,0,0" FontSize="11" Foreground="#8294A7"/>
-              </StackPanel>
-            </Border>
+          <Border Width="2" Background="#D8E9FB" HorizontalAlignment="Left" Margin="20,12,0,12"/>
+          <StackPanel>
+            <Grid Margin="0,8,0,14">
+              <Grid.ColumnDefinitions><ColumnDefinition Width="46"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+              <Ellipse Width="12" Height="12" Fill="#1677FF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+              <Border Grid.Column="1" Background="#F8FBFF" CornerRadius="13" Padding="13">
+                <StackPanel>
+                  <TextBlock Text="Microsoft Edge" Foreground="#1577FF" FontWeight="SemiBold"/>
+                  <TextBlock Text="Product documentation" Margin="0,3,0,0" Foreground="#172033"/>
+                  <TextBlock Text="9:14 AM" Margin="0,4,0,0" FontSize="11" Foreground="#98A2B3"/>
+                </StackPanel>
+              </Border>
+            </Grid>
+            <Grid Margin="0,0,0,14">
+              <Grid.ColumnDefinitions><ColumnDefinition Width="46"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+              <Ellipse Width="12" Height="12" Fill="#6554C0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+              <Border Grid.Column="1" Background="#F8FBFF" CornerRadius="13" Padding="13">
+                <StackPanel>
+                  <TextBlock Text="Microsoft Teams" Foreground="#6554C0" FontWeight="SemiBold"/>
+                  <TextBlock Text="Design review discussion" Margin="0,3,0,0" Foreground="#172033"/>
+                  <TextBlock Text="10:03 AM" Margin="0,4,0,0" FontSize="11" Foreground="#98A2B3"/>
+                </StackPanel>
+              </Border>
+            </Grid>
+            <Grid>
+              <Grid.ColumnDefinitions><ColumnDefinition Width="46"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+              <Ellipse Width="12" Height="12" Fill="#F4B63D" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+              <Border Grid.Column="1" Background="#F8FBFF" CornerRadius="13" Padding="13">
+                <StackPanel>
+                  <TextBlock Text="File Explorer" Foreground="#B87700" FontWeight="SemiBold"/>
+                  <TextBlock Text="Project Phoenix" Margin="0,3,0,0" Foreground="#172033"/>
+                  <TextBlock Text="11:41 AM" Margin="0,4,0,0" FontSize="11" Foreground="#98A2B3"/>
+                </StackPanel>
+              </Border>
+            </Grid>
           </StackPanel>
-          <Ellipse Width="12" Height="12" Fill="#FFFFFF" Stroke="#2196F3" StrokeThickness="3"
-                   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="17,55,0,0"/>
-          <Ellipse Width="12" Height="12" Fill="#FFFFFF" Stroke="#2196F3" StrokeThickness="3"
-                   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="17,164,0,0"/>
-          <Ellipse Width="12" Height="12" Fill="#FFFFFF" Stroke="#2196F3" StrokeThickness="3"
-                   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="17,273,0,0"/>
         </Grid>
       </Border>
     </Grid>
 
-    <!-- Page 3 -->
     <Grid x:Name="Page3" Visibility="Collapsed">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="0.9*"/>
         <ColumnDefinition Width="1.1*"/>
       </Grid.ColumnDefinitions>
 
-      <StackPanel VerticalAlignment="Center" Margin="10,0,34,0">
+      <StackPanel VerticalAlignment="Center" Margin="12,0,34,0">
         <TextBlock Text="Find it again&#x0a;in seconds"
-                   FontSize="35"
-                   FontWeight="SemiBold"
-                   Foreground="#10203B"
-                   LineHeight="41"/>
-        <TextBlock Text="Search by application, page title, copied text, or a memory you saved yourself."
-                   Margin="0,16,0,0"
-                   FontSize="16"
-                   LineHeight="25"
-                   Foreground="#536A83"
-                   TextWrapping="Wrap"/>
+                   FontSize="36" FontWeight="SemiBold"
+                   LineHeight="41" Foreground="#172033"/>
+        <TextBlock Text="Search across app names, window titles, notes, links, and copied text from one place."
+                   Margin="0,16,0,0" FontSize="16" LineHeight="25"
+                   Foreground="#53667C" TextWrapping="Wrap"/>
       </StackPanel>
 
-      <Border Grid.Column="1"
-              Background="#FFFFFF"
-              BorderBrush="#D6E7F8"
-              BorderThickness="1"
-              CornerRadius="20"
-              Padding="22"
-              Margin="6,24,4,24">
+      <Border Grid.Column="1" Background="#FFFFFF" BorderBrush="#E1E8F0"
+              BorderThickness="1" CornerRadius="20" Padding="22" Margin="4,22,4,22">
         <StackPanel>
-          <Border Background="#F8FBFF" BorderBrush="#D6E7F8" BorderThickness="1"
-                  CornerRadius="9" Padding="11">
-            <TextBlock Text="⌕  project update" Foreground="#405A74"/>
+          <Border Background="#F7FAFD" BorderBrush="#DCE5EF" BorderThickness="1"
+                  CornerRadius="10" Padding="11">
+            <TextBlock Text="⌕   project update" Foreground="#405268"/>
           </Border>
-          <TextBlock Text="2 matching memories" Margin="0,18,0,10" Foreground="#8496A9" FontSize="11"/>
+          <TextBlock Text="2 results" Margin="2,18,0,10" FontSize="11" Foreground="#98A2B3"/>
           <Border Background="#F8FBFF" CornerRadius="13" Padding="14" Margin="0,0,0,10">
-            <StackPanel>
-              <TextBlock Text="Outlook · 10:27 AM" Foreground="#0A84FF" FontWeight="SemiBold"/>
-              <TextBlock Text="Weekly Project Update" Margin="0,5,0,0" Foreground="#10203B" FontWeight="SemiBold"/>
-              <TextBlock Text="Review milestones and next steps" Margin="0,4,0,0" Foreground="#667B92"/>
-            </StackPanel>
+            <Grid>
+              <Grid.ColumnDefinitions><ColumnDefinition Width="42"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+              <Border Width="34" Height="34" CornerRadius="9" Background="#1677E8">
+                <TextBlock Text="O" Foreground="White" FontWeight="Bold"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+              </Border>
+              <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                <TextBlock Text="Outlook" Foreground="#1677E8" FontWeight="SemiBold"/>
+                <TextBlock Text="Weekly project update" Margin="0,4,0,0" Foreground="#172033"/>
+              </StackPanel>
+            </Grid>
           </Border>
           <Border Background="#F8FBFF" CornerRadius="13" Padding="14">
-            <StackPanel>
-              <TextBlock Text="Saved Memory · Yesterday" Foreground="#0A84FF" FontWeight="SemiBold"/>
-              <TextBlock Text="Follow up on project update" Margin="0,5,0,0" Foreground="#10203B" FontWeight="SemiBold"/>
-              <TextBlock Text="Manual notes live beside captured activity." Margin="0,4,0,0" Foreground="#667B92"/>
-            </StackPanel>
+            <Grid>
+              <Grid.ColumnDefinitions><ColumnDefinition Width="42"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+              <Border Width="34" Height="34" CornerRadius="9" Background="#0B1F4A">
+                <TextBlock Text="M" Foreground="White" FontWeight="Bold"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+              </Border>
+              <StackPanel Grid.Column="1" Margin="10,0,0,0">
+                <TextBlock Text="Saved memory" Foreground="#315A8A" FontWeight="SemiBold"/>
+                <TextBlock Text="Follow up on project update" Margin="0,4,0,0" Foreground="#172033"/>
+              </StackPanel>
+            </Grid>
           </Border>
         </StackPanel>
       </Border>
     </Grid>
 
-    <!-- Page 4 -->
     <Grid x:Name="Page4" Visibility="Collapsed">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="0.9*"/>
         <ColumnDefinition Width="1.1*"/>
       </Grid.ColumnDefinitions>
 
-      <StackPanel VerticalAlignment="Center" Margin="10,0,34,0">
-        <Image x:Name="PrivacyBrandLogo" Width="92" Height="92"
-               HorizontalAlignment="Left" Margin="0,0,0,22"/>
+      <StackPanel VerticalAlignment="Center" Margin="12,0,34,0">
+        <Border Width="98" Height="98" CornerRadius="24" Background="#0B1F4A"
+                HorizontalAlignment="Left" Margin="0,0,0,22">
+          <Image x:Name="PrivacyBrandLogo" Width="92" Height="92" Stretch="Uniform"/>
+        </Border>
         <TextBlock Text="Private by design"
-                   FontSize="35"
-                   FontWeight="SemiBold"
-                   Foreground="#10203B"/>
+                   FontSize="36" FontWeight="SemiBold"
+                   Foreground="#172033"/>
         <TextBlock Text="Your timeline stays on this PC. You control capture, exclusions, clipboard history, and when Memory Trail is paused."
-                   Margin="0,16,0,0"
-                   FontSize="16"
-                   LineHeight="25"
-                   Foreground="#536A83"
-                   TextWrapping="Wrap"/>
+                   Margin="0,16,0,0" FontSize="16" LineHeight="25"
+                   Foreground="#53667C" TextWrapping="Wrap"/>
       </StackPanel>
 
-      <Border Grid.Column="1"
-              Background="#FFFFFF"
-              BorderBrush="#D6E7F8"
-              BorderThickness="1"
-              CornerRadius="20"
-              Padding="22"
-              Margin="6,24,4,24">
+      <Border Grid.Column="1" Background="#FFFFFF" BorderBrush="#E1E8F0"
+              BorderThickness="1" CornerRadius="20" Padding="24" Margin="4,22,4,22">
         <StackPanel>
-          <TextBlock Text="Your privacy controls"
-                     FontSize="18"
-                     FontWeight="SemiBold"
-                     Foreground="#10203B"
-                     Margin="0,0,0,14"/>
-          <Border Background="#F2F9F5" CornerRadius="12" Padding="13" Margin="0,0,0,9">
-            <TextBlock Text="✓ Local-only timeline" Foreground="#2E6F4E" FontWeight="SemiBold"/>
+          <TextBlock Text="Your privacy controls" FontSize="19" FontWeight="SemiBold"
+                     Foreground="#172033" Margin="0,0,0,16"/>
+          <Border Background="#ECFDF3" CornerRadius="12" Padding="14" Margin="0,0,0,10">
+            <TextBlock Text="✓  Local-only timeline" Foreground="#18794E" FontWeight="SemiBold"/>
           </Border>
-          <Border Background="#F8FBFF" CornerRadius="12" Padding="13" Margin="0,0,0,9">
-            <TextBlock Text="✓ Pause or resume capture any time" Foreground="#315E90" FontWeight="SemiBold"/>
+          <Border Background="#EEF5FF" CornerRadius="12" Padding="14" Margin="0,0,0,10">
+            <TextBlock Text="✓  Pause capture any time" Foreground="#245B9B" FontWeight="SemiBold"/>
           </Border>
-          <Border Background="#F8FBFF" CornerRadius="12" Padding="13" Margin="0,0,0,9">
-            <TextBlock Text="✓ Exclude apps and services" Foreground="#315E90" FontWeight="SemiBold"/>
+          <Border Background="#F4F0FF" CornerRadius="12" Padding="14" Margin="0,0,0,10">
+            <TextBlock Text="✓  Exclude apps and services" Foreground="#6246A8" FontWeight="SemiBold"/>
           </Border>
-          <Border Background="#F8FBFF" CornerRadius="12" Padding="13">
-            <TextBlock Text="✓ No cloud account required" Foreground="#315E90" FontWeight="SemiBold"/>
+          <Border Background="#FFF7E7" CornerRadius="12" Padding="14">
+            <TextBlock Text="✓  No cloud account required" Foreground="#946200" FontWeight="SemiBold"/>
           </Border>
         </StackPanel>
       </Border>
@@ -333,27 +305,20 @@
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
 
-      <Button x:Name="BackButton"
-              Content="Back"
-              Click="Back_Click"
-              Visibility="Hidden"
-              HorizontalAlignment="Left"
-              Padding="18,9"/>
+      <Button x:Name="BackButton" Content="Back"
+              Click="Back_Click" Visibility="Hidden"
+              HorizontalAlignment="Left" Padding="18,9"/>
 
       <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-        <Ellipse x:Name="Dot1" Width="8" Height="8" Fill="#168CFF" Margin="4"/>
-        <Ellipse x:Name="Dot2" Width="8" Height="8" Fill="#C8D9E9" Margin="4"/>
-        <Ellipse x:Name="Dot3" Width="8" Height="8" Fill="#C8D9E9" Margin="4"/>
-        <Ellipse x:Name="Dot4" Width="8" Height="8" Fill="#C8D9E9" Margin="4"/>
+        <Ellipse x:Name="Dot1" Width="8" Height="8" Margin="4"/>
+        <Ellipse x:Name="Dot2" Width="8" Height="8" Margin="4"/>
+        <Ellipse x:Name="Dot3" Width="8" Height="8" Margin="4"/>
+        <Ellipse x:Name="Dot4" Width="8" Height="8" Margin="4"/>
       </StackPanel>
 
-      <Button x:Name="NextButton"
-              Grid.Column="2"
-              Content="Next"
-              Style="{StaticResource PrimaryButtonStyle}"
-              Click="Next_Click"
-              HorizontalAlignment="Right"
-              Padding="22,10"/>
+      <Button x:Name="NextButton" Grid.Column="2"
+              Content="Next" Style="{StaticResource PrimaryButtonStyle}"
+              Click="Next_Click" HorizontalAlignment="Right" Padding="22,10"/>
     </Grid>
   </Grid>
 </Window>
