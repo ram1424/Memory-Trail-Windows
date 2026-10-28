@@ -38,7 +38,7 @@ public sealed class AppIconConverter : IValueConverter
             {
                 var bitmap = new BitmapImage();
                 bitmap.BeginInit();
-                bitmap.UriSource = new Uri("pack://application:,,,/Assets/MemoryLaneWindowsIcon.png");
+                bitmap.UriSource = new Uri("pack://application:,,,/Assets/MemoryLaneWindowsClockIcon.png");
                 bitmap.CacheOption = BitmapCacheOption.OnLoad;
                 bitmap.EndInit();
                 bitmap.Freeze();

@@ -53,7 +53,7 @@ public partial class MainWindow : Window
         try
         {
             var resource = Application.GetResourceStream(
-                new Uri("pack://application:,,,/Assets/MemoryLaneWindowsIcon.png"));
+                new Uri("pack://application:,,,/Assets/MemoryLaneWindowsClockIcon.png"));
             if (resource?.Stream is null)
                 return System.Drawing.SystemIcons.Application;
 

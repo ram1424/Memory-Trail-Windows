@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Memory Details"
-        Icon="Assets/MemoryLaneWindowsIcon.png"
+        Icon="Assets/MemoryLaneWindowsClockIcon.png"
         Width="720" Height="620"
         MinWidth="620" MinHeight="520"
         WindowStartupLocation="CenterOwner"

@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Welcome to Memory Lane"
-        Icon="Assets/MemoryLaneWindowsIcon.png"
+        Icon="Assets/MemoryLaneWindowsClockIcon.png"
         Width="920" Height="620"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel VerticalAlignment="Center" Margin="12,0,28,0">
-          <Image Source="Assets/MemoryLaneWindowsIcon.png"
+          <Image Source="Assets/MemoryLaneWindowsClockIcon.png"
                  Width="120" Height="120"
                  HorizontalAlignment="Left"
                  Stretch="Uniform"/>
@@ -132,7 +132,7 @@
                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Ellipse Width="190" Height="190" Stroke="#BFD0E2" StrokeThickness="1"
                      HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Image Source="Assets/MemoryLaneWindowsIcon.png"
+            <Image Source="Assets/MemoryLaneWindowsClockIcon.png"
                    Width="92" Height="92"
                    HorizontalAlignment="Center" VerticalAlignment="Center"
                    Stretch="Uniform"/>
@@ -157,12 +157,12 @@
         </Border>
 
         <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="24,0,24,0">
-          <TextBlock Text="Remember what you were doing"
+          <TextBlock Text="See your day in context"
                      FontSize="34"
                      FontWeight="SemiBold"
                      Foreground="#10203B"
                      TextWrapping="Wrap"/>
-          <TextBlock Text="Memory Lane watches the active application and focused window title, then records meaningful changes in your timeline."
+          <TextBlock Text="Memory Lane turns app switches, window titles, copied text, and saved notes into a clean timeline you can revisit later."
                      Margin="0,16,0,0"
                      FontSize="16"
                      LineHeight="24"
@@ -171,10 +171,13 @@
 
           <Border Background="#DCE8F4" CornerRadius="14" Padding="16" Margin="0,24,0,0">
             <StackPanel>
-              <TextBlock Text="Examples" FontWeight="SemiBold" Foreground="#20334E"/>
-              <TextBlock Text="• Browser: Quarterly planning dashboard" Margin="0,10,0,0" Foreground="#53677E"/>
-              <TextBlock Text="• Email: Launch readiness review" Margin="0,7,0,0" Foreground="#53677E"/>
-              <TextBlock Text="• Team chat: Design review discussion" Margin="0,7,0,0" Foreground="#53677E"/>
+              <TextBlock Text="A typical workday" FontSize="15" FontWeight="SemiBold" Foreground="#20334E"/>
+              <TextBlock Text="10:12 AM   Browser" Margin="0,12,0,0" FontWeight="SemiBold" Foreground="#315E90"/>
+              <TextBlock Text="Quarterly Planning Dashboard" Margin="0,3,0,0" Foreground="#10203B"/>
+              <TextBlock Text="10:38 AM   Email" Margin="0,14,0,0" FontWeight="SemiBold" Foreground="#315E90"/>
+              <TextBlock Text="RE: Launch Readiness Review" Margin="0,3,0,0" Foreground="#10203B"/>
+              <TextBlock Text="11:04 AM   Team Chat" Margin="0,14,0,0" FontWeight="SemiBold" Foreground="#315E90"/>
+              <TextBlock Text="Design Review · Product Team" Margin="0,3,0,0" Foreground="#10203B"/>
             </StackPanel>
           </Border>
         </StackPanel>
@@ -188,11 +191,11 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel VerticalAlignment="Center" Margin="24,0,34,0">
-          <TextBlock Text="Find it again in seconds"
+          <TextBlock Text="Find anything you touched"
                      FontSize="34"
                      FontWeight="SemiBold"
                      Foreground="#10203B"/>
-          <TextBlock Text="Search by the words you remember — app name, page title, email subject, copied text, or a note you added yourself."
+          <TextBlock Text="Search by app, title, email subject, copied text, or a memory you saved yourself. Even a few remembered words can get you back to the right moment."
                      Margin="0,16,0,0"
                      FontSize="16"
                      LineHeight="24"
@@ -201,7 +204,7 @@
 
           <Border Background="#DCE8F4" CornerRadius="14" Padding="16" Margin="0,24,0,0">
             <StackPanel>
-              <TextBlock Text="Your timeline is searchable" FontWeight="SemiBold" Foreground="#20334E"/>
+              <TextBlock Text="Search across your entire timeline" FontWeight="SemiBold" Foreground="#20334E"/>
               <TextBlock Text="Search apps, titles, copied text, and saved memories" Margin="0,8,0,0" Foreground="#53677E"/>
             </StackPanel>
           </Border>
@@ -265,7 +268,7 @@
         </Border>
 
         <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="24,0,18,0">
-          <TextBlock Text="Private by design"
+          <TextBlock Text="Private by design, useful by default"
                      FontSize="34"
                      FontWeight="SemiBold"
                      Foreground="#10203B"/>

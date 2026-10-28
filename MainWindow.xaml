@@ -2,8 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:MemoryLane.Windows"
-        Title="Memory Lane v0.1.11"
-        Icon="Assets/MemoryLaneWindowsIcon.png"
+        Title="Memory Lane v0.1.12"
+        Icon="Assets/MemoryLaneWindowsClockIcon.png"
         Width="1280" Height="820"
         MinWidth="1020" MinHeight="680"
         WindowStartupLocation="CenterScreen"
@@ -26,7 +26,7 @@
       <DockPanel>
         <StackPanel DockPanel.Dock="Top">
           <StackPanel Orientation="Horizontal" Margin="0,4,0,28">
-            <Image Source="Assets/MemoryLaneWindowsIcon.png"
+            <Image Source="Assets/MemoryLaneWindowsClockIcon.png"
                    Width="34" Height="34"
                    Stretch="Uniform"
                    Margin="0,0,10,0"/>
@@ -35,7 +35,7 @@
                          FontSize="18"
                          FontWeight="SemiBold"
                          Foreground="#10203B"/>
-              <TextBlock Text="v0.1.11 · Windows UI"
+              <TextBlock Text="v0.1.12 · Windows UI"
                          Margin="0,2,0,0"
                          FontSize="10"
                          Foreground="#6F87A3"/>
@@ -75,7 +75,7 @@
                   HorizontalContentAlignment="Left"
                   Margin="0,0,0,8"/>
           <Button Content="+  Add Memory"
-                  Style="{StaticResource PrimaryButtonStyle}"
+                  Style="{StaticResource NavButtonStyle}"
                   Click="AddMemory_Click"
                   HorizontalContentAlignment="Left"/>
         </StackPanel>
