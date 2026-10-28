@@ -32,7 +32,8 @@ public sealed class AppIconConverter : IValueConverter
 
     private static ImageSource? LoadForItem(MemoryItem item)
     {
-        if (item.SourceApp.Equals("Memory Lane", StringComparison.OrdinalIgnoreCase))
+        if (item.SourceApp.Equals("Memory Trail", StringComparison.OrdinalIgnoreCase) ||
+            item.SourceApp.Equals("Memory Lane", StringComparison.OrdinalIgnoreCase))
         {
             try
             {

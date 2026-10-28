@@ -59,7 +59,8 @@ public sealed class CaptureService
 
         var processName = process.ProcessName;
         if (_preferences.IsExcluded(processName)) return;
-        if (processName.Equals("Memory Lane", StringComparison.OrdinalIgnoreCase) ||
+        if (processName.Equals("Memory Trail", StringComparison.OrdinalIgnoreCase) ||
+            processName.Equals("Memory Lane", StringComparison.OrdinalIgnoreCase) ||
             processName.Equals("MemoryLane.Windows", StringComparison.OrdinalIgnoreCase))
             return;
 

@@ -8,6 +8,9 @@ public sealed class TimelineStore
     private readonly object _gate = new();
     private readonly string _folder = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+        "Memory Trail");
+    private readonly string _legacyFolder = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
         "Memory Lane");
     private string FilePath => Path.Combine(_folder, "timeline.json");
 
@@ -53,6 +56,7 @@ public sealed class TimelineStore
             try
             {
                 Directory.CreateDirectory(_folder);
+                MigrateLegacyTimeline();
                 if (!File.Exists(FilePath)) return;
                 var items = JsonSerializer.Deserialize<List<MemoryItem>>(File.ReadAllText(FilePath)) ?? [];
                 App.Current.Dispatcher.Invoke(() =>
@@ -64,6 +68,17 @@ public sealed class TimelineStore
             }
             catch { }
         }
+    }
+
+    private void MigrateLegacyTimeline()
+    {
+        try
+        {
+            var legacyFile = Path.Combine(_legacyFolder, "timeline.json");
+            if (!File.Exists(FilePath) && File.Exists(legacyFile))
+                File.Copy(legacyFile, FilePath, false);
+        }
+        catch { }
     }
 
     public void Save()

@@ -7,6 +7,9 @@ public sealed class PreferencesService
 {
     private readonly string _folder = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+        "Memory Trail");
+    private readonly string _legacyFolder = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
         "Memory Lane");
     private string FilePath => Path.Combine(_folder, "preferences.json");
 
@@ -35,10 +38,11 @@ public sealed class PreferencesService
                 @"Software\Microsoft\Windows\CurrentVersion\Run", writable: true);
             if (key is null) return;
 
+            key.DeleteValue("Memory Lane", false);
             if (enabled)
-                key.SetValue("Memory Lane", $"\"{Environment.ProcessPath}\"");
+                key.SetValue("Memory Trail", $"\"{Environment.ProcessPath}\"");
             else
-                key.DeleteValue("Memory Lane", false);
+                key.DeleteValue("Memory Trail", false);
         }
         catch { }
     }
@@ -64,6 +68,7 @@ public sealed class PreferencesService
         try
         {
             Directory.CreateDirectory(_folder);
+            MigrateLegacyFile();
             if (!File.Exists(FilePath)) return;
             var loaded = JsonSerializer.Deserialize<PreferencesService>(File.ReadAllText(FilePath));
             if (loaded is null) return;
@@ -76,6 +81,17 @@ public sealed class PreferencesService
             ExcludedProcesses = new HashSet<string>(
                 loaded.ExcludedProcesses ?? [],
                 StringComparer.OrdinalIgnoreCase);
+        }
+        catch { }
+    }
+
+    private void MigrateLegacyFile()
+    {
+        try
+        {
+            var legacyFile = Path.Combine(_legacyFolder, "preferences.json");
+            if (!File.Exists(FilePath) && File.Exists(legacyFile))
+                File.Copy(legacyFile, FilePath, false);
         }
         catch { }
     }
