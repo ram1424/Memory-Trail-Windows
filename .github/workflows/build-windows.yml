@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   build:
@@ -26,7 +27,28 @@ jobs:
         run: dotnet restore MemoryLane.Windows.csproj
 
       - name: Build
-        run: dotnet build MemoryLane.Windows.csproj -c Release --no-restore
+        id: compile
+        shell: pwsh
+        continue-on-error: true
+        run: |
+          dotnet build MemoryLane.Windows.csproj -c Release --no-restore 2>&1 | Tee-Object -FilePath build.log
+          if ($LASTEXITCODE -ne 0) { exit 1 }
+
+      - name: Report compiler output
+        if: steps.compile.outcome == 'failure'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          "Automated compiler output for commit ${{ github.sha }}" | Set-Content build-issue.md
+          "" | Add-Content build-issue.md
+          Get-Content build.log | Add-Content build-issue.md
+          gh issue create --title "Build diagnostics ${{ github.run_number }}" --body-file build-issue.md
+
+      - name: Fail after diagnostics
+        if: steps.compile.outcome == 'failure'
+        shell: pwsh
+        run: exit 1
 
       - name: Publish self-contained Windows x64 app
         run: dotnet publish MemoryLane.Windows.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:EnableCompressionInSingleFile=true -o artifacts/Memory-Lane-Windows-x64
@@ -49,13 +71,4 @@ jobs:
           name: Memory Lane for Windows v0.1.0
           body: |
             First Windows release of Memory Lane.
-
-            - Activity timeline and focused-window tracking
-            - Search, Favorites, and Add Memory
-            - Optional clipboard capture
-            - Privacy exclusions and pause/resume controls
-            - Windows system tray support
-            - First-launch tutorial
-            - Start-with-Windows option
-            - Local-only storage
           files: artifacts/Memory-Lane-Windows-x64.zip
