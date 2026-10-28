@@ -11,7 +11,7 @@ namespace MemoryLane.Windows;
 public partial class MainWindow : Window
 {
     private readonly ICollectionView _view;
-    private readonly Forms.NotifyIcon _trayIcon;
+    private Forms.NotifyIcon? _trayIcon;
     private bool _quitting;
     private string _mode = "Timeline";
     private bool _initializingSettings = true;
@@ -28,20 +28,28 @@ public partial class MainWindow : Window
         UpdateCaptureState();
         UpdateNavSelection("Timeline");
 
-        _trayIcon = new Forms.NotifyIcon
+        try
         {
-            Text = "Memory Trail",
-            Visible = true,
-            Icon = CreateTrayIcon()
-        };
+            _trayIcon = new Forms.NotifyIcon
+            {
+                Text = "Memory Trail",
+                Visible = true,
+                Icon = CreateTrayIcon()
+            };
 
-        var menu = new Forms.ContextMenuStrip();
-        menu.Items.Add("Open Memory Trail", null, (_, _) => Dispatcher.Invoke(ShowFromTray));
-        menu.Items.Add("Pause / Resume Capture", null, (_, _) => Dispatcher.Invoke(ToggleCapture));
-        menu.Items.Add(new Forms.ToolStripSeparator());
-        menu.Items.Add("Quit", null, (_, _) => Dispatcher.Invoke(QuitApplication));
-        _trayIcon.ContextMenuStrip = menu;
-        _trayIcon.DoubleClick += (_, _) => Dispatcher.Invoke(ShowFromTray);
+            var menu = new Forms.ContextMenuStrip();
+            menu.Items.Add("Open Memory Trail", null, (_, _) => Dispatcher.Invoke(ShowFromTray));
+            menu.Items.Add("Pause / Resume Capture", null, (_, _) => Dispatcher.Invoke(ToggleCapture));
+            menu.Items.Add(new Forms.ToolStripSeparator());
+            menu.Items.Add("Quit", null, (_, _) => Dispatcher.Invoke(QuitApplication));
+            _trayIcon.ContextMenuStrip = menu;
+            _trayIcon.DoubleClick += (_, _) => Dispatcher.Invoke(ShowFromTray);
+        }
+        catch (Exception ex)
+        {
+            App.LogNonFatal("Tray initialization", ex);
+            _trayIcon = null;
+        }
 
         Closing += OnClosing;
         Loaded += MainWindow_Loaded;
@@ -82,8 +90,23 @@ public partial class MainWindow : Window
     private void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
         Loaded -= MainWindow_Loaded;
+
         if (!App.Preferences.HasCompletedOnboarding)
-            ShowOnboarding();
+        {
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                try { ShowOnboarding(); }
+                catch (Exception ex)
+                {
+                    App.LogNonFatal("Onboarding", ex);
+                    MessageBox.Show(
+                        "Memory Trail started successfully, but the welcome tutorial could not be opened. You can retry it later from Settings.",
+                        "Memory Trail",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                }
+            }));
+        }
     }
 
     private void LoadSettingsIntoUi()
@@ -112,7 +135,8 @@ public partial class MainWindow : Window
     private void QuitApplication()
     {
         _quitting = true;
-        _trayIcon.Visible = false;
+        if (_trayIcon is not null)
+            _trayIcon.Visible = false;
         Application.Current.Shutdown();
     }
 
@@ -297,8 +321,11 @@ public partial class MainWindow : Window
 
     protected override void OnClosed(EventArgs e)
     {
-        _trayIcon.Visible = false;
-        _trayIcon.Dispose();
+        if (_trayIcon is not null)
+        {
+            _trayIcon.Visible = false;
+            _trayIcon.Dispose();
+        }
         base.OnClosed(e);
     }
 }
