@@ -44,11 +44,11 @@ jobs:
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v0.1.1
+          tag_name: v0.1.2
           target_commitish: main
-          name: Memory Lane for Windows v0.1.1
+          name: Memory Lane for Windows v0.1.2
           body: |
-            Windows launch-fix release of Memory Lane.
+            Windows UI refinement release of Memory Lane.
 
             - Activity timeline and focused-window tracking
             - Search, Favorites, and Add Memory

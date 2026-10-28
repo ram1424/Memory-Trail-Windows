@@ -3,35 +3,35 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Memory Lane"
         Icon="Assets/MemoryLaneIcon.png"
-        Width="1180" Height="760"
-        MinWidth="900" MinHeight="600"
+        Width="1240" Height="800"
+        MinWidth="980" MinHeight="650"
         WindowStartupLocation="CenterScreen"
         Background="{StaticResource BackgroundBrush}">
   <Grid>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="230"/>
+      <ColumnDefinition Width="250"/>
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
 
-    <Border Grid.Column="0" Background="#101622" Padding="18">
+    <Border Grid.Column="0" Background="{StaticResource SidebarBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,1,0" Padding="20">
       <DockPanel>
         <StackPanel DockPanel.Dock="Top">
-          <StackPanel Orientation="Horizontal" Margin="0,0,0,24">
+          <StackPanel Orientation="Horizontal" Margin="0,0,0,28">
             <Image Source="Assets/MemoryLaneIcon.png"
                    Width="36" Height="36"
                    Stretch="Uniform"
                    Margin="0,0,10,0"/>
             <TextBlock Text="Memory Lane"
-                       FontSize="24"
+                       FontSize="22"
                        FontWeight="SemiBold"
                        Foreground="{StaticResource PrimaryTextBrush}"
                        VerticalAlignment="Center"/>
           </StackPanel>
 
-          <Button Content="Timeline" Tag="Timeline" Click="NavButton_Click" Margin="0,0,0,8"/>
-          <Button Content="Search" Tag="Search" Click="NavButton_Click" Margin="0,0,0,8"/>
-          <Button Content="Favorites" Tag="Favorites" Click="NavButton_Click" Margin="0,0,0,8"/>
-          <Button Content="Settings" Tag="Settings" Click="NavButton_Click" Margin="0,0,0,8"/>
+          <Button Content="Timeline" Tag="Timeline" Click="NavButton_Click" Margin="0,0,0,10" HorizontalContentAlignment="Left"/>
+          <Button Content="Search" Tag="Search" Click="NavButton_Click" Margin="0,0,0,10" HorizontalContentAlignment="Left"/>
+          <Button Content="Favorites" Tag="Favorites" Click="NavButton_Click" Margin="0,0,0,10" HorizontalContentAlignment="Left"/>
+          <Button Content="Settings" Tag="Settings" Click="NavButton_Click" Margin="0,0,0,10" HorizontalContentAlignment="Left"/>
 
           <Separator Margin="0,12"/>
 
@@ -48,7 +48,7 @@
       </DockPanel>
     </Border>
 
-    <Grid Grid.Column="1" Margin="24">
+    <Grid Grid.Column="1" Margin="30">
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
@@ -62,10 +62,10 @@
         </Grid.ColumnDefinitions>
         <StackPanel>
           <TextBlock x:Name="PageTitle" Text="Timeline"
-                     FontSize="30" FontWeight="SemiBold"
+                     FontSize="32" FontWeight="SemiBold"
                      Foreground="{StaticResource PrimaryTextBrush}"/>
           <TextBlock x:Name="PageSubtitle" Text="Your recent activity"
-                     Margin="0,4,0,0"
+                     Margin="0,6,0,0"
                      Foreground="{StaticResource SecondaryTextBrush}"/>
         </StackPanel>
         <Button x:Name="ClearTimelineButton"
@@ -79,11 +79,11 @@
                Grid.Row="1"
                Visibility="Collapsed"
                Margin="0,0,0,16"
-               Padding="12,9"
+               Padding="14,11"
                FontSize="15"
                Background="{StaticResource PanelBrush}"
                Foreground="{StaticResource PrimaryTextBrush}"
-               BorderBrush="#303A4A"
+               BorderBrush="{StaticResource BorderBrush}"
                TextChanged="SearchBox_TextChanged"/>
 
       <Grid Grid.Row="2">
@@ -94,12 +94,14 @@
           <ListView.ItemTemplate>
             <DataTemplate>
               <Border Background="{StaticResource PanelBrush}"
-                      CornerRadius="14"
-                      Padding="16"
-                      Margin="0,0,0,10">
+                      CornerRadius="16"
+                      BorderBrush="{StaticResource BorderBrush}"
+                      BorderThickness="1"
+                      Padding="20"
+                      Margin="0,0,0,14">
                 <Grid>
                   <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="125"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                   </Grid.ColumnDefinitions>
@@ -111,26 +113,28 @@
                     <TextBlock Text="{Binding CreatedAt, StringFormat={}{0:h:mm tt}}"
                                Foreground="{StaticResource SecondaryTextBrush}"/>
                     <TextBlock Text="{Binding SourceApp}"
-                               Margin="0,8,0,0"
+                               Margin="0,10,0,0"
+                               FontWeight="SemiBold"
                                Foreground="{StaticResource AccentBrush}"
                                TextWrapping="Wrap"/>
                   </StackPanel>
 
                   <StackPanel Grid.Column="1">
                     <TextBlock Text="{Binding Title}"
-                               FontSize="17"
+                               FontSize="18"
                                FontWeight="SemiBold"
                                Foreground="{StaticResource PrimaryTextBrush}"
                                TextWrapping="Wrap"/>
                     <TextBlock Text="{Binding Body}"
-                               Margin="0,6,0,0"
+                               Margin="0,8,0,0"
                                Foreground="{StaticResource SecondaryTextBrush}"
                                TextWrapping="Wrap"
-                               MaxHeight="70"/>
+                               LineHeight="21"
+                               MaxHeight="105"/>
                     <TextBlock Text="{Binding SourceKind}"
                                Margin="0,8,0,0"
                                FontSize="12"
-                               Foreground="#6F7B8A"/>
+                               Foreground="{StaticResource SecondaryTextBrush}"/>
                   </StackPanel>
 
                   <StackPanel Grid.Column="2" Margin="16,0,0,0">
@@ -145,15 +149,16 @@
 
         <ScrollViewer x:Name="SettingsPanel" Visibility="Collapsed">
           <StackPanel>
-            <Border Background="{StaticResource PanelBrush}" CornerRadius="14" Padding="18" Margin="0,0,0,14">
+            <Border Background="{StaticResource PanelBrush}" CornerRadius="16" Padding="22" Margin="0,0,0,14">
               <StackPanel>
                 <TextBlock Text="Capture"
-                           FontSize="18" FontWeight="SemiBold"
+                           FontSize="19" FontWeight="SemiBold"
                            Foreground="{StaticResource PrimaryTextBrush}"/>
                 <CheckBox x:Name="PauseCaptureCheckBox"
                           Content="Pause all capture"
                           Margin="0,14,0,8"
                           Foreground="{StaticResource PrimaryTextBrush}"
+                          TextWrapping="Wrap"
                           Checked="SettingChanged" Unchecked="SettingChanged"/>
                 <CheckBox x:Name="AppCaptureCheckBox"
                           Content="Remember app switches and focused windows"
@@ -167,10 +172,10 @@
               </StackPanel>
             </Border>
 
-            <Border Background="{StaticResource PanelBrush}" CornerRadius="14" Padding="18" Margin="0,0,0,14">
+            <Border Background="{StaticResource PanelBrush}" CornerRadius="16" Padding="22" Margin="0,0,0,14">
               <StackPanel>
                 <TextBlock Text="Excluded Apps &amp; Services"
-                           FontSize="18" FontWeight="SemiBold"
+                           FontSize="19" FontWeight="SemiBold"
                            Foreground="{StaticResource PrimaryTextBrush}"/>
                 <TextBlock Text="Enter Windows process names, one per line. Memory Lane will not intentionally log activity or clipboard content while an excluded process is active."
                            Margin="0,8,0,10"
@@ -180,17 +185,17 @@
                          AcceptsReturn="True"
                          MinHeight="120"
                          Padding="10"
-                         Background="#0B0F16"
+                         Background="#F9FBFE"
                          Foreground="{StaticResource PrimaryTextBrush}"
                          BorderBrush="#303A4A"/>
                 <Button Content="Apply Exclusions" Margin="0,10,0,0" Click="ApplyExclusions_Click"/>
               </StackPanel>
             </Border>
 
-            <Border Background="{StaticResource PanelBrush}" CornerRadius="14" Padding="18" Margin="0,0,0,14">
+            <Border Background="{StaticResource PanelBrush}" CornerRadius="16" Padding="22" Margin="0,0,0,14">
               <StackPanel>
                 <TextBlock Text="Windows"
-                           FontSize="18" FontWeight="SemiBold"
+                           FontSize="19" FontWeight="SemiBold"
                            Foreground="{StaticResource PrimaryTextBrush}"/>
                 <CheckBox x:Name="StartWithWindowsCheckBox"
                           Content="Start Memory Lane when I sign in to Windows"
@@ -200,10 +205,10 @@
               </StackPanel>
             </Border>
 
-            <Border Background="{StaticResource PanelBrush}" CornerRadius="14" Padding="18">
+            <Border Background="{StaticResource PanelBrush}" CornerRadius="16" Padding="22">
               <StackPanel>
                 <TextBlock Text="Data &amp; Privacy"
-                           FontSize="18" FontWeight="SemiBold"
+                           FontSize="19" FontWeight="SemiBold"
                            Foreground="{StaticResource PrimaryTextBrush}"/>
                 <TextBlock Text="Memory Lane stores your activity timeline locally on this PC. No cloud account, analytics SDK, or advertising SDK is required."
                            Margin="0,8,0,12"

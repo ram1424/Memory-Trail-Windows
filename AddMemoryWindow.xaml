@@ -3,11 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Add Memory"
         Icon="Assets/MemoryLaneIcon.png"
-        Width="520" Height="450"
+        Width="560" Height="500"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
         Background="{StaticResource BackgroundBrush}">
-  <Grid Margin="24">
+  <Grid Margin="30">
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto"/>
       <RowDefinition Height="Auto"/>
@@ -18,19 +18,19 @@
     </Grid.RowDefinitions>
 
     <TextBlock Text="Add Memory"
-               FontSize="26" FontWeight="SemiBold"
+               FontSize="28" FontWeight="SemiBold"
                Foreground="{StaticResource PrimaryTextBrush}"/>
 
     <TextBox x:Name="TitleBox"
              Grid.Row="1"
-             Margin="0,18,0,10"
+             Margin="0,22,0,12"
              Padding="10"
              Background="{StaticResource PanelBrush}"
              Foreground="{StaticResource PrimaryTextBrush}"/>
 
     <TextBox x:Name="BodyBox"
              Grid.Row="2"
-             Height="140"
+             Height="155"
              AcceptsReturn="True"
              TextWrapping="Wrap"
              Padding="10"
