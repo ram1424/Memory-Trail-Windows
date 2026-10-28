@@ -186,7 +186,7 @@
                          Padding="10"
                          Background="#F9FBFE"
                          Foreground="{StaticResource PrimaryTextBrush}"
-                         BorderBrush="#303A4A"/>
+                         BorderBrush="{StaticResource BorderBrush}"/>
                 <Button Content="Apply Exclusions" Margin="0,10,0,0" Click="ApplyExclusions_Click"/>
               </StackPanel>
             </Border>
