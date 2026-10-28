@@ -58,7 +58,14 @@ public partial class MainWindow : Window
             g.Clear(System.Drawing.Color.Transparent);
 
             using var bg = new System.Drawing.SolidBrush(System.Drawing.Color.FromArgb(10, 76, 156));
-            g.FillRoundedRectangle(bg, new System.Drawing.Rectangle(1, 1, 62, 62), 14);
+            using var rounded = new System.Drawing.Drawing2D.GraphicsPath();
+            const int radius = 14;
+            rounded.AddArc(1, 1, radius * 2, radius * 2, 180, 90);
+            rounded.AddArc(63 - radius * 2, 1, radius * 2, radius * 2, 270, 90);
+            rounded.AddArc(63 - radius * 2, 63 - radius * 2, radius * 2, radius * 2, 0, 90);
+            rounded.AddArc(1, 63 - radius * 2, radius * 2, radius * 2, 90, 90);
+            rounded.CloseFigure();
+            g.FillPath(bg, rounded);
 
             using var whitePen = new System.Drawing.Pen(System.Drawing.Color.FromArgb(234, 249, 255), 4)
             {
