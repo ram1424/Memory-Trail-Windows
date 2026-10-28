@@ -13,7 +13,7 @@
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
 
-    <Border Grid.Column="0" Background="{StaticResource SidebarBrush}" BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,1,0" Padding="20">
+    <Border Grid.Column="0" Background="{StaticResource SidebarBrush}" BorderBrush="#163A72" BorderThickness="0,0,1,0" Padding="20">
       <DockPanel>
         <StackPanel DockPanel.Dock="Top">
           <StackPanel Orientation="Horizontal" Margin="0,0,0,28">
@@ -24,7 +24,7 @@
             <TextBlock Text="Memory Lane"
                        FontSize="22"
                        FontWeight="SemiBold"
-                       Foreground="{StaticResource PrimaryTextBrush}"
+                       Foreground="#FFFFFF"
                        VerticalAlignment="Center"/>
           </StackPanel>
 
@@ -42,7 +42,7 @@
         <StackPanel DockPanel.Dock="Bottom">
           <StackPanel Orientation="Horizontal">
             <Ellipse x:Name="StatusDot" Width="9" Height="9" Margin="0,0,8,0"/>
-            <TextBlock x:Name="StatusText" Foreground="{StaticResource SecondaryTextBrush}" FontSize="12"/>
+            <TextBlock x:Name="StatusText" Foreground="#AFC8EB" FontSize="12"/>
           </StackPanel>
         </StackPanel>
       </DockPanel>
@@ -184,7 +184,7 @@
                          AcceptsReturn="True"
                          MinHeight="120"
                          Padding="10"
-                         Background="#F9FBFE"
+                         Background="#FFFFFF"
                          Foreground="{StaticResource PrimaryTextBrush}"
                          BorderBrush="{StaticResource BorderBrush}"/>
                 <Button Content="Apply Exclusions" Margin="0,10,0,0" Click="ApplyExclusions_Click"/>
