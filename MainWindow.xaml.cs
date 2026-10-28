@@ -30,13 +30,13 @@ public partial class MainWindow : Window
 
         _trayIcon = new Forms.NotifyIcon
         {
-            Text = "Memory Lane",
+            Text = "Memory Trail",
             Visible = true,
             Icon = CreateTrayIcon()
         };
 
         var menu = new Forms.ContextMenuStrip();
-        menu.Items.Add("Open Memory Lane", null, (_, _) => Dispatcher.Invoke(ShowFromTray));
+        menu.Items.Add("Open Memory Trail", null, (_, _) => Dispatcher.Invoke(ShowFromTray));
         menu.Items.Add("Pause / Resume Capture", null, (_, _) => Dispatcher.Invoke(ToggleCapture));
         menu.Items.Add(new Forms.ToolStripSeparator());
         menu.Items.Add("Quit", null, (_, _) => Dispatcher.Invoke(QuitApplication));
@@ -131,9 +131,9 @@ public partial class MainWindow : Window
         PageSubtitle.Text = mode switch
         {
             "Timeline" => "Your recent activity",
-            "Search" => "Find anything Memory Lane remembers",
+            "Search" => "Find anything Memory Trail remembers",
             "Applications" => "Browse your captured activity by application",
-            "Settings" => "Control what Memory Lane remembers and how it behaves",
+            "Settings" => "Control what Memory Trail remembers and how it behaves",
             _ => ""
         };
 
@@ -264,7 +264,7 @@ public partial class MainWindow : Window
 
         App.Preferences.ExcludedProcesses = new HashSet<string>(values, StringComparer.OrdinalIgnoreCase);
         App.Preferences.Save();
-        MessageBox.Show("Exclusions updated.", "Memory Lane");
+        MessageBox.Show("Exclusions updated.", "Memory Trail");
     }
 
     private void StartWithWindowsChanged(object sender, RoutedEventArgs e)
@@ -292,7 +292,7 @@ public partial class MainWindow : Window
         App.Capture.ClearRuntimeCache();
         LoadSettingsIntoUi();
         UpdateCaptureState();
-        MessageBox.Show("App cache and preferences were reset. Timeline history was not deleted.", "Memory Lane");
+        MessageBox.Show("App cache and preferences were reset. Timeline history was not deleted.", "Memory Trail");
     }
 
     protected override void OnClosed(EventArgs e)

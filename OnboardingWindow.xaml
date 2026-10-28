@@ -1,7 +1,7 @@
 <Window x:Class="MemoryLane.Windows.OnboardingWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Welcome to Memory Lane"
+        Title="Welcome to Memory Trail"
         Icon="/Assets/MemoryLaneReferenceIcon.png"
         Width="980" Height="650"
         WindowStartupLocation="CenterOwner"
@@ -27,7 +27,7 @@
                HorizontalAlignment="Left"
                Margin="0,0,0,22"/>
 
-        <TextBlock Text="Welcome to&#x0a;Memory Lane"
+        <TextBlock Text="Welcome to&#x0a;Memory Trail"
                    FontSize="38"
                    FontWeight="SemiBold"
                    Foreground="#10203B"
@@ -40,7 +40,7 @@
                    Foreground="#334F6B"
                    TextWrapping="Wrap"/>
 
-        <TextBlock Text="Memory Lane quietly builds a private timeline of the apps and windows you use, then makes that history searchable."
+        <TextBlock Text="Memory Trail quietly builds a private timeline of the apps and windows you use, then makes that history searchable."
                    Margin="0,14,0,0"
                    FontSize="14"
                    LineHeight="22"
@@ -162,7 +162,7 @@
                    FontWeight="SemiBold"
                    Foreground="#10203B"
                    LineHeight="41"/>
-        <TextBlock Text="Memory Lane watches the active application and focused window title, then records meaningful changes in your timeline."
+        <TextBlock Text="Memory Trail watches the active application and focused window title, then records meaningful changes in your timeline."
                    Margin="0,16,0,0"
                    FontSize="16"
                    LineHeight="25"
@@ -290,7 +290,7 @@
                    FontSize="35"
                    FontWeight="SemiBold"
                    Foreground="#10203B"/>
-        <TextBlock Text="Your timeline stays on this PC. You control capture, exclusions, clipboard history, and when Memory Lane is paused."
+        <TextBlock Text="Your timeline stays on this PC. You control capture, exclusions, clipboard history, and when Memory Trail is paused."
                    Margin="0,16,0,0"
                    FontSize="16"
                    LineHeight="25"

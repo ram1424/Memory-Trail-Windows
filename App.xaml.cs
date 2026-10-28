@@ -28,13 +28,13 @@ public partial class App : Application
         {
             try
             {
-                var folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Memory Lane");
+                var folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Memory Trail");
                 Directory.CreateDirectory(folder);
                 File.AppendAllText(Path.Combine(folder, "crash.log"), $"[{DateTimeOffset.Now:O}]\r\n{ex}\r\n\r\n");
             }
             catch { }
 
-            MessageBox.Show("Memory Lane could not start. A crash log was saved under Local AppData > Memory Lane > crash.log.", "Memory Lane", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show("Memory Trail could not start. A crash log was saved under Local AppData > Memory Trail > crash.log.", "Memory Trail", MessageBoxButton.OK, MessageBoxImage.Error);
             Shutdown();
         }
     }
