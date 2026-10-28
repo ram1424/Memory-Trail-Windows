@@ -32,7 +32,6 @@
           <GeometryDrawing Brush="#FFB454">
             <GeometryDrawing.Geometry>
               <GeometryGroup>
-                <EllipseGeometry Center="31" RadiusX="0" RadiusY="0"/>
                 <EllipseGeometry Center="31,36" RadiusX="2.5" RadiusY="2.5"/>
                 <EllipseGeometry Center="46,34" RadiusX="2.5" RadiusY="2.5"/>
                 <EllipseGeometry Center="55,28" RadiusX="2.5" RadiusY="2.5"/>
