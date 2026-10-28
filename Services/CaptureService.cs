@@ -76,6 +76,7 @@ public sealed class CaptureService
             Body = DetailedBody(title, processName),
             SourceApp = FriendlyAppName(processName),
             SourceProcess = processName,
+            SourceExecutable = GetExecutablePath(process),
             SourceKind = SourceKind.AppActivity
         });
     }
@@ -99,7 +100,14 @@ public sealed class CaptureService
         _ = GetWindowThreadProcessId(hwnd, out var pid);
 
         var processName = "";
-        try { processName = Process.GetProcessById((int)pid).ProcessName; } catch { }
+        string? executablePath = null;
+        try
+        {
+            using var process = Process.GetProcessById((int)pid);
+            processName = process.ProcessName;
+            executablePath = GetExecutablePath(process);
+        }
+        catch { }
 
         if (_preferences.IsExcluded(processName)) return;
 
@@ -110,8 +118,25 @@ public sealed class CaptureService
             Body = text,
             SourceApp = FriendlyAppName(processName),
             SourceProcess = processName,
-            SourceKind = SourceKind.Clipboard
+            SourceExecutable = executablePath,
+            SourceKind = SourceKind.Clipboard,
+            SourceUrl = Uri.TryCreate(text, UriKind.Absolute, out var uri) &&
+                        (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps)
+                ? uri.ToString()
+                : null
         });
+    }
+
+    private static string? GetExecutablePath(Process process)
+    {
+        try
+        {
+            return process.MainModule?.FileName;
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     private static string GetWindowTitle(IntPtr hwnd)
