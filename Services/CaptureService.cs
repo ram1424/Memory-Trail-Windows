@@ -57,6 +57,8 @@ public sealed class CaptureService
         try { process = Process.GetProcessById((int)pid); }
         catch { return; }
 
+        using (process)
+        {
         var processName = process.ProcessName;
         if (_preferences.IsExcluded(processName)) return;
         if (processName.Equals("Memory Trail", StringComparison.OrdinalIgnoreCase) ||
@@ -80,6 +82,7 @@ public sealed class CaptureService
             SourceExecutable = GetExecutablePath(process),
             SourceKind = SourceKind.AppActivity
         });
+        }
     }
 
     private void PollClipboard()

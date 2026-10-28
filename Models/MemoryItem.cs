@@ -16,7 +16,7 @@ public sealed class MemoryItem
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     public string Title { get; set; } = "";
     public string Body { get; set; } = "";
-    public string SourceApp { get; set; } = "Memory Lane";
+    public string SourceApp { get; set; } = "Memory Trail";
     public string SourceProcess { get; set; } = "";
     public string? SourceExecutable { get; set; }
     public SourceKind SourceKind { get; set; } = SourceKind.Note;

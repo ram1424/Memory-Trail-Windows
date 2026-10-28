@@ -6,12 +6,20 @@ namespace MemoryLane.Windows;
 
 public static class Branding
 {
+    private static ImageSource? _cached;
+    private static bool _attempted;
+
     public static ImageSource? LoadImage()
     {
+        if (_attempted)
+            return _cached;
+
+        _attempted = true;
+
         try
         {
             var resource = Application.GetResourceStream(
-                new Uri("/Assets/MemoryLaneReferenceIcon.png", UriKind.Relative));
+                new Uri("/Assets/MemoryTrailIcon.png", UriKind.Relative));
             if (resource?.Stream is null)
                 return null;
 
@@ -22,7 +30,8 @@ public static class Branding
             bitmap.StreamSource = stream;
             bitmap.EndInit();
             bitmap.Freeze();
-            return bitmap;
+            _cached = bitmap;
+            return _cached;
         }
         catch (Exception ex)
         {

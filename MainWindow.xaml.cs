@@ -76,7 +76,7 @@ public partial class MainWindow : Window
         try
         {
             var resource = Application.GetResourceStream(
-                new Uri("/Assets/MemoryLaneReferenceIcon.png", UriKind.Relative));
+                new Uri("/Assets/MemoryTrailIcon.png", UriKind.Relative));
             if (resource?.Stream is null)
                 return System.Drawing.SystemIcons.Application;
 
@@ -161,21 +161,23 @@ public partial class MainWindow : Window
         _mode = mode;
         UpdateNavSelection(mode);
         PageTitle.Text = mode;
-        SearchBox.Visibility = mode == "Settings" ? Visibility.Collapsed : Visibility.Visible;
+        SearchPanel.Visibility = mode == "Settings" ? Visibility.Collapsed : Visibility.Visible;
         SettingsPanel.Visibility = mode == "Settings" ? Visibility.Visible : Visibility.Collapsed;
         TimelineContainer.Visibility = mode == "Settings" ? Visibility.Collapsed : Visibility.Visible;
-        ClearTimelineButton.Visibility = mode == "Timeline" ? Visibility.Visible : Visibility.Collapsed;
 
         PageSubtitle.Text = mode switch
         {
             "Timeline" => "Your recent activity",
             "Search" => "Find anything Memory Trail remembers",
-            "Applications" => "Browse your captured activity by application",
+            "Favorites" => "The activity you marked as important",
             "Settings" => "Control what Memory Trail remembers and how it behaves",
             _ => ""
         };
 
         _view.Refresh();
+
+        if (mode == "Search")
+            Dispatcher.BeginInvoke(new Action(() => SearchBox.Focus()));
     }
 
     private void UpdateNavSelection(string mode)
@@ -184,7 +186,7 @@ public partial class MainWindow : Window
         {
             (Button: TimelineNavButton, Mode: "Timeline"),
             (Button: SearchNavButton, Mode: "Search"),
-            (Button: ApplicationsNavButton, Mode: "Applications"),
+            (Button: FavoritesNavButton, Mode: "Favorites"),
             (Button: SettingsNavButton, Mode: "Settings")
         };
 
@@ -204,6 +206,9 @@ public partial class MainWindow : Window
     private bool FilterItem(object item)
     {
         if (item is not MemoryItem memory) return false;
+
+        if (_mode == "Favorites" && !memory.IsFavorite)
+            return false;
 
         var q = SearchBox.Text?.Trim().ToLowerInvariant();
         if (!string.IsNullOrWhiteSpace(q) && !memory.SearchableText.Contains(q))

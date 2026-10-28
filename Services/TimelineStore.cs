@@ -1,5 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MemoryLane.Windows;
 
@@ -13,40 +15,32 @@ public sealed class TimelineStore
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
         "Memory Lane");
     private string FilePath => Path.Combine(_folder, "timeline.json");
+    private CancellationTokenSource? _saveCts;
 
     public ObservableCollection<MemoryItem> Items { get; } = [];
 
     public void Add(MemoryItem item)
     {
-        App.Current.Dispatcher.Invoke(() =>
-        {
-            Items.Insert(0, item);
-            Save();
-        });
+        App.Current.Dispatcher.Invoke(() => Items.Insert(0, item));
+        ScheduleSave();
     }
 
     public void Delete(MemoryItem item)
     {
-        App.Current.Dispatcher.Invoke(() =>
-        {
-            Items.Remove(item);
-            Save();
-        });
+        App.Current.Dispatcher.Invoke(() => Items.Remove(item));
+        ScheduleSave();
     }
 
     public void Clear()
     {
-        App.Current.Dispatcher.Invoke(() =>
-        {
-            Items.Clear();
-            Save();
-        });
+        App.Current.Dispatcher.Invoke(() => Items.Clear());
+        ScheduleSave();
     }
 
     public void ToggleFavorite(MemoryItem item)
     {
-        item.IsFavorite = !item.IsFavorite;
-        Save();
+        App.Current.Dispatcher.Invoke(() => item.IsFavorite = !item.IsFavorite);
+        ScheduleSave();
     }
 
     public void Load()
@@ -66,7 +60,10 @@ public sealed class TimelineStore
                         Items.Add(item);
                 });
             }
-            catch { }
+            catch (Exception ex)
+            {
+                App.LogNonFatal("TimelineStore.Load", ex);
+            }
         }
     }
 
@@ -78,7 +75,33 @@ public sealed class TimelineStore
             if (!File.Exists(FilePath) && File.Exists(legacyFile))
                 File.Copy(legacyFile, FilePath, false);
         }
-        catch { }
+        catch (Exception ex)
+        {
+            App.LogNonFatal("TimelineStore.MigrateLegacyTimeline", ex);
+        }
+    }
+
+    private void ScheduleSave()
+    {
+        var next = new CancellationTokenSource();
+        var previous = Interlocked.Exchange(ref _saveCts, next);
+        previous?.Cancel();
+        previous?.Dispose();
+
+        _ = Task.Run(async () =>
+        {
+            try
+            {
+                await Task.Delay(700, next.Token);
+                if (!next.IsCancellationRequested)
+                    Save();
+            }
+            catch (OperationCanceledException) { }
+            catch (Exception ex)
+            {
+                App.LogNonFatal("TimelineStore.ScheduleSave", ex);
+            }
+        });
     }
 
     public void Save()
@@ -89,11 +112,16 @@ public sealed class TimelineStore
             {
                 Directory.CreateDirectory(_folder);
                 var snapshot = App.Current.Dispatcher.Invoke(() => Items.ToList());
+                var temp = FilePath + ".tmp";
                 File.WriteAllText(
-                    FilePath,
+                    temp,
                     JsonSerializer.Serialize(snapshot, new JsonSerializerOptions { WriteIndented = false }));
+                File.Move(temp, FilePath, true);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                App.LogNonFatal("TimelineStore.Save", ex);
+            }
         }
     }
 }

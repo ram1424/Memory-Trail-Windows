@@ -33,22 +33,22 @@ jobs:
 
       - name: Zip build
         shell: pwsh
-        run: Compress-Archive -Path "artifacts/Memory-Trail-Windows-x64/*" -DestinationPath "artifacts/Memory-Trail-Windows-v0.2.2-x64.zip"
+        run: Compress-Archive -Path "artifacts/Memory-Trail-Windows-x64/*" -DestinationPath "artifacts/Memory-Trail-Windows-v0.3.0-x64.zip"
 
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Memory-Trail-Windows-v0.2.2-x64
-          path: artifacts/Memory-Trail-Windows-v0.2.2-x64.zip
+          name: Memory-Trail-Windows-v0.3.0-x64
+          path: artifacts/Memory-Trail-Windows-v0.3.0-x64.zip
 
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v0.2.2
+          tag_name: v0.3.0
           target_commitish: main
-          name: Memory Trail for Windows v0.2.2
+          name: Memory Trail for Windows v0.3.0
           body: |
-            Fixes the confirmed WPF imaging crash using a verified PNG and post-initialization branding loading.
+            Major stability and UI cleanup with a sharper icon, simplified navigation, real Favorites view, debounced timeline persistence, and capture reliability fixes.
 
             - Activity timeline and focused-window tracking
             - Search, Favorites, and Add Memory
@@ -58,4 +58,4 @@ jobs:
             - First-launch tutorial
             - Start-with-Windows option
             - Local-only storage
-          files: artifacts/Memory-Trail-Windows-v0.2.2-x64.zip
+          files: artifacts/Memory-Trail-Windows-v0.3.0-x64.zip
