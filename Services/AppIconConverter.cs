@@ -34,13 +34,20 @@ public sealed class AppIconConverter : IValueConverter
     {
         if (item.SourceApp.Equals("Memory Lane", StringComparison.OrdinalIgnoreCase))
         {
-            var bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri("pack://application:,,,/Assets/MemoryLaneIcon.png");
-            bitmap.CacheOption = BitmapCacheOption.OnLoad;
-            bitmap.EndInit();
-            bitmap.Freeze();
-            return bitmap;
+            try
+            {
+                var bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri("pack://application:,,,/Assets/MemoryLaneWindowsIcon.png");
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.EndInit();
+                bitmap.Freeze();
+                return bitmap;
+            }
+            catch
+            {
+                return LoadGenericIcon();
+            }
         }
 
         var path = item.SourceExecutable;
