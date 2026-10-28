@@ -121,9 +121,9 @@ public partial class MainWindow : Window
 
         _mode = mode;
         PageTitle.Text = mode;
-        SearchBox.Visibility = mode == "Search" ? Visibility.Visible : Visibility.Collapsed;
+        SearchBox.Visibility = mode == "Settings" ? Visibility.Collapsed : Visibility.Visible;
         SettingsPanel.Visibility = mode == "Settings" ? Visibility.Visible : Visibility.Collapsed;
-        TimelineList.Visibility = mode == "Settings" ? Visibility.Collapsed : Visibility.Visible;
+        TimelineContainer.Visibility = mode == "Settings" ? Visibility.Collapsed : Visibility.Visible;
         ClearTimelineButton.Visibility = mode == "Timeline" ? Visibility.Visible : Visibility.Collapsed;
 
         PageSubtitle.Text = mode switch
@@ -145,12 +145,9 @@ public partial class MainWindow : Window
         if (_mode == "Favorites" && !memory.IsFavorite)
             return false;
 
-        if (_mode == "Search")
-        {
-            var q = SearchBox.Text?.Trim().ToLowerInvariant();
-            if (string.IsNullOrWhiteSpace(q)) return true;
-            return memory.SearchableText.Contains(q);
-        }
+        var q = SearchBox.Text?.Trim().ToLowerInvariant();
+        if (!string.IsNullOrWhiteSpace(q) && !memory.SearchableText.Contains(q))
+            return false;
 
         return true;
     }
