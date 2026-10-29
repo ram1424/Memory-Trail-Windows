@@ -16,6 +16,21 @@ Memory Trail is a private, local-first activity timeline for Windows. It is the 
 - Can optionally start when you sign in to Windows.
 - Includes a first-run welcome tutorial that can be replayed from Settings.
 
+
+## Screenshots
+
+### Timeline
+
+![Memory Trail Timeline](docs/screenshots/timeline.svg)
+
+### Favorites
+
+![Memory Trail Favorites](docs/screenshots/favorites.svg)
+
+### Welcome tutorial
+
+![Memory Trail Welcome Tutorial](docs/screenshots/onboarding.svg)
+
 ## Privacy
 
 Memory Trail is designed to remain local-first.
