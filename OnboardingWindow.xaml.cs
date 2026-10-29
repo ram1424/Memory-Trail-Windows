@@ -10,6 +10,7 @@ public partial class OnboardingWindow : Window
     public OnboardingWindow()
     {
         InitializeComponent();
+
         try
         {
             var brand = Branding.LoadImage();
@@ -17,13 +18,13 @@ public partial class OnboardingWindow : Window
             {
                 Icon = brand;
                 WelcomeBrandLogo.Source = brand;
-                PrivacyBrandLogo.Source = brand;
             }
         }
         catch (Exception ex)
         {
             App.LogNonFatal("Onboarding branding", ex);
         }
+
         UpdatePage();
     }
 
@@ -38,7 +39,7 @@ public partial class OnboardingWindow : Window
 
     private void Next_Click(object sender, RoutedEventArgs e)
     {
-        if (_page < 4)
+        if (_page < 3)
         {
             _page++;
             UpdatePage();
@@ -53,17 +54,15 @@ public partial class OnboardingWindow : Window
         Page1.Visibility = _page == 1 ? Visibility.Visible : Visibility.Collapsed;
         Page2.Visibility = _page == 2 ? Visibility.Visible : Visibility.Collapsed;
         Page3.Visibility = _page == 3 ? Visibility.Visible : Visibility.Collapsed;
-        Page4.Visibility = _page == 4 ? Visibility.Visible : Visibility.Collapsed;
 
         BackButton.Visibility = _page == 1 ? Visibility.Hidden : Visibility.Visible;
-        NextButton.Content = _page == 4 ? "Start Using Memory Trail" : "Next";
+        NextButton.Content = _page == 3 ? "Get Started" : "Next  →";
 
-        var active = new SolidColorBrush(Color.FromRgb(22, 119, 255));
-        var inactive = new SolidColorBrush(Color.FromRgb(208, 218, 230));
+        var active = new SolidColorBrush(Color.FromRgb(31, 143, 255));
+        var inactive = new SolidColorBrush(Color.FromRgb(52, 74, 105));
 
         Dot1.Fill = _page == 1 ? active : inactive;
         Dot2.Fill = _page == 2 ? active : inactive;
         Dot3.Fill = _page == 3 ? active : inactive;
-        Dot4.Fill = _page == 4 ? active : inactive;
     }
 }

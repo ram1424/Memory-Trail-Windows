@@ -1,9 +1,9 @@
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
-using System.Runtime.InteropServices;
 using Forms = System.Windows.Forms;
 
 namespace MemoryLane.Windows;
@@ -14,6 +14,7 @@ public partial class MainWindow : Window
     private Forms.NotifyIcon? _trayIcon;
     private bool _quitting;
     private string _mode = "Timeline";
+    private string _category = "All";
     private bool _initializingSettings = true;
 
     public MainWindow()
@@ -41,6 +42,10 @@ public partial class MainWindow : Window
         LoadSettingsIntoUi();
         UpdateCaptureState();
         UpdateNavSelection("Timeline");
+        UpdateCategorySelection("All");
+
+        if (App.Store.Items.Count > 0)
+            TimelineList.SelectedIndex = 0;
 
         try
         {
@@ -87,9 +92,6 @@ public partial class MainWindow : Window
 
         return System.Drawing.SystemIcons.Application;
     }
-
-    [DllImport("user32.dll", CharSet = CharSet.Auto)]
-    private static extern bool DestroyIcon(IntPtr handle);
 
     private void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
@@ -150,19 +152,13 @@ public partial class MainWindow : Window
 
         _mode = mode;
         UpdateNavSelection(mode);
-        PageTitle.Text = mode;
-        SearchPanel.Visibility = mode == "Settings" ? Visibility.Collapsed : Visibility.Visible;
-        SettingsPanel.Visibility = mode == "Settings" ? Visibility.Visible : Visibility.Collapsed;
-        TimelineContainer.Visibility = mode == "Settings" ? Visibility.Collapsed : Visibility.Visible;
 
-        PageSubtitle.Text = mode switch
-        {
-            "Timeline" => "Your recent activity",
-            "Search" => "Find anything Memory Trail remembers",
-            "Favorites" => "The activity you marked as important",
-            "Settings" => "Control what Memory Trail remembers and how it behaves",
-            _ => ""
-        };
+        var showSettings = mode == "Settings";
+        var showPrivacy = mode == "Privacy";
+
+        ActivityShell.Visibility = showSettings || showPrivacy ? Visibility.Collapsed : Visibility.Visible;
+        SettingsPanel.Visibility = showSettings ? Visibility.Visible : Visibility.Collapsed;
+        PrivacyPanel.Visibility = showPrivacy ? Visibility.Visible : Visibility.Collapsed;
 
         _view.Refresh();
 
@@ -176,7 +172,10 @@ public partial class MainWindow : Window
         {
             (Button: TimelineNavButton, Mode: "Timeline"),
             (Button: SearchNavButton, Mode: "Search"),
+            (Button: ClipboardNavButton, Mode: "Clipboard"),
             (Button: FavoritesNavButton, Mode: "Favorites"),
+            (Button: NotesNavButton, Mode: "Notes"),
+            (Button: PrivacyNavButton, Mode: "Privacy"),
             (Button: SettingsNavButton, Mode: "Settings")
         };
 
@@ -184,12 +183,47 @@ public partial class MainWindow : Window
         {
             var selected = entry.Mode == mode;
             entry.Button.Background = selected
-                ? new SolidColorBrush(Color.FromRgb(222, 239, 255))
+                ? new SolidColorBrush(Color.FromRgb(27, 82, 154))
                 : Brushes.Transparent;
             entry.Button.Foreground = selected
-                ? new SolidColorBrush(Color.FromRgb(18, 111, 205))
-                : new SolidColorBrush(Color.FromRgb(62, 84, 106));
+                ? Brushes.White
+                : new SolidColorBrush(Color.FromRgb(196, 209, 227));
             entry.Button.FontWeight = selected ? FontWeights.SemiBold : FontWeights.Normal;
+        }
+    }
+
+    private void Category_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button button || button.Tag is not string category)
+            return;
+
+        _category = category;
+        UpdateCategorySelection(category);
+        _view.Refresh();
+    }
+
+    private void UpdateCategorySelection(string category)
+    {
+        var buttons = new[]
+        {
+            (Button: AllAppsFilter, Category: "All"),
+            (Button: BrowserFilter, Category: "Browser"),
+            (Button: EmailFilter, Category: "Email"),
+            (Button: ChatFilter, Category: "Chat"),
+            (Button: FilesFilter, Category: "Files"),
+            (Button: OfficeFilter, Category: "Office")
+        };
+
+        foreach (var entry in buttons)
+        {
+            var selected = entry.Category == category;
+            entry.Button.Background = new SolidColorBrush(selected
+                ? Color.FromRgb(22, 139, 255)
+                : Color.FromRgb(16, 29, 49));
+            entry.Button.BorderBrush = new SolidColorBrush(selected
+                ? Color.FromRgb(22, 139, 255)
+                : Color.FromRgb(38, 58, 87));
+            entry.Button.Foreground = selected ? Brushes.White : new SolidColorBrush(Color.FromRgb(211, 222, 237));
         }
     }
 
@@ -199,6 +233,13 @@ public partial class MainWindow : Window
 
         if (_mode == "Favorites" && !memory.IsFavorite)
             return false;
+        if (_mode == "Clipboard" && memory.SourceKind != SourceKind.Clipboard)
+            return false;
+        if (_mode == "Notes" && memory.SourceKind != SourceKind.Note)
+            return false;
+
+        if (_category != "All" && !MatchesCategory(memory, _category))
+            return false;
 
         var q = SearchBox.Text?.Trim().ToLowerInvariant();
         if (!string.IsNullOrWhiteSpace(q) && !memory.SearchableText.Contains(q))
@@ -207,24 +248,44 @@ public partial class MainWindow : Window
         return true;
     }
 
+    private static bool MatchesCategory(MemoryItem memory, string category)
+    {
+        var app = (memory.SourceApp ?? "").ToLowerInvariant();
+
+        return category switch
+        {
+            "Browser" => app.Contains("edge") || app.Contains("chrome") || app.Contains("firefox") ||
+                         app.Contains("browser") || !string.IsNullOrWhiteSpace(memory.SourceUrl),
+            "Email" => app.Contains("outlook") || app.Contains("mail"),
+            "Chat" => app.Contains("teams") || app.Contains("slack") || app.Contains("discord") || app.Contains("chat"),
+            "Files" => memory.SourceKind == SourceKind.File || app.Contains("explorer") || app.Contains("finder"),
+            "Office" => app.Contains("word") || app.Contains("excel") || app.Contains("powerpoint") ||
+                        app.Contains("onenote") || app.Contains("outlook"),
+            _ => true
+        };
+    }
+
     private void SearchBox_TextChanged(object sender, TextChangedEventArgs e) => _view.Refresh();
 
     private void AddMemory_Click(object sender, RoutedEventArgs e)
     {
         var window = new AddMemoryWindow { Owner = this };
         if (window.ShowDialog() == true && window.CreatedItem is not null)
+        {
             App.Store.Add(window.CreatedItem);
+            _view.Refresh();
+            TimelineList.SelectedItem = window.CreatedItem;
+        }
+    }
+
+    private void TimelineList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        // Detail pane is data-bound directly to TimelineList.SelectedItem.
     }
 
     private void TimelineList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
         if (TimelineList.SelectedItem is MemoryItem item)
-            ShowDetails(item);
-    }
-
-    private void Details_Click(object sender, RoutedEventArgs e)
-    {
-        if (sender is Button { Tag: MemoryItem item })
             ShowDetails(item);
     }
 
@@ -243,10 +304,52 @@ public partial class MainWindow : Window
         }
     }
 
-    private void Delete_Click(object sender, RoutedEventArgs e)
+    private void FavoriteSelected_Click(object sender, RoutedEventArgs e)
     {
-        if (sender is Button { Tag: MemoryItem item })
-            App.Store.Delete(item);
+        if (TimelineList.SelectedItem is not MemoryItem item)
+            return;
+
+        App.Store.ToggleFavorite(item);
+        _view.Refresh();
+    }
+
+    private void OpenSelected_Click(object sender, RoutedEventArgs e)
+    {
+        if (TimelineList.SelectedItem is not MemoryItem item)
+            return;
+
+        var target = !string.IsNullOrWhiteSpace(item.SourceUrl)
+            ? item.SourceUrl
+            : item.SourceExecutable;
+
+        if (string.IsNullOrWhiteSpace(target))
+        {
+            MessageBox.Show("No reopenable source was captured for this activity.", "Memory Trail",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+            return;
+        }
+
+        try
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = target,
+                UseShellExecute = true
+            });
+        }
+        catch
+        {
+            MessageBox.Show("Windows could not open this source.", "Memory Trail",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+    }
+
+    private void CopySelectedTitle_Click(object sender, RoutedEventArgs e)
+    {
+        if (TimelineList.SelectedItem is not MemoryItem item || string.IsNullOrWhiteSpace(item.Title))
+            return;
+
+        Clipboard.SetText(item.Title);
     }
 
     private void ClearTimeline_Click(object sender, RoutedEventArgs e)
@@ -275,7 +378,9 @@ public partial class MainWindow : Window
     {
         PauseButton.Content = App.Preferences.CapturePaused ? "Resume Capture" : "Pause Capture";
         StatusText.Text = App.Preferences.CapturePaused ? "Capture paused" : "Capture active";
-        StatusDot.Fill = App.Preferences.CapturePaused ? Brushes.Orange : Brushes.LimeGreen;
+        StatusDot.Fill = App.Preferences.CapturePaused
+            ? new SolidColorBrush(Color.FromRgb(245, 158, 11))
+            : new SolidColorBrush(Color.FromRgb(34, 197, 94));
     }
 
     private void SettingChanged(object sender, RoutedEventArgs e)
