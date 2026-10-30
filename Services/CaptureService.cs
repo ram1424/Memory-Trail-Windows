@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
+using System.Windows.Automation;
 using System.Windows.Threading;
 
 namespace MemoryLane.Windows;
@@ -67,6 +68,16 @@ public sealed class CaptureService
             return;
 
         var title = NormalizeTitle(GetWindowTitle(hwnd), processName);
+
+        if (IsOutlookProcess(processName))
+        {
+            var outlookSubject = TryGetClassicOutlookSelectedSubject()
+                ?? TryGetOutlookSubjectFromUiAutomation(hwnd);
+
+            if (!string.IsNullOrWhiteSpace(outlookSubject))
+                title = NormalizeTitle(outlookSubject, processName);
+        }
+
         if (string.IsNullOrWhiteSpace(title) || IsGeneric(title, processName)) return;
 
         var signature = (processName + "|" + title).ToLowerInvariant();
@@ -183,7 +194,195 @@ public sealed class CaptureService
     {
         var value = title.Trim().ToLowerInvariant();
         return value is "" or "new tab" or "home" or "settings" or "preferences" or "untitled"
+            or "inbox" or "mail" or "calendar"
             || value == processName.ToLowerInvariant();
+    }
+
+    private static bool IsOutlookProcess(string processName)
+    {
+        var value = processName.Trim().ToLowerInvariant();
+        return value is "outlook" or "olk" or "hxoutlook";
+    }
+
+    private static string? TryGetClassicOutlookSelectedSubject()
+    {
+        object? app = null;
+        object? explorer = null;
+        object? selection = null;
+        object? item = null;
+
+        try
+        {
+            var outlookType = Type.GetTypeFromProgID("Outlook.Application");
+            if (outlookType is null)
+                return null;
+
+            app = GetActiveComObject("Outlook.Application");
+            if (app is null)
+                return null;
+
+            dynamic outlook = app;
+            explorer = outlook.ActiveExplorer();
+            if (explorer is null)
+                return null;
+
+            dynamic activeExplorer = explorer;
+            selection = activeExplorer.Selection;
+            if (selection is null)
+                return null;
+
+            dynamic selected = selection;
+            if ((int)selected.Count < 1)
+                return null;
+
+            item = selected.Item(1);
+            if (item is null)
+                return null;
+
+            dynamic selectedItem = item;
+
+            string? subject = null;
+            try { subject = selectedItem.Subject as string; }
+            catch { }
+
+            subject = CleanOutlookSubject(subject);
+            return string.IsNullOrWhiteSpace(subject) ? null : subject;
+        }
+        catch
+        {
+            return null;
+        }
+        finally
+        {
+            ReleaseComObject(item);
+            ReleaseComObject(selection);
+            ReleaseComObject(explorer);
+            ReleaseComObject(app);
+        }
+    }
+
+    private static string? TryGetOutlookSubjectFromUiAutomation(IntPtr hwnd)
+    {
+        try
+        {
+            var root = AutomationElement.FromHandle(hwnd);
+            if (root is null)
+                return null;
+
+            var selectedRows = root.FindAll(
+                TreeScope.Descendants,
+                new PropertyCondition(
+                    AutomationElement.IsSelectionItemPatternAvailableProperty,
+                    true));
+
+            for (var i = 0; i < selectedRows.Count; i++)
+            {
+                var element = selectedRows[i];
+
+                try
+                {
+                    if (element.GetCurrentPattern(SelectionItemPattern.Pattern) is not SelectionItemPattern pattern ||
+                        !pattern.Current.IsSelected)
+                        continue;
+
+                    var candidate = CleanUiAutomationSubject(element.Current.Name);
+                    if (LooksLikeOutlookMessageSubject(candidate))
+                        return candidate;
+                }
+                catch { }
+            }
+
+            var textElements = root.FindAll(
+                TreeScope.Descendants,
+                new PropertyCondition(
+                    AutomationElement.ControlTypeProperty,
+                    ControlType.Text));
+
+            foreach (AutomationElement element in textElements)
+            {
+                var candidate = CleanUiAutomationSubject(element.Current.Name);
+                if (LooksLikeOutlookMessageSubject(candidate))
+                    return candidate;
+            }
+        }
+        catch { }
+
+        return null;
+    }
+
+    private static string? CleanUiAutomationSubject(string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return null;
+
+        var text = value.Replace("\r", " ").Replace("\n", " ").Trim();
+        while (text.Contains("  ", StringComparison.Ordinal))
+            text = text.Replace("  ", " ");
+
+        if (text.Length > 250)
+            text = text[..250];
+
+        return text;
+    }
+
+    private static string? CleanOutlookSubject(string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return null;
+
+        var subject = value.Replace("\r", " ").Replace("\n", " ").Trim();
+        return subject.Length > 250 ? subject[..250] : subject;
+    }
+
+    private static bool LooksLikeOutlookMessageSubject(string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return false;
+
+        var text = value.Trim();
+        var lower = text.ToLowerInvariant();
+
+        if (lower is "inbox" or "drafts" or "sent items" or "deleted items" or "archive"
+            or "mail" or "calendar" or "people" or "tasks" or "outlook")
+            return false;
+
+        if (text.Length < 4 || text.Length > 250)
+            return false;
+
+        if (text.Contains("@") && !text.Contains(" ", StringComparison.Ordinal))
+            return false;
+
+        return true;
+    }
+
+    private static object? GetActiveComObject(string progId)
+    {
+        try
+        {
+            var clsid = Type.GetTypeFromProgID(progId)?.GUID ?? Guid.Empty;
+            if (clsid == Guid.Empty)
+                return null;
+
+            GetActiveObject(ref clsid, IntPtr.Zero, out var result);
+            return result;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    private static void ReleaseComObject(object? value)
+    {
+        if (value is null)
+            return;
+
+        try
+        {
+            if (Marshal.IsComObject(value))
+                Marshal.FinalReleaseComObject(value);
+        }
+        catch { }
     }
 
     private static string DetailedBody(string title, string processName)
@@ -220,4 +419,7 @@ public sealed class CaptureService
 
     [DllImport("user32.dll")]
     private static extern int GetWindowTextLength(IntPtr hWnd);
+
+    [DllImport("oleaut32.dll", PreserveSig = false)]
+    private static extern void GetActiveObject(ref Guid rclsid, IntPtr reserved, [MarshalAs(UnmanagedType.IUnknown)] out object ppunk);
 }
