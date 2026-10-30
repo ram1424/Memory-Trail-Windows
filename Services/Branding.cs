@@ -19,18 +19,25 @@ public static class Branding
         try
         {
             var resource = Application.GetResourceStream(
-                new Uri("/Assets/MemoryTrailIconMaster.png", UriKind.Relative));
+                new Uri("/Assets/MemoryTrailApp.ico", UriKind.Relative));
             if (resource?.Stream is null)
                 return null;
 
             using var stream = resource.Stream;
-            var bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.CacheOption = BitmapCacheOption.OnLoad;
-            bitmap.StreamSource = stream;
-            bitmap.EndInit();
-            bitmap.Freeze();
-            _cached = bitmap;
+            var decoder = new IconBitmapDecoder(
+                stream,
+                BitmapCreateOptions.PreservePixelFormat,
+                BitmapCacheOption.OnLoad);
+
+            var frame = decoder.Frames
+                .OrderByDescending(f => f.PixelWidth * f.PixelHeight)
+                .FirstOrDefault();
+
+            if (frame is null)
+                return null;
+
+            frame.Freeze();
+            _cached = frame;
             return _cached;
         }
         catch (Exception ex)

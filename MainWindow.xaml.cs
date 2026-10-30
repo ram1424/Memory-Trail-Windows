@@ -82,13 +82,11 @@ public partial class MainWindow : Window
         try
         {
             var resource = Application.GetResourceStream(
-                new Uri("/Assets/MemoryTrailIconMaster.png", UriKind.Relative));
+                new Uri("/Assets/MemoryTrailApp.ico", UriKind.Relative));
 
             if (resource?.Stream is not null)
             {
-                using var bitmap = new System.Drawing.Bitmap(resource.Stream);
-                var handle = bitmap.GetHicon();
-                using var icon = System.Drawing.Icon.FromHandle(handle);
+                using var icon = new System.Drawing.Icon(resource.Stream);
                 return (System.Drawing.Icon)icon.Clone();
             }
         }
@@ -96,18 +94,6 @@ public partial class MainWindow : Window
         {
             App.LogNonFatal("CreateTrayIcon", ex);
         }
-
-        try
-        {
-            var executable = Environment.ProcessPath;
-            if (!string.IsNullOrWhiteSpace(executable))
-            {
-                using var associated = System.Drawing.Icon.ExtractAssociatedIcon(executable);
-                if (associated is not null)
-                    return (System.Drawing.Icon)associated.Clone();
-            }
-        }
-        catch { }
 
         return System.Drawing.SystemIcons.Application;
     }

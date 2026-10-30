@@ -54,7 +54,7 @@
                      FontSize="18" LineHeight="27"
                      Foreground="#D6E1F0"
                      TextWrapping="Wrap"/>
-          <TextBlock Text="Memory Trail quietly keeps a searchable history of the apps and windows you use so you can find your way back."
+          <TextBlock Text="Memory Trail keeps a private, searchable timeline of the apps and windows you use, making it easy to retrace your day."
                      Margin="0,14,0,0"
                      FontSize="14" LineHeight="22"
                      Foreground="#D5E4F2"
@@ -77,9 +77,9 @@
                 </Border>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
                   <TextBlock Text="Microsoft Edge" Foreground="White" FontWeight="SemiBold"/>
-                  <TextBlock Text="Project documentation" Margin="0,3,0,0" Foreground="#D9E7F4"/>
+                  <TextBlock Text="Project documentation" Margin="0,3,0,0" Foreground="#E7F0F8"/>
                 </StackPanel>
-                <TextBlock Grid.Column="2" Text="9:14 AM" FontSize="11" Foreground="#B9CCE0" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="9:14 AM" FontSize="11" Foreground="#C9D9E8" VerticalAlignment="Center"/>
               </Grid>
             </Border>
 
@@ -93,9 +93,9 @@
                 </Border>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
                   <TextBlock Text="Outlook" Foreground="White" FontWeight="SemiBold"/>
-                  <TextBlock Text="Weekly project update" Margin="0,3,0,0" Foreground="#D9E7F4"/>
+                  <TextBlock Text="Weekly project update" Margin="0,3,0,0" Foreground="#E7F0F8"/>
                 </StackPanel>
-                <TextBlock Grid.Column="2" Text="10:27 AM" FontSize="11" Foreground="#B9CCE0" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="10:27 AM" FontSize="11" Foreground="#C9D9E8" VerticalAlignment="Center"/>
               </Grid>
             </Border>
 
@@ -109,9 +109,9 @@
                 </Border>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
                   <TextBlock Text="Microsoft Teams" Foreground="White" FontWeight="SemiBold"/>
-                  <TextBlock Text="Design review discussion" Margin="0,3,0,0" Foreground="#D9E7F4"/>
+                  <TextBlock Text="Design review discussion" Margin="0,3,0,0" Foreground="#E7F0F8"/>
                 </StackPanel>
-                <TextBlock Grid.Column="2" Text="11:35 AM" FontSize="11" Foreground="#B9CCE0" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="11:35 AM" FontSize="11" Foreground="#C9D9E8" VerticalAlignment="Center"/>
               </Grid>
             </Border>
 
@@ -126,9 +126,9 @@
                 </Grid>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
                   <TextBlock Text="File Explorer" Foreground="White" FontWeight="SemiBold"/>
-                  <TextBlock Text="Project Phoenix" Margin="0,3,0,0" Foreground="#D9E7F4"/>
+                  <TextBlock Text="Project Phoenix" Margin="0,3,0,0" Foreground="#E7F0F8"/>
                 </StackPanel>
-                <TextBlock Grid.Column="2" Text="11:41 AM" FontSize="11" Foreground="#B9CCE0" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="11:41 AM" FontSize="11" Foreground="#C9D9E8" VerticalAlignment="Center"/>
               </Grid>
             </Border>
           </StackPanel>
@@ -182,9 +182,9 @@
                 </Border>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0">
                   <TextBlock Text="Outlook" Foreground="White" FontWeight="SemiBold"/>
-                  <TextBlock Text="Weekly project update" Margin="0,3,0,0" Foreground="#D9E7F4"/>
+                  <TextBlock Text="Weekly project update" Margin="0,3,0,0" Foreground="#E7F0F8"/>
                 </StackPanel>
-                <TextBlock Grid.Column="2" Text="10:27 AM" FontSize="11" Foreground="#B9CCE0" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="10:27 AM" FontSize="11" Foreground="#C9D9E8" VerticalAlignment="Center"/>
               </Grid>
             </Border>
 
@@ -197,9 +197,9 @@
                 </Border>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0">
                   <TextBlock Text="Microsoft Teams" Foreground="White" FontWeight="SemiBold"/>
-                  <TextBlock Text="Project update discussion" Margin="0,3,0,0" Foreground="#D9E7F4"/>
+                  <TextBlock Text="Project update discussion" Margin="0,3,0,0" Foreground="#E7F0F8"/>
                 </StackPanel>
-                <TextBlock Grid.Column="2" Text="11:03 AM" FontSize="11" Foreground="#B9CCE0" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="11:03 AM" FontSize="11" Foreground="#C9D9E8" VerticalAlignment="Center"/>
               </Grid>
             </Border>
 
@@ -215,9 +215,9 @@
                 </Grid>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0">
                   <TextBlock Text="Google Chrome" Foreground="White" FontWeight="SemiBold"/>
-                  <TextBlock Text="Project update - Google Docs" Margin="0,3,0,0" Foreground="#D9E7F4"/>
+                  <TextBlock Text="Project update - Google Docs" Margin="0,3,0,0" Foreground="#E7F0F8"/>
                 </StackPanel>
-                <TextBlock Grid.Column="2" Text="1:22 PM" FontSize="11" Foreground="#B9CCE0" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="1:22 PM" FontSize="11" Foreground="#C9D9E8" VerticalAlignment="Center"/>
               </Grid>
             </Border>
 
@@ -229,9 +229,9 @@
                 </Border>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0">
                   <TextBlock Text="Microsoft Word" Foreground="White" FontWeight="SemiBold"/>
-                  <TextBlock Text="Project update draft" Margin="0,3,0,0" Foreground="#D9E7F4"/>
+                  <TextBlock Text="Project update draft" Margin="0,3,0,0" Foreground="#E7F0F8"/>
                 </StackPanel>
-                <TextBlock Grid.Column="2" Text="2:18 PM" FontSize="11" Foreground="#B9CCE0" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="2:18 PM" FontSize="11" Foreground="#C9D9E8" VerticalAlignment="Center"/>
               </Grid>
             </Border>
           </StackPanel>

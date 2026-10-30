@@ -2,21 +2,21 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Application.Resources>
-    <SolidColorBrush x:Key="BackgroundBrush" Color="#102B49"/>
-    <SolidColorBrush x:Key="SidebarBrush" Color="#153657"/>
-    <SolidColorBrush x:Key="PanelBrush" Color="#1A4267"/>
-    <SolidColorBrush x:Key="PanelAltBrush" Color="#214D75"/>
+    <SolidColorBrush x:Key="BackgroundBrush" Color="#0D3152"/>
+    <SolidColorBrush x:Key="SidebarBrush" Color="#15466F"/>
+    <SolidColorBrush x:Key="PanelBrush" Color="#1D527C"/>
+    <SolidColorBrush x:Key="PanelAltBrush" Color="#255F8E"/>
     <SolidColorBrush x:Key="PrimaryTextBrush" Color="#F7FAFF"/>
-    <SolidColorBrush x:Key="SecondaryTextBrush" Color="#BCD0E6"/>
+    <SolidColorBrush x:Key="SecondaryTextBrush" Color="#D2E2F0"/>
     <SolidColorBrush x:Key="AccentBrush" Color="#1F8FFF"/>
-    <SolidColorBrush x:Key="AccentSoftBrush" Color="#245C95"/>
-    <SolidColorBrush x:Key="BorderBrush" Color="#4A769E"/>
+    <SolidColorBrush x:Key="AccentSoftBrush" Color="#2E70AE"/>
+    <SolidColorBrush x:Key="BorderBrush" Color="#6598C1"/>
     <SolidColorBrush x:Key="DangerBrush" Color="#FF7B87"/>
 
     <Style x:Key="ModernButtonStyle" TargetType="Button">
       <Setter Property="Foreground" Value="#DCE7F7"/>
-      <Setter Property="Background" Value="#224D74"/>
-      <Setter Property="BorderBrush" Value="#5A83A8"/>
+      <Setter Property="Background" Value="#285F8C"/>
+      <Setter Property="BorderBrush" Value="#75A1C6"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="Padding" Value="13,9"/>
       <Setter Property="FontSize" Value="13"/>
@@ -36,11 +36,11 @@
             </Border>
             <ControlTemplate.Triggers>
               <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="Chrome" Property="Background" Value="#2F5D86"/>
+                <Setter TargetName="Chrome" Property="Background" Value="#3373A5"/>
                 <Setter TargetName="Chrome" Property="BorderBrush" Value="#5A7FA3"/>
               </Trigger>
               <Trigger Property="IsPressed" Value="True">
-                <Setter TargetName="Chrome" Property="Background" Value="#183653"/>
+                <Setter TargetName="Chrome" Property="Background" Value="#214B70"/>
               </Trigger>
               <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" Value="0.45"/>
@@ -99,7 +99,7 @@
             </Border>
             <ControlTemplate.Triggers>
               <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="Chrome" Property="Background" Value="#1C4165"/>
+                <Setter TargetName="Chrome" Property="Background" Value="#245B85"/>
                 <Setter Property="Foreground" Value="White"/>
               </Trigger>
             </ControlTemplate.Triggers>
@@ -112,8 +112,8 @@
       <Setter Property="Padding" Value="13,7"/>
       <Setter Property="Margin" Value="0,0,7,0"/>
       <Setter Property="FontSize" Value="12"/>
-      <Setter Property="Background" Value="#1E486E"/>
-      <Setter Property="BorderBrush" Value="#557FA5"/>
+      <Setter Property="Background" Value="#275A84"/>
+      <Setter Property="BorderBrush" Value="#6F9EC6"/>
       <Setter Property="Foreground" Value="#D3DEED"/>
     </Style>
 
@@ -129,9 +129,9 @@
     <Style TargetType="Button" BasedOn="{StaticResource ModernButtonStyle}"/>
 
     <Style TargetType="TextBox">
-      <Setter Property="Background" Value="#204B70"/>
+      <Setter Property="Background" Value="#285F8B"/>
       <Setter Property="Foreground" Value="#F7FAFF"/>
-      <Setter Property="BorderBrush" Value="#5A86AD"/>
+      <Setter Property="BorderBrush" Value="#76A5CA"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="Padding" Value="12,9"/>
       <Setter Property="FontSize" Value="14"/>
@@ -139,9 +139,9 @@
     </Style>
 
     <Style TargetType="ComboBox">
-      <Setter Property="Background" Value="#204B70"/>
+      <Setter Property="Background" Value="#285F8B"/>
       <Setter Property="Foreground" Value="#F7FAFF"/>
-      <Setter Property="BorderBrush" Value="#5A86AD"/>
+      <Setter Property="BorderBrush" Value="#76A5CA"/>
       <Setter Property="Padding" Value="8"/>
       <Setter Property="MinHeight" Value="36"/>
     </Style>
