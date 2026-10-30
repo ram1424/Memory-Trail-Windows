@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:MemoryLane.Windows"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        Title="Memory Trail v0.7.1"
+        Title="Memory Trail v0.7.2"
         Width="1540" Height="900"
         MinWidth="1240" MinHeight="720"
         WindowStartupLocation="CenterScreen"
@@ -31,6 +31,25 @@
       <Setter Property="Padding" Value="11,5"/>
       <Setter Property="HorizontalAlignment" Value="Right"/>
     </Style>
+
+    <Style x:Key="SummaryProgressStyle" TargetType="ProgressBar">
+      <Setter Property="Height" Value="10"/>
+      <Setter Property="Background" Value="#1F2630"/>
+      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ProgressBar">
+            <Grid ClipToBounds="True">
+              <Border Background="{TemplateBinding Background}" CornerRadius="5"/>
+              <Border x:Name="PART_Indicator"
+                      Background="{TemplateBinding Foreground}"
+                      CornerRadius="5"
+                      HorizontalAlignment="Left"/>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
   </Window.Resources>
 
   <Grid>
@@ -56,7 +75,7 @@
           </Border>
           <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
             <TextBlock Text="Memory Trail" FontSize="20" FontWeight="SemiBold" Foreground="#FAF7F2"/>
-            <TextBlock Text="v0.7.1" FontSize="10" Foreground="#AFA59B" Margin="0,3,0,0"/>
+            <TextBlock Text="v0.7.2" FontSize="10" Foreground="#AFA59B" Margin="0,3,0,0"/>
           </StackPanel>
         </StackPanel>
 
@@ -315,55 +334,139 @@
           <Grid Grid.Column="2">
             <Grid.RowDefinitions>
               <RowDefinition Height="Auto"/>
-              <RowDefinition Height="12"/>
-              <RowDefinition Height="*"/>
+              <RowDefinition x:Name="DetailsGapRow" Height="12"/>
+              <RowDefinition x:Name="DetailsRow" Height="*"/>
             </Grid.RowDefinitions>
 
+            <!-- TODAY SUMMARY -->
             <Border Background="#242B35" BorderBrush="#414B5B" BorderThickness="1"
-                    CornerRadius="18" Padding="14">
+                    CornerRadius="18" Padding="16">
               <StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                  <TextBlock Text="▥" Foreground="#F2A74B" FontSize="19" Margin="0,0,8,0"/>
-                  <TextBlock Text="Today Summary" Foreground="#F8F4EF" FontSize="17" FontWeight="SemiBold"/>
-                </StackPanel>
+                <Grid Margin="0,0,0,14">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                  </Grid.ColumnDefinitions>
+                  <Border Width="34" Height="34" CornerRadius="10" Background="#3A2F28" Margin="0,0,9,0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                      <Border Width="4" Height="13" Background="#FF8A34" CornerRadius="2" Margin="0,0,3,0"/>
+                      <Border Width="4" Height="21" Background="#FFA446" CornerRadius="2" Margin="0,0,3,0"/>
+                      <Border Width="4" Height="16" Background="#FFB95E" CornerRadius="2"/>
+                    </StackPanel>
+                  </Border>
+                  <TextBlock Grid.Column="1" Text="Today Summary" Foreground="#F8F4EF"
+                             FontSize="18" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                  <Button x:Name="ShowDetailsButton" Grid.Column="2" Content="Details"
+                          Style="{StaticResource ChipButtonStyle}" Click="ShowDetailsPane_Click"
+                          Visibility="Collapsed" Padding="10,6" Margin="8,0,0,0"/>
+                </Grid>
 
-                <UniformGrid Columns="2">
+                <UniformGrid Columns="2" Margin="0,0,0,12">
                   <Border Style="{StaticResource MetricCardStyle}">
-                    <StackPanel>
-                      <TextBlock Text="{Binding Items.Count, ElementName=TimelineList}" Foreground="#FAF7F2" FontSize="24" FontWeight="SemiBold"/>
-                      <TextBlock Text="Total Activities" Foreground="#AAA097" FontSize="11"/>
-                    </StackPanel>
+                    <Grid>
+                      <Grid.ColumnDefinitions><ColumnDefinition Width="46"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                      <Border Width="36" Height="36" CornerRadius="10" Background="#234B72" VerticalAlignment="Center">
+                        <TextBlock Text="▥" Foreground="#5CC8FF" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                      </Border>
+                      <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock x:Name="TotalActivitiesText" Text="0" Foreground="#FAF7F2" FontSize="22" FontWeight="SemiBold"/>
+                        <TextBlock Text="Total Activities" Foreground="#AAA097" FontSize="11"/>
+                      </StackPanel>
+                    </Grid>
                   </Border>
+
                   <Border Style="{StaticResource MetricCardStyle}">
-                    <StackPanel>
-                      <TextBlock Text="Local" Foreground="#FAF7F2" FontSize="22" FontWeight="SemiBold"/>
-                      <TextBlock Text="Storage" Foreground="#AAA097" FontSize="11"/>
-                    </StackPanel>
+                    <Grid>
+                      <Grid.ColumnDefinitions><ColumnDefinition Width="46"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                      <Border Width="36" Height="36" CornerRadius="10" Background="#244C77" VerticalAlignment="Center">
+                        <TextBlock Text="▦" Foreground="#4E8FFF" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                      </Border>
+                      <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock x:Name="AppsUsedText" Text="0" Foreground="#FAF7F2" FontSize="22" FontWeight="SemiBold"/>
+                        <TextBlock Text="Apps Used" Foreground="#AAA097" FontSize="11"/>
+                      </StackPanel>
+                    </Grid>
                   </Border>
+
                   <Border Style="{StaticResource MetricCardStyle}">
-                    <StackPanel>
-                      <TextBlock Text="On" Foreground="#4ADE80" FontSize="22" FontWeight="SemiBold"/>
-                      <TextBlock Text="Capture" Foreground="#AAA097" FontSize="11"/>
-                    </StackPanel>
+                    <Grid>
+                      <Grid.ColumnDefinitions><ColumnDefinition Width="46"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                      <Border Width="36" Height="36" CornerRadius="18" Background="#20C5D6" VerticalAlignment="Center">
+                        <TextBlock Text="&#xE823;" FontFamily="Segoe MDL2 Assets" Foreground="#10232A"
+                                   FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                      </Border>
+                      <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock x:Name="ActiveTimeText" Text="0m" Foreground="#FAF7F2" FontSize="22" FontWeight="SemiBold"/>
+                        <TextBlock Text="Active Time" Foreground="#AAA097" FontSize="11"/>
+                      </StackPanel>
+                    </Grid>
                   </Border>
+
                   <Border Style="{StaticResource MetricCardStyle}">
-                    <StackPanel>
-                      <TextBlock Text="Private" Foreground="#FAF7F2" FontSize="22" FontWeight="SemiBold"/>
-                      <TextBlock Text="By design" Foreground="#AAA097" FontSize="11"/>
-                    </StackPanel>
+                    <Grid>
+                      <Grid.ColumnDefinitions><ColumnDefinition Width="46"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                      <Border Width="36" Height="36" CornerRadius="10" Background="#D98A38" VerticalAlignment="Center">
+                        <TextBlock Text="&#xE77F;" FontFamily="Segoe MDL2 Assets" Foreground="#FFF2DF"
+                                   FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                      </Border>
+                      <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock x:Name="ClipboardItemsText" Text="0" Foreground="#FAF7F2" FontSize="22" FontWeight="SemiBold"/>
+                        <TextBlock Text="Clipboard Items" Foreground="#AAA097" FontSize="11"/>
+                      </StackPanel>
+                    </Grid>
                   </Border>
                 </UniformGrid>
 
-                <TextBlock Text="Quick filters" Foreground="#C9C0B7" FontSize="12" FontWeight="SemiBold" Margin="0,8,0,8"/>
-                <WrapPanel>
-                  <Button Content="Web" Tag="Browser" Click="Category_Click" Style="{StaticResource ChipButtonStyle}" Margin="0,0,6,6"/>
-                  <Button Content="Email" Tag="Email" Click="Category_Click" Style="{StaticResource ChipButtonStyle}" Margin="0,0,6,6"/>
-                  <Button Content="Chat" Tag="Chat" Click="Category_Click" Style="{StaticResource ChipButtonStyle}" Margin="0,0,6,6"/>
-                  <Button Content="Files" Tag="Files" Click="Category_Click" Style="{StaticResource ChipButtonStyle}" Margin="0,0,6,6"/>
-                </WrapPanel>
+                <Grid Margin="2,2,2,8">
+                  <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                  <TextBlock Text="Top Apps" Foreground="#F4EFE9" FontWeight="SemiBold" FontSize="14"/>
+                  <TextBlock Grid.Column="1" Text="Today" Foreground="#8CB9F1" FontSize="11"/>
+                </Grid>
+
+                <Grid Margin="2,2">
+                  <Grid.ColumnDefinitions><ColumnDefinition Width="30"/><ColumnDefinition Width="105"/><ColumnDefinition Width="*"/><ColumnDefinition Width="34"/></Grid.ColumnDefinitions>
+                  <Image x:Name="TopApp1Icon" Width="23" Height="23" Stretch="Uniform"/>
+                  <TextBlock x:Name="TopApp1Name" Grid.Column="1" Foreground="#D8D0C8" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                  <ProgressBar x:Name="TopApp1Bar" Grid.Column="2" Style="{StaticResource SummaryProgressStyle}" Foreground="#249CFF" Margin="8,0" VerticalAlignment="Center"/>
+                  <TextBlock x:Name="TopApp1Count" Grid.Column="3" Foreground="#C9C0B7" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </Grid>
+
+                <Grid Margin="2,5,2,2">
+                  <Grid.ColumnDefinitions><ColumnDefinition Width="30"/><ColumnDefinition Width="105"/><ColumnDefinition Width="*"/><ColumnDefinition Width="34"/></Grid.ColumnDefinitions>
+                  <Image x:Name="TopApp2Icon" Width="23" Height="23" Stretch="Uniform"/>
+                  <TextBlock x:Name="TopApp2Name" Grid.Column="1" Foreground="#D8D0C8" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                  <ProgressBar x:Name="TopApp2Bar" Grid.Column="2" Style="{StaticResource SummaryProgressStyle}" Foreground="#37D39D" Margin="8,0" VerticalAlignment="Center"/>
+                  <TextBlock x:Name="TopApp2Count" Grid.Column="3" Foreground="#C9C0B7" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </Grid>
+
+                <Grid Margin="2,5,2,2">
+                  <Grid.ColumnDefinitions><ColumnDefinition Width="30"/><ColumnDefinition Width="105"/><ColumnDefinition Width="*"/><ColumnDefinition Width="34"/></Grid.ColumnDefinitions>
+                  <Image x:Name="TopApp3Icon" Width="23" Height="23" Stretch="Uniform"/>
+                  <TextBlock x:Name="TopApp3Name" Grid.Column="1" Foreground="#D8D0C8" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                  <ProgressBar x:Name="TopApp3Bar" Grid.Column="2" Style="{StaticResource SummaryProgressStyle}" Foreground="#7562F4" Margin="8,0" VerticalAlignment="Center"/>
+                  <TextBlock x:Name="TopApp3Count" Grid.Column="3" Foreground="#C9C0B7" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </Grid>
+
+                <Grid Margin="2,5,2,2">
+                  <Grid.ColumnDefinitions><ColumnDefinition Width="30"/><ColumnDefinition Width="105"/><ColumnDefinition Width="*"/><ColumnDefinition Width="34"/></Grid.ColumnDefinitions>
+                  <Image x:Name="TopApp4Icon" Width="23" Height="23" Stretch="Uniform"/>
+                  <TextBlock x:Name="TopApp4Name" Grid.Column="1" Foreground="#D8D0C8" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                  <ProgressBar x:Name="TopApp4Bar" Grid.Column="2" Style="{StaticResource SummaryProgressStyle}" Foreground="#FF9B48" Margin="8,0" VerticalAlignment="Center"/>
+                  <TextBlock x:Name="TopApp4Count" Grid.Column="3" Foreground="#C9C0B7" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </Grid>
+
+                <Grid Margin="2,5,2,0">
+                  <Grid.ColumnDefinitions><ColumnDefinition Width="30"/><ColumnDefinition Width="105"/><ColumnDefinition Width="*"/><ColumnDefinition Width="34"/></Grid.ColumnDefinitions>
+                  <Image x:Name="TopApp5Icon" Width="23" Height="23" Stretch="Uniform"/>
+                  <TextBlock x:Name="TopApp5Name" Grid.Column="1" Foreground="#D8D0C8" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
+                  <ProgressBar x:Name="TopApp5Bar" Grid.Column="2" Style="{StaticResource SummaryProgressStyle}" Foreground="#7A67F0" Margin="8,0" VerticalAlignment="Center"/>
+                  <TextBlock x:Name="TopApp5Count" Grid.Column="3" Foreground="#C9C0B7" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </Grid>
               </StackPanel>
             </Border>
 
+            <!-- DETAILS -->
             <Border x:Name="DetailsPanel" Grid.Row="2" Background="#242B35"
                     BorderBrush="#414B5B" BorderThickness="1" CornerRadius="18" Padding="16">
               <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -421,10 +524,6 @@
               </ScrollViewer>
             </Border>
           </Grid>
-
-          <Button x:Name="ShowDetailsButton" Grid.Column="2" Content="▣  Details"
-                  Style="{StaticResource ChipButtonStyle}" Click="ShowDetailsPane_Click"
-                  Visibility="Collapsed" HorizontalAlignment="Right" VerticalAlignment="Top"/>
         </Grid>
       </Grid>
 

@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
@@ -39,6 +40,7 @@ public partial class MainWindow : Window
         _view = CollectionViewSource.GetDefaultView(App.Store.Items);
         _view.Filter = FilterItem;
         TimelineList.ItemsSource = _view;
+        App.Store.Items.CollectionChanged += StoreItems_CollectionChanged;
 
         LoadSettingsIntoUi();
         UpdateCaptureState();
@@ -47,6 +49,8 @@ public partial class MainWindow : Window
 
         if (App.Store.Items.Count > 0)
             TimelineList.SelectedIndex = 0;
+
+        UpdateTodaySummary();
 
         try
         {
@@ -272,6 +276,86 @@ public partial class MainWindow : Window
 
     private void SearchBox_TextChanged(object sender, TextChangedEventArgs e) => _view.Refresh();
 
+    private void StoreItems_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        UpdateTodaySummary();
+    }
+
+    private void UpdateTodaySummary()
+    {
+        var today = App.Store.Items
+            .Where(x => x.CreatedAt.Date == DateTime.Today)
+            .ToList();
+
+        TotalActivitiesText.Text = today.Count.ToString();
+        AppsUsedText.Text = today
+            .Select(x => x.SourceApp)
+            .Where(x => !string.IsNullOrWhiteSpace(x))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .Count()
+            .ToString();
+
+        ClipboardItemsText.Text = today.Count(x => x.SourceKind == SourceKind.Clipboard).ToString();
+
+        if (today.Count > 1)
+        {
+            var first = today.Min(x => x.CreatedAt);
+            var last = today.Max(x => x.CreatedAt);
+            var span = last - first;
+            ActiveTimeText.Text = span.TotalHours >= 1
+                ? $"{(int)span.TotalHours}h {span.Minutes}m"
+                : $"{Math.Max(0, span.Minutes)}m";
+        }
+        else
+        {
+            ActiveTimeText.Text = "0m";
+        }
+
+        var topApps = today
+            .Where(x => !string.IsNullOrWhiteSpace(x.SourceApp))
+            .GroupBy(x => x.SourceApp, StringComparer.OrdinalIgnoreCase)
+            .Select(g => new
+            {
+                Name = g.Key,
+                Count = g.Count(),
+                Process = g.Select(x => x.SourceProcess).FirstOrDefault(x => !string.IsNullOrWhiteSpace(x)) ?? ""
+            })
+            .OrderByDescending(x => x.Count)
+            .ThenBy(x => x.Name)
+            .Take(5)
+            .ToList();
+
+        var max = Math.Max(1, topApps.FirstOrDefault()?.Count ?? 1);
+
+        var names = new[] { TopApp1Name, TopApp2Name, TopApp3Name, TopApp4Name, TopApp5Name };
+        var counts = new[] { TopApp1Count, TopApp2Count, TopApp3Count, TopApp4Count, TopApp5Count };
+        var bars = new[] { TopApp1Bar, TopApp2Bar, TopApp3Bar, TopApp4Bar, TopApp5Bar };
+        var icons = new[] { TopApp1Icon, TopApp2Icon, TopApp3Icon, TopApp4Icon, TopApp5Icon };
+
+        for (var i = 0; i < names.Length; i++)
+        {
+            if (i < topApps.Count)
+            {
+                var app = topApps[i];
+                names[i].Text = app.Name;
+                counts[i].Text = app.Count.ToString();
+                bars[i].Maximum = max;
+                bars[i].Value = app.Count;
+                icons[i].Source = AppIconConverter.ResolveAppIcon(app.Name, app.Process);
+                names[i].Opacity = counts[i].Opacity = bars[i].Opacity = icons[i].Opacity = 1;
+            }
+            else
+            {
+                names[i].Text = "—";
+                counts[i].Text = "";
+                bars[i].Maximum = 1;
+                bars[i].Value = 0;
+                icons[i].Source = null;
+                names[i].Opacity = counts[i].Opacity = bars[i].Opacity = icons[i].Opacity = 0.25;
+            }
+        }
+    }
+
     private void AddMemory_Click(object sender, RoutedEventArgs e)
     {
         var window = new AddMemoryWindow { Owner = this };
@@ -292,8 +376,8 @@ public partial class MainWindow : Window
     {
         _detailsPaneVisible = false;
         DetailsPanel.Visibility = Visibility.Collapsed;
-        DetailsSpacerColumn.Width = new GridLength(0);
-        DetailsColumn.Width = new GridLength(0);
+        DetailsGapRow.Height = new GridLength(0);
+        DetailsRow.Height = new GridLength(0);
         ShowDetailsButton.Visibility = Visibility.Visible;
     }
 
@@ -312,8 +396,8 @@ public partial class MainWindow : Window
     {
         _detailsPaneVisible = true;
         DetailsPanel.Visibility = Visibility.Visible;
-        DetailsSpacerColumn.Width = new GridLength(12);
-        DetailsColumn.Width = new GridLength(0.95, GridUnitType.Star);
+        DetailsGapRow.Height = new GridLength(12);
+        DetailsRow.Height = new GridLength(1, GridUnitType.Star);
         ShowDetailsButton.Visibility = Visibility.Collapsed;
     }
 
@@ -457,6 +541,8 @@ public partial class MainWindow : Window
 
     protected override void OnClosed(EventArgs e)
     {
+        App.Store.Items.CollectionChanged -= StoreItems_CollectionChanged;
+
         if (_trayIcon is not null)
         {
             _trayIcon.Visible = false;
