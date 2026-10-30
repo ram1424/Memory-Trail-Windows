@@ -10,12 +10,13 @@
     <RootNamespace>MemoryLane.Windows</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Assets\MemoryTrailApp.ico</ApplicationIcon>
-    <Version>0.6.1</Version>
-    <AssemblyVersion>0.6.1.0</AssemblyVersion>
-    <FileVersion>0.6.1.0</FileVersion>
-    <InformationalVersion>0.6.1</InformationalVersion>
+    <Version>0.6.2</Version>
+    <AssemblyVersion>0.6.2.0</AssemblyVersion>
+    <FileVersion>0.6.2.0</FileVersion>
+    <InformationalVersion>0.6.2</InformationalVersion>
   </PropertyGroup>
   <ItemGroup>
     <Resource Include="Assets\MemoryTrailApp.ico" />
+    <Resource Include="Assets\MemoryTrailIconMaster.png" />
   </ItemGroup>
 </Project>
