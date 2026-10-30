@@ -19,7 +19,7 @@ public static class Branding
         try
         {
             var resource = Application.GetResourceStream(
-                new Uri("/Assets/MemoryLaneReferenceIcon.png", UriKind.Relative));
+                new Uri("/Assets/MemoryTrailIconMaster.png", UriKind.Relative));
             if (resource?.Stream is null)
                 return null;
 

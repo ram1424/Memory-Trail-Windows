@@ -18,6 +18,12 @@ public partial class OnboardingWindow : Window
             {
                 Icon = brand;
                 WelcomeBrandLogo.Source = brand;
+
+                EdgeTutorialIcon.Source = AppIconConverter.ResolveAppIcon("Microsoft Edge", "msedge");
+                OutlookTutorialIcon.Source = AppIconConverter.ResolveAppIcon("Outlook", "olk");
+                TeamsTutorialIcon.Source = AppIconConverter.ResolveAppIcon("Microsoft Teams", "ms-teams");
+                OutlookSearchIcon.Source = AppIconConverter.ResolveAppIcon("Outlook", "olk");
+                TeamsSearchIcon.Source = AppIconConverter.ResolveAppIcon("Microsoft Teams", "ms-teams");
             }
         }
         catch (Exception ex)

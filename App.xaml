@@ -2,21 +2,21 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Application.Resources>
-    <SolidColorBrush x:Key="BackgroundBrush" Color="#0B1E35"/>
-    <SolidColorBrush x:Key="SidebarBrush" Color="#102844"/>
-    <SolidColorBrush x:Key="PanelBrush" Color="#15324F"/>
-    <SolidColorBrush x:Key="PanelAltBrush" Color="#1A3B5C"/>
+    <SolidColorBrush x:Key="BackgroundBrush" Color="#102B49"/>
+    <SolidColorBrush x:Key="SidebarBrush" Color="#153657"/>
+    <SolidColorBrush x:Key="PanelBrush" Color="#1A4267"/>
+    <SolidColorBrush x:Key="PanelAltBrush" Color="#214D75"/>
     <SolidColorBrush x:Key="PrimaryTextBrush" Color="#F7FAFF"/>
     <SolidColorBrush x:Key="SecondaryTextBrush" Color="#BCD0E6"/>
     <SolidColorBrush x:Key="AccentBrush" Color="#1F8FFF"/>
     <SolidColorBrush x:Key="AccentSoftBrush" Color="#245C95"/>
-    <SolidColorBrush x:Key="BorderBrush" Color="#365B80"/>
+    <SolidColorBrush x:Key="BorderBrush" Color="#4A769E"/>
     <SolidColorBrush x:Key="DangerBrush" Color="#FF7B87"/>
 
     <Style x:Key="ModernButtonStyle" TargetType="Button">
       <Setter Property="Foreground" Value="#DCE7F7"/>
-      <Setter Property="Background" Value="#1B3B5D"/>
-      <Setter Property="BorderBrush" Value="#416789"/>
+      <Setter Property="Background" Value="#224D74"/>
+      <Setter Property="BorderBrush" Value="#5A83A8"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="Padding" Value="13,9"/>
       <Setter Property="FontSize" Value="13"/>
@@ -36,7 +36,7 @@
             </Border>
             <ControlTemplate.Triggers>
               <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="Chrome" Property="Background" Value="#244C72"/>
+                <Setter TargetName="Chrome" Property="Background" Value="#2F5D86"/>
                 <Setter TargetName="Chrome" Property="BorderBrush" Value="#5A7FA3"/>
               </Trigger>
               <Trigger Property="IsPressed" Value="True">
@@ -112,8 +112,8 @@
       <Setter Property="Padding" Value="13,7"/>
       <Setter Property="Margin" Value="0,0,7,0"/>
       <Setter Property="FontSize" Value="12"/>
-      <Setter Property="Background" Value="#173755"/>
-      <Setter Property="BorderBrush" Value="#3D6489"/>
+      <Setter Property="Background" Value="#1E486E"/>
+      <Setter Property="BorderBrush" Value="#557FA5"/>
       <Setter Property="Foreground" Value="#D3DEED"/>
     </Style>
 
@@ -129,9 +129,9 @@
     <Style TargetType="Button" BasedOn="{StaticResource ModernButtonStyle}"/>
 
     <Style TargetType="TextBox">
-      <Setter Property="Background" Value="#183A5A"/>
+      <Setter Property="Background" Value="#204B70"/>
       <Setter Property="Foreground" Value="#F7FAFF"/>
-      <Setter Property="BorderBrush" Value="#41698E"/>
+      <Setter Property="BorderBrush" Value="#5A86AD"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="Padding" Value="12,9"/>
       <Setter Property="FontSize" Value="14"/>
@@ -139,9 +139,9 @@
     </Style>
 
     <Style TargetType="ComboBox">
-      <Setter Property="Background" Value="#183A5A"/>
+      <Setter Property="Background" Value="#204B70"/>
       <Setter Property="Foreground" Value="#F7FAFF"/>
-      <Setter Property="BorderBrush" Value="#41698E"/>
+      <Setter Property="BorderBrush" Value="#5A86AD"/>
       <Setter Property="Padding" Value="8"/>
       <Setter Property="MinHeight" Value="36"/>
     </Style>

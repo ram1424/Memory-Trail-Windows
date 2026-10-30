@@ -17,6 +17,41 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Resolve version
+        shell: pwsh
+        run: |
+          [xml]$project = Get-Content "MemoryLane.Windows.csproj"
+          $version = [string]$project.Project.PropertyGroup.Version
+          "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          Write-Host "Building Memory Trail v$version"
+
+      - name: Generate Windows application icon from master artwork
+        shell: pwsh
+        run: |
+          $pngPath = "Assets/MemoryTrailIconMaster.png"
+          $icoPath = "Assets/MemoryTrailApp.ico"
+          $png = [System.IO.File]::ReadAllBytes($pngPath)
+          $stream = [System.IO.File]::Open($icoPath, [System.IO.FileMode]::Create)
+          $writer = New-Object System.IO.BinaryWriter($stream)
+          try {
+            $writer.Write([UInt16]0)
+            $writer.Write([UInt16]1)
+            $writer.Write([UInt16]1)
+            $writer.Write([Byte]0)
+            $writer.Write([Byte]0)
+            $writer.Write([Byte]0)
+            $writer.Write([Byte]0)
+            $writer.Write([UInt16]1)
+            $writer.Write([UInt16]32)
+            $writer.Write([UInt32]$png.Length)
+            $writer.Write([UInt32]22)
+            $writer.Write($png)
+          }
+          finally {
+            $writer.Dispose()
+            $stream.Dispose()
+          }
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -33,29 +68,28 @@ jobs:
 
       - name: Zip build
         shell: pwsh
-        run: Compress-Archive -Path "artifacts/Memory-Trail-Windows-x64/*" -DestinationPath "artifacts/Memory-Trail-Windows-v0.3.1-x64.zip"
+        run: Compress-Archive -Path "artifacts/Memory-Trail-Windows-x64/*" -DestinationPath "artifacts/Memory-Trail-Windows-v$env:VERSION-x64.zip"
 
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Memory-Trail-Windows-v0.3.1-x64
-          path: artifacts/Memory-Trail-Windows-v0.3.1-x64.zip
+          name: Memory-Trail-Windows-v${{ env.VERSION }}-x64
+          path: artifacts/Memory-Trail-Windows-v${{ env.VERSION }}-x64.zip
 
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v0.3.1
+          tag_name: v${{ env.VERSION }}
           target_commitish: main
-          name: Memory Trail for Windows v0.3.1
+          name: Memory Trail for Windows v${{ env.VERSION }}
           body: |
-            Polish release with a proper Windows multi-size icon, precisely aligned timeline rows, colorful onboarding visuals, and refined spacing and typography.
+            Memory Trail v${{ env.VERSION }}
 
-            - Activity timeline and focused-window tracking
-            - Search, Favorites, and Add Memory
-            - Optional clipboard capture
-            - Privacy exclusions and pause/resume controls
-            - Windows system tray support
-            - First-launch tutorial
-            - Start-with-Windows option
-            - Local-only storage
-          files: artifacts/Memory-Trail-Windows-v0.3.1-x64.zip
+            - Exact Memory Trail brain/road icon across the app
+            - Improved Windows taskbar and system-tray branding
+            - Brighter polished navy interface
+            - Refined onboarding tutorial with real installed Edge, Outlook, and Teams icons
+            - Double-click timeline entries to open the inline Details inspector
+            - Easy-to-close and reopen Details pane
+            - Search, Favorites, Add Memory, clipboard capture, privacy exclusions, and local-only storage
+          files: artifacts/Memory-Trail-Windows-v${{ env.VERSION }}-x64.zip

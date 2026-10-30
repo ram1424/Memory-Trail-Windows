@@ -5,11 +5,11 @@
         Width="1060" Height="680"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
-        Background="#0B2038">
+        Background="#12365B">
   <Window.Resources>
     <Style x:Key="CardStyle" TargetType="Border">
-      <Setter Property="Background" Value="#173B5C"/>
-      <Setter Property="BorderBrush" Value="#477398"/>
+      <Setter Property="Background" Value="#204E77"/>
+      <Setter Property="BorderBrush" Value="#5D8FB8"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="CornerRadius" Value="18"/>
       <Setter Property="Padding" Value="18"/>
@@ -19,9 +19,9 @@
   <Grid>
     <Grid.Background>
       <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#12355A" Offset="0"/>
-        <GradientStop Color="#0D2743" Offset="0.52"/>
-        <GradientStop Color="#123151" Offset="1"/>
+        <GradientStop Color="#1B4B78" Offset="0"/>
+        <GradientStop Color="#163B60" Offset="0.52"/>
+        <GradientStop Color="#194469" Offset="1"/>
       </LinearGradientBrush>
     </Grid.Background>
 
@@ -39,10 +39,9 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel VerticalAlignment="Center" Margin="8,0,38,0">
-          <Border Width="116" Height="116" CornerRadius="28"
-                  Background="#0A2452" BorderBrush="#2F75CF" BorderThickness="1"
-                  Padding="18" HorizontalAlignment="Left" Margin="0,0,0,24">
-            <Image x:Name="WelcomeBrandLogo" Width="80" Height="80"
+          <Border Width="118" Height="118" Background="Transparent" BorderThickness="0"
+                  HorizontalAlignment="Left" Margin="0,0,0,24">
+            <Image x:Name="WelcomeBrandLogo" Width="112" Height="112"
                    Stretch="Uniform" SnapsToDevicePixels="True"
                    RenderOptions.BitmapScalingMode="HighQuality"/>
           </Border>
@@ -58,7 +57,7 @@
           <TextBlock Text="Memory Trail quietly keeps a searchable history of the apps and windows you use so you can find your way back."
                      Margin="0,14,0,0"
                      FontSize="14" LineHeight="22"
-                     Foreground="#C1D3E6"
+                     Foreground="#D5E4F2"
                      TextWrapping="Wrap"/>
         </StackPanel>
 
@@ -69,64 +68,55 @@
                        Margin="0,0,0,16"/>
 
             <!-- Edge -->
-            <Border Background="#1C456B" CornerRadius="13" Padding="12" Margin="0,0,0,9">
+            <Border Background="#265A86" CornerRadius="13" Padding="12" Margin="0,0,0,9">
               <Grid>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                <Grid Width="38" Height="38" VerticalAlignment="Center">
-                  <Ellipse Fill="#0B78D0"/>
-                  <Ellipse Width="25" Height="25" Fill="#18C5B9" HorizontalAlignment="Right" VerticalAlignment="Top"/>
-                  <Ellipse Width="18" Height="18" Fill="#08192B" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Grid>
+                <Border Width="38" Height="38" Background="Transparent">
+                  <Image x:Name="EdgeTutorialIcon" Width="36" Height="36" Stretch="Uniform"
+                         RenderOptions.BitmapScalingMode="HighQuality"/>
+                </Border>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
                   <TextBlock Text="Microsoft Edge" Foreground="White" FontWeight="SemiBold"/>
-                  <TextBlock Text="Project documentation" Margin="0,3,0,0" Foreground="#C4D6E8"/>
+                  <TextBlock Text="Project documentation" Margin="0,3,0,0" Foreground="#D9E7F4"/>
                 </StackPanel>
-                <TextBlock Grid.Column="2" Text="9:14 AM" FontSize="11" Foreground="#9FB5CD" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="9:14 AM" FontSize="11" Foreground="#B9CCE0" VerticalAlignment="Center"/>
               </Grid>
             </Border>
 
             <!-- Outlook -->
-            <Border Background="#1C456B" CornerRadius="13" Padding="12" Margin="0,0,0,9">
+            <Border Background="#265A86" CornerRadius="13" Padding="12" Margin="0,0,0,9">
               <Grid>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                <Grid Width="38" Height="38">
-                  <Border Background="#0E79E8" CornerRadius="8"/>
-                  <Border Width="22" Height="28" Background="#0A58B7" CornerRadius="5" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <TextBlock Text="O" Foreground="White" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                  </Border>
-                  <Path Data="M 15 12 L 34 12 L 34 28 L 15 28 Z M 15 13 L 24.5 21 L 34 13"
-                        Stroke="#B8E0FF" StrokeThickness="1.5" Fill="#1B95FF"/>
-                </Grid>
+                <Border Width="38" Height="38" Background="Transparent">
+                  <Image x:Name="OutlookTutorialIcon" Width="36" Height="36" Stretch="Uniform"
+                         RenderOptions.BitmapScalingMode="HighQuality"/>
+                </Border>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
                   <TextBlock Text="Outlook" Foreground="White" FontWeight="SemiBold"/>
-                  <TextBlock Text="Weekly project update" Margin="0,3,0,0" Foreground="#C4D6E8"/>
+                  <TextBlock Text="Weekly project update" Margin="0,3,0,0" Foreground="#D9E7F4"/>
                 </StackPanel>
-                <TextBlock Grid.Column="2" Text="10:27 AM" FontSize="11" Foreground="#9FB5CD" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="10:27 AM" FontSize="11" Foreground="#B9CCE0" VerticalAlignment="Center"/>
               </Grid>
             </Border>
 
             <!-- Teams -->
-            <Border Background="#1C456B" CornerRadius="13" Padding="12" Margin="0,0,0,9">
+            <Border Background="#265A86" CornerRadius="13" Padding="12" Margin="0,0,0,9">
               <Grid>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                <Grid Width="38" Height="38">
-                  <Border Background="#6856D9" CornerRadius="9"/>
-                  <Ellipse Width="9" Height="9" Fill="#A99BFF" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,2,2,0"/>
-                  <Ellipse Width="8" Height="8" Fill="#8E7BE9" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,1,0"/>
-                  <Border Width="23" Height="27" Background="#5744C2" CornerRadius="5" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <TextBlock Text="T" Foreground="White" FontWeight="Bold" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                  </Border>
-                </Grid>
+                <Border Width="38" Height="38" Background="Transparent">
+                  <Image x:Name="TeamsTutorialIcon" Width="36" Height="36" Stretch="Uniform"
+                         RenderOptions.BitmapScalingMode="HighQuality"/>
+                </Border>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
                   <TextBlock Text="Microsoft Teams" Foreground="White" FontWeight="SemiBold"/>
-                  <TextBlock Text="Design review discussion" Margin="0,3,0,0" Foreground="#C4D6E8"/>
+                  <TextBlock Text="Design review discussion" Margin="0,3,0,0" Foreground="#D9E7F4"/>
                 </StackPanel>
-                <TextBlock Grid.Column="2" Text="11:35 AM" FontSize="11" Foreground="#9FB5CD" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="11:35 AM" FontSize="11" Foreground="#B9CCE0" VerticalAlignment="Center"/>
               </Grid>
             </Border>
 
             <!-- Explorer -->
-            <Border Background="#1C456B" CornerRadius="13" Padding="12">
+            <Border Background="#265A86" CornerRadius="13" Padding="12">
               <Grid>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                 <Grid Width="38" Height="38">
@@ -136,9 +126,9 @@
                 </Grid>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
                   <TextBlock Text="File Explorer" Foreground="White" FontWeight="SemiBold"/>
-                  <TextBlock Text="Project Phoenix" Margin="0,3,0,0" Foreground="#C4D6E8"/>
+                  <TextBlock Text="Project Phoenix" Margin="0,3,0,0" Foreground="#D9E7F4"/>
                 </StackPanel>
-                <TextBlock Grid.Column="2" Text="11:41 AM" FontSize="11" Foreground="#9FB5CD" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="11:41 AM" FontSize="11" Foreground="#B9CCE0" VerticalAlignment="Center"/>
               </Grid>
             </Border>
           </StackPanel>
@@ -171,7 +161,7 @@
 
         <Border Grid.Column="1" Style="{StaticResource CardStyle}" Margin="0,20,0,20">
           <StackPanel>
-            <Border Background="#1C456B" BorderBrush="#2C4567" BorderThickness="1"
+            <Border Background="#265A86" BorderBrush="#2C4567" BorderThickness="1"
                     CornerRadius="12" Padding="11">
               <Grid>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
@@ -183,44 +173,37 @@
 
             <TextBlock Text="4 results" Margin="2,16,0,10" FontSize="12" Foreground="#7890AE"/>
 
-            <Border Background="#1C456B" CornerRadius="13" Padding="12" Margin="0,0,0,8">
+            <Border Background="#265A86" CornerRadius="13" Padding="12" Margin="0,0,0,8">
               <Grid>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="46"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                <Grid Width="36" Height="36">
-                  <Border Background="#0E79E8" CornerRadius="8"/>
-                  <Border Width="20" Height="26" Background="#0A58B7" CornerRadius="5" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <TextBlock Text="O" Foreground="White" FontWeight="Bold" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                  </Border>
-                  <Path Data="M 14 11 L 32 11 L 32 27 L 14 27 Z M 14 12 L 23 20 L 32 12" Stroke="#B8E0FF" StrokeThickness="1.4" Fill="#1B95FF"/>
-                </Grid>
+                <Border Width="36" Height="36" Background="Transparent">
+                  <Image x:Name="OutlookSearchIcon" Width="34" Height="34" Stretch="Uniform"
+                         RenderOptions.BitmapScalingMode="HighQuality"/>
+                </Border>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0">
                   <TextBlock Text="Outlook" Foreground="White" FontWeight="SemiBold"/>
-                  <TextBlock Text="Weekly project update" Margin="0,3,0,0" Foreground="#C4D6E8"/>
+                  <TextBlock Text="Weekly project update" Margin="0,3,0,0" Foreground="#D9E7F4"/>
                 </StackPanel>
-                <TextBlock Grid.Column="2" Text="10:27 AM" FontSize="11" Foreground="#9FB5CD" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="10:27 AM" FontSize="11" Foreground="#B9CCE0" VerticalAlignment="Center"/>
               </Grid>
             </Border>
 
-            <Border Background="#1C456B" CornerRadius="13" Padding="12" Margin="0,0,0,8">
+            <Border Background="#265A86" CornerRadius="13" Padding="12" Margin="0,0,0,8">
               <Grid>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="46"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                <Grid Width="36" Height="36">
-                  <Border Background="#6856D9" CornerRadius="9"/>
-                  <Ellipse Width="8" Height="8" Fill="#A99BFF" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,2,2,0"/>
-                  <Ellipse Width="7" Height="7" Fill="#8E7BE9" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,1,0"/>
-                  <Border Width="22" Height="26" Background="#5744C2" CornerRadius="5" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <TextBlock Text="T" Foreground="White" FontWeight="Bold" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                  </Border>
-                </Grid>
+                <Border Width="36" Height="36" Background="Transparent">
+                  <Image x:Name="TeamsSearchIcon" Width="34" Height="34" Stretch="Uniform"
+                         RenderOptions.BitmapScalingMode="HighQuality"/>
+                </Border>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0">
                   <TextBlock Text="Microsoft Teams" Foreground="White" FontWeight="SemiBold"/>
-                  <TextBlock Text="Project update discussion" Margin="0,3,0,0" Foreground="#C4D6E8"/>
+                  <TextBlock Text="Project update discussion" Margin="0,3,0,0" Foreground="#D9E7F4"/>
                 </StackPanel>
-                <TextBlock Grid.Column="2" Text="11:03 AM" FontSize="11" Foreground="#9FB5CD" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="11:03 AM" FontSize="11" Foreground="#B9CCE0" VerticalAlignment="Center"/>
               </Grid>
             </Border>
 
-            <Border Background="#1C456B" CornerRadius="13" Padding="12" Margin="0,0,0,8">
+            <Border Background="#265A86" CornerRadius="13" Padding="12" Margin="0,0,0,8">
               <Grid>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="46"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                 <Grid Width="36" Height="36">
@@ -232,13 +215,13 @@
                 </Grid>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0">
                   <TextBlock Text="Google Chrome" Foreground="White" FontWeight="SemiBold"/>
-                  <TextBlock Text="Project update - Google Docs" Margin="0,3,0,0" Foreground="#C4D6E8"/>
+                  <TextBlock Text="Project update - Google Docs" Margin="0,3,0,0" Foreground="#D9E7F4"/>
                 </StackPanel>
-                <TextBlock Grid.Column="2" Text="1:22 PM" FontSize="11" Foreground="#9FB5CD" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="1:22 PM" FontSize="11" Foreground="#B9CCE0" VerticalAlignment="Center"/>
               </Grid>
             </Border>
 
-            <Border Background="#1C456B" CornerRadius="13" Padding="12">
+            <Border Background="#265A86" CornerRadius="13" Padding="12">
               <Grid>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="46"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                 <Border Width="36" Height="36" Background="#1E69D5" CornerRadius="8">
@@ -246,9 +229,9 @@
                 </Border>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0">
                   <TextBlock Text="Microsoft Word" Foreground="White" FontWeight="SemiBold"/>
-                  <TextBlock Text="Project update draft" Margin="0,3,0,0" Foreground="#C4D6E8"/>
+                  <TextBlock Text="Project update draft" Margin="0,3,0,0" Foreground="#D9E7F4"/>
                 </StackPanel>
-                <TextBlock Grid.Column="2" Text="2:18 PM" FontSize="11" Foreground="#9FB5CD" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="2:18 PM" FontSize="11" Foreground="#B9CCE0" VerticalAlignment="Center"/>
               </Grid>
             </Border>
           </StackPanel>
