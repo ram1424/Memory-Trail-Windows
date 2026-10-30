@@ -64,8 +64,8 @@ public partial class OnboardingWindow : Window
         BackButton.Visibility = _page == 1 ? Visibility.Hidden : Visibility.Visible;
         NextButton.Content = _page == 3 ? "Get Started" : "Next  →";
 
-        var active = new SolidColorBrush(Color.FromRgb(31, 143, 255));
-        var inactive = new SolidColorBrush(Color.FromRgb(52, 74, 105));
+        var active = new SolidColorBrush(Color.FromRgb(78, 156, 241));
+        var inactive = new SolidColorBrush(Color.FromRgb(74, 85, 102));
 
         Dot1.Fill = _page == 1 ? active : inactive;
         Dot2.Fill = _page == 2 ? active : inactive;

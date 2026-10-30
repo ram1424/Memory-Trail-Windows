@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:MemoryLane.Windows"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        Title="Memory Trail v0.7.0"
+        Title="Memory Trail v0.7.1"
         Width="1540" Height="900"
         MinWidth="1240" MinHeight="720"
         WindowStartupLocation="CenterScreen"
@@ -56,7 +56,7 @@
           </Border>
           <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
             <TextBlock Text="Memory Trail" FontSize="20" FontWeight="SemiBold" Foreground="#FAF7F2"/>
-            <TextBlock Text="v0.7.0" FontSize="10" Foreground="#AFA59B" Margin="0,3,0,0"/>
+            <TextBlock Text="v0.7.1" FontSize="10" Foreground="#AFA59B" Margin="0,3,0,0"/>
           </StackPanel>
         </StackPanel>
 
