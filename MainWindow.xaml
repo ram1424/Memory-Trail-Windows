@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:MemoryLane.Windows"
-        Title="Memory Trail v0.4.0"
+        Title="Memory Trail v0.4.1"
         Width="1320" Height="820"
         MinWidth="1080" MinHeight="680"
         WindowStartupLocation="CenterScreen"
@@ -30,14 +30,17 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="4,4,0,28">
-          <Border Width="40" Height="40" CornerRadius="11" Background="#0B2147"
-                  BorderBrush="#24538D" BorderThickness="1">
-            <Image x:Name="BrandLogo" Width="34" Height="34" Stretch="Uniform"/>
+          <Border Width="42" Height="42" CornerRadius="12" Background="#0B2147"
+                  BorderBrush="#24538D" BorderThickness="1"
+                  Padding="7">
+            <Image x:Name="BrandLogo" Width="27" Height="27"
+                   Stretch="Uniform" SnapsToDevicePixels="True"
+                   RenderOptions.BitmapScalingMode="HighQuality"/>
           </Border>
           <StackPanel Margin="11,0,0,0" VerticalAlignment="Center">
             <TextBlock Text="Memory Trail" FontSize="16" FontWeight="SemiBold"
                        Foreground="White"/>
-            <TextBlock Text="v0.4.0" Margin="0,2,0,0" FontSize="10"
+            <TextBlock Text="v0.4.1" Margin="0,2,0,0" FontSize="10"
                        Foreground="#7690AE"/>
           </StackPanel>
         </StackPanel>
@@ -154,6 +157,10 @@
                     Style="{StaticResource ChipButtonStyle}" Click="Category_Click"/>
             <Button x:Name="OfficeFilter" Content="Office" Tag="Office"
                     Style="{StaticResource ChipButtonStyle}" Click="Category_Click"/>
+            <Button x:Name="ShowDetailsButton" Content="▣  Details"
+                    Style="{StaticResource ChipButtonStyle}"
+                    Click="ShowDetailsPane_Click"
+                    Visibility="Collapsed" Padding="13,7"/>
             <Button Content="+  Add" Style="{StaticResource PrimaryButtonStyle}"
                     Click="AddMemory_Click" Padding="13,7"/>
           </StackPanel>
@@ -162,8 +169,8 @@
         <Grid Grid.Row="1">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.55*"/>
-            <ColumnDefinition Width="12"/>
-            <ColumnDefinition Width="0.95*"/>
+            <ColumnDefinition x:Name="DetailsSpacerColumn" Width="12"/>
+            <ColumnDefinition x:Name="DetailsColumn" Width="0.95*"/>
           </Grid.ColumnDefinitions>
 
           <Border x:Name="TimelineContainer" Grid.Column="0"
@@ -256,7 +263,7 @@
             </Grid>
           </Border>
 
-          <Border Grid.Column="2"
+          <Border x:Name="DetailsPanel" Grid.Column="2"
                   Background="{StaticResource PanelBrush}"
                   BorderBrush="{StaticResource BorderBrush}"
                   BorderThickness="1" CornerRadius="15"
@@ -264,7 +271,7 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto">
               <StackPanel>
                 <Grid Margin="0,0,0,16">
-                  <Grid.ColumnDefinitions><ColumnDefinition Width="54"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                  <Grid.ColumnDefinitions><ColumnDefinition Width="54"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="36"/></Grid.ColumnDefinitions>
                   <Border Width="46" Height="46" CornerRadius="12" Background="#0A1526">
                     <Image Source="{Binding SelectedItem, ElementName=TimelineList, Converter={StaticResource AppIconConverter}}"
                            Width="38" Height="38" Stretch="Uniform"/>
@@ -277,7 +284,13 @@
                   </StackPanel>
                   <TextBlock Grid.Column="2"
                              Text="{Binding SelectedItem.CreatedAt, ElementName=TimelineList, StringFormat={}{0:h:mm tt}}"
-                             Foreground="#9DB0C8" VerticalAlignment="Center"/>
+                             Foreground="#9DB0C8" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                  <Button Grid.Column="3" Width="30" Height="30"
+                          Content="×" FontSize="18"
+                          Style="{StaticResource IconButtonStyle}"
+                          Click="HideDetailsPane_Click"
+                          ToolTip="Hide details"
+                          VerticalAlignment="Center"/>
                 </Grid>
 
                 <Grid Margin="0,0,0,20">

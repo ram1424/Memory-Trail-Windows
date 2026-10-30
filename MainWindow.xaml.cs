@@ -16,6 +16,7 @@ public partial class MainWindow : Window
     private string _mode = "Timeline";
     private string _category = "All";
     private bool _initializingSettings = true;
+    private bool _detailsPaneVisible = true;
 
     public MainWindow()
     {
@@ -281,6 +282,24 @@ public partial class MainWindow : Window
     private void TimelineList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         // Detail pane is data-bound directly to TimelineList.SelectedItem.
+    }
+
+    private void HideDetailsPane_Click(object sender, RoutedEventArgs e)
+    {
+        _detailsPaneVisible = false;
+        DetailsPanel.Visibility = Visibility.Collapsed;
+        DetailsSpacerColumn.Width = new GridLength(0);
+        DetailsColumn.Width = new GridLength(0);
+        ShowDetailsButton.Visibility = Visibility.Visible;
+    }
+
+    private void ShowDetailsPane_Click(object sender, RoutedEventArgs e)
+    {
+        _detailsPaneVisible = true;
+        DetailsPanel.Visibility = Visibility.Visible;
+        DetailsSpacerColumn.Width = new GridLength(12);
+        DetailsColumn.Width = new GridLength(0.95, GridUnitType.Star);
+        ShowDetailsButton.Visibility = Visibility.Collapsed;
     }
 
     private void TimelineList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)

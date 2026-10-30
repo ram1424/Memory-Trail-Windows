@@ -28,13 +28,16 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel VerticalAlignment="Center" Margin="12,0,38,0">
-          <Border Width="104" Height="104" CornerRadius="25"
+          <Border Width="94" Height="94" CornerRadius="24"
                   Background="#0C2349"
                   BorderBrush="#245BA0"
                   BorderThickness="1"
+                  Padding="14"
                   HorizontalAlignment="Left"
                   Margin="0,0,0,24">
-            <Image x:Name="WelcomeBrandLogo" Width="92" Height="92" Stretch="Uniform"/>
+            <Image x:Name="WelcomeBrandLogo" Width="64" Height="64"
+                   Stretch="Uniform" SnapsToDevicePixels="True"
+                   RenderOptions.BitmapScalingMode="HighQuality"/>
           </Border>
 
           <TextBlock Text="Welcome to&#x0a;Memory Trail"
@@ -60,7 +63,7 @@
                 Padding="22"
                 Margin="4,20,4,20">
           <StackPanel>
-            <TextBlock Text="Your day, at a glance"
+            <TextBlock Text="Your day, beautifully organized"
                        FontSize="20" FontWeight="SemiBold"
                        Foreground="#FFFFFF"
                        Margin="0,0,0,16"/>
@@ -69,7 +72,7 @@
               <Grid>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                 <Border Width="38" Height="38" CornerRadius="10" Background="#0E7CEB">
-                  <TextBlock Text="&#xE774;" FontFamily="Segoe MDL2 Assets" FontSize="21" Foreground="White"
+                  <TextBlock Text="E" FontFamily="Segoe UI" FontWeight="Bold" FontSize="19" Foreground="White"
                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
@@ -84,7 +87,7 @@
               <Grid>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                 <Border Width="38" Height="38" CornerRadius="10" Background="#0879E8">
-                  <TextBlock Text="&#xE715;" FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="White"
+                  <TextBlock Text="O" FontFamily="Segoe UI" FontWeight="Bold" FontSize="18" Foreground="White"
                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
@@ -99,7 +102,7 @@
               <Grid>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                 <Border Width="38" Height="38" CornerRadius="10" Background="#7655D8">
-                  <TextBlock Text="&#xE716;" FontFamily="Segoe MDL2 Assets" FontSize="20" Foreground="White"
+                  <TextBlock Text="T" FontFamily="Segoe UI" FontWeight="Bold" FontSize="18" Foreground="White"
                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center">
@@ -142,10 +145,10 @@
                        FontSize="40" Foreground="White"
                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
           </Border>
-          <TextBlock Text="Find it again&#x0a;in seconds"
+          <TextBlock Text="Find anything&#x0a;in seconds"
                      FontSize="39" FontWeight="SemiBold"
                      LineHeight="44" Foreground="#FFFFFF"/>
-          <TextBlock Text="Search across app names, window titles, notes, links, and copied text from one place."
+          <TextBlock Text="Search across apps, window titles, notes, links, files, and copied text from one private timeline."
                      Margin="0,18,0,0" FontSize="16" LineHeight="25"
                      Foreground="#BCCBE0" TextWrapping="Wrap"/>
         </StackPanel>
@@ -168,7 +171,7 @@
               <Grid>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="46"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                 <Border Width="36" Height="36" CornerRadius="9" Background="#0879E8">
-                  <TextBlock Text="&#xE715;" FontFamily="Segoe MDL2 Assets" FontSize="19" Foreground="White"
+                  <TextBlock Text="O" FontFamily="Segoe UI" FontWeight="Bold" FontSize="17" Foreground="White"
                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0">
@@ -182,7 +185,7 @@
               <Grid>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="46"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                 <Border Width="36" Height="36" CornerRadius="9" Background="#7457D7">
-                  <TextBlock Text="&#xE716;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="White"
+                  <TextBlock Text="T" FontFamily="Segoe UI" FontWeight="Bold" FontSize="17" Foreground="White"
                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
                 <StackPanel Grid.Column="1" Margin="10,0,0,0">
@@ -209,10 +212,10 @@
                        FontSize="38" Foreground="White"
                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
           </Border>
-          <TextBlock Text="Your privacy&#x0a;controls"
+          <TextBlock Text="Private by design"
                      FontSize="39" FontWeight="SemiBold"
                      LineHeight="44" Foreground="#FFFFFF"/>
-          <TextBlock Text="Your timeline stays on this PC. You control capture, exclusions, clipboard history, and when Memory Trail is paused."
+          <TextBlock Text="Your timeline stays on this PC. Pause capture, exclude apps, control clipboard history, and keep your activity private."
                      Margin="0,18,0,0" FontSize="16" LineHeight="25"
                      Foreground="#BCCBE0" TextWrapping="Wrap"/>
         </StackPanel>
