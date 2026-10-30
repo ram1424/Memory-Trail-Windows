@@ -81,28 +81,15 @@ public partial class MainWindow : Window
     {
         try
         {
-            var resource = Application.GetResourceStream(
-                new Uri("/Assets/MemoryLaneReferenceIcon.png", UriKind.Relative));
-
-            if (resource?.Stream is not null)
+            var executable = Environment.ProcessPath;
+            if (!string.IsNullOrWhiteSpace(executable))
             {
-                using var bitmap = new System.Drawing.Bitmap(resource.Stream);
-                var handle = bitmap.GetHicon();
-                try
-                {
-                    using var icon = System.Drawing.Icon.FromHandle(handle);
-                    return (System.Drawing.Icon)icon.Clone();
-                }
-                finally
-                {
-                    DestroyIcon(handle);
-                }
+                using var associated = System.Drawing.Icon.ExtractAssociatedIcon(executable);
+                if (associated is not null)
+                    return (System.Drawing.Icon)associated.Clone();
             }
         }
-        catch (Exception ex)
-        {
-            App.LogNonFatal("Tray icon", ex);
-        }
+        catch { }
 
         return System.Drawing.SystemIcons.Application;
     }
@@ -306,18 +293,20 @@ public partial class MainWindow : Window
         ShowDetailsButton.Visibility = Visibility.Visible;
     }
 
-    private void ShowDetailsPane_Click(object sender, RoutedEventArgs e) => ShowDetailsPane();
+    private void ShowDetailsPane_Click(object sender, RoutedEventArgs e)
+    {
+        _detailsPaneVisible = true;
+        DetailsPanel.Visibility = Visibility.Visible;
+        DetailsSpacerColumn.Width = new GridLength(12);
+        DetailsColumn.Width = new GridLength(0.95, GridUnitType.Star);
+        ShowDetailsButton.Visibility = Visibility.Collapsed;
+    }
 
     private void TimelineList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
     {
         if (TimelineList.SelectedItem is not MemoryItem)
             return;
 
-        ShowDetailsPane();
-    }
-
-    private void ShowDetailsPane()
-    {
         _detailsPaneVisible = true;
         DetailsPanel.Visibility = Visibility.Visible;
         DetailsSpacerColumn.Width = new GridLength(12);

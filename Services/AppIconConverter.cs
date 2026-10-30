@@ -11,16 +11,6 @@ namespace MemoryLane.Windows;
 
 public sealed class AppIconConverter : IValueConverter
 {
-    public static ImageSource? ResolveAppIcon(string appName, string processName = "")
-    {
-        var item = new MemoryItem
-        {
-            SourceApp = appName,
-            SourceProcess = processName
-        };
-        return LoadForItem(item) ?? LoadGenericIcon();
-    }
-
     private static readonly Dictionary<string, ImageSource> Cache =
         new(StringComparer.OrdinalIgnoreCase);
 
