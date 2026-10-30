@@ -25,32 +25,18 @@ jobs:
           "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           Write-Host "Building Memory Trail v$version"
 
-      - name: Generate Windows application icon from master artwork
+      - name: Verify packaged application icon
         shell: pwsh
         run: |
-          $pngPath = "Assets/MemoryTrailIconMaster.png"
           $icoPath = "Assets/MemoryTrailApp.ico"
-          $png = [System.IO.File]::ReadAllBytes($pngPath)
-          $stream = [System.IO.File]::Open($icoPath, [System.IO.FileMode]::Create)
-          $writer = New-Object System.IO.BinaryWriter($stream)
-          try {
-            $writer.Write([UInt16]0)
-            $writer.Write([UInt16]1)
-            $writer.Write([UInt16]1)
-            $writer.Write([Byte]128)
-            $writer.Write([Byte]128)
-            $writer.Write([Byte]0)
-            $writer.Write([Byte]0)
-            $writer.Write([UInt16]1)
-            $writer.Write([UInt16]32)
-            $writer.Write([UInt32]$png.Length)
-            $writer.Write([UInt32]22)
-            $writer.Write($png)
+          if (-not (Test-Path $icoPath)) {
+            throw "Required Memory Trail application icon is missing: $icoPath"
           }
-          finally {
-            $writer.Dispose()
-            $stream.Dispose()
+          $length = (Get-Item $icoPath).Length
+          if ($length -lt 10000) {
+            throw "Memory Trail application icon appears invalid or incomplete."
           }
+          Write-Host "Using committed Memory Trail multi-size icon ($length bytes)."
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
