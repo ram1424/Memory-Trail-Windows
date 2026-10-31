@@ -5,18 +5,18 @@
         Width="1060" Height="650"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
-        Background="#F5F8FC">
+        Background="#EEF4FB">
   <Window.Resources>
     <Style x:Key="TourCardStyle" TargetType="Border">
       <Setter Property="Background" Value="#FFFFFF"/>
-      <Setter Property="BorderBrush" Value="#D7E2EE"/>
+      <Setter Property="BorderBrush" Value="#D8E2EF"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="CornerRadius" Value="22"/>
       <Setter Property="Padding" Value="22"/>
     </Style>
     <Style x:Key="TourRowStyle" TargetType="Border">
-      <Setter Property="Background" Value="#F7FAFD"/>
-      <Setter Property="BorderBrush" Value="#E0E8F1"/>
+      <Setter Property="Background" Value="#F8FBFF"/>
+      <Setter Property="BorderBrush" Value="#E2E9F2"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="CornerRadius" Value="14"/>
       <Setter Property="Padding" Value="13"/>
@@ -27,9 +27,9 @@
   <Grid>
     <Grid.Background>
       <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#F9FBFE" Offset="0"/>
-        <GradientStop Color="#EEF5FC" Offset="0.55"/>
-        <GradientStop Color="#F7F9FC" Offset="1"/>
+        <GradientStop Color="#F8FBFF" Offset="0"/>
+        <GradientStop Color="#EDF4FC" Offset="0.55"/>
+        <GradientStop Color="#F6F9FD" Offset="1"/>
       </LinearGradientBrush>
     </Grid.Background>
 
@@ -47,11 +47,11 @@
         </Grid.ColumnDefinitions>
         <StackPanel VerticalAlignment="Center" Margin="8,0,42,0">
           <Border Width="108" Height="108" CornerRadius="28" Background="#FFFFFF"
-                  BorderBrush="#D7E2EE" BorderThickness="1" Padding="8"
+                  BorderBrush="#D8E2EF" BorderThickness="1" Padding="8"
                   HorizontalAlignment="Left" Margin="0,0,0,22">
             <Image x:Name="WelcomeBrandLogo" Width="90" Height="90" Stretch="Uniform"/>
           </Border>
-          <TextBlock Text="WELCOME" FontSize="12" FontWeight="SemiBold" Foreground="#2F80ED" Margin="0,0,0,10"/>
+          <TextBlock Text="WELCOME" FontSize="12" FontWeight="SemiBold" Foreground="#1E78F0" Margin="0,0,0,10"/>
           <TextBlock Text="Welcome to&#x0a;Memory Trail" FontSize="40" FontWeight="SemiBold"
                      LineHeight="45" Foreground="#17233A"/>
           <TextBlock Text="A private, effortless way to retrace your digital day."
@@ -101,15 +101,15 @@
           <Border Width="84" Height="84" CornerRadius="24" Background="#FFF2E2">
             <TextBlock Text="▥" FontSize="34" Foreground="#F39A34" HorizontalAlignment="Center" VerticalAlignment="Center"/>
           </Border>
-          <TextBlock Text="TODAY VIEW" FontSize="12" FontWeight="SemiBold" Foreground="#2F80ED" Margin="0,20,0,10"/>
+          <TextBlock Text="TODAY VIEW" FontSize="12" FontWeight="SemiBold" Foreground="#1E78F0" Margin="0,20,0,10"/>
           <TextBlock Text="See your day&#x0a;at a glance" FontSize="40" FontWeight="SemiBold" LineHeight="45" Foreground="#17233A"/>
           <TextBlock Text="Your newest activity stays at the top and is marked Live Activity, so you can immediately recognize what you were just doing."
                      Margin="0,15,0,0" FontSize="16" LineHeight="24" Foreground="#53647A" TextWrapping="Wrap"/>
         </StackPanel>
         <Border Grid.Column="1" Style="{StaticResource TourCardStyle}" VerticalAlignment="Center">
           <StackPanel>
-            <TextBlock Text="Most recent first" FontSize="21" FontWeight="SemiBold" Foreground="#17233A" Margin="0,0,0,14"/>
-            <Border Background="#EEF7FF" BorderBrush="#A8CFFF" BorderThickness="1" CornerRadius="14" Padding="13" Margin="0,0,0,9">
+            <TextBlock Text="Live Activity follows your newest item" FontSize="20" FontWeight="SemiBold" Foreground="#17233A" Margin="0,0,0,14"/>
+            <Border Background="#EEF7FF" BorderBrush="#A8CFFF" BorderThickness="1" CornerRadius="16" Padding="13" Margin="0,0,0,9">
               <Grid>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                 <Image x:Name="OutlookSearchIcon" Width="34" Height="34"/>
@@ -125,7 +125,7 @@
                   </StackPanel>
                   <TextBlock Text="RE: Project update" Foreground="#66768B" Margin="0,3,0,0"/>
                 </StackPanel>
-                <TextBlock Grid.Column="2" Text="Now" Foreground="#2F80ED" FontSize="11" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Text="Now" Foreground="#1E78F0" FontSize="11" VerticalAlignment="Center"/>
               </Grid>
             </Border>
             <Border Style="{StaticResource TourRowStyle}"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><Image x:Name="TeamsSearchIcon" Width="34" Height="34"/><StackPanel Grid.Column="1" Margin="10,0,0,0"><TextBlock Text="Microsoft Teams" Foreground="#17233A" FontWeight="SemiBold"/><TextBlock Text="Design review discussion" Foreground="#66768B" Margin="0,3,0,0"/></StackPanel><TextBlock Grid.Column="2" Text="2 min ago" Foreground="#7A889B" FontSize="11" VerticalAlignment="Center"/></Grid></Border>
@@ -141,7 +141,7 @@
           <Border Width="84" Height="84" CornerRadius="24" Background="#EEE7FF">
             <TextBlock Text="⌕" FontSize="40" Foreground="#7857E8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
           </Border>
-          <TextBlock Text="ASK MEMORY TRAIL" FontSize="12" FontWeight="SemiBold" Foreground="#2F80ED" Margin="0,20,0,10"/>
+          <TextBlock Text="ASK MEMORY TRAIL" FontSize="12" FontWeight="SemiBold" Foreground="#1E78F0" Margin="0,20,0,10"/>
           <TextBlock Text="Ask naturally.&#x0a;Find it quickly." FontSize="40" FontWeight="SemiBold" LineHeight="45" Foreground="#17233A"/>
           <TextBlock Text="Ask about time, apps, files, emails, chats, websites, or projects — without needing exact names."
                      Margin="0,15,0,0" FontSize="16" LineHeight="24" Foreground="#53647A" TextWrapping="Wrap"/>
@@ -149,8 +149,8 @@
         <Border Grid.Column="1" Style="{StaticResource TourCardStyle}" VerticalAlignment="Center">
           <StackPanel>
             <TextBlock Text="What do you want to remember?" FontSize="20" FontWeight="SemiBold" Foreground="#17233A" Margin="0,0,0,14"/>
-            <Border Background="#FFFFFF" BorderBrush="#D6E2EE" BorderThickness="1" CornerRadius="14" Padding="12" Margin="0,0,0,14">
-              <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Text="⌕" Foreground="#66768B" Margin="0,0,10,0"/><TextBlock Grid.Column="1" Text="What was I doing earlier today?" Foreground="#7A889B"/><Border Grid.Column="2" Background="#2F80ED" CornerRadius="10" Padding="12,5"><TextBlock Text="Ask" Foreground="White"/></Border></Grid>
+            <Border Background="#FFFFFF" BorderBrush="#D6E2EE" BorderThickness="1" CornerRadius="16" Padding="12" Margin="0,0,0,14">
+              <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Text="⌕" Foreground="#66768B" Margin="0,0,10,0"/><TextBlock Grid.Column="1" Text="What was I doing earlier today?" Foreground="#7A889B"/><Border Grid.Column="2" Background="#1E78F0" CornerRadius="10" Padding="12,5"><TextBlock Text="Ask" Foreground="White"/></Border></Grid>
             </Border>
             <UniformGrid Columns="2">
               <Border Style="{StaticResource TourRowStyle}" Margin="0,0,8,8"><TextBlock Text="◷  Earlier today" Foreground="#40516A"/></Border>
@@ -169,7 +169,7 @@
           <Border Width="84" Height="84" CornerRadius="24" Background="#E4F8EF">
             <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" FontSize="34" Foreground="#21A66B" HorizontalAlignment="Center" VerticalAlignment="Center"/>
           </Border>
-          <TextBlock Text="PRIVACY" FontSize="12" FontWeight="SemiBold" Foreground="#2F80ED" Margin="0,20,0,10"/>
+          <TextBlock Text="PRIVACY" FontSize="12" FontWeight="SemiBold" Foreground="#1E78F0" Margin="0,20,0,10"/>
           <TextBlock Text="Stay in control" FontSize="40" FontWeight="SemiBold" Foreground="#17233A"/>
           <TextBlock Text="Choose what gets captured, pause any time, and keep your history private and local."
                      Margin="0,15,0,0" FontSize="16" LineHeight="24" Foreground="#53647A" TextWrapping="Wrap"/>

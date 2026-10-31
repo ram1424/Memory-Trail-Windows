@@ -41,6 +41,8 @@ public partial class MainWindow : Window
 
         _view = CollectionViewSource.GetDefaultView(App.Store.Items);
         _view.Filter = FilterItem;
+        _view.SortDescriptions.Clear();
+        _view.SortDescriptions.Add(new SortDescription(nameof(MemoryItem.CreatedAt), ListSortDirection.Descending));
         TimelineList.ItemsSource = _view;
         App.Store.Items.CollectionChanged += StoreItems_CollectionChanged;
 
@@ -53,6 +55,7 @@ public partial class MainWindow : Window
             TimelineList.SelectedIndex = 0;
 
         UpdateTodaySummary();
+        UpdateLiveActivity();
 
         try
         {
@@ -166,6 +169,7 @@ public partial class MainWindow : Window
         PrivacyPanel.Visibility = showPrivacy ? Visibility.Visible : Visibility.Collapsed;
 
         _view.Refresh();
+        UpdateLiveActivity();
 
         if (showAsk)
             Dispatcher.BeginInvoke(new Action(() => AskMemoryTrailBox.Focus()));
@@ -188,11 +192,11 @@ public partial class MainWindow : Window
         {
             var selected = entry.Mode == mode;
             entry.Button.Background = selected
-                ? new SolidColorBrush(Color.FromRgb(220, 235, 255))
+                ? new SolidColorBrush(Color.FromRgb(214, 231, 255))
                 : Brushes.Transparent;
             entry.Button.Foreground = selected
-                ? new SolidColorBrush(Color.FromRgb(25, 79, 146))
-                : new SolidColorBrush(Color.FromRgb(64, 81, 106));
+                ? new SolidColorBrush(Color.FromRgb(27, 105, 220))
+                : new SolidColorBrush(Color.FromRgb(52, 69, 94));
             entry.Button.FontWeight = selected ? FontWeights.SemiBold : FontWeights.Normal;
         }
     }
@@ -205,6 +209,7 @@ public partial class MainWindow : Window
         _category = category;
         UpdateCategorySelection(category);
         _view.Refresh();
+        UpdateLiveActivity();
     }
 
     private void UpdateCategorySelection(string category)
@@ -224,10 +229,10 @@ public partial class MainWindow : Window
             var selected = entry.Category == category;
             entry.Button.Background = new SolidColorBrush(selected
                 ? Color.FromRgb(220, 235, 255)
-                : Color.FromRgb(247, 250, 253));
+                : Color.FromRgb(244, 248, 253));
             entry.Button.BorderBrush = new SolidColorBrush(selected
                 ? Color.FromRgb(161, 199, 243)
-                : Color.FromRgb(215, 226, 238));
+                : Color.FromRgb(216, 226, 239));
             entry.Button.Foreground = selected
                 ? new SolidColorBrush(Color.FromRgb(25, 79, 146))
                 : new SolidColorBrush(Color.FromRgb(83, 100, 122));
@@ -484,7 +489,26 @@ public partial class MainWindow : Window
 
     private void StoreItems_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
+        _view.Refresh();
+        UpdateLiveActivity();
         UpdateTodaySummary();
+
+        if (TimelineList.SelectedItem is null && _view.Cast<object>().FirstOrDefault() is MemoryItem latest)
+            TimelineList.SelectedItem = latest;
+    }
+
+    private void UpdateLiveActivity()
+    {
+        foreach (var item in App.Store.Items)
+            item.IsLiveActivity = false;
+
+        var latestVisible = _view.Cast<object>()
+            .OfType<MemoryItem>()
+            .OrderByDescending(x => x.CreatedAt)
+            .FirstOrDefault();
+
+        if (latestVisible is not null)
+            latestVisible.IsLiveActivity = true;
     }
 
     private void UpdateTodaySummary()
@@ -569,6 +593,7 @@ public partial class MainWindow : Window
         {
             App.Store.Add(window.CreatedItem);
             _view.Refresh();
+            UpdateLiveActivity();
             TimelineList.SelectedItem = window.CreatedItem;
         }
     }
@@ -613,6 +638,7 @@ public partial class MainWindow : Window
         {
             App.Store.ToggleFavorite(item);
             _view.Refresh();
+            UpdateLiveActivity();
         }
     }
 
@@ -623,6 +649,7 @@ public partial class MainWindow : Window
 
         App.Store.ToggleFavorite(item);
         _view.Refresh();
+        UpdateLiveActivity();
     }
 
     private void OpenSelected_Click(object sender, RoutedEventArgs e)
