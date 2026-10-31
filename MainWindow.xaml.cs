@@ -1,9 +1,11 @@
 using System.ComponentModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Input;
 using System.Windows.Media;
 using Forms = System.Windows.Forms;
 
@@ -164,15 +166,17 @@ public partial class MainWindow : Window
 
         var showSettings = mode == "Settings";
         var showPrivacy = mode == "Privacy";
+        var showAsk = mode == "Ask";
 
-        ActivityShell.Visibility = showSettings || showPrivacy ? Visibility.Collapsed : Visibility.Visible;
+        ActivityShell.Visibility = showSettings || showPrivacy || showAsk ? Visibility.Collapsed : Visibility.Visible;
+        AskMemoryTrailPanel.Visibility = showAsk ? Visibility.Visible : Visibility.Collapsed;
         SettingsPanel.Visibility = showSettings ? Visibility.Visible : Visibility.Collapsed;
         PrivacyPanel.Visibility = showPrivacy ? Visibility.Visible : Visibility.Collapsed;
 
         _view.Refresh();
 
-        if (mode == "Search")
-            Dispatcher.BeginInvoke(new Action(() => SearchBox.Focus()));
+        if (showAsk)
+            Dispatcher.BeginInvoke(new Action(() => AskMemoryTrailBox.Focus()));
     }
 
     private void UpdateNavSelection(string mode)
@@ -180,7 +184,7 @@ public partial class MainWindow : Window
         var buttons = new[]
         {
             (Button: TimelineNavButton, Mode: "Timeline"),
-            (Button: SearchNavButton, Mode: "Search"),
+            (Button: AskMemoryTrailNavButton, Mode: "Ask"),
             (Button: ClipboardNavButton, Mode: "Clipboard"),
             (Button: FavoritesNavButton, Mode: "Favorites"),
             (Button: NotesNavButton, Mode: "Notes"),
@@ -250,10 +254,6 @@ public partial class MainWindow : Window
         if (_category != "All" && !MatchesCategory(memory, _category))
             return false;
 
-        var q = SearchBox.Text?.Trim().ToLowerInvariant();
-        if (!string.IsNullOrWhiteSpace(q) && !memory.SearchableText.Contains(q))
-            return false;
-
         return true;
     }
 
@@ -274,7 +274,153 @@ public partial class MainWindow : Window
         };
     }
 
-    private void SearchBox_TextChanged(object sender, TextChangedEventArgs e) => _view.Refresh();
+    private void AskSuggestion_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button { Tag: string prompt })
+            return;
+
+        AskMemoryTrailBox.Text = prompt;
+        RunAskMemoryTrail(prompt);
+    }
+
+    private void AskMemoryTrail_Click(object sender, RoutedEventArgs e)
+        => RunAskMemoryTrail(AskMemoryTrailBox.Text);
+
+    private void AskMemoryTrailBox_KeyDown(object sender, KeyEventArgs e)
+    {
+        if (e.Key != Key.Enter)
+            return;
+
+        RunAskMemoryTrail(AskMemoryTrailBox.Text);
+        e.Handled = true;
+    }
+
+    private void RunAskMemoryTrail(string? rawQuery)
+    {
+        var query = rawQuery?.Trim() ?? "";
+        if (string.IsNullOrWhiteSpace(query))
+        {
+            AskEmptyState.Visibility = Visibility.Visible;
+            AskResultsState.Visibility = Visibility.Collapsed;
+            return;
+        }
+
+        var ordered = App.Store.Items
+            .OrderByDescending(x => x.CreatedAt)
+            .ToList();
+
+        var lowered = query.ToLowerInvariant();
+        List<MemoryItem> results;
+        string answer;
+
+        if (lowered.Contains("before") && lowered.Contains("teams"))
+        {
+            var teamsIndex = ordered.FindIndex(x =>
+                (x.SourceApp ?? "").Contains("Teams", StringComparison.OrdinalIgnoreCase));
+
+            if (teamsIndex >= 0 && teamsIndex + 1 < ordered.Count)
+            {
+                results = new List<MemoryItem> { ordered[teamsIndex + 1] };
+                var item = results[0];
+                answer = $"Immediately before Teams, you were in {item.SourceApp}: {item.Title}.";
+            }
+            else
+            {
+                results = new List<MemoryItem>();
+                answer = "I couldn't find an activity immediately before Teams in the captured timeline.";
+            }
+        }
+        else if (lowered.Contains("yesterday") && lowered.Contains("file"))
+        {
+            var day = DateTime.Today.AddDays(-1);
+            results = ordered
+                .Where(x => x.CreatedAt.Date == day &&
+                            (x.SourceKind == SourceKind.File ||
+                             (x.SourceApp ?? "").Contains("Explorer", StringComparison.OrdinalIgnoreCase) ||
+                             !string.IsNullOrWhiteSpace(x.SourceExecutable)))
+                .Take(20)
+                .ToList();
+            answer = results.Count == 0
+                ? "I couldn't find a captured file activity from yesterday."
+                : $"I found {results.Count} file-related activit{(results.Count == 1 ? "y" : "ies")} from yesterday.";
+        }
+        else if (lowered.Contains("today"))
+        {
+            results = ordered
+                .Where(x => x.CreatedAt.Date == DateTime.Today)
+                .Take(30)
+                .ToList();
+            answer = results.Count == 0
+                ? "No activity has been captured today yet."
+                : $"Here are your {results.Count} most recent captured activities from today.";
+        }
+        else if (TryParseTimeQuery(query, out var targetTime))
+        {
+            var target = DateTime.Today + targetTime;
+            results = ordered
+                .Where(x => x.CreatedAt.Date == DateTime.Today)
+                .OrderBy(x => Math.Abs((x.CreatedAt - target).TotalMinutes))
+                .Take(8)
+                .OrderByDescending(x => x.CreatedAt)
+                .ToList();
+
+            answer = results.Count == 0
+                ? $"I couldn't find captured activity around {target:h:mm tt}."
+                : $"These are the activities closest to {target:h:mm tt}.";
+        }
+        else
+        {
+            var terms = Regex.Matches(lowered, @"[a-z0-9][a-z0-9._-]+")
+                .Select(m => m.Value)
+                .Where(x => x.Length >= 3)
+                .Where(x => !AskStopWords.Contains(x))
+                .Distinct()
+                .ToList();
+
+            results = ordered
+                .Where(item => terms.Count == 0 || terms.Any(term => item.SearchableText.Contains(term)))
+                .Take(30)
+                .ToList();
+
+            answer = results.Count == 0
+                ? "I couldn't find anything in your captured timeline that matches that question."
+                : $"I found {results.Count} relevant activit{(results.Count == 1 ? "y" : "ies")} in your local timeline.";
+        }
+
+        AskAnswerText.Text = answer;
+        AskResultsList.ItemsSource = results;
+        AskEmptyState.Visibility = Visibility.Collapsed;
+        AskResultsState.Visibility = Visibility.Visible;
+    }
+
+    private static bool TryParseTimeQuery(string query, out TimeSpan time)
+    {
+        time = default;
+        var match = Regex.Match(query, @"(?<!\d)(\d{1,2})(?::(\d{2}))?\s*(am|pm)?", RegexOptions.IgnoreCase);
+        if (!match.Success || !int.TryParse(match.Groups[1].Value, out var hour))
+            return false;
+
+        var minute = 0;
+        if (match.Groups[2].Success && !int.TryParse(match.Groups[2].Value, out minute))
+            return false;
+
+        var suffix = match.Groups[3].Value.ToLowerInvariant();
+        if (suffix == "pm" && hour < 12) hour += 12;
+        if (suffix == "am" && hour == 12) hour = 0;
+
+        if (hour is < 0 or > 23 || minute is < 0 or > 59)
+            return false;
+
+        time = new TimeSpan(hour, minute, 0);
+        return true;
+    }
+
+    private static readonly HashSet<string> AskStopWords = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "what", "was", "were", "doing", "around", "show", "find", "from", "that",
+        "this", "with", "when", "where", "which", "before", "after", "opening",
+        "today", "yesterday", "activity", "worked", "viewed", "memory", "trail"
+    };
 
     private void StoreItems_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
     {
