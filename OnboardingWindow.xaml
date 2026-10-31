@@ -50,10 +50,12 @@
         <StackPanel VerticalAlignment="Center" Margin="8,0,38,0">
           <Border Width="104" Height="104" CornerRadius="28"
                   Background="#222A35" BorderBrush="#4A5566" BorderThickness="1"
-                  Padding="12" ClipToBounds="False"
+                  Padding="14" ClipToBounds="False"
                   HorizontalAlignment="Left" Margin="0,0,0,20">
-            <Image x:Name="WelcomeBrandLogo" Width="78" Height="78"
-                   Stretch="Uniform" SnapsToDevicePixels="True"
+            <Image x:Name="WelcomeBrandLogo" Width="74" Height="74"
+                   Stretch="Uniform" StretchDirection="DownOnly"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   SnapsToDevicePixels="True"
                    RenderOptions.BitmapScalingMode="HighQuality"/>
           </Border>
 

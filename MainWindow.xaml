@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:MemoryLane.Windows"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        Title="Memory Trail v0.7.2"
+        Title="Memory Trail v0.7.3"
         Width="1540" Height="900"
         MinWidth="1240" MinHeight="720"
         WindowStartupLocation="CenterScreen"
@@ -69,13 +69,17 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="6,0,0,24">
-          <Border Width="52" Height="52" Background="Transparent" Padding="4" ClipToBounds="False">
-            <Image x:Name="BrandLogo" Width="42" Height="42" Stretch="Uniform"
-                   SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality"/>
+          <Border Width="54" Height="54" Background="Transparent"
+                  Padding="7" ClipToBounds="False">
+            <Image x:Name="BrandLogo" Width="40" Height="40"
+                   Stretch="Uniform" StretchDirection="DownOnly"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   SnapsToDevicePixels="True"
+                   RenderOptions.BitmapScalingMode="HighQuality"/>
           </Border>
           <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
             <TextBlock Text="Memory Trail" FontSize="20" FontWeight="SemiBold" Foreground="#FAF7F2"/>
-            <TextBlock Text="v0.7.2" FontSize="10" Foreground="#AFA59B" Margin="0,3,0,0"/>
+            <TextBlock Text="v0.7.3" FontSize="10" Foreground="#AFA59B" Margin="0,3,0,0"/>
           </StackPanel>
         </StackPanel>
 
