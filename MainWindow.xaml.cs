@@ -20,6 +20,7 @@ public partial class MainWindow : Window
     private string _category = "All";
     private bool _initializingSettings = true;
     private bool _detailsPaneVisible = true;
+    private bool _rightSidebarVisible = true;
 
     public MainWindow()
     {
@@ -56,6 +57,7 @@ public partial class MainWindow : Window
 
         UpdateTodaySummary();
         UpdateLiveActivity();
+        ApplyRightSidebarVisibility();
 
         try
         {
@@ -603,6 +605,22 @@ public partial class MainWindow : Window
         // Detail pane is data-bound directly to TimelineList.SelectedItem.
     }
 
+    private void RightSidebarToggle_Click(object sender, RoutedEventArgs e)
+    {
+        _rightSidebarVisible = !_rightSidebarVisible;
+        ApplyRightSidebarVisibility();
+    }
+
+    private void ApplyRightSidebarVisibility()
+    {
+        RightSidebar.Visibility = _rightSidebarVisible ? Visibility.Visible : Visibility.Collapsed;
+        DetailsSpacerColumn.Width = _rightSidebarVisible ? new GridLength(16) : new GridLength(0);
+        DetailsColumn.Width = _rightSidebarVisible ? new GridLength(0.8, GridUnitType.Star) : new GridLength(0);
+
+        RightSidebarToggleIcon.Text = _rightSidebarVisible ? "\uE76B" : "\uE76C";
+        RightSidebarToggleButton.ToolTip = _rightSidebarVisible ? "Hide right sidebar" : "Show right sidebar";
+    }
+
     private void HideDetailsPane_Click(object sender, RoutedEventArgs e)
     {
         _detailsPaneVisible = false;
@@ -625,6 +643,12 @@ public partial class MainWindow : Window
 
     private void ShowDetailsPane()
     {
+        if (!_rightSidebarVisible)
+        {
+            _rightSidebarVisible = true;
+            ApplyRightSidebarVisibility();
+        }
+
         _detailsPaneVisible = true;
         DetailsPanel.Visibility = Visibility.Visible;
         DetailsGapRow.Height = new GridLength(12);
