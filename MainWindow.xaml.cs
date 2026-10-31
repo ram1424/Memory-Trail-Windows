@@ -196,11 +196,11 @@ public partial class MainWindow : Window
         {
             var selected = entry.Mode == mode;
             entry.Button.Background = selected
-                ? new SolidColorBrush(Color.FromRgb(27, 82, 154))
+                ? new SolidColorBrush(Color.FromRgb(220, 235, 255))
                 : Brushes.Transparent;
             entry.Button.Foreground = selected
-                ? Brushes.White
-                : new SolidColorBrush(Color.FromRgb(196, 209, 227));
+                ? new SolidColorBrush(Color.FromRgb(25, 79, 146))
+                : new SolidColorBrush(Color.FromRgb(64, 81, 106));
             entry.Button.FontWeight = selected ? FontWeights.SemiBold : FontWeights.Normal;
         }
     }
@@ -231,12 +231,14 @@ public partial class MainWindow : Window
         {
             var selected = entry.Category == category;
             entry.Button.Background = new SolidColorBrush(selected
-                ? Color.FromRgb(22, 139, 255)
-                : Color.FromRgb(16, 29, 49));
+                ? Color.FromRgb(220, 235, 255)
+                : Color.FromRgb(247, 250, 253));
             entry.Button.BorderBrush = new SolidColorBrush(selected
-                ? Color.FromRgb(22, 139, 255)
-                : Color.FromRgb(38, 58, 87));
-            entry.Button.Foreground = selected ? Brushes.White : new SolidColorBrush(Color.FromRgb(211, 222, 237));
+                ? Color.FromRgb(161, 199, 243)
+                : Color.FromRgb(215, 226, 238));
+            entry.Button.Foreground = selected
+                ? new SolidColorBrush(Color.FromRgb(25, 79, 146))
+                : new SolidColorBrush(Color.FromRgb(83, 100, 122));
         }
     }
 
@@ -344,7 +346,72 @@ public partial class MainWindow : Window
                 ? "I couldn't find a captured file activity from yesterday."
                 : $"I found {results.Count} file-related activit{(results.Count == 1 ? "y" : "ies")} from yesterday.";
         }
-        else if (lowered.Contains("today"))
+        else if (lowered.Contains("email"))
+        {
+            results = ordered
+                .Where(x => (x.SourceApp ?? "").Contains("Outlook", StringComparison.OrdinalIgnoreCase) ||
+                            (x.SourceApp ?? "").Contains("Mail", StringComparison.OrdinalIgnoreCase))
+                .Take(25)
+                .ToList();
+            answer = results.Count == 0
+                ? "I couldn't find recent captured email activity."
+                : $"I found {results.Count} recent email activit{(results.Count == 1 ? "y" : "ies")}.";
+        }
+        else if (lowered.Contains("conversation") || lowered.Contains("chat"))
+        {
+            results = ordered
+                .Where(x => (x.SourceApp ?? "").Contains("Teams", StringComparison.OrdinalIgnoreCase) ||
+                            (x.SourceApp ?? "").Contains("Slack", StringComparison.OrdinalIgnoreCase) ||
+                            (x.SourceApp ?? "").Contains("Chat", StringComparison.OrdinalIgnoreCase))
+                .Take(25)
+                .ToList();
+            answer = results.Count == 0
+                ? "I couldn't find recent captured conversation activity."
+                : $"I found {results.Count} recent conversation activit{(results.Count == 1 ? "y" : "ies")}.";
+        }
+        else if (lowered.Contains("website") || lowered.Contains("websites") || lowered.Contains("browser"))
+        {
+            results = ordered
+                .Where(x => !string.IsNullOrWhiteSpace(x.SourceUrl) ||
+                            (x.SourceApp ?? "").Contains("Edge", StringComparison.OrdinalIgnoreCase) ||
+                            (x.SourceApp ?? "").Contains("Chrome", StringComparison.OrdinalIgnoreCase) ||
+                            (x.SourceApp ?? "").Contains("Firefox", StringComparison.OrdinalIgnoreCase))
+                .Take(25)
+                .ToList();
+            answer = results.Count == 0
+                ? "I couldn't find recent captured website activity."
+                : $"I found {results.Count} recent web activit{(results.Count == 1 ? "y" : "ies")}.";
+        }
+        else if (lowered.Contains("file") && (lowered.Contains("recent") || lowered.Contains("recently")))
+        {
+            results = ordered
+                .Where(x => x.SourceKind == SourceKind.File ||
+                            (x.SourceApp ?? "").Contains("Explorer", StringComparison.OrdinalIgnoreCase))
+                .Take(25)
+                .ToList();
+            answer = results.Count == 0
+                ? "I couldn't find recent captured file activity."
+                : $"I found {results.Count} recent file activit{(results.Count == 1 ? "y" : "ies")}.";
+        }
+        else if (lowered.Contains("this week"))
+        {
+            var start = DateTime.Today.AddDays(-6);
+            results = ordered
+                .Where(x => x.CreatedAt.Date >= start)
+                .Take(40)
+                .ToList();
+            answer = results.Count == 0
+                ? "I couldn't find captured activity from this week."
+                : $"Here are your {results.Count} most recent activities from this week.";
+        }
+        else if (lowered.Contains("most recent") || lowered.Contains("recent activity"))
+        {
+            results = ordered.Take(25).ToList();
+            answer = results.Count == 0
+                ? "No activity has been captured yet."
+                : "Here is your most recent captured activity.";
+        }
+        else if (lowered.Contains("today") || lowered.Contains("earlier today"))
         {
             results = ordered
                 .Where(x => x.CreatedAt.Date == DateTime.Today)
@@ -419,7 +486,8 @@ public partial class MainWindow : Window
     {
         "what", "was", "were", "doing", "around", "show", "find", "from", "that",
         "this", "with", "when", "where", "which", "before", "after", "opening",
-        "today", "yesterday", "activity", "worked", "viewed", "memory", "trail"
+        "today", "yesterday", "activity", "worked", "viewed", "memory", "trail",
+        "earlier", "recent", "recently", "week", "most"
     };
 
     private void StoreItems_CollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)

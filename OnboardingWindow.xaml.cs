@@ -45,7 +45,7 @@ public partial class OnboardingWindow : Window
 
     private void Next_Click(object sender, RoutedEventArgs e)
     {
-        if (_page < 3)
+        if (_page < 4)
         {
             _page++;
             UpdatePage();
@@ -60,15 +60,17 @@ public partial class OnboardingWindow : Window
         Page1.Visibility = _page == 1 ? Visibility.Visible : Visibility.Collapsed;
         Page2.Visibility = _page == 2 ? Visibility.Visible : Visibility.Collapsed;
         Page3.Visibility = _page == 3 ? Visibility.Visible : Visibility.Collapsed;
+        Page4.Visibility = _page == 4 ? Visibility.Visible : Visibility.Collapsed;
 
         BackButton.Visibility = _page == 1 ? Visibility.Hidden : Visibility.Visible;
-        NextButton.Content = _page == 3 ? "Get Started" : "Next  →";
+        NextButton.Content = _page == 4 ? "Get Started" : "Next  →";
 
-        var active = new SolidColorBrush(Color.FromRgb(78, 156, 241));
-        var inactive = new SolidColorBrush(Color.FromRgb(74, 85, 102));
+        var active = new SolidColorBrush(Color.FromRgb(47, 128, 237));
+        var inactive = new SolidColorBrush(Color.FromRgb(205, 218, 232));
 
         Dot1.Fill = _page == 1 ? active : inactive;
         Dot2.Fill = _page == 2 ? active : inactive;
         Dot3.Fill = _page == 3 ? active : inactive;
+        Dot4.Fill = _page == 4 ? active : inactive;
     }
 }
