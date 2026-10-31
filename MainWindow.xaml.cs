@@ -87,21 +87,13 @@ public partial class MainWindow : Window
     {
         try
         {
-            var resource = Application.GetResourceStream(
-                new Uri("/Assets/MemoryTrailApp.ico", UriKind.Relative));
-
-            if (resource?.Stream is not null)
-            {
-                using var icon = new System.Drawing.Icon(resource.Stream);
-                return (System.Drawing.Icon)icon.Clone();
-            }
+            return Branding.CreateTrayIcon();
         }
         catch (Exception ex)
         {
             App.LogNonFatal("CreateTrayIcon", ex);
+            return System.Drawing.SystemIcons.Application;
         }
-
-        return System.Drawing.SystemIcons.Application;
     }
 
     private void MainWindow_Loaded(object sender, RoutedEventArgs e)

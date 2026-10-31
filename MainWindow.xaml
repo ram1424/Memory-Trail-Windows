@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:MemoryLane.Windows"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        Title="Memory Trail v0.8.1"
+        Title="Memory Trail v0.8.2"
         Width="1540" Height="900"
         MinWidth="1240" MinHeight="720"
         WindowStartupLocation="CenterScreen"
@@ -80,7 +80,7 @@
           </Border>
           <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
             <TextBlock Text="Memory Trail" FontSize="20" FontWeight="SemiBold" Foreground="#17233A"/>
-            <TextBlock Text="v0.8.1" FontSize="10" Foreground="#66768B" Margin="0,3,0,0"/>
+            <TextBlock Text="v0.8.2" FontSize="10" Foreground="#66768B" Margin="0,3,0,0"/>
           </StackPanel>
         </StackPanel>
 
@@ -127,19 +127,67 @@
             <Border Height="1" Background="#D8E4F1" Margin="6,0,6,16"/>
             <TextBlock Text="Filters" Foreground="#66768B" FontSize="13" FontWeight="SemiBold" Margin="8,0,0,8"/>
 
-            <Button x:Name="AllAppsFilter" Content="▦   All Apps" Tag="All"
+            <Button x:Name="AllAppsFilter" Tag="All"
                     Style="{StaticResource FilterNavStyle}" Click="Category_Click"
-                    Background="#F1F5FA"/>
-            <Button x:Name="BrowserFilter" Content="◎   Web Browsers" Tag="Browser"
-                    Style="{StaticResource FilterNavStyle}" Click="Category_Click"/>
-            <Button x:Name="EmailFilter" Content="✉   Email" Tag="Email"
-                    Style="{StaticResource FilterNavStyle}" Click="Category_Click"/>
-            <Button x:Name="ChatFilter" Content="●   Chat &amp; Meetings" Tag="Chat"
-                    Style="{StaticResource FilterNavStyle}" Click="Category_Click"/>
-            <Button x:Name="FilesFilter" Content="▤   Files &amp; Documents" Tag="Files"
-                    Style="{StaticResource FilterNavStyle}" Click="Category_Click"/>
-            <Button x:Name="OfficeFilter" Content="▥   Productivity" Tag="Office"
-                    Style="{StaticResource FilterNavStyle}" Click="Category_Click"/>
+                    Background="#F1F5FA">
+              <StackPanel Orientation="Horizontal">
+                <Border Width="28" Height="28" CornerRadius="8" Background="#E4F0FF" Margin="0,0,10,0">
+                  <TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" Foreground="#2478E8"
+                             FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <TextBlock Text="All Activity" VerticalAlignment="Center" Foreground="#40516A"/>
+              </StackPanel>
+            </Button>
+            <Button x:Name="BrowserFilter" Tag="Browser"
+                    Style="{StaticResource FilterNavStyle}" Click="Category_Click">
+              <StackPanel Orientation="Horizontal">
+                <Border Width="28" Height="28" CornerRadius="8" Background="#E3F8F2" Margin="0,0,10,0">
+                  <TextBlock Text="&#xE774;" FontFamily="Segoe MDL2 Assets" Foreground="#169B77"
+                             FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <TextBlock Text="Web Browsers" VerticalAlignment="Center" Foreground="#40516A"/>
+              </StackPanel>
+            </Button>
+            <Button x:Name="EmailFilter" Tag="Email"
+                    Style="{StaticResource FilterNavStyle}" Click="Category_Click">
+              <StackPanel Orientation="Horizontal">
+                <Border Width="28" Height="28" CornerRadius="8" Background="#FFF1D9" Margin="0,0,10,0">
+                  <TextBlock Text="&#xE715;" FontFamily="Segoe MDL2 Assets" Foreground="#D98213"
+                             FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <TextBlock Text="Email" VerticalAlignment="Center" Foreground="#40516A"/>
+              </StackPanel>
+            </Button>
+            <Button x:Name="ChatFilter" Tag="Chat"
+                    Style="{StaticResource FilterNavStyle}" Click="Category_Click">
+              <StackPanel Orientation="Horizontal">
+                <Border Width="28" Height="28" CornerRadius="8" Background="#EEE8FF" Margin="0,0,10,0">
+                  <TextBlock Text="&#xE8BD;" FontFamily="Segoe MDL2 Assets" Foreground="#7357DA"
+                             FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <TextBlock Text="Chat &amp; Meetings" VerticalAlignment="Center" Foreground="#40516A"/>
+              </StackPanel>
+            </Button>
+            <Button x:Name="FilesFilter" Tag="Files"
+                    Style="{StaticResource FilterNavStyle}" Click="Category_Click">
+              <StackPanel Orientation="Horizontal">
+                <Border Width="28" Height="28" CornerRadius="8" Background="#FFF4CF" Margin="0,0,10,0">
+                  <TextBlock Text="&#xE8B7;" FontFamily="Segoe MDL2 Assets" Foreground="#C58A14"
+                             FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <TextBlock Text="Files &amp; Documents" VerticalAlignment="Center" Foreground="#40516A"/>
+              </StackPanel>
+            </Button>
+            <Button x:Name="OfficeFilter" Tag="Office"
+                    Style="{StaticResource FilterNavStyle}" Click="Category_Click">
+              <StackPanel Orientation="Horizontal">
+                <Border Width="28" Height="28" CornerRadius="8" Background="#E7F0FF" Margin="0,0,10,0">
+                  <TextBlock Text="&#xE8A5;" FontFamily="Segoe MDL2 Assets" Foreground="#4E68D8"
+                             FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <TextBlock Text="Productivity" VerticalAlignment="Center" Foreground="#40516A"/>
+              </StackPanel>
+            </Button>
 
             <Border Height="1" Background="#D8E4F1" Margin="6,16"/>
             <Button x:Name="PrivacyNavButton" Tag="Privacy" Click="NavButton_Click"
@@ -239,11 +287,12 @@
                 <TextBlock Text="☀" FontSize="25" Foreground="#FFB347" Margin="0,0,10,0"/>
                 <StackPanel>
                   <TextBlock Text="Your activity timeline" Foreground="#17233A" FontWeight="SemiBold" FontSize="17"/>
-                  <TextBlock Text="Everything you touched, in order" Foreground="#66768B" FontSize="12" Margin="0,2,0,0"/>
+                  <TextBlock Text="Newest activity first — live context stays at the top" Foreground="#66768B" FontSize="12" Margin="0,2,0,0"/>
                 </StackPanel>
               </StackPanel>
 
               <ListView x:Name="TimelineList" Grid.Row="1"
+                        AlternationCount="100000"
                         Background="Transparent" BorderThickness="0"
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                         SelectionChanged="TimelineList_SelectionChanged"
@@ -300,8 +349,18 @@
                       </Border>
 
                       <StackPanel Grid.Column="2" Margin="10,0,16,0" VerticalAlignment="Center">
-                        <TextBlock Text="{Binding SourceApp}" Foreground="#17233A" FontWeight="SemiBold"
-                                   FontSize="13" TextTrimming="CharacterEllipsis"/>
+                        <StackPanel Orientation="Horizontal">
+                          <TextBlock Text="{Binding SourceApp}" Foreground="#17233A" FontWeight="SemiBold"
+                                     FontSize="13" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>
+                          <Border x:Name="LiveActivityBadge" Visibility="Collapsed"
+                                  Background="#E5F8ED" BorderBrush="#BDE9CD" BorderThickness="1"
+                                  CornerRadius="10" Padding="7,2" Margin="8,0,0,0" VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                              <Ellipse Width="7" Height="7" Fill="#22B85C" Margin="0,0,5,0"/>
+                              <TextBlock Text="LIVE ACTIVITY" Foreground="#178445" FontSize="9" FontWeight="SemiBold"/>
+                            </StackPanel>
+                          </Border>
+                        </StackPanel>
                         <TextBlock Text="{Binding Title}" Foreground="#66768B" FontSize="12"
                                    Margin="0,4,0,0" TextTrimming="CharacterEllipsis"/>
                       </StackPanel>
@@ -316,6 +375,11 @@
                               Click="Favorite_Click" ToolTip="Favorite"
                               VerticalAlignment="Center"/>
                     </Grid>
+                    <DataTemplate.Triggers>
+                      <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem}, Path=(ItemsControl.AlternationIndex)}" Value="0">
+                        <Setter TargetName="LiveActivityBadge" Property="Visibility" Value="Visible"/>
+                      </DataTrigger>
+                    </DataTemplate.Triggers>
                   </DataTemplate>
                 </ListView.ItemTemplate>
               </ListView>
