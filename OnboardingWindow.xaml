@@ -54,13 +54,26 @@
           <TextBlock Text="WELCOME" FontSize="12" FontWeight="SemiBold" Foreground="#1E78F0" Margin="0,0,0,10"/>
           <TextBlock Text="Welcome to&#x0a;Memory Trail" FontSize="40" FontWeight="SemiBold"
                      LineHeight="45" Foreground="#17233A"/>
-          <TextBlock Text="A private, effortless way to retrace your digital day."
+          <TextBlock Text="A privacy-first, effortless way to retrace your digital day."
                      Margin="0,15,0,0" FontSize="17" LineHeight="25"
                      Foreground="#40516A" TextWrapping="Wrap"/>
+          <Border Background="#EAF7F0" BorderBrush="#CDE9D8" BorderThickness="1"
+                  CornerRadius="14" Padding="12" Margin="0,16,0,0">
+            <StackPanel Orientation="Horizontal">
+              <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" Foreground="#218A57"
+                         FontSize="18" Margin="0,0,9,0" VerticalAlignment="Center"/>
+              <StackPanel>
+                <TextBlock Text="Privacy first by design" Foreground="#1C6E48" FontWeight="SemiBold"/>
+                <TextBlock Text="Your timeline is sourced, processed, and stored locally on this PC."
+                           Foreground="#4F6C60" FontSize="12" Margin="0,3,0,0"/>
+              </StackPanel>
+            </StackPanel>
+          </Border>
           <StackPanel Margin="0,22,0,0">
             <TextBlock Text="◷   Automatically captures your activity" Foreground="#53647A" FontSize="14" Margin="0,0,0,10"/>
             <TextBlock Text="⌕   Find anything you did, when you did it" Foreground="#53647A" FontSize="14" Margin="0,0,0,10"/>
-            <TextBlock Text="⌾   Everything stays on your device" Foreground="#53647A" FontSize="14"/>
+            <TextBlock Text="⌾   Everything stays on your device" Foreground="#53647A" FontSize="14" Margin="0,0,0,10"/>
+            <TextBlock Text="✓   No cloud account or external connector required" Foreground="#53647A" FontSize="14"/>
           </StackPanel>
         </StackPanel>
 
@@ -170,19 +183,33 @@
             <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" FontSize="34" Foreground="#21A66B" HorizontalAlignment="Center" VerticalAlignment="Center"/>
           </Border>
           <TextBlock Text="PRIVACY" FontSize="12" FontWeight="SemiBold" Foreground="#1E78F0" Margin="0,20,0,10"/>
-          <TextBlock Text="Stay in control" FontSize="40" FontWeight="SemiBold" Foreground="#17233A"/>
-          <TextBlock Text="Choose what gets captured, pause any time, and keep your history private and local."
+          <TextBlock Text="Privacy first,&#x0a;by design" FontSize="40" FontWeight="SemiBold" LineHeight="45" Foreground="#17233A"/>
+          <TextBlock Text="Memory Trail is designed to run locally. Your captured activity is sourced, processed, and stored on this computer."
                      Margin="0,15,0,0" FontSize="16" LineHeight="24" Foreground="#53647A" TextWrapping="Wrap"/>
         </StackPanel>
         <Border Grid.Column="1" Style="{StaticResource TourCardStyle}" VerticalAlignment="Center">
           <StackPanel>
-            <TextBlock Text="Privacy &amp; exclusions" FontSize="21" FontWeight="SemiBold" Foreground="#17233A" Margin="0,0,0,14"/>
-            <Border Style="{StaticResource TourRowStyle}"><TextBlock Text="⊘   Exclude sensitive apps" Foreground="#40516A"/></Border>
-            <Border Style="{StaticResource TourRowStyle}"><TextBlock Text="◎   Keep selected websites out" Foreground="#40516A"/></Border>
-            <Border Style="{StaticResource TourRowStyle}"><TextBlock Text="Aa   Exclude keywords" Foreground="#40516A"/></Border>
-            <Border Style="{StaticResource TourRowStyle}"><TextBlock Text="▣   Clipboard capture is optional" Foreground="#40516A"/></Border>
+            <TextBlock Text="Privacy &amp; transparency" FontSize="21" FontWeight="SemiBold" Foreground="#17233A" Margin="0,0,0,14"/>
+            <Border Style="{StaticResource TourRowStyle}">
+              <StackPanel>
+                <TextBlock Text="⌂   Local processing &amp; storage" Foreground="#40516A" FontWeight="SemiBold"/>
+                <TextBlock Text="Captured activity is sourced and stored locally on this PC." Foreground="#66768B" FontSize="12" Margin="0,4,0,0"/>
+              </StackPanel>
+            </Border>
+            <Border Style="{StaticResource TourRowStyle}">
+              <StackPanel>
+                <TextBlock Text="⊘   No outside connectors" Foreground="#40516A" FontWeight="SemiBold"/>
+                <TextBlock Text="Memory Trail does not require cloud services or external data connectors for its timeline." Foreground="#66768B" FontSize="12" Margin="0,4,0,0"/>
+              </StackPanel>
+            </Border>
+            <Border Style="{StaticResource TourRowStyle}">
+              <StackPanel>
+                <TextBlock Text="✓   Source code available for review" Foreground="#40516A" FontWeight="SemiBold"/>
+                <TextBlock Text="The source can be inspected to verify how capture, storage, and privacy controls work." Foreground="#66768B" FontSize="12" Margin="0,4,0,0"/>
+              </StackPanel>
+            </Border>
             <Border Background="#EAF8F1" BorderBrush="#C9EBDD" BorderThickness="1" CornerRadius="13" Padding="12" Margin="0,4,0,0">
-              <TextBlock Text="Everything stays on this PC." Foreground="#247553" FontWeight="SemiBold"/>
+              <TextBlock Text="Your activity history stays on your computer." Foreground="#247553" FontWeight="SemiBold"/>
             </Border>
           </StackPanel>
         </Border>

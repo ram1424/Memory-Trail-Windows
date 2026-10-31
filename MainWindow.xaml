@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:MemoryLane.Windows"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        Title="Memory Trail v0.9.0"
+        Title="Memory Trail v0.9.1"
         Width="1580" Height="920"
         MinWidth="1280" MinHeight="760"
         WindowStartupLocation="CenterScreen"
@@ -81,7 +81,7 @@
           </Border>
           <StackPanel Margin="10,0,0,0" VerticalAlignment="Center">
             <TextBlock Text="Memory Trail" FontSize="18" FontWeight="SemiBold" Foreground="#17233A"/>
-            <TextBlock Text="v0.9.0" FontSize="10" Foreground="#66768B" Margin="0,3,0,0"/>
+            <TextBlock Text="v0.9.1" FontSize="10" Foreground="#66768B" Margin="0,3,0,0"/>
           </StackPanel>
         </StackPanel>
 
@@ -594,16 +594,33 @@
       <ScrollViewer x:Name="PrivacyPanel" Visibility="Collapsed" VerticalScrollBarVisibility="Auto">
         <StackPanel MaxWidth="820" HorizontalAlignment="Left">
           <TextBlock Text="Privacy" FontSize="30" FontWeight="SemiBold" Foreground="#17233A"/>
-          <TextBlock Text="Memory Trail is local-first and gives you direct control over what is captured."
+          <TextBlock Text="Memory Trail is privacy-first by design and gives you direct control over what is captured."
                      Margin="0,7,0,22" FontSize="14" Foreground="#66768B"/>
           <Border Background="#FFFFFF" BorderBrush="#D5E1EE" BorderThickness="1"
                   CornerRadius="16" Padding="20" Margin="0,0,0,12">
             <StackPanel>
-              <TextBlock Text="Local-only timeline" FontSize="17" FontWeight="SemiBold" Foreground="#17233A"/>
-              <TextBlock Text="Your activity history is stored on this PC. Memory Trail does not require a cloud account."
+              <TextBlock Text="Local processing and storage" FontSize="17" FontWeight="SemiBold" Foreground="#17233A"/>
+              <TextBlock Text="Your activity history is sourced, processed, and stored locally on this PC. Memory Trail does not require a cloud account for its timeline."
                          Margin="0,6,0,0" Foreground="#53647A" TextWrapping="Wrap"/>
+              <Border Background="#EAF7F0" BorderBrush="#CDE9D8" BorderThickness="1"
+                      CornerRadius="12" Padding="11" Margin="0,12,0,0">
+                <TextBlock Text="No timeline data is designed to be sent outside this computer."
+                           Foreground="#247553" FontWeight="SemiBold" TextWrapping="Wrap"/>
+              </Border>
             </StackPanel>
           </Border>
+          <Border Background="#FFFFFF" BorderBrush="#D5E1EE" BorderThickness="1"
+                  CornerRadius="16" Padding="20" Margin="0,0,0,12">
+            <StackPanel>
+              <TextBlock Text="No outside connectors" FontSize="17" FontWeight="SemiBold" Foreground="#17233A"/>
+              <TextBlock Text="Memory Trail's timeline is designed to operate locally and does not depend on external connectors or cloud services to capture, search, or display your activity."
+                         Margin="0,6,0,12" Foreground="#53647A" TextWrapping="Wrap"/>
+              <TextBlock Text="Open source transparency" FontSize="15" FontWeight="SemiBold" Foreground="#17233A"/>
+              <TextBlock Text="The source code is available for review so users and administrators can inspect and verify how capture, storage, and privacy controls are implemented."
+                         Margin="0,5,0,0" Foreground="#53647A" TextWrapping="Wrap"/>
+            </StackPanel>
+          </Border>
+
           <Border Background="#FFFFFF" BorderBrush="#D5E1EE" BorderThickness="1"
                   CornerRadius="16" Padding="20">
             <StackPanel>
@@ -766,7 +783,7 @@
       <ScrollViewer x:Name="SettingsPanel" Visibility="Collapsed" VerticalScrollBarVisibility="Auto">
         <StackPanel MaxWidth="860" HorizontalAlignment="Left">
           <TextBlock Text="Settings" FontSize="30" FontWeight="SemiBold" Foreground="#17233A"/>
-          <TextBlock Text="Control what Memory Trail remembers and how it behaves."
+          <TextBlock Text="Control what Memory Trail remembers, how it behaves, and review its privacy-first design."
                      Margin="0,7,0,22" FontSize="14" Foreground="#66768B"/>
 
           <Border Background="#FFFFFF" BorderBrush="#D5E1EE" BorderThickness="1" CornerRadius="16" Padding="22" Margin="0,0,0,14">
@@ -776,6 +793,55 @@
               <CheckBox x:Name="PauseCaptureCheckBox" Content="Pause all capture" Margin="0,0,0,12" Checked="SettingChanged" Unchecked="SettingChanged"/>
               <CheckBox x:Name="AppCaptureCheckBox" Content="Remember app switches and focused windows" Margin="0,0,0,12" Checked="SettingChanged" Unchecked="SettingChanged"/>
               <CheckBox x:Name="ClipboardCaptureCheckBox" Content="Remember copied text" Checked="SettingChanged" Unchecked="SettingChanged"/>
+            </StackPanel>
+          </Border>
+
+          <Border Background="#FFFFFF" BorderBrush="#D5E1EE" BorderThickness="1"
+                  CornerRadius="16" Padding="22" Margin="0,0,0,14">
+            <StackPanel>
+              <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                <Border Width="36" Height="36" Background="#EAF7F0" CornerRadius="10" Margin="0,0,10,0">
+                  <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" Foreground="#218A57"
+                             FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <StackPanel VerticalAlignment="Center">
+                  <TextBlock Text="Privacy &amp; Transparency" FontSize="18" FontWeight="SemiBold" Foreground="#17233A"/>
+                  <TextBlock Text="Privacy first by design" Foreground="#66768B" FontSize="12" Margin="0,2,0,0"/>
+                </StackPanel>
+              </StackPanel>
+
+              <TextBlock Text="Memory Trail is designed as a private, locally run application. Activity used by the timeline is sourced, processed, and stored on this computer."
+                         Foreground="#53647A" TextWrapping="Wrap" LineHeight="20" Margin="0,0,0,14"/>
+
+              <Border Background="#F7FAFD" BorderBrush="#E1E8F0" BorderThickness="1" CornerRadius="12" Padding="12" Margin="0,0,0,8">
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="⌂" FontSize="17" Foreground="#1E78F0" Width="28"/>
+                  <StackPanel>
+                    <TextBlock Text="Local data only" Foreground="#17233A" FontWeight="SemiBold"/>
+                    <TextBlock Text="Captured timeline data remains stored locally on this PC." Foreground="#66768B" FontSize="12" Margin="0,3,0,0"/>
+                  </StackPanel>
+                </StackPanel>
+              </Border>
+
+              <Border Background="#F7FAFD" BorderBrush="#E1E8F0" BorderThickness="1" CornerRadius="12" Padding="12" Margin="0,0,0,8">
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="⊘" FontSize="17" Foreground="#1E78F0" Width="28"/>
+                  <StackPanel>
+                    <TextBlock Text="No external connectors" Foreground="#17233A" FontWeight="SemiBold"/>
+                    <TextBlock Text="The timeline does not require external connectors or cloud services to capture, search, or display activity." Foreground="#66768B" FontSize="12" Margin="0,3,0,0" TextWrapping="Wrap"/>
+                  </StackPanel>
+                </StackPanel>
+              </Border>
+
+              <Border Background="#F7FAFD" BorderBrush="#E1E8F0" BorderThickness="1" CornerRadius="12" Padding="12">
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="✓" FontSize="17" Foreground="#1E78F0" Width="28"/>
+                  <StackPanel>
+                    <TextBlock Text="Source available for verification" Foreground="#17233A" FontWeight="SemiBold"/>
+                    <TextBlock Text="The source code is available for review so you can inspect how Memory Trail captures, stores, and protects data." Foreground="#66768B" FontSize="12" Margin="0,3,0,0" TextWrapping="Wrap"/>
+                  </StackPanel>
+                </StackPanel>
+              </Border>
             </StackPanel>
           </Border>
 
