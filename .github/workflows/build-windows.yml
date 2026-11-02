@@ -1,4 +1,4 @@
-name: Build and Release Memory Trail Windows
+name: Build and Release Memory Trail for Windows
 
 on:
   push:
@@ -17,44 +17,66 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Resolve version
-        shell: pwsh
-        run: |
-          [xml]$project = Get-Content "MemoryLane.Windows.csproj"
-          $version = [string]$project.Project.PropertyGroup.Version
-          "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          Write-Host "Building Memory Trail v$version"
-
-      - name: Verify packaged application icon
-        shell: pwsh
-        run: |
-          $icoPath = "Assets/MemoryTrailApp.ico"
-          if (-not (Test-Path $icoPath)) {
-            throw "Required Memory Trail application icon is missing: $icoPath"
-          }
-          $length = (Get-Item $icoPath).Length
-          if ($length -lt 10000) {
-            throw "Memory Trail application icon appears invalid or incomplete."
-          }
-          Write-Host "Using committed Memory Trail multi-size icon ($length bytes)."
-
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
 
+      - name: Resolve version
+        shell: pwsh
+        run: |
+          [xml]$project = Get-Content "MemoryTrail.Windows.csproj"
+          $version = [string]$project.Project.PropertyGroup.Version
+          "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          Write-Host "Building Memory Trail for Windows v$version"
+
+      - name: Generate Memory Trail branding assets
+        shell: pwsh
+        run: ./Scripts/Generate-MemoryTrailIcon.ps1
+
+      - name: Verify branding assets
+        shell: pwsh
+        run: |
+          $required = @(
+            "Assets/MemoryTrailApp.ico",
+            "Assets/MemoryTrailIconMaster.png"
+          )
+          foreach ($path in $required) {
+            if (-not (Test-Path $path)) { throw "Required branding asset is missing: $path" }
+            if ((Get-Item $path).Length -lt 10000) { throw "Branding asset is incomplete: $path" }
+          }
+
       - name: Restore
-        run: dotnet restore MemoryLane.Windows.csproj
+        run: dotnet restore MemoryTrail.Windows.csproj
 
       - name: Build
-        run: dotnet build MemoryLane.Windows.csproj -c Release --no-restore
+        run: dotnet build MemoryTrail.Windows.csproj -c Release --no-restore
 
       - name: Publish self-contained Windows x64 app
-        run: dotnet publish MemoryLane.Windows.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:EnableCompressionInSingleFile=true -o artifacts/Memory-Trail-Windows-x64
+        run: >-
+          dotnet publish MemoryTrail.Windows.csproj
+          -c Release
+          -r win-x64
+          --self-contained true
+          --no-restore
+          -p:PublishSingleFile=true
+          -p:IncludeNativeLibrariesForSelfExtract=true
+          -p:EnableCompressionInSingleFile=true
+          -o artifacts/Memory-Trail-Windows-x64
+
+      - name: Verify published application
+        shell: pwsh
+        run: |
+          $exe = "artifacts/Memory-Trail-Windows-x64/Memory Trail.exe"
+          if (-not (Test-Path $exe)) { throw "Published executable was not created: $exe" }
+          Write-Host "Published $((Get-Item $exe).Length) byte executable."
 
       - name: Zip build
         shell: pwsh
-        run: Compress-Archive -Path "artifacts/Memory-Trail-Windows-x64/*" -DestinationPath "artifacts/Memory-Trail-Windows-v$env:VERSION-x64.zip"
+        run: |
+          $zip = "artifacts/Memory-Trail-Windows-v$env:VERSION-x64.zip"
+          Compress-Archive -Path "artifacts/Memory-Trail-Windows-x64/*" -DestinationPath $zip -Force
+          Get-FileHash $zip -Algorithm SHA256
 
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
@@ -69,13 +91,16 @@ jobs:
           target_commitish: main
           name: Memory Trail for Windows v${{ env.VERSION }}
           body: |
-            Memory Trail v${{ env.VERSION }}
+            Memory Trail for Windows v${{ env.VERSION }}
 
-            - Exact Memory Trail brain/road icon across the app
-            - Improved Windows taskbar and system-tray branding
-            - Brighter polished navy interface
-            - Refined onboarding tutorial with real installed Edge, Outlook, and Teams icons
-            - Double-click timeline entries to open the inline Details inspector
-            - Easy-to-close and reopen Details pane
-            - Search, Favorites, Add Memory, clipboard capture, privacy exclusions, and local-only storage
+            - Windows-native foreground app and window-title capture
+            - Latest-first Today timeline with Live Activity state
+            - Correct session-based active-time calculation
+            - Dynamic filters that appear only when matching activity exists
+            - Ask Memory Trail with app-aware website, email, conversation, file, and time searches
+            - Click or press Enter on Ask results to open complete activity details
+            - Installed-app privacy picker plus manual process exclusions
+            - Clipboard history, Favorites, manual memories, tray operation, and startup controls
+            - Private local JSON storage with no cloud account, analytics SDK, or external connector
+            - Self-contained Windows x64 build; no separate .NET installation required
           files: artifacts/Memory-Trail-Windows-v${{ env.VERSION }}-x64.zip

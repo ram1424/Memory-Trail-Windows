@@ -1,90 +1,99 @@
 # Memory Trail for Windows
 
-Memory Trail is a private, local-first activity timeline for Windows. It is the Windows-native companion to the macOS Memory Trail project.
+**Memory Trail** is a private, local-first Windows activity timeline that helps you retrace the apps, pages, emails, conversations, files, clipboard text, and work context you recently used.
 
-## What it does
+This repository is the Windows-native companion to the macOS Memory Trail project. It is implemented with .NET 8, WPF, Win32 foreground-window APIs, Windows UI Automation, Windows clipboard APIs, and local JSON persistence.
 
-- Builds a chronological timeline of foreground application and window activity.
-- Captures meaningful window titles from apps such as Microsoft Edge, Chrome, Outlook, Teams, File Explorer, and other desktop applications.
-- Captures copied text when clipboard capture is enabled.
-- Searches across captured memories.
-- Lets you favorite important memories.
-- Lets you create manual memories with notes, links, files, or screenshot references.
-- Provides pause/resume capture controls.
-- Runs from the Windows system tray when the main window is closed.
-- Supports per-process privacy exclusions.
-- Can optionally start when you sign in to Windows.
-- Includes a first-run welcome tutorial that can be replayed from Settings.
+## Windows 1.0
 
+The Windows 1.0 release brings the current Memory Trail product model to Windows:
 
-## Screenshots
+- a newest-first **Today** timeline;
+- a green **Live Activity** state on the latest captured item;
+- session-based active-time calculation that does not add a fake minute per click;
+- dynamic activity filters that appear only when relevant activity exists;
+- **Ask Memory Trail** with website, email, conversation, file, recent-activity, week, and time-aware searches;
+- clickable Ask results with a complete activity-details view;
+- foreground application and meaningful window-title capture;
+- clipboard history that can be disabled at any time;
+- Favorites and manual memories;
+- show/hide controls for Today Summary and activity details;
+- installed-application privacy selection and manual process exclusions;
+- pause/resume capture and optional startup with Windows;
+- Windows system-tray operation;
+- first-run privacy tutorial and replayable onboarding;
+- self-contained x64 releases that do not require a separate .NET installation.
 
-### Timeline
+## Privacy first
 
-![Memory Trail Timeline](docs/screenshots/timeline.svg)
+Memory Trail is designed to run locally on the computer where it is installed.
 
-### Favorites
-
-![Memory Trail Favorites](docs/screenshots/favorites.svg)
-
-### Welcome tutorial
-
-![Memory Trail Welcome Tutorial](docs/screenshots/onboarding.svg)
-
-## Privacy
-
-Memory Trail is designed to remain local-first.
-
-- Timeline data is stored locally under `%LOCALAPPDATA%\Memory Trail`.
-- Preferences are stored locally.
-- No account is required.
-- No analytics SDK is included.
-- No advertising SDK is included.
+- Activity history is stored under `%LOCALAPPDATA%\Memory Trail`.
+- Preferences and exclusions are stored locally.
+- No Memory Trail account is required.
+- No analytics or advertising SDK is included.
+- No captured timeline data is uploaded or synchronized.
+- No external data connector is used by the capture and storage workflow.
 - Capture can be paused at any time.
 - Clipboard capture can be disabled.
-- Process exclusions let you control which apps Memory Trail intentionally ignores.
-- The app does not implement keylogging, screen recording, or hidden browser-history scraping.
+- Installed apps and process names can be excluded.
+- Credential prompts, 1Password, and Bitwarden are protected by default.
+- Memory Trail is not a keylogger and does not record the screen.
 
-## Windows implementation
+## Captured context
 
-The macOS application uses SwiftUI, SwiftData, AppKit, and macOS Accessibility APIs. This Windows edition recreates the same product behavior using:
+Memory Trail records the foreground process and the meaningful title Windows exposes for the active window. Depending on the application, this can include:
 
-- .NET 8
-- WPF
-- Win32 foreground-window APIs
-- Windows clipboard APIs
-- Windows system tray integration
-- Local JSON persistence
+- browser page or tab titles;
+- Outlook email subjects;
+- Teams or other chat conversation titles;
+- File Explorer folders;
+- Word, Excel, PowerPoint, OneNote, Notepad, and PDF document names;
+- other desktop application window titles;
+- copied text when clipboard capture is enabled.
 
-## Build locally
+Application behavior and accessibility support vary, so some apps expose more useful context than others.
+
+## Download
+
+Download the latest self-contained Windows x64 ZIP from the repository’s **Releases** page. Extract the ZIP and run `Memory Trail.exe`.
+
+## Build from source
 
 Requirements:
 
-- Windows 10 or Windows 11
-- .NET 8 SDK
-
-Run:
+- Windows 10 or Windows 11;
+- .NET 8 SDK.
 
 ```powershell
-dotnet run --project .\MemoryLane.Windows.csproj
+dotnet restore .\MemoryTrail.Windows.csproj
+dotnet build .\MemoryTrail.Windows.csproj -c Release
+dotnet run --project .\MemoryTrail.Windows.csproj
 ```
 
-Build:
+Create a self-contained x64 build:
 
 ```powershell
-dotnet build .\MemoryLane.Windows.csproj -c Release
+dotnet publish .\MemoryTrail.Windows.csproj `
+  -c Release `
+  -r win-x64 `
+  --self-contained true `
+  -p:PublishSingleFile=true `
+  -p:IncludeNativeLibrariesForSelfExtract=true `
+  -p:EnableCompressionInSingleFile=true `
+  -o .\publish
 ```
 
-Publish a self-contained x64 build:
+## Storage
 
-```powershell
-dotnet publish .\MemoryLane.Windows.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o .\publish
+Memory Trail stores its files locally at:
+
+```text
+%LOCALAPPDATA%\Memory Trail
 ```
 
-## Automated Windows build
-
-Every push to `main` runs the GitHub Actions workflow in `.github/workflows/build-windows.yml`. A successful run publishes a downloadable `Memory-Trail-Windows-x64.zip` workflow artifact.
+The timeline and preferences remain readable local files. Clearing app preferences does not delete timeline history unless **Clear history** is selected explicitly.
 
 ## Related project
 
-macOS version: `ram1424/Memory-Trail`
+macOS version: `ram1424/Memory-Lane`
