@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterOwner"
         ResizeMode="CanResize"
         FontFamily="Segoe UI Variable Text"
-        Background="#F1F5FB">
+        Background="#D8E3F3">
   <Window.Resources>
     <Style x:Key="TourCard" TargetType="Border">
       <Setter Property="Background" Value="#FFFFFF"/>
@@ -49,13 +49,13 @@
   <Grid>
     <Grid.Background>
       <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#F6F9FE" Offset="0"/>
-        <GradientStop Color="#EAF1FA" Offset="0.58"/>
-        <GradientStop Color="#DFE9F7" Offset="1"/>
+        <GradientStop Color="#E5EDF8" Offset="0"/>
+        <GradientStop Color="#D5E1F1" Offset="0.58"/>
+        <GradientStop Color="#C8D7EB" Offset="1"/>
       </LinearGradientBrush>
     </Grid.Background>
 
-    <Border Margin="20" Background="#FBFDFF" BorderBrush="#D9E3EF" BorderThickness="1"
+    <Border Margin="20" Background="#F4F8FD" BorderBrush="#C9D8EA" BorderThickness="1"
             CornerRadius="24" Padding="0">
       <Border.Effect>
         <DropShadowEffect BlurRadius="34" ShadowDepth="10" Opacity="0.15"/>

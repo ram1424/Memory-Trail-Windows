@@ -84,6 +84,36 @@
       <Setter Property="Background" Value="{StaticResource PrimaryGradientBrush}"/>
       <Setter Property="BorderBrush" Value="#126EFF"/>
       <Setter Property="Foreground" Value="White"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border x:Name="PrimaryChrome"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="12"
+                    Padding="{TemplateBinding Padding}">
+              <ContentPresenter HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                TextElement.Foreground="White"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="PrimaryChrome" Property="Background" Value="#1A7FFF"/>
+                <Setter TargetName="PrimaryChrome" Property="BorderBrush" Value="#0F68F2"/>
+                <Setter TargetName="PrimaryChrome" Property="Effect" Value="{StaticResource SoftShadow}"/>
+              </Trigger>
+              <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="PrimaryChrome" Property="Background" Value="#0D63E8"/>
+                <Setter TargetName="PrimaryChrome" Property="BorderBrush" Value="#0B59D4"/>
+              </Trigger>
+              <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.42"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
     </Style>
 
     <Style x:Key="NavButtonStyle" TargetType="Button">
