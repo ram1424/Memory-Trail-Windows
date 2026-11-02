@@ -4,9 +4,9 @@
   <Application.Resources>
     <!-- Exact Windows translation of MemoryTrailPalette from macOS RootView.swift -->
     <SolidColorBrush x:Key="BackgroundBrush" Color="#E8EEF9"/>
-    <SolidColorBrush x:Key="BackgroundBottomBrush" Color="#DBE5F4"/>
-    <SolidColorBrush x:Key="SidebarBrush" Color="#E3EAF7"/>
-    <SolidColorBrush x:Key="SidebarBottomBrush" Color="#D1DEEF"/>
+    <SolidColorBrush x:Key="BackgroundBottomBrush" Color="#DBE6F4"/>
+    <SolidColorBrush x:Key="SidebarBrush" Color="#E3EBF7"/>
+    <SolidColorBrush x:Key="SidebarBottomBrush" Color="#D1DEF0"/>
     <SolidColorBrush x:Key="PanelBrush" Color="#EBF1F9"/>
     <SolidColorBrush x:Key="PanelAltBrush" Color="#F6F9FC"/>
     <SolidColorBrush x:Key="ElevatedStrongBrush" Color="#FBFCFF"/>

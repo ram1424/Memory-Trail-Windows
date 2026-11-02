@@ -209,7 +209,11 @@ public partial class MainWindow : Window
         {
             var selected = entry.Mode == mode;
             entry.Button.Background = selected
-                ? new SolidColorBrush(Color.FromRgb(22, 128, 255))
+                ? new LinearGradientBrush(
+                    Color.FromRgb(20, 128, 255),
+                    Color.FromRgb(51, 110, 242),
+                    new Point(0, 0.5),
+                    new Point(1, 0.5))
                 : Brushes.Transparent;
             entry.Button.Foreground = selected
                 ? Brushes.White
@@ -721,32 +725,59 @@ public partial class MainWindow : Window
     private void UpdateCountsAndChrome()
     {
         var all = App.Store.Items.ToList();
-        SetText(AllAppsCountText, all.Count);
-        SetText(BrowserCountText, all.Count(x => MatchesCategory(x, "Browser")));
-        SetText(EmailCountText, all.Count(x => MatchesCategory(x, "Email")));
-        SetText(ChatCountText, all.Count(x => MatchesCategory(x, "Chat")));
-        SetText(FilesCountText, all.Count(x => MatchesCategory(x, "Files")));
-        SetText(OfficeCountText, all.Count(x => MatchesCategory(x, "Office")));
-        SetText(DevelopmentCountText, all.Count(x => MatchesCategory(x, "Development")));
-        SetText(MediaCountText, all.Count(x => MatchesCategory(x, "Media")));
-        SetText(DesignCountText, all.Count(x => MatchesCategory(x, "Design")));
-        SetText(RemoteCountText, all.Count(x => MatchesCategory(x, "Remote")));
-        SetText(SystemCountText, all.Count(x => MatchesCategory(x, "System")));
-        SetText(OtherCountText, all.Count(x => MatchesCategory(x, "Other")));
+
+        SetFilterCount(AllAppsCountText, AllAppsFilter, all.Count, alwaysVisible: true);
+        SetFilterCount(BrowserCountText, BrowserFilter, all.Count(x => MatchesCategory(x, "Browser")));
+        SetFilterCount(EmailCountText, EmailFilter, all.Count(x => MatchesCategory(x, "Email")));
+        SetFilterCount(ChatCountText, ChatFilter, all.Count(x => MatchesCategory(x, "Chat")));
+        SetFilterCount(FilesCountText, FilesFilter, all.Count(x => MatchesCategory(x, "Files")));
+        SetFilterCount(OfficeCountText, OfficeFilter, all.Count(x => MatchesCategory(x, "Office")));
+        SetFilterCount(DevelopmentCountText, DevelopmentFilter, all.Count(x => MatchesCategory(x, "Development")));
+        SetFilterCount(MediaCountText, MediaFilter, all.Count(x => MatchesCategory(x, "Media")));
+        SetFilterCount(DesignCountText, DesignFilter, all.Count(x => MatchesCategory(x, "Design")));
+        SetFilterCount(RemoteCountText, RemoteFilter, all.Count(x => MatchesCategory(x, "Remote")));
+        SetFilterCount(SystemCountText, SystemFilter, all.Count(x => MatchesCategory(x, "System")));
+        SetFilterCount(OtherCountText, OtherFilter, all.Count(x => MatchesCategory(x, "Other")));
 
         var dayItems = all.Where(x => x.CreatedAt.Date == SelectedDay.Date).ToList();
+        var browser = dayItems.Count(x => MatchesCategory(x, "Browser"));
+        var email = dayItems.Count(x => MatchesCategory(x, "Email"));
+        var chat = dayItems.Count(x => MatchesCategory(x, "Chat"));
+        var files = dayItems.Count(x => MatchesCategory(x, "Files"));
+        var office = dayItems.Count(x => MatchesCategory(x, "Office"));
+
         QuickAllCountText.Text = $" ({dayItems.Count})";
-        QuickBrowserCountText.Text = $" ({dayItems.Count(x => MatchesCategory(x, "Browser"))})";
-        QuickEmailCountText.Text = $" ({dayItems.Count(x => MatchesCategory(x, "Email"))})";
-        QuickChatCountText.Text = $" ({dayItems.Count(x => MatchesCategory(x, "Chat"))})";
-        QuickFilesCountText.Text = $" ({dayItems.Count(x => MatchesCategory(x, "Files"))})";
-        QuickOfficeCountText.Text = $" ({dayItems.Count(x => MatchesCategory(x, "Office"))})";
+        QuickBrowserCountText.Text = $" ({browser})";
+        QuickEmailCountText.Text = $" ({email})";
+        QuickChatCountText.Text = $" ({chat})";
+        QuickFilesCountText.Text = $" ({files})";
+        QuickOfficeCountText.Text = $" ({office})";
+
+        QuickAllFilter.Visibility = Visibility.Visible;
+        QuickBrowserFilter.Visibility = browser > 0 ? Visibility.Visible : Visibility.Collapsed;
+        QuickEmailFilter.Visibility = email > 0 ? Visibility.Visible : Visibility.Collapsed;
+        QuickChatFilter.Visibility = chat > 0 ? Visibility.Visible : Visibility.Collapsed;
+        QuickFilesFilter.Visibility = files > 0 ? Visibility.Visible : Visibility.Collapsed;
+        QuickOfficeFilter.Visibility = office > 0 ? Visibility.Visible : Visibility.Collapsed;
+
+        var hasOverflow = dayItems.Any(x =>
+            MatchesCategory(x, "Development") ||
+            MatchesCategory(x, "Media") ||
+            MatchesCategory(x, "Design") ||
+            MatchesCategory(x, "Remote") ||
+            MatchesCategory(x, "System") ||
+            MatchesCategory(x, "Other"));
+        MoreFiltersButton.Visibility = hasOverflow ? Visibility.Visible : Visibility.Collapsed;
 
         UpdateActivityCount();
         UpdateModeChrome();
     }
 
-    private static void SetText(TextBlock block, int value) => block.Text = value.ToString();
+    private static void SetFilterCount(TextBlock block, Button button, int value, bool alwaysVisible = false)
+    {
+        block.Text = value.ToString();
+        button.Visibility = alwaysVisible || value > 0 ? Visibility.Visible : Visibility.Collapsed;
+    }
 
     private void UpdateTodaySummary()
     {

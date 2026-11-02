@@ -7,6 +7,7 @@
         Width="1580" Height="920"
         MinWidth="1280" MinHeight="760"
         WindowStartupLocation="CenterScreen"
+        FontFamily="Segoe UI Variable Text"
         Background="#E8EEF9">
   <Window.Resources>
     <local:AppIconConverter x:Key="AppIconConverter"/>
@@ -97,8 +98,8 @@
     <Border Grid.Column="0" BorderBrush="#D0DAE7" BorderThickness="0,0,1,0">
       <Border.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-          <GradientStop Color="#E3EAF7" Offset="0"/>
-          <GradientStop Color="#D1DEEF" Offset="1"/>
+          <GradientStop Color="#E3EBF7" Offset="0"/>
+          <GradientStop Color="#D1DEF0" Offset="1"/>
         </LinearGradientBrush>
       </Border.Background>
       <Grid Margin="10">
@@ -114,8 +115,6 @@
                  SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality"/>
           <TextBlock Text="Memory Trail" FontSize="20" FontWeight="Bold" Foreground="#1A2438"
                      HorizontalAlignment="Center" Margin="0,8,0,0"/>
-          <TextBlock Text="v1.0.0" FontSize="10" Foreground="#66778F"
-                     HorizontalAlignment="Center" Margin="0,2,0,0"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1">
