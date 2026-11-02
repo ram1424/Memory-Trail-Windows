@@ -1079,6 +1079,27 @@ public partial class MainWindow : Window
         App.Preferences.Save();
     }
 
+    private void OpenGitHub_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://github.com/ram1424/Memory-Lane-Windows",
+                UseShellExecute = true
+            });
+        }
+        catch (Exception ex)
+        {
+            App.LogNonFatal("OpenGitHub", ex);
+            MessageBox.Show(
+                "Windows could not open the Memory Trail GitHub page.",
+                "Memory Trail",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
+        }
+    }
+
     private void ShowTutorial_Click(object sender, RoutedEventArgs e) => ShowOnboarding();
 
     private void ShowOnboarding()

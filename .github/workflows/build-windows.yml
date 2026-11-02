@@ -31,9 +31,19 @@ jobs:
         shell: pwsh
         run: |
           [xml]$project = Get-Content "MemoryTrail.Windows.csproj"
-          $version = [string]$project.Project.PropertyGroup.Version
-          "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          Write-Host "Building Memory Trail for Windows v$version"
+          $displayVersion = [string]$project.Project.PropertyGroup.DisplayVersion
+          $buildNumber = [string]$project.Project.PropertyGroup.BuildNumber
+          $releaseTag = "v$displayVersion-build.$buildNumber"
+          $releaseName = "Memory Trail $displayVersion (Build $buildNumber)"
+          $artifactName = "Memory-Trail-Windows-$displayVersion-build-$buildNumber-x64.zip"
+
+          "DISPLAY_VERSION=$displayVersion" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "BUILD_NUMBER=$buildNumber" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "RELEASE_TAG=$releaseTag" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "RELEASE_NAME=$releaseName" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "ARTIFACT_NAME=$artifactName" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+          Write-Host "Building $releaseName"
 
       - name: Build standards-compliant Windows icon
         shell: pwsh
@@ -79,35 +89,70 @@ jobs:
       - name: Zip build
         shell: pwsh
         run: |
-          $zip = "artifacts/Memory-Trail-Windows-v$env:VERSION-x64.zip"
+          $zip = "artifacts/$env:ARTIFACT_NAME"
           Compress-Archive -Path "artifacts/Memory-Trail-Windows-x64/*" -DestinationPath $zip -Force
           Get-FileHash $zip -Algorithm SHA256
 
       - name: Upload workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Memory-Trail-Windows-v${{ env.VERSION }}-x64
-          path: artifacts/Memory-Trail-Windows-v${{ env.VERSION }}-x64.zip
+          name: ${{ env.ARTIFACT_NAME }}
+          path: artifacts/${{ env.ARTIFACT_NAME }}
+
+      - name: Remove superseded GitHub releases and tags
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $releasesJson = gh api "repos/$env:GITHUB_REPOSITORY/releases?per_page=100"
+          $releases = $releasesJson | ConvertFrom-Json
+
+          foreach ($release in $releases) {
+            Write-Host "Removing superseded release: $($release.tag_name)"
+            gh api --method DELETE "repos/$env:GITHUB_REPOSITORY/releases/$($release.id)"
+
+            try {
+              gh api --method DELETE "repos/$env:GITHUB_REPOSITORY/git/refs/tags/$($release.tag_name)"
+            }
+            catch {
+              Write-Host "Tag $($release.tag_name) was already absent or could not be removed."
+            }
+          }
 
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ env.VERSION }}
+          tag_name: ${{ env.RELEASE_TAG }}
           target_commitish: main
-          name: Memory Trail for Windows v${{ env.VERSION }}
+          name: ${{ env.RELEASE_NAME }}
+          make_latest: true
           body: |
-            Memory Trail for Windows v${{ env.VERSION }}
+            # Memory Trail 1.0 (Build 1)
 
-            - Rebuilt the application icon as a standards-compliant nine-size Windows ICO
-            - Fixed corrupted/static icon rendering in Explorer, the taskbar, shortcuts, and app properties
-            - Windows-native foreground app and window-title capture
-            - Latest-first Today timeline with Live Activity state
-            - Correct session-based active-time calculation
-            - Dynamic filters that appear only when matching activity exists
-            - Ask Memory Trail with app-aware website, email, conversation, file, and time searches
-            - Double-click or press Enter on Ask results to open complete activity details
-            - Installed-app privacy picker plus manual process exclusions
-            - Clipboard history, Favorites, manual memories, tray operation, and startup controls
-            - Private local JSON storage with no cloud account, analytics SDK, or external connector
+            A private, local-first Windows activity timeline with a polished Soft Blue interface.
+
+            ## Highlights
+            - Hardened Windows activity capture using foreground-window events plus polling fallback
+            - Automatic capture-service recovery and app-level fallback events when window titles are unavailable
+            - Newest-first Today timeline with Live Activity state and session-based active time
+            - Ask Memory Trail for local website, email, conversation, file, app, and time-aware searches
+            - Favorites, Clipboard History, manual memories, Insights, filters, and activity details
+            - Polished loading screen, tutorial, dimensional filter icons, and Hide/Show Panels control
+            - Windows tray operation and optional Start with Windows
             - Self-contained Windows x64 build; no separate .NET installation required
-          files: artifacts/Memory-Trail-Windows-v${{ env.VERSION }}-x64.zip
+
+            ## Privacy
+            - Timeline data is stored locally under %LOCALAPPDATA%\Memory Trail
+            - No Memory Trail account is required
+            - No captured timeline history is uploaded or synchronized by the app
+            - No analytics or advertising SDK is included
+            - No external connector is required for capture, storage, display, or Ask Memory Trail
+            - App Activity and Clipboard capture can be disabled independently
+            - Capture can be paused at any time
+            - Process exclusions are supported
+            - CredentialUIBroker, 1Password, and Bitwarden are excluded by default
+            - Memory Trail does not record the screen and is not a keylogger
+            - Source code and full privacy details are available in this repository
+
+            See PRIVACY.md for the full privacy and data-handling description.
+          files: artifacts/${{ env.ARTIFACT_NAME }}
