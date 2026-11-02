@@ -381,7 +381,18 @@ public partial class MainWindow : Window
             ("Other", "Other")
         })
         {
-            var item = new MenuItem { Header = entry.Item1, Tag = entry.Item2 };
+            var item = new MenuItem
+            {
+                Header = entry.Item1,
+                Tag = entry.Item2,
+                Icon = new CategoryIcon
+                {
+                    Category = entry.Item2,
+                    Width = 22,
+                    Height = 22,
+                    Margin = new Thickness(0, 0, 3, 0)
+                }
+            };
             item.Click += (_, _) =>
             {
                 _category = (string)item.Tag;
