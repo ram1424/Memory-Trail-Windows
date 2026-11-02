@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 using Forms = System.Windows.Forms;
 
 namespace MemoryLane.Windows;
@@ -21,6 +22,8 @@ public partial class MainWindow : Window
     private bool _initializingSettings = true;
     private bool _detailsPaneVisible = true;
     private bool _rightSidebarVisible = true;
+    private int _dayOffset;
+    private readonly DispatcherTimer _liveTimer;
 
     public MainWindow()
     {
@@ -57,7 +60,16 @@ public partial class MainWindow : Window
 
         UpdateTodaySummary();
         UpdateLiveActivity();
+        UpdateCountsAndChrome();
         ApplyRightSidebarVisibility();
+
+        _liveTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(15) };
+        _liveTimer.Tick += (_, _) =>
+        {
+            UpdateLiveActivity();
+            UpdateActivityCount();
+        };
+        _liveTimer.Start();
 
         try
         {
@@ -162,16 +174,20 @@ public partial class MainWindow : Window
         UpdateNavSelection(mode);
 
         var showSettings = mode == "Settings";
-        var showPrivacy = mode == "Privacy";
         var showAsk = mode == "Ask";
+        var showInsights = mode == "Insights";
+        var showActivity = mode is "Timeline" or "Favorites" or "Clipboard";
 
-        ActivityShell.Visibility = showSettings || showPrivacy || showAsk ? Visibility.Collapsed : Visibility.Visible;
+        ActivityShell.Visibility = showActivity ? Visibility.Visible : Visibility.Collapsed;
         AskMemoryTrailPanel.Visibility = showAsk ? Visibility.Visible : Visibility.Collapsed;
+        InsightsPanel.Visibility = showInsights ? Visibility.Visible : Visibility.Collapsed;
         SettingsPanel.Visibility = showSettings ? Visibility.Visible : Visibility.Collapsed;
-        PrivacyPanel.Visibility = showPrivacy ? Visibility.Visible : Visibility.Collapsed;
+        PrivacyPanel.Visibility = Visibility.Collapsed;
 
         _view.Refresh();
+        UpdateModeChrome();
         UpdateLiveActivity();
+        UpdateCountsAndChrome();
 
         if (showAsk)
             Dispatcher.BeginInvoke(new Action(() => AskMemoryTrailBox.Focus()));
@@ -183,10 +199,9 @@ public partial class MainWindow : Window
         {
             (Button: TimelineNavButton, Mode: "Timeline"),
             (Button: AskMemoryTrailNavButton, Mode: "Ask"),
-            (Button: ClipboardNavButton, Mode: "Clipboard"),
             (Button: FavoritesNavButton, Mode: "Favorites"),
-            (Button: NotesNavButton, Mode: "Notes"),
-            (Button: PrivacyNavButton, Mode: "Privacy"),
+            (Button: ClipboardNavButton, Mode: "Clipboard"),
+            (Button: InsightsNavButton, Mode: "Insights"),
             (Button: SettingsNavButton, Mode: "Settings")
         };
 
@@ -194,11 +209,11 @@ public partial class MainWindow : Window
         {
             var selected = entry.Mode == mode;
             entry.Button.Background = selected
-                ? new SolidColorBrush(Color.FromRgb(214, 231, 255))
+                ? new SolidColorBrush(Color.FromRgb(22, 128, 255))
                 : Brushes.Transparent;
             entry.Button.Foreground = selected
-                ? new SolidColorBrush(Color.FromRgb(27, 105, 220))
-                : new SolidColorBrush(Color.FromRgb(52, 69, 94));
+                ? Brushes.White
+                : new SolidColorBrush(Color.FromRgb(26, 36, 56));
             entry.Button.FontWeight = selected ? FontWeights.SemiBold : FontWeights.Normal;
         }
     }
@@ -209,35 +224,72 @@ public partial class MainWindow : Window
             return;
 
         _category = category;
+        if (_mode != "Timeline")
+        {
+            _mode = "Timeline";
+            UpdateNavSelection("Timeline");
+            ActivityShell.Visibility = Visibility.Visible;
+            AskMemoryTrailPanel.Visibility = Visibility.Collapsed;
+            InsightsPanel.Visibility = Visibility.Collapsed;
+            SettingsPanel.Visibility = Visibility.Collapsed;
+            PrivacyPanel.Visibility = Visibility.Collapsed;
+        }
+
         UpdateCategorySelection(category);
         _view.Refresh();
+        UpdateModeChrome();
         UpdateLiveActivity();
+        UpdateCountsAndChrome();
     }
 
     private void UpdateCategorySelection(string category)
     {
-        var buttons = new[]
+        var sidebarButtons = new[]
         {
             (Button: AllAppsFilter, Category: "All"),
             (Button: BrowserFilter, Category: "Browser"),
             (Button: EmailFilter, Category: "Email"),
             (Button: ChatFilter, Category: "Chat"),
             (Button: FilesFilter, Category: "Files"),
-            (Button: OfficeFilter, Category: "Office")
+            (Button: OfficeFilter, Category: "Office"),
+            (Button: DevelopmentFilter, Category: "Development"),
+            (Button: MediaFilter, Category: "Media"),
+            (Button: DesignFilter, Category: "Design"),
+            (Button: RemoteFilter, Category: "Remote"),
+            (Button: SystemFilter, Category: "System"),
+            (Button: OtherFilter, Category: "Other")
         };
 
-        foreach (var entry in buttons)
+        foreach (var entry in sidebarButtons)
+        {
+            var selected = _mode == "Timeline" && entry.Category == category;
+            entry.Button.Background = selected
+                ? new SolidColorBrush(Color.FromArgb(28, 22, 128, 255))
+                : Brushes.Transparent;
+            entry.Button.Foreground = new SolidColorBrush(Color.FromRgb(26, 36, 56));
+            entry.Button.FontWeight = selected ? FontWeights.SemiBold : FontWeights.Medium;
+        }
+
+        var quickButtons = new[]
+        {
+            (Button: QuickAllFilter, Category: "All"),
+            (Button: QuickBrowserFilter, Category: "Browser"),
+            (Button: QuickEmailFilter, Category: "Email"),
+            (Button: QuickChatFilter, Category: "Chat"),
+            (Button: QuickFilesFilter, Category: "Files"),
+            (Button: QuickOfficeFilter, Category: "Office")
+        };
+
+        foreach (var entry in quickButtons)
         {
             var selected = entry.Category == category;
-            entry.Button.Background = new SolidColorBrush(selected
-                ? Color.FromRgb(220, 235, 255)
-                : Color.FromRgb(244, 248, 253));
-            entry.Button.BorderBrush = new SolidColorBrush(selected
-                ? Color.FromRgb(161, 199, 243)
-                : Color.FromRgb(216, 226, 239));
-            entry.Button.Foreground = selected
-                ? new SolidColorBrush(Color.FromRgb(25, 79, 146))
-                : new SolidColorBrush(Color.FromRgb(83, 100, 122));
+            entry.Button.Background = selected
+                ? new SolidColorBrush(Color.FromRgb(22, 128, 255))
+                : new SolidColorBrush(Color.FromRgb(246, 249, 252));
+            entry.Button.BorderBrush = selected
+                ? new SolidColorBrush(Color.FromRgb(22, 128, 255))
+                : new SolidColorBrush(Color.FromRgb(216, 225, 236));
+            entry.Button.Foreground = selected ? Brushes.White : new SolidColorBrush(Color.FromRgb(26, 36, 56));
         }
     }
 
@@ -245,11 +297,17 @@ public partial class MainWindow : Window
     {
         if (item is not MemoryItem memory) return false;
 
-        if (_mode == "Favorites" && !memory.IsFavorite)
-            return false;
-        if (_mode == "Clipboard" && memory.SourceKind != SourceKind.Clipboard)
-            return false;
-        if (_mode == "Notes" && memory.SourceKind != SourceKind.Note)
+        if (_mode == "Favorites")
+            return memory.IsFavorite;
+
+        if (_mode == "Clipboard")
+            return memory.SourceKind == SourceKind.Clipboard;
+
+        if (_mode != "Timeline")
+            return true;
+
+        var day = SelectedDay.Date;
+        if (memory.CreatedAt.Date != day)
             return false;
 
         if (_category != "All" && !MatchesCategory(memory, _category))
@@ -260,19 +318,120 @@ public partial class MainWindow : Window
 
     private static bool MatchesCategory(MemoryItem memory, string category)
     {
-        var app = (memory.SourceApp ?? "").ToLowerInvariant();
+        var label = memory.CategoryLabel;
 
         return category switch
         {
-            "Browser" => app.Contains("edge") || app.Contains("chrome") || app.Contains("firefox") ||
-                         app.Contains("browser") || !string.IsNullOrWhiteSpace(memory.SourceUrl),
-            "Email" => app.Contains("outlook") || app.Contains("mail"),
-            "Chat" => app.Contains("teams") || app.Contains("slack") || app.Contains("discord") || app.Contains("chat"),
-            "Files" => memory.SourceKind == SourceKind.File || app.Contains("explorer") || app.Contains("finder"),
-            "Office" => app.Contains("word") || app.Contains("excel") || app.Contains("powerpoint") ||
-                        app.Contains("onenote") || app.Contains("outlook"),
+            "Browser" => label == "Web",
+            "Email" => label == "Email",
+            "Chat" => label == "Chat",
+            "Files" => label == "Files",
+            "Office" => label == "Productivity",
+            "Development" => label == "Development",
+            "Media" => label == "Media",
+            "Design" => label == "Design",
+            "Remote" => label == "Remote Access",
+            "System" => label == "System",
+            "Other" => label == "Other",
             _ => true
         };
+    }
+
+    private DateTime SelectedDay => DateTime.Today.AddDays(_dayOffset);
+
+    private void PreviousDay_Click(object sender, RoutedEventArgs e)
+    {
+        _dayOffset--;
+        RefreshTimelineState();
+    }
+
+    private void NextDay_Click(object sender, RoutedEventArgs e)
+    {
+        if (_dayOffset >= 0) return;
+        _dayOffset++;
+        RefreshTimelineState();
+    }
+
+    private void RefreshTimelineState()
+    {
+        _view.Refresh();
+        UpdateModeChrome();
+        UpdateLiveActivity();
+        UpdateTodaySummary();
+        UpdateCountsAndChrome();
+
+        if (_view.Cast<object>().FirstOrDefault() is MemoryItem first)
+            TimelineList.SelectedItem = first;
+    }
+
+    private void MoreFilters_Click(object sender, RoutedEventArgs e)
+    {
+        var menu = new ContextMenu();
+        foreach (var entry in new[]
+        {
+            ("Development", "Development"),
+            ("Media", "Media"),
+            ("Design", "Design"),
+            ("Remote Access", "Remote"),
+            ("System", "System"),
+            ("Other", "Other")
+        })
+        {
+            var item = new MenuItem { Header = entry.Item1, Tag = entry.Item2 };
+            item.Click += (_, _) =>
+            {
+                _category = (string)item.Tag;
+                UpdateCategorySelection(_category);
+                _view.Refresh();
+                UpdateLiveActivity();
+                UpdateActivityCount();
+            };
+            menu.Items.Add(item);
+        }
+
+        menu.PlacementTarget = MoreFiltersButton;
+        menu.IsOpen = true;
+    }
+
+    private void MoreRow_Click(object sender, RoutedEventArgs e)
+    {
+        if (sender is not Button { Tag: MemoryItem item } button)
+            return;
+
+        TimelineList.SelectedItem = item;
+        var menu = new ContextMenu();
+
+        var copy = new MenuItem { Header = "Copy Details" };
+        copy.Click += (_, _) =>
+        {
+            var text = string.Join(Environment.NewLine,
+                item.Title,
+                item.SourceApp,
+                item.CreatedAt.ToString("g"),
+                item.Body);
+            Clipboard.SetText(text);
+        };
+        menu.Items.Add(copy);
+
+        var open = new MenuItem { Header = "Open Source App" };
+        open.Click += (_, _) => OpenSelected_Click(button, new RoutedEventArgs());
+        menu.Items.Add(open);
+
+        menu.Items.Add(new Separator());
+
+        var delete = new MenuItem { Header = "Delete" };
+        delete.Click += (_, _) =>
+        {
+            App.Store.Remove(item);
+            _view.Refresh();
+            UpdateLiveActivity();
+            UpdateTodaySummary();
+            UpdateCountsAndChrome();
+        };
+        menu.Items.Add(delete);
+
+        menu.PlacementTarget = button;
+        menu.IsOpen = true;
     }
 
     private void AskSuggestion_Click(object sender, RoutedEventArgs e)
@@ -494,6 +653,7 @@ public partial class MainWindow : Window
         _view.Refresh();
         UpdateLiveActivity();
         UpdateTodaySummary();
+        UpdateCountsAndChrome();
 
         if (TimelineList.SelectedItem is null && _view.Cast<object>().FirstOrDefault() is MemoryItem latest)
             TimelineList.SelectedItem = latest;
@@ -502,21 +662,96 @@ public partial class MainWindow : Window
     private void UpdateLiveActivity()
     {
         foreach (var item in App.Store.Items)
+        {
             item.IsLiveActivity = false;
+            item.IsLatestActivity = false;
+        }
+
+        if (_mode != "Timeline" || _dayOffset != 0)
+            return;
 
         var latestVisible = _view.Cast<object>()
             .OfType<MemoryItem>()
             .OrderByDescending(x => x.CreatedAt)
             .FirstOrDefault();
 
-        if (latestVisible is not null)
+        if (latestVisible is null)
+            return;
+
+        if ((DateTime.Now - latestVisible.CreatedAt).TotalMinutes <= 2)
             latestVisible.IsLiveActivity = true;
+        else
+            latestVisible.IsLatestActivity = true;
     }
+
+    private void UpdateModeChrome()
+    {
+        var timelineMode = _mode == "Timeline";
+        QuickFiltersBar.Visibility = timelineMode ? Visibility.Visible : Visibility.Collapsed;
+        RightSidebarToggleButton.Visibility = timelineMode ? Visibility.Visible : Visibility.Collapsed;
+
+        if (timelineMode)
+        {
+            PageTitleText.Text = _dayOffset == 0 ? "Today" : SelectedDay.ToString("dddd");
+            PageSubtitleText.Text = SelectedDay.ToString("dddd, MMMM d, yyyy");
+        }
+        else if (_mode == "Favorites")
+        {
+            PageTitleText.Text = "Favorites";
+            PageSubtitleText.Text = "Keep important memories close.";
+        }
+        else if (_mode == "Clipboard")
+        {
+            PageTitleText.Text = "Clipboard History";
+            PageSubtitleText.Text = "Quickly find text and links you copied.";
+        }
+
+        DayLabelText.Text = _dayOffset == 0 ? "Today" : SelectedDay.ToString("MMM d");
+        NextDayButton.IsEnabled = _dayOffset < 0;
+        ApplyRightSidebarVisibility();
+        UpdateActivityCount();
+    }
+
+    private void UpdateActivityCount()
+    {
+        var count = _view.Cast<object>().OfType<MemoryItem>().Count();
+        ActivityCountText.Text = $"{count} activit{(count == 1 ? "y" : "ies")}";
+    }
+
+    private void UpdateCountsAndChrome()
+    {
+        var all = App.Store.Items.ToList();
+        SetText(AllAppsCountText, all.Count);
+        SetText(BrowserCountText, all.Count(x => MatchesCategory(x, "Browser")));
+        SetText(EmailCountText, all.Count(x => MatchesCategory(x, "Email")));
+        SetText(ChatCountText, all.Count(x => MatchesCategory(x, "Chat")));
+        SetText(FilesCountText, all.Count(x => MatchesCategory(x, "Files")));
+        SetText(OfficeCountText, all.Count(x => MatchesCategory(x, "Office")));
+        SetText(DevelopmentCountText, all.Count(x => MatchesCategory(x, "Development")));
+        SetText(MediaCountText, all.Count(x => MatchesCategory(x, "Media")));
+        SetText(DesignCountText, all.Count(x => MatchesCategory(x, "Design")));
+        SetText(RemoteCountText, all.Count(x => MatchesCategory(x, "Remote")));
+        SetText(SystemCountText, all.Count(x => MatchesCategory(x, "System")));
+        SetText(OtherCountText, all.Count(x => MatchesCategory(x, "Other")));
+
+        var dayItems = all.Where(x => x.CreatedAt.Date == SelectedDay.Date).ToList();
+        QuickAllCountText.Text = $" ({dayItems.Count})";
+        QuickBrowserCountText.Text = $" ({dayItems.Count(x => MatchesCategory(x, "Browser"))})";
+        QuickEmailCountText.Text = $" ({dayItems.Count(x => MatchesCategory(x, "Email"))})";
+        QuickChatCountText.Text = $" ({dayItems.Count(x => MatchesCategory(x, "Chat"))})";
+        QuickFilesCountText.Text = $" ({dayItems.Count(x => MatchesCategory(x, "Files"))})";
+        QuickOfficeCountText.Text = $" ({dayItems.Count(x => MatchesCategory(x, "Office"))})";
+
+        UpdateActivityCount();
+        UpdateModeChrome();
+    }
+
+    private static void SetText(TextBlock block, int value) => block.Text = value.ToString();
 
     private void UpdateTodaySummary()
     {
         var today = App.Store.Items
-            .Where(x => x.CreatedAt.Date == DateTime.Today)
+            .Where(x => x.CreatedAt.Date == SelectedDay.Date)
             .ToList();
 
         TotalActivitiesText.Text = today.Count.ToString();
@@ -528,6 +763,24 @@ public partial class MainWindow : Window
             .ToString();
 
         ClipboardItemsText.Text = today.Count(x => x.SourceKind == SourceKind.Clipboard).ToString();
+
+        InsightsTotalActivitiesText.Text = App.Store.Items.Count(x => x.CreatedAt.Date == DateTime.Today).ToString();
+        InsightsAppsUsedText.Text = App.Store.Items
+            .Where(x => x.CreatedAt.Date == DateTime.Today)
+            .Select(x => x.SourceApp)
+            .Where(x => !string.IsNullOrWhiteSpace(x))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .Count()
+            .ToString();
+        InsightsFavoritesText.Text = App.Store.Items.Count(x => x.CreatedAt.Date == DateTime.Today && x.IsFavorite).ToString();
+        InsightsClipboardText.Text = App.Store.Items.Count(x => x.CreatedAt.Date == DateTime.Today && x.SourceKind == SourceKind.Clipboard).ToString();
+
+        var categorySummary = App.Store.Items
+            .Where(x => x.CreatedAt.Date == DateTime.Today)
+            .GroupBy(x => x.CategoryLabel)
+            .OrderByDescending(g => g.Count())
+            .Select(g => $"{g.Key}: {g.Count()}");
+        InsightsCategoryText.Text = string.Join("   •   ", categorySummary);
 
         if (today.Count > 1)
         {
@@ -611,14 +864,25 @@ public partial class MainWindow : Window
         ApplyRightSidebarVisibility();
     }
 
+    private void RightSidebarToggle_Click(object sender, RoutedEventArgs e)
+    {
+        _rightSidebarVisible = !_rightSidebarVisible;
+        ApplyRightSidebarVisibility();
+    }
+
     private void ApplyRightSidebarVisibility()
     {
-        RightSidebar.Visibility = _rightSidebarVisible ? Visibility.Visible : Visibility.Collapsed;
-        DetailsSpacerColumn.Width = _rightSidebarVisible ? new GridLength(16) : new GridLength(0);
-        DetailsColumn.Width = _rightSidebarVisible ? new GridLength(0.8, GridUnitType.Star) : new GridLength(0);
+        var show = _mode == "Timeline" && _rightSidebarVisible;
+        RightSidebar.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
+        RightDivider.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
+        DetailsSpacerColumn.Width = show ? new GridLength(1) : new GridLength(0);
+        DetailsColumn.Width = show ? new GridLength(365) : new GridLength(0);
 
-        RightSidebarToggleIcon.Text = _rightSidebarVisible ? "\uE76B" : "\uE76C";
-        RightSidebarToggleButton.ToolTip = _rightSidebarVisible ? "Hide right sidebar" : "Show right sidebar";
+        PanelToggleText.Text = show ? "Hide Panels" : "Show Panels";
+        RightSidebarToggleIcon.Text = "▥";
+        RightSidebarToggleButton.ToolTip = show
+            ? "Hide Today Summary and Activity Details"
+            : "Show Today Summary and Activity Details";
     }
 
     private void HideDetailsPane_Click(object sender, RoutedEventArgs e)
@@ -643,7 +907,7 @@ public partial class MainWindow : Window
 
     private void ShowDetailsPane()
     {
-        if (!_rightSidebarVisible)
+        if (_mode == "Timeline" && !_rightSidebarVisible)
         {
             _rightSidebarVisible = true;
             ApplyRightSidebarVisibility();
@@ -739,11 +1003,15 @@ public partial class MainWindow : Window
 
     private void UpdateCaptureState()
     {
-        PauseButton.Content = App.Preferences.CapturePaused ? "Resume Capture" : "Pause Capture";
-        StatusText.Text = App.Preferences.CapturePaused ? "Capture paused" : "Capture active";
-        StatusDot.Fill = App.Preferences.CapturePaused
-            ? new SolidColorBrush(Color.FromRgb(245, 158, 11))
-            : new SolidColorBrush(Color.FromRgb(34, 197, 94));
+        StatusText.Text = App.Preferences.CapturePaused ? "Capture paused" : "Capturing";
+        CaptureSubtext.Text = App.Preferences.CapturePaused ? "Click to resume" : "Your activity is stored locally";
+        QuickCaptureText.Text = App.Preferences.CapturePaused ? "Paused" : "Capturing";
+
+        var color = App.Preferences.CapturePaused
+            ? Color.FromRgb(245, 158, 11)
+            : Color.FromRgb(34, 197, 94);
+        StatusDot.Fill = new SolidColorBrush(color);
+        QuickCaptureDot.Fill = new SolidColorBrush(color);
     }
 
     private void SettingChanged(object sender, RoutedEventArgs e)
@@ -799,6 +1067,7 @@ public partial class MainWindow : Window
     protected override void OnClosed(EventArgs e)
     {
         App.Store.Items.CollectionChanged -= StoreItems_CollectionChanged;
+        _liveTimer.Stop();
 
         if (_trayIcon is not null)
         {
