@@ -55,6 +55,43 @@
       <Setter Property="HorizontalAlignment" Value="Right"/>
     </Style>
 
+    <Style x:Key="PanelToggleButtonStyle" TargetType="Button">
+      <Setter Property="Height" Value="44"/>
+      <Setter Property="Padding" Value="14,0"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="BorderBrush" Value="#D7DEE8"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Foreground" Value="#1A2438"/>
+      <Setter Property="Cursor" Value="Hand"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border x:Name="PanelToggleChrome"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="12"
+                    Padding="{TemplateBinding Padding}">
+              <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="PanelToggleChrome" Property="Background" Value="#FAFBFD"/>
+                <Setter TargetName="PanelToggleChrome" Property="BorderBrush" Value="#C9D2DE"/>
+              </Trigger>
+              <Trigger Property="IsPressed" Value="True">
+                <Setter TargetName="PanelToggleChrome" Property="Background" Value="#F3F6F9"/>
+                <Setter TargetName="PanelToggleChrome" Property="BorderBrush" Value="#C1CBD8"/>
+              </Trigger>
+              <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" Value="0.48"/>
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
     <Style x:Key="SummaryProgressStyle" TargetType="ProgressBar">
       <Setter Property="Height" Value="10"/>
       <Setter Property="Background" Value="#F3F7FB"/>
@@ -312,12 +349,20 @@
           <Grid Grid.Row="0" Margin="18,12,18,8">
             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
             <StackPanel Grid.Column="1" Orientation="Horizontal">
-              <Button x:Name="RightSidebarToggleButton" Click="RightSidebarToggle_Click"
-                      Background="#FFFFFF" BorderBrush="#D8E3F0" BorderThickness="1"
-                      Padding="14,0" Height="40">
-                <StackPanel Orientation="Horizontal">
-                  <TextBlock x:Name="RightSidebarToggleIcon" Text="&#xE765;" FontFamily="Segoe MDL2 Assets" FontSize="13" Margin="0,0,8,0" Foreground="#40506A" VerticalAlignment="Center"/>
-                  <TextBlock x:Name="PanelToggleText" Text="Hide Panels" FontSize="12" FontWeight="SemiBold" Foreground="#1A2438"/>
+              <Button x:Name="RightSidebarToggleButton"
+                      Click="RightSidebarToggle_Click"
+                      Style="{StaticResource PanelToggleButtonStyle}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                  <Grid x:Name="RightSidebarToggleIcon" Width="16" Height="14" Margin="0,0,9,0" VerticalAlignment="Center">
+                    <Border BorderBrush="#27313F" BorderThickness="1.35" CornerRadius="2.5"/>
+                    <Border Width="1.35" Background="#27313F" HorizontalAlignment="Left" Margin="5,2,0,2"/>
+                  </Grid>
+                  <TextBlock x:Name="PanelToggleText"
+                             Text="Hide Panels"
+                             FontSize="13"
+                             FontWeight="Bold"
+                             Foreground="#1C2430"
+                             VerticalAlignment="Center"/>
                 </StackPanel>
               </Button>
             </StackPanel>
