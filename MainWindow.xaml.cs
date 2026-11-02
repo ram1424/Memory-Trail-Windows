@@ -893,7 +893,6 @@ public partial class MainWindow : Window
         DetailsColumn.Width = show ? new GridLength(320) : new GridLength(0);
 
         PanelToggleText.Text = show ? "Hide Panels" : "Show Panels";
-        RightSidebarToggleIcon.Text = "\uE765";
         RightSidebarToggleButton.ToolTip = show
             ? "Hide Today Summary and Activity Details"
             : "Show Today Summary and Activity Details";
