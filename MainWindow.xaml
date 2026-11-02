@@ -188,7 +188,7 @@
             <Border Height="1" Background="#D0DAE7" Margin="6,0,6,16"/>
             <Grid Margin="8,0,8,7">
               <TextBlock Text="Filters" FontSize="12" FontWeight="SemiBold" Foreground="#66778F"/>
-              <TextBlock Text="⌃" HorizontalAlignment="Right" FontSize="11" Foreground="#8795A8"/>
+              <TextBlock Text="&#xE70E;" FontFamily="Segoe MDL2 Assets" HorizontalAlignment="Right" FontSize="10" Foreground="#8795A8"/>
             </Grid>
 
             <Button x:Name="AllAppsFilter" Tag="All" Click="Category_Click" Style="{StaticResource MacCategoryButtonStyle}">
@@ -266,7 +266,7 @@
               <TextBlock x:Name="StatusText" Text="Capturing" FontSize="11" FontWeight="SemiBold" Foreground="#1A2438"/>
               <TextBlock x:Name="CaptureSubtext" Text="Your activity is stored locally" FontSize="10" Foreground="#66778F" Margin="0,1,0,0"/>
             </StackPanel>
-            <TextBlock Grid.Column="2" Text="›" Foreground="#8795A8" FontSize="16" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="2" Text="&#xE76C;" FontFamily="Segoe MDL2 Assets" Foreground="#8795A8" FontSize="11" VerticalAlignment="Center"/>
           </Grid>
         </Button>
       </Grid>
@@ -331,8 +331,10 @@
               <Button x:Name="QuickOfficeFilter" Tag="Office" Click="Category_Click" Style="{StaticResource MacQuickFilterStyle}">
                 <StackPanel Orientation="Horizontal"><TextBlock Text="Apps"/><TextBlock x:Name="QuickOfficeCountText" Text=" (0)" Foreground="#66778F"/></StackPanel>
               </Button>
-              <Button x:Name="MoreFiltersButton" Content="•••" Width="34" Height="34" Padding="0"
-                      Background="#F6F9FC" BorderBrush="#D8E1EC" BorderThickness="1" Click="MoreFilters_Click"/>
+              <Button x:Name="MoreFiltersButton" Width="32" Height="32" Padding="0"
+                      Background="#F6F9FC" BorderBrush="#D8E1EC" BorderThickness="1" Click="MoreFilters_Click" ToolTip="More filters">
+                <TextBlock Text="&#xE712;" FontFamily="Segoe MDL2 Assets" FontSize="13" Foreground="#66778F"/>
+              </Button>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
@@ -341,11 +343,15 @@
                          Margin="0,0,14,0" VerticalAlignment="Center"/>
               <Border Background="#F6F9FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="11">
                 <StackPanel Orientation="Horizontal">
-                  <Button Content="‹" Width="34" Height="34" Padding="0" BorderThickness="0" Background="Transparent" Click="PreviousDay_Click"/>
+                  <Button Width="32" Height="32" Padding="0" BorderThickness="0" Background="Transparent" Click="PreviousDay_Click" ToolTip="Previous day">
+                    <TextBlock Text="&#xE76B;" FontFamily="Segoe MDL2 Assets" FontSize="11" Foreground="#40506A"/>
+                  </Button>
                   <TextBlock x:Name="DayLabelText" Text="Today" MinWidth="76" TextAlignment="Center"
                              VerticalAlignment="Center" FontSize="11" FontWeight="SemiBold" Foreground="#1A2438"/>
-                  <Button x:Name="NextDayButton" Content="›" Width="34" Height="34" Padding="0"
-                          BorderThickness="0" Background="Transparent" Click="NextDay_Click"/>
+                  <Button x:Name="NextDayButton" Width="32" Height="32" Padding="0"
+                          BorderThickness="0" Background="Transparent" Click="NextDay_Click" ToolTip="Next day">
+                    <TextBlock Text="&#xE76C;" FontFamily="Segoe MDL2 Assets" FontSize="11" Foreground="#40506A"/>
+                  </Button>
                 </StackPanel>
               </Border>
             </StackPanel>
@@ -376,12 +382,12 @@
                     <Style TargetType="ListViewItem">
                       <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                       <Setter Property="Padding" Value="0"/>
-                      <Setter Property="Margin" Value="0,0,0,1"/>
+                      <Setter Property="Margin" Value="0,0,0,2"/>
                       <Setter Property="Background" Value="#F6F9FC"/>
                       <Setter Property="Template">
                         <Setter.Value>
                           <ControlTemplate TargetType="ListViewItem">
-                            <Border x:Name="Row" Background="{TemplateBinding Background}" CornerRadius="13"
+                            <Border x:Name="Row" Background="{TemplateBinding Background}" CornerRadius="11"
                                     BorderBrush="#E4EAF2" BorderThickness="1">
                               <ContentPresenter/>
                             </Border>
@@ -416,8 +422,11 @@
                           <Border Width="2" Background="#7DB8FA" HorizontalAlignment="Center"/>
                           <Ellipse Width="10" Height="10" Fill="#1680FF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
-                        <Image Grid.Column="2" Source="{Binding Converter={StaticResource AppIconConverter}}" Width="34" Height="34"
-                               Stretch="Uniform" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        <Border Grid.Column="2" Width="34" Height="34" CornerRadius="8" Background="#FBFCFF"
+                                BorderBrush="#E1E7EF" BorderThickness="1" VerticalAlignment="Center">
+                          <Image Source="{Binding Converter={StaticResource AppIconConverter}}" Width="27" Height="27"
+                                 Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Border>
                         <StackPanel Grid.Column="3" Margin="8,0,10,0" VerticalAlignment="Center">
                           <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding Title}" Foreground="#1A2438" FontSize="13" FontWeight="SemiBold"
@@ -440,8 +449,8 @@
                           <TextBlock Text="{Binding SourceApp}" Foreground="#66778F" FontSize="12" Margin="0,3,0,0"
                                      TextTrimming="CharacterEllipsis"/>
                         </StackPanel>
-                        <Border Grid.Column="4" Background="#EEF3F9" CornerRadius="14" Padding="12,5" VerticalAlignment="Center">
-                          <TextBlock Text="{Binding ActivityLabel}" Foreground="#40506A" FontSize="10" FontWeight="SemiBold"/>
+                        <Border x:Name="CategoryChip" Grid.Column="4" Background="#EEF3F9" CornerRadius="13" Padding="11,4" VerticalAlignment="Center">
+                          <TextBlock x:Name="CategoryChipText" Text="{Binding ActivityLabel}" Foreground="#40506A" FontSize="10" FontWeight="SemiBold"/>
                         </Border>
                         <Button Grid.Column="5" Width="30" Height="30" Padding="0"
                                 Style="{StaticResource IconButtonStyle}" Tag="{Binding}" Click="Favorite_Click" ToolTip="Favorite">
@@ -452,6 +461,52 @@
                           <TextBlock Text="&#xE712;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#7A8798"/>
                         </Button>
                       </Grid>
+                      <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding ActivityLabel}" Value="Web">
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#E8F2FF"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#176EC7"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ActivityLabel}" Value="Email">
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#FFF2E3"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#C96F13"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ActivityLabel}" Value="Chat">
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#F4EAFE"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#8B4BC7"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ActivityLabel}" Value="File">
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#FFF5D9"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#A67E11"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ActivityLabel}" Value="Spreadsheet">
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#E7F8ED"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#168A48"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ActivityLabel}" Value="Document">
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#E8F2FF"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#176EC7"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ActivityLabel}" Value="Presentation">
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#FFF0E8"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#D96A28"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ActivityLabel}" Value="Development">
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#FFF0E8"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#E36F20"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ActivityLabel}" Value="Notes">
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#F2EBFF"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#7352B5"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ActivityLabel}" Value="Clipboard">
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#FFF7ED"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#D9772A"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ActivityLabel}" Value="System">
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#EEF1F5"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#6F7987"/>
+                        </DataTrigger>
+                      </DataTemplate.Triggers>
                     </DataTemplate>
                   </ListView.ItemTemplate>
                 </ListView>
@@ -468,7 +523,7 @@
             <StackPanel Margin="12">
               <Grid Margin="4,1,4,11">
                 <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                <Ellipse x:Name="RightStatusDot" Width="10" Height="10" Fill="#22C55E" VerticalAlignment="Center" Margin="0,0,9,0"/>
+                <Ellipse x:Name="RightStatusDot" Width="8" Height="8" Fill="#22C55E" VerticalAlignment="Center" Margin="0,0,9,0"/>
                 <TextBlock x:Name="RightStatusText" Grid.Column="1" Text="Capturing" FontSize="10.5" FontWeight="Medium"
                            Foreground="#66778F" VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="2" Text="&#xE787;" FontFamily="Segoe MDL2 Assets" Foreground="#66778F"
@@ -562,8 +617,11 @@
                   <StackPanel>
                     <Grid Margin="0,0,0,14">
                       <Grid.ColumnDefinitions><ColumnDefinition Width="50"/><ColumnDefinition Width="*"/><ColumnDefinition Width="34"/><ColumnDefinition Width="28"/></Grid.ColumnDefinitions>
-                      <Image Source="{Binding SelectedItem, ElementName=TimelineList, Converter={StaticResource AppIconConverter}}"
-                             Width="44" Height="44" RenderOptions.BitmapScalingMode="HighQuality"/>
+                      <Border Width="44" Height="44" CornerRadius="10" Background="#F4F7FB"
+                              BorderBrush="#E1E7EF" BorderThickness="1">
+                        <Image Source="{Binding SelectedItem, ElementName=TimelineList, Converter={StaticResource AppIconConverter}}"
+                               Width="34" Height="34" RenderOptions.BitmapScalingMode="HighQuality"/>
+                      </Border>
                       <StackPanel Grid.Column="1" Margin="8,0,8,0" VerticalAlignment="Center">
                         <TextBlock Text="{Binding SelectedItem.Title, ElementName=TimelineList, TargetNullValue=Select an activity}"
                                    FontSize="14" FontWeight="SemiBold" Foreground="#1A2438" TextWrapping="Wrap" MaxHeight="38"/>
@@ -634,12 +692,32 @@
             <TextBlock Text="A quick view of how your day is distributed." FontSize="13" Foreground="#66778F" Margin="0,6,0,0"/>
           </StackPanel>
           <UniformGrid Columns="2" Margin="0,0,0,18">
-            <Border Background="#F6F9FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="18" Padding="18" Margin="0,0,14,14"><StackPanel><TextBlock x:Name="InsightsTotalActivitiesText" Text="0" FontSize="28" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Total Activities" Foreground="#66778F"/></StackPanel></Border>
-            <Border Background="#F6F9FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="18" Padding="18" Margin="0,0,0,14"><StackPanel><TextBlock x:Name="InsightsAppsUsedText" Text="0" FontSize="28" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Apps Used" Foreground="#66778F"/></StackPanel></Border>
-            <Border Background="#F6F9FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="18" Padding="18" Margin="0,0,14,0"><StackPanel><TextBlock x:Name="InsightsFavoritesText" Text="0" FontSize="28" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Favorites" Foreground="#66778F"/></StackPanel></Border>
-            <Border Background="#F6F9FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="18" Padding="18"><StackPanel><TextBlock x:Name="InsightsClipboardText" Text="0" FontSize="28" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Clipboard Items" Foreground="#66778F"/></StackPanel></Border>
+            <Border Background="#F8FBFE" BorderBrush="#DCE5EF" BorderThickness="1" CornerRadius="16" Padding="16" Margin="0,0,12,12">
+              <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <Border Width="38" Height="38" CornerRadius="11" Background="#DFF6FA"><TextBlock Text="&#xE9D2;" FontFamily="Segoe MDL2 Assets" Foreground="#14B8C8" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center"><TextBlock x:Name="InsightsTotalActivitiesText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Total Activities" Foreground="#66778F" FontSize="12"/></StackPanel>
+              </Grid>
+            </Border>
+            <Border Background="#F8FBFE" BorderBrush="#DCE5EF" BorderThickness="1" CornerRadius="16" Padding="16" Margin="0,0,0,12">
+              <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <Border Width="38" Height="38" CornerRadius="11" Background="#E2EDFF"><TextBlock Text="&#xE80A;" FontFamily="Segoe MDL2 Assets" Foreground="#1680FF" FontSize="17" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center"><TextBlock x:Name="InsightsAppsUsedText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Apps Used" Foreground="#66778F" FontSize="12"/></StackPanel>
+              </Grid>
+            </Border>
+            <Border Background="#F8FBFE" BorderBrush="#DCE5EF" BorderThickness="1" CornerRadius="16" Padding="16" Margin="0,0,12,0">
+              <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <Border Width="38" Height="38" CornerRadius="11" Background="#F3EAFE"><TextBlock Text="&#xE735;" FontFamily="Segoe MDL2 Assets" Foreground="#8B4BC7" FontSize="17" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center"><TextBlock x:Name="InsightsFavoritesText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Favorites" Foreground="#66778F" FontSize="12"/></StackPanel>
+              </Grid>
+            </Border>
+            <Border Background="#F8FBFE" BorderBrush="#DCE5EF" BorderThickness="1" CornerRadius="16" Padding="16">
+              <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <Border Width="38" Height="38" CornerRadius="11" Background="#FFEAD9"><TextBlock Text="&#xE77F;" FontFamily="Segoe MDL2 Assets" Foreground="#FF8A34" FontSize="17" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center"><TextBlock x:Name="InsightsClipboardText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Clipboard Items" Foreground="#66778F" FontSize="12"/></StackPanel>
+              </Grid>
+            </Border>
           </UniformGrid>
-          <Border Background="#F6F9FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="18" Padding="18">
+          <Border Background="#FBFCFE" BorderBrush="#DCE5EF" BorderThickness="1" CornerRadius="16" Padding="18">
             <StackPanel>
               <TextBlock Text="Activity by Category" FontSize="16" FontWeight="SemiBold" Foreground="#1A2438" Margin="0,0,0,12"/>
               <TextBlock x:Name="InsightsCategoryText" Text="Open a few apps to build today's category distribution." Foreground="#40506A" TextWrapping="Wrap"/>
@@ -701,8 +779,11 @@
 
         <StackPanel Grid.Row="0" Margin="4,2,4,18">
           <StackPanel Orientation="Horizontal">
-            <TextBlock Text="✦" Foreground="#1680FF" FontSize="26" Margin="0,0,10,0" VerticalAlignment="Center"/>
-            <TextBlock Text="Ask Memory Trail" FontSize="32" FontWeight="SemiBold" Foreground="#1A2438"/>
+            <Border Width="38" Height="38" CornerRadius="11" Background="#E4EFFF" Margin="0,0,11,0">
+              <TextBlock Text="&#xE721;" FontFamily="Segoe MDL2 Assets" Foreground="#1680FF" FontSize="17"
+                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <TextBlock Text="Ask Memory Trail" FontSize="29" FontWeight="SemiBold" Foreground="#1A2438" VerticalAlignment="Center"/>
           </StackPanel>
           <TextBlock Text="Ask about a time, app, page, email, chat, file, or project. Answers are generated locally from your captured timeline."
                      Foreground="#66778F" FontSize="13" Margin="1,6,0,0"/>
@@ -837,7 +918,7 @@
         </Border>
       </Grid>
 
-      <ScrollViewer x:Name="SettingsPanel" Visibility="Collapsed" VerticalScrollBarVisibility="Auto">
+      <ScrollViewer x:Name="SettingsPanel" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Margin="24">
         <StackPanel MaxWidth="860" HorizontalAlignment="Left">
           <TextBlock Text="Settings" FontSize="30" FontWeight="SemiBold" Foreground="#1A2438"/>
           <TextBlock Text="Control what Memory Trail remembers, how it behaves, and review its privacy-first design."
