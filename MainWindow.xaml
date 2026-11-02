@@ -162,35 +162,35 @@
           <Button x:Name="AskMemoryTrailNavButton" Tag="Ask" Click="NavButton_Click"
                   Style="{StaticResource NavButtonStyle}" Margin="0,0,0,5">
             <StackPanel Orientation="Horizontal">
-              <Border Width="28" Height="28" CornerRadius="9" Background="#E6E7FF" Margin="0,0,9,0"><TextBlock Text="&#xE721;" FontFamily="Segoe MDL2 Assets" Foreground="#5962F2" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <Border Width="28" Height="28" CornerRadius="9" Background="#E4ECFF" Margin="0,0,9,0"><TextBlock Text="&#xE721;" FontFamily="Segoe MDL2 Assets" Foreground="#5573ED" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
               <TextBlock Text="Ask Memory Trail"/>
             </StackPanel>
           </Button>
           <Button x:Name="FavoritesNavButton" Tag="Favorites" Click="NavButton_Click"
                   Style="{StaticResource NavButtonStyle}" Margin="0,0,0,5">
             <StackPanel Orientation="Horizontal">
-              <Border Width="28" Height="28" CornerRadius="9" Background="#FFF2D7" Margin="0,0,9,0"><TextBlock Text="&#xE735;" FontFamily="Segoe MDL2 Assets" Foreground="#E8A400" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <Border Width="28" Height="28" CornerRadius="9" Background="#E8F2FF" Margin="0,0,9,0"><TextBlock Text="&#xE735;" FontFamily="Segoe MDL2 Assets" Foreground="#3B8EF0" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
               <TextBlock Text="Favorites"/>
             </StackPanel>
           </Button>
           <Button x:Name="ClipboardNavButton" Tag="Clipboard" Click="NavButton_Click"
                   Style="{StaticResource NavButtonStyle}" Margin="0,0,0,5">
             <StackPanel Orientation="Horizontal">
-              <Border Width="28" Height="28" CornerRadius="9" Background="#FFE9D8" Margin="0,0,9,0"><TextBlock Text="&#xE77F;" FontFamily="Segoe MDL2 Assets" Foreground="#F77C24" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <Border Width="28" Height="28" CornerRadius="9" Background="#E5F1FF" Margin="0,0,9,0"><TextBlock Text="&#xE77F;" FontFamily="Segoe MDL2 Assets" Foreground="#3388ED" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
               <TextBlock Text="Clipboard History"/>
             </StackPanel>
           </Button>
           <Button x:Name="InsightsNavButton" Tag="Insights" Click="NavButton_Click"
                   Style="{StaticResource NavButtonStyle}" Margin="0,0,0,5">
             <StackPanel Orientation="Horizontal">
-              <Border Width="28" Height="28" CornerRadius="9" Background="#DDF7F4" Margin="0,0,9,0"><TextBlock Text="&#xE9D2;" FontFamily="Segoe MDL2 Assets" Foreground="#0FAEAF" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <Border Width="28" Height="28" CornerRadius="9" Background="#DDF5FA" Margin="0,0,9,0"><TextBlock Text="&#xE9D2;" FontFamily="Segoe MDL2 Assets" Foreground="#17A9C7" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
               <TextBlock Text="Insights"/>
             </StackPanel>
           </Button>
           <Button x:Name="SettingsNavButton" Tag="Settings" Click="NavButton_Click"
                   Style="{StaticResource NavButtonStyle}">
             <StackPanel Orientation="Horizontal">
-              <Border Width="28" Height="28" CornerRadius="9" Background="#E9EEF4" Margin="0,0,9,0"><TextBlock Text="&#xE713;" FontFamily="Segoe MDL2 Assets" Foreground="#748296" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <Border Width="28" Height="28" CornerRadius="9" Background="#E9F0F8" Margin="0,0,9,0"><TextBlock Text="&#xE713;" FontFamily="Segoe MDL2 Assets" Foreground="#6F86A6" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
               <TextBlock Text="Settings"/>
             </StackPanel>
           </Button>
@@ -503,44 +503,44 @@
                       </Grid>
                       <DataTemplate.Triggers>
                         <DataTrigger Binding="{Binding ActivityLabel}" Value="Web">
-                          <Setter TargetName="CategoryChip" Property="Background" Value="#E8F2FF"/>
-                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#176EC7"/>
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#E8F3FF"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#2777C9"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding ActivityLabel}" Value="Email">
-                          <Setter TargetName="CategoryChip" Property="Background" Value="#FFF2E3"/>
-                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#C96F13"/>
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#ECF4FF"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#347ED1"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding ActivityLabel}" Value="Chat">
-                          <Setter TargetName="CategoryChip" Property="Background" Value="#F4EAFE"/>
-                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#8B4BC7"/>
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#EEF0FF"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#6473D4"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding ActivityLabel}" Value="File">
-                          <Setter TargetName="CategoryChip" Property="Background" Value="#FFF5D9"/>
-                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#A67E11"/>
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#E9F5FF"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#3188C8"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding ActivityLabel}" Value="Spreadsheet">
-                          <Setter TargetName="CategoryChip" Property="Background" Value="#E7F8ED"/>
-                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#168A48"/>
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#E6F7FB"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#178DA9"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding ActivityLabel}" Value="Document">
                           <Setter TargetName="CategoryChip" Property="Background" Value="#E8F2FF"/>
                           <Setter TargetName="CategoryChipText" Property="Foreground" Value="#176EC7"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding ActivityLabel}" Value="Presentation">
-                          <Setter TargetName="CategoryChip" Property="Background" Value="#FFF0E8"/>
-                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#D96A28"/>
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#EDF2FF"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#5877CC"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding ActivityLabel}" Value="Development">
-                          <Setter TargetName="CategoryChip" Property="Background" Value="#FFF0E8"/>
-                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#E36F20"/>
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#ECEFFF"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#5A6FD4"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding ActivityLabel}" Value="Notes">
-                          <Setter TargetName="CategoryChip" Property="Background" Value="#F2EBFF"/>
-                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#7352B5"/>
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#EEF2FF"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#6277C7"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding ActivityLabel}" Value="Clipboard">
-                          <Setter TargetName="CategoryChip" Property="Background" Value="#FFF7ED"/>
-                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#D9772A"/>
+                          <Setter TargetName="CategoryChip" Property="Background" Value="#ECF4FF"/>
+                          <Setter TargetName="CategoryChipText" Property="Foreground" Value="#3D80CC"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding ActivityLabel}" Value="System">
                           <Setter TargetName="CategoryChip" Property="Background" Value="#EEF1F5"/>
@@ -578,7 +578,7 @@
                            Foreground="#66778F" FontSize="11" FontWeight="Medium" VerticalAlignment="Center"/>
               </Grid>
 
-              <Border Background="#FFFFFF" BorderBrush="#DDE6F0" BorderThickness="1" CornerRadius="19" Padding="14">
+              <Border Background="#FFFFFF" BorderBrush="#DDE6F0" BorderThickness="1" CornerRadius="19" Padding="14" Effect="{StaticResource SoftShadow}">
                 <StackPanel>
                   <Grid Margin="1,0,1,12">
                     <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
@@ -592,7 +592,7 @@
                   </Grid>
 
                   <UniformGrid Columns="2">
-                    <Border Style="{StaticResource MetricCardStyle}" Background="#F0FBFD" BorderBrush="#D7EEF2">
+                    <Border Style="{StaticResource MetricCardStyle}" Background="#F0F7FF" BorderBrush="#DAE9FA">
                       <Grid>
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                         <local:CategoryIcon Category="Productivity" Width="34" Height="34" Margin="0,0,9,0"/>
@@ -603,7 +603,7 @@
                       </Grid>
                     </Border>
 
-                    <Border Style="{StaticResource MetricCardStyle}" Background="#F2F7FF" BorderBrush="#DDE8F8">
+                    <Border Style="{StaticResource MetricCardStyle}" Background="#EEF5FF" BorderBrush="#D9E6F8">
                       <Grid>
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                         <local:CategoryIcon Category="All" Width="34" Height="34" Margin="0,0,9,0"/>
@@ -614,7 +614,7 @@
                       </Grid>
                     </Border>
 
-                    <Border Style="{StaticResource MetricCardStyle}" Background="#F1FBFA" BorderBrush="#D9EFEC">
+                    <Border Style="{StaticResource MetricCardStyle}" Background="#EFF9FC" BorderBrush="#D9EEF3">
                       <Grid>
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                         <Border Style="{StaticResource MetricIconTileStyle}" Background="#DDF6F2">
@@ -629,7 +629,7 @@
                       </Grid>
                     </Border>
 
-                    <Border Style="{StaticResource MetricCardStyle}" Background="#FFF8F2" BorderBrush="#F3E5D8">
+                    <Border Style="{StaticResource MetricCardStyle}" Background="#F2F7FF" BorderBrush="#DFE9F7">
                       <Grid>
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                         <local:CategoryIcon Category="Clipboard" Width="34" Height="34" Margin="0,0,9,0"/>
@@ -651,7 +651,7 @@
                   <RowDefinition x:Name="DetailsRow" Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Border x:Name="DetailsPanel" Grid.Row="1" Background="#FFFFFF" BorderBrush="#DDE6F0"
-                        BorderThickness="1" CornerRadius="19" Padding="15">
+                        BorderThickness="1" CornerRadius="19" Padding="15" Effect="{StaticResource SoftShadow}">
                   <StackPanel>
                     <Grid Margin="0,0,0,14">
                       <Grid.ColumnDefinitions><ColumnDefinition Width="50"/><ColumnDefinition Width="*"/><ColumnDefinition Width="34"/><ColumnDefinition Width="28"/></Grid.ColumnDefinitions>
@@ -744,7 +744,7 @@
             </Border>
             <Border Background="#FFFFFF" BorderBrush="#DCE5EF" BorderThickness="1" CornerRadius="18" Padding="16" Margin="0,0,12,0">
               <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                <Border Width="38" Height="38" CornerRadius="11" Background="#F3EAFE"><TextBlock Text="&#xE735;" FontFamily="Segoe MDL2 Assets" Foreground="#8B4BC7" FontSize="17" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <Border Width="38" Height="38" CornerRadius="11" Background="#E8F0FF"><TextBlock Text="&#xE735;" FontFamily="Segoe MDL2 Assets" Foreground="#4E7FD2" FontSize="17" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center"><TextBlock x:Name="InsightsFavoritesText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Favorites" Foreground="#66778F" FontSize="12"/></StackPanel>
               </Grid>
             </Border>
@@ -925,8 +925,8 @@
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                   <Border Background="#F0F5FC" CornerRadius="12" Padding="9,5" Margin="0,0,8,0"><TextBlock Text="Time-aware" Foreground="#5D6C82" FontSize="11" FontWeight="SemiBold"/></Border>
                   <Border Background="#EEF4FF" CornerRadius="12" Padding="9,5" Margin="0,0,8,0"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="All" Width="18" Height="18" Margin="0,0,5,0"/><TextBlock Text="App-aware" Foreground="#5D6C82" FontSize="11" FontWeight="SemiBold" VerticalAlignment="Center"/></StackPanel></Border>
-                  <Border Background="#FFF8DE" CornerRadius="12" Padding="9,5" Margin="0,0,8,0"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Files" Width="18" Height="18" Margin="0,0,5,0"/><TextBlock Text="File-aware" Foreground="#5D6C82" FontSize="11" FontWeight="SemiBold" VerticalAlignment="Center"/></StackPanel></Border>
-                  <Border Background="#EAF7F1" CornerRadius="12" Padding="9,5"><TextBlock Text="Local only" Foreground="#3B755E" FontSize="11" FontWeight="SemiBold"/></Border>
+                  <Border Background="#EAF4FF" CornerRadius="12" Padding="9,5" Margin="0,0,8,0"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Files" Width="18" Height="18" Margin="0,0,5,0"/><TextBlock Text="File-aware" Foreground="#5D6C82" FontSize="11" FontWeight="SemiBold" VerticalAlignment="Center"/></StackPanel></Border>
+                  <Border Background="#E8F5FF" CornerRadius="12" Padding="9,5"><TextBlock Text="Local only" Foreground="#3B78B8" FontSize="11" FontWeight="SemiBold"/></Border>
                 </StackPanel>
               </StackPanel>
             </Grid>
@@ -1008,8 +1008,8 @@
                   CornerRadius="16" Padding="22" Margin="0,0,0,14">
             <StackPanel>
               <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                <Border Width="36" Height="36" Background="#EAF7F0" CornerRadius="10" Margin="0,0,10,0">
-                  <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" Foreground="#218A57"
+                <Border Width="36" Height="36" Background="#E5F1FF" CornerRadius="10" Margin="0,0,10,0">
+                  <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" Foreground="#347FD1"
                              FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
                 <StackPanel VerticalAlignment="Center">
@@ -1021,9 +1021,9 @@
               <TextBlock Text="Memory Trail is designed as a private, locally run application. Activity used by the timeline is sourced, processed, and stored on this computer."
                          Foreground="#40506A" TextWrapping="Wrap" LineHeight="20" Margin="0,0,0,14"/>
 
-              <Border Background="#F6F9FC" BorderBrush="#E1E8F0" BorderThickness="1" CornerRadius="12" Padding="12" Margin="0,0,0,8">
+              <Border Background="#F8FBFF" BorderBrush="#DDE7F2" BorderThickness="1" CornerRadius="12" Padding="12" Margin="0,0,0,8">
                 <StackPanel Orientation="Horizontal">
-                  <TextBlock Text="⌂" FontSize="17" Foreground="#1E78F0" Width="28"/>
+                  <TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="#347FD1" Width="28"/>
                   <StackPanel>
                     <TextBlock Text="Local data only" Foreground="#1A2438" FontWeight="SemiBold"/>
                     <TextBlock Text="Captured timeline data remains stored locally on this PC." Foreground="#66778F" FontSize="12" Margin="0,3,0,0"/>
@@ -1033,7 +1033,7 @@
 
               <Border Background="#F6F9FC" BorderBrush="#E1E8F0" BorderThickness="1" CornerRadius="12" Padding="12" Margin="0,0,0,8">
                 <StackPanel Orientation="Horizontal">
-                  <TextBlock Text="⊘" FontSize="17" Foreground="#1E78F0" Width="28"/>
+                  <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="#4F78D7" Width="28"/>
                   <StackPanel>
                     <TextBlock Text="No external connectors" Foreground="#1A2438" FontWeight="SemiBold"/>
                     <TextBlock Text="The timeline does not require external connectors or cloud services to capture, search, or display activity." Foreground="#66778F" FontSize="12" Margin="0,3,0,0" TextWrapping="Wrap"/>
@@ -1043,7 +1043,7 @@
 
               <Border Background="#F6F9FC" BorderBrush="#E1E8F0" BorderThickness="1" CornerRadius="12" Padding="12">
                 <StackPanel Orientation="Horizontal">
-                  <TextBlock Text="✓" FontSize="17" Foreground="#1E78F0" Width="28"/>
+                  <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="#2F8BCB" Width="28"/>
                   <StackPanel>
                     <TextBlock Text="Source available for verification" Foreground="#1A2438" FontWeight="SemiBold"/>
                     <TextBlock Text="The source code is available for review so you can inspect how Memory Trail captures, stores, and protects data." Foreground="#66778F" FontSize="12" Margin="0,3,0,0" TextWrapping="Wrap"/>

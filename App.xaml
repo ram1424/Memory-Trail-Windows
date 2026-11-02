@@ -118,8 +118,8 @@
     <Style x:Key="ChipButtonStyle" TargetType="Button" BasedOn="{StaticResource ModernButtonStyle}">
       <Setter Property="Padding" Value="12,7"/>
       <Setter Property="FontSize" Value="12"/>
-      <Setter Property="Background" Value="#F6F9FC"/>
-      <Setter Property="BorderBrush" Value="#D8E1EC"/>
+      <Setter Property="Background" Value="#F7FAFE"/>
+      <Setter Property="BorderBrush" Value="#D9E5F2"/>
       <Setter Property="Foreground" Value="#40506A"/>
     </Style>
 
@@ -134,13 +134,13 @@
     <Style TargetType="Button" BasedOn="{StaticResource ModernButtonStyle}"/>
 
     <Style TargetType="TextBox">
-      <Setter Property="Background" Value="#FBFCFF"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
       <Setter Property="Foreground" Value="#1A2438"/>
-      <Setter Property="BorderBrush" Value="#D8E1EC"/>
+      <Setter Property="BorderBrush" Value="#D9E5F2"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="Padding" Value="12,9"/>
       <Setter Property="FontSize" Value="14"/>
-      <Setter Property="CaretBrush" Value="#1680FF"/>
+      <Setter Property="CaretBrush" Value="#1677FF"/>
     </Style>
 
     <Style TargetType="ComboBox">
