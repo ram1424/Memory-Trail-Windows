@@ -26,29 +26,29 @@ def main() -> None:
     if not master_path.exists():
         raise RuntimeError(f"Approved master icon is missing: {master_path}")
 
-    with Image.open(master_path) as source:
-        image = source.convert("RGBA")
+    # Keep every PNG branding surface byte-for-byte on the approved artwork.
+    shutil.copyfile(master_path, assets / "MemoryTrailIcon.png")
+    shutil.copyfile(master_path, assets / "OnboardingIcon.png")
 
-        if image.width != image.height:
+    with Image.open(master_path) as source:
+        if source.width != source.height:
             raise RuntimeError("Memory Trail master icon must be square.")
 
-        if image.width < 256:
+        if source.width < 256:
             raise RuntimeError(
-                f"Memory Trail master icon is too small ({image.width}x{image.height}); "
+                f"Memory Trail master icon is too small ({source.width}x{source.height}); "
                 "the approved source must be at least 256x256."
             )
 
-        # Keep every PNG branding surface on the exact approved artwork.
-        shutil.copyfile(master_path, assets / "MemoryTrailIcon.png")
-        shutil.copyfile(master_path, assets / "OnboardingIcon.png")
+        image = source.convert("RGBA")
+        source_size = (source.width, source.height)
 
-        # Generate a standards-compliant multi-resolution Windows ICO from the same source.
-        image.save(
-            assets / "MemoryTrailApp.ico",
-            "ICO",
-            sizes=ICO_SIZES,
-            bitmap_format="png",
-        )
+    image.save(
+        assets / "MemoryTrailApp.ico",
+        "ICO",
+        sizes=ICO_SIZES,
+        bitmap_format="png",
+    )
 
     with Image.open(assets / "MemoryTrailApp.ico") as icon:
         available = set(icon.ico.sizes())
@@ -59,7 +59,7 @@ def main() -> None:
 
     print(
         "Generated Memory Trail Windows branding directly from "
-        f"{master_path.name}; source={image.width}x{image.height}; "
+        f"{master_path.name}; source={source_size[0]}x{source_size[1]}; "
         f"ICO sizes={sorted(available)}"
     )
 
