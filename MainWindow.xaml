@@ -14,12 +14,33 @@
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
     <Style x:Key="MetricCardStyle" TargetType="Border">
-      <Setter Property="Background" Value="#F6F9FC"/>
-      <Setter Property="BorderBrush" Value="#D8E1EC"/>
+      <Setter Property="Background" Value="#F8FAFD"/>
+      <Setter Property="BorderBrush" Value="#DEE6EF"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="CornerRadius" Value="14"/>
-      <Setter Property="Padding" Value="14"/>
+      <Setter Property="Padding" Value="11"/>
       <Setter Property="Margin" Value="0,0,8,8"/>
+      <Setter Property="MinHeight" Value="72"/>
+    </Style>
+
+    <Style x:Key="MetricIconTileStyle" TargetType="Border">
+      <Setter Property="Width" Value="31"/>
+      <Setter Property="Height" Value="31"/>
+      <Setter Property="CornerRadius" Value="9"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="Margin" Value="0,0,9,0"/>
+    </Style>
+
+    <Style x:Key="SummaryMetricValueStyle" TargetType="TextBlock">
+      <Setter Property="FontSize" Value="20"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="Foreground" Value="#1A2438"/>
+    </Style>
+
+    <Style x:Key="SummaryMetricLabelStyle" TargetType="TextBlock">
+      <Setter Property="FontSize" Value="9.5"/>
+      <Setter Property="Foreground" Value="#66778F"/>
+      <Setter Property="Margin" Value="0,2,0,0"/>
     </Style>
 
     <Style x:Key="FilterNavStyle" TargetType="Button" BasedOn="{StaticResource NavButtonStyle}">
@@ -236,11 +257,11 @@
         </ScrollViewer>
 
         <Button x:Name="PauseButton" Grid.Row="3" Click="PauseButton_Click"
-                Background="#F6F9FC" BorderBrush="#D8E1EC" BorderThickness="1"
-                Padding="12" HorizontalContentAlignment="Stretch">
+                Background="#F9FBFE" BorderBrush="#D7E1EC" BorderThickness="1"
+                Padding="11,9" HorizontalContentAlignment="Stretch">
           <Grid>
             <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-            <Ellipse x:Name="StatusDot" Width="10" Height="10" Fill="#22C55E" Margin="0,0,9,0" VerticalAlignment="Center"/>
+            <Ellipse x:Name="StatusDot" Width="8" Height="8" Fill="#22C55E" Margin="0,0,9,0" VerticalAlignment="Center"/>
             <StackPanel Grid.Column="1">
               <TextBlock x:Name="StatusText" Text="Capturing" FontSize="11" FontWeight="SemiBold" Foreground="#1A2438"/>
               <TextBlock x:Name="CaptureSubtext" Text="Your activity is stored locally" FontSize="10" Foreground="#66778F" Margin="0,1,0,0"/>
@@ -422,10 +443,14 @@
                         <Border Grid.Column="4" Background="#EEF3F9" CornerRadius="14" Padding="12,5" VerticalAlignment="Center">
                           <TextBlock Text="{Binding ActivityLabel}" Foreground="#40506A" FontSize="10" FontWeight="SemiBold"/>
                         </Border>
-                        <Button Grid.Column="5" Content="☆" FontSize="16" Width="30" Height="30" Padding="0"
-                                Background="Transparent" BorderThickness="0" Tag="{Binding}" Click="Favorite_Click"/>
-                        <Button Grid.Column="6" Content="•••" Width="28" Height="30" Padding="0"
-                                Background="Transparent" BorderThickness="0" Tag="{Binding}" Click="MoreRow_Click"/>
+                        <Button Grid.Column="5" Width="30" Height="30" Padding="0"
+                                Style="{StaticResource IconButtonStyle}" Tag="{Binding}" Click="Favorite_Click" ToolTip="Favorite">
+                          <TextBlock Text="&#xE735;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#7A8798"/>
+                        </Button>
+                        <Button Grid.Column="6" Width="28" Height="30" Padding="0"
+                                Style="{StaticResource IconButtonStyle}" Tag="{Binding}" Click="MoreRow_Click" ToolTip="More">
+                          <TextBlock Text="&#xE712;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#7A8798"/>
+                        </Button>
                       </Grid>
                     </DataTemplate>
                   </ListView.ItemTemplate>
@@ -441,30 +466,86 @@
         <Border x:Name="RightSidebar" Grid.Column="2" Background="#EAF1FB">
           <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel Margin="12">
-              <Grid Margin="4,0,4,12">
+              <Grid Margin="4,1,4,11">
                 <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                 <Ellipse x:Name="RightStatusDot" Width="10" Height="10" Fill="#22C55E" VerticalAlignment="Center" Margin="0,0,9,0"/>
-                <TextBlock x:Name="RightStatusText" Grid.Column="1" Text="Capturing" FontSize="11" FontWeight="Medium"
+                <TextBlock x:Name="RightStatusText" Grid.Column="1" Text="Capturing" FontSize="10.5" FontWeight="Medium"
                            Foreground="#66778F" VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="2" Text="&#xE787;" FontFamily="Segoe MDL2 Assets" Foreground="#66778F"
-                           FontSize="12" VerticalAlignment="Center" Margin="0,0,7,0"/>
+                           FontSize="11" VerticalAlignment="Center" Margin="0,0,6,0"/>
                 <TextBlock x:Name="RightDateText" Grid.Column="3" Text="{Binding Source={x:Static sys:DateTime.Today}, StringFormat={}{0:ddd, MMM d, yyyy}}"
                            Foreground="#66778F" FontSize="11" FontWeight="Medium" VerticalAlignment="Center"/>
               </Grid>
 
-              <Border Background="#FBFCFF" BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="15" Padding="13">
+              <Border Background="#FCFDFE" BorderBrush="#DEE6EF" BorderThickness="1" CornerRadius="16" Padding="13">
                 <StackPanel>
-                  <Grid Margin="0,0,0,13">
+                  <Grid Margin="1,0,1,12">
                     <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                    <TextBlock Text="&#xE9D2;" FontFamily="Segoe MDL2 Assets" FontSize="17" Foreground="#1A2438" Margin="0,0,9,0"/>
-                    <TextBlock Grid.Column="1" Text="Today Summary" FontSize="18" FontWeight="Bold" Foreground="#1A2438"/>
+                    <Border Width="30" Height="30" CornerRadius="9" Background="#EEF4FA" Margin="0,0,9,0">
+                      <TextBlock Text="&#xE9D2;" FontFamily="Segoe MDL2 Assets" FontSize="15" Foreground="#2A3445"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Grid.Column="1" Text="Today Summary" FontSize="16.5" FontWeight="Bold" Foreground="#1A2438"
+                               VerticalAlignment="Center"/>
                     <Button x:Name="ShowDetailsButton" Grid.Column="2" Visibility="Collapsed"/>
                   </Grid>
+
                   <UniformGrid Columns="2">
-                    <Border Style="{StaticResource MetricCardStyle}"><StackPanel><TextBlock x:Name="TotalActivitiesText" Text="0" FontSize="20" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Total Activities" FontSize="10" Foreground="#66778F"/></StackPanel></Border>
-                    <Border Style="{StaticResource MetricCardStyle}"><StackPanel><TextBlock x:Name="AppsUsedText" Text="0" FontSize="22" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Apps Used" FontSize="10" Foreground="#66778F"/></StackPanel></Border>
-                    <Border Style="{StaticResource MetricCardStyle}"><StackPanel><TextBlock x:Name="ActiveTimeText" Text="0m" FontSize="22" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Active Time" FontSize="10" Foreground="#66778F"/></StackPanel></Border>
-                    <Border Style="{StaticResource MetricCardStyle}"><StackPanel><TextBlock x:Name="ClipboardItemsText" Text="0" FontSize="22" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Clipboard Items" FontSize="10" Foreground="#66778F"/></StackPanel></Border>
+                    <Border Style="{StaticResource MetricCardStyle}" Background="#F0FBFD" BorderBrush="#D7EEF2">
+                      <Grid>
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                        <Border Style="{StaticResource MetricIconTileStyle}" Background="#D9F6FA">
+                          <TextBlock Text="&#xE9D2;" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="#14B8C8"
+                                     HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                          <TextBlock x:Name="TotalActivitiesText" Text="0" Style="{StaticResource SummaryMetricValueStyle}"/>
+                          <TextBlock Text="Total Activities" Style="{StaticResource SummaryMetricLabelStyle}"/>
+                        </StackPanel>
+                      </Grid>
+                    </Border>
+
+                    <Border Style="{StaticResource MetricCardStyle}" Background="#F2F7FF" BorderBrush="#DDE8F8">
+                      <Grid>
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                        <Border Style="{StaticResource MetricIconTileStyle}" Background="#DFECFF">
+                          <TextBlock Text="&#xE80A;" FontFamily="Segoe MDL2 Assets" FontSize="15" Foreground="#1680FF"
+                                     HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                          <TextBlock x:Name="AppsUsedText" Text="0" Style="{StaticResource SummaryMetricValueStyle}"/>
+                          <TextBlock Text="Apps Used" Style="{StaticResource SummaryMetricLabelStyle}"/>
+                        </StackPanel>
+                      </Grid>
+                    </Border>
+
+                    <Border Style="{StaticResource MetricCardStyle}" Background="#F1FBFA" BorderBrush="#D9EFEC">
+                      <Grid>
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                        <Border Style="{StaticResource MetricIconTileStyle}" Background="#DDF6F2">
+                          <TextBlock Text="&#xE823;" FontFamily="Segoe MDL2 Assets" FontSize="15" Foreground="#14A9A4"
+                                     HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                          <TextBlock x:Name="ActiveTimeText" Text="0m" Style="{StaticResource SummaryMetricValueStyle}"/>
+                          <TextBlock Text="Active Time" Style="{StaticResource SummaryMetricLabelStyle}"/>
+                        </StackPanel>
+                      </Grid>
+                    </Border>
+
+                    <Border Style="{StaticResource MetricCardStyle}" Background="#FFF8F2" BorderBrush="#F3E5D8">
+                      <Grid>
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                        <Border Style="{StaticResource MetricIconTileStyle}" Background="#FFE9D7">
+                          <TextBlock Text="&#xE77F;" FontFamily="Segoe MDL2 Assets" FontSize="15" Foreground="#FF8A34"
+                                     HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                          <TextBlock x:Name="ClipboardItemsText" Text="0" Style="{StaticResource SummaryMetricValueStyle}"/>
+                          <TextBlock Text="Clipboard Items" Style="{StaticResource SummaryMetricLabelStyle}" TextTrimming="CharacterEllipsis"/>
+                        </StackPanel>
+                      </Grid>
+                    </Border>
                   </UniformGrid>
                 </StackPanel>
               </Border>
@@ -477,7 +558,7 @@
                   <RowDefinition x:Name="DetailsRow" Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Border x:Name="DetailsPanel" Grid.Row="1" Background="#FBFCFF" BorderBrush="#E1E7EF"
-                        BorderThickness="1" CornerRadius="19" Padding="16">
+                        BorderThickness="1" CornerRadius="16" Padding="14">
                   <StackPanel>
                     <Grid Margin="0,0,0,14">
                       <Grid.ColumnDefinitions><ColumnDefinition Width="50"/><ColumnDefinition Width="*"/><ColumnDefinition Width="34"/><ColumnDefinition Width="28"/></Grid.ColumnDefinitions>
@@ -494,10 +575,14 @@
                           <TextBlock Text="{Binding SelectedItem.CreatedAt, ElementName=TimelineList, StringFormat={}{0:h:mm tt}}" FontSize="10" Foreground="#66778F"/>
                         </StackPanel>
                       </StackPanel>
-                      <Button Grid.Column="2" Content="☆" Width="30" Height="30" Padding="0"
-                              Background="Transparent" BorderThickness="0" Click="FavoriteSelected_Click"/>
-                      <Button Grid.Column="3" Content="•••" Width="28" Height="30" Padding="0"
-                              Background="Transparent" BorderThickness="0"/>
+                      <Button Grid.Column="2" Width="30" Height="30" Padding="0"
+                              Style="{StaticResource IconButtonStyle}" Click="FavoriteSelected_Click" ToolTip="Favorite">
+                        <TextBlock Text="&#xE735;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#7A8798"/>
+                      </Button>
+                      <Button Grid.Column="3" Width="28" Height="30" Padding="0"
+                              Style="{StaticResource IconButtonStyle}" ToolTip="More">
+                        <TextBlock Text="&#xE712;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#7A8798"/>
+                      </Button>
                     </Grid>
 
                     <Border Height="1" Background="#D8E1EC" Margin="0,0,0,12"/>
@@ -521,8 +606,18 @@
 
                     <Border Height="1" Background="#D8E1EC" Margin="0,4,0,12"/>
 
-                    <Button Content="Open Source" Height="40" Style="{StaticResource PrimaryButtonStyle}" Click="OpenSelected_Click"/>
-                    <Button Content="Copy Subject" Height="38" Margin="0,8,0,0" Click="CopySelectedTitle_Click"/>
+                    <Button Height="40" Style="{StaticResource PrimaryButtonStyle}" Click="OpenSelected_Click">
+                      <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="&#xE8A7;" FontFamily="Segoe MDL2 Assets" FontSize="13" Margin="0,0,7,0"/>
+                        <TextBlock Text="Open Source"/>
+                      </StackPanel>
+                    </Button>
+                    <Button Height="36" Margin="0,8,0,0" Click="CopySelectedTitle_Click">
+                      <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="&#xE8C8;" FontFamily="Segoe MDL2 Assets" FontSize="13" Margin="0,0,7,0"/>
+                        <TextBlock Text="Copy Subject"/>
+                      </StackPanel>
+                    </Button>
                   </StackPanel>
                 </Border>
               </Grid>
