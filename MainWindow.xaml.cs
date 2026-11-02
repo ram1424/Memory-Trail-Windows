@@ -422,7 +422,7 @@ public partial class MainWindow : Window
         var delete = new MenuItem { Header = "Delete" };
         delete.Click += (_, _) =>
         {
-            App.Store.Remove(item);
+            App.Store.Delete(item);
             _view.Refresh();
             UpdateLiveActivity();
             UpdateTodaySummary();
