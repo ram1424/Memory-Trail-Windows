@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import shutil
 import sys
 from PIL import Image
 
@@ -31,22 +32,17 @@ def main() -> None:
         if image.width != image.height:
             raise RuntimeError("Memory Trail master icon must be square.")
 
-        if image.width < 512:
+        if image.width < 256:
             raise RuntimeError(
                 f"Memory Trail master icon is too small ({image.width}x{image.height}); "
-                "use the approved high-resolution master."
+                "the approved source must be at least 256x256."
             )
 
-        image.resize((256, 256), Image.Resampling.LANCZOS).save(
-            assets / "MemoryTrailIcon.png",
-            "PNG",
-            optimize=True,
-        )
-        image.resize((512, 512), Image.Resampling.LANCZOS).save(
-            assets / "OnboardingIcon.png",
-            "PNG",
-            optimize=True,
-        )
+        # Keep every PNG branding surface on the exact approved artwork.
+        shutil.copyfile(master_path, assets / "MemoryTrailIcon.png")
+        shutil.copyfile(master_path, assets / "OnboardingIcon.png")
+
+        # Generate a standards-compliant multi-resolution Windows ICO from the same source.
         image.save(
             assets / "MemoryTrailApp.ico",
             "ICO",
@@ -63,7 +59,8 @@ def main() -> None:
 
     print(
         "Generated Memory Trail Windows branding directly from "
-        f"{master_path.name}; ICO sizes={sorted(available)}"
+        f"{master_path.name}; source={image.width}x{image.height}; "
+        f"ICO sizes={sorted(available)}"
     )
 
 
