@@ -2,10 +2,10 @@
 
 <defs>
   <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="#F8FAFE"/><stop offset="1" stop-color="#DFE9F7"/>
+    <stop offset="0" stop-color="#E3EAF3"/><stop offset="1" stop-color="#CCD9E8"/>
   </linearGradient>
   <linearGradient id="sidebar" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#F1F6FD"/><stop offset="1" stop-color="#DCE7F6"/>
+    <stop offset="0" stop-color="#DFE7F1"/><stop offset="1" stop-color="#C8D6E7"/>
   </linearGradient>
   <linearGradient id="appIconGrad" x1="0" y1="0" x2="1" y2="1">
     <stop offset="0" stop-color="#0EC8FF"/><stop offset=".34" stop-color="#2148E6"/><stop offset=".66" stop-color="#8E3EF2"/><stop offset="1" stop-color="#FF7A34"/>
@@ -20,188 +20,610 @@
     <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#2D4665" flood-opacity=".20"/>
   </filter>
 </defs>
-<rect x="0" y="0" width="1440" height="900" rx="22" fill="#F8FAFD"/>
-<rect x="0" y="0" width="1440" height="42" rx="22" fill="#F5F7FA"/>
-<rect x="0" y="22" width="1440" height="20" fill="#F5F7FA"/>
+<rect x="0" y="0" width="1440" height="900" rx="22" fill="#DCE6F2"/>
+<rect x="0" y="0" width="1440" height="42" rx="22" fill="#D5DFEA"/>
+<rect x="0" y="22" width="1440" height="20" fill="#D5DFEA"/>
 <text x="18" y="27" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="500" fill="#67768A" text-anchor="start">Memory Trail 1.0 (Build 1)</text>
 <rect x="1322" y="0" width="38" height="42" fill="transparent"/><path d="M1335 21 h12" stroke="#68778A" stroke-width="1.4"/>
 <rect x="1360" y="0" width="38" height="42" fill="transparent"/><rect x="1373" y="15" width="11" height="11" fill="none" stroke="#68778A" stroke-width="1.2"/>
 <rect x="1398" y="0" width="42" height="42" fill="transparent"/><path d="M1412 15 l12 12 M1424 15 l-12 12" stroke="#68778A" stroke-width="1.2"/><rect x="0" y="42" width="236" height="858" fill="url(#sidebar)"/><line x1="236" y1="42" x2="236" y2="900" stroke="#D2DDE9"/>
-<g filter="url(#shadowMd)">
-  <rect x="84" y="63" width="68" height="68" rx="17" fill="url(#appIconGrad)"/>
-  <path d="M95.56,112.64 C105.76,99.72 116.64,92.92 130.24,82.04
-           C135.68,77.96000000000001 140.44,78.64 143.16,82.72"
-        fill="none" stroke="#FFF6D5" stroke-width="3.74" stroke-linecap="round"/>
-  <path d="M100.32,110.6 C112.56,101.08000000000001 120.72,94.96 131.6,86.12"
-        fill="none" stroke="#FF7A38" stroke-width="2.176" stroke-linecap="round"/>
-  <rect x="96.24" y="73.88" width="21.08" height="23.12" rx="3.74" fill="#102E67" opacity=".84" stroke="#7AC9FF"/>
-  <path d="M100.32,79.32 h12.24 M100.32,84.08 h8.16 M100.32,88.84 h10.88" stroke="#9CE7FF" stroke-width="1.224" stroke-linecap="round"/>
-</g><text x="118" y="150" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#172238" text-anchor="middle">Memory Trail</text><rect x="76" y="161" width="84" height="24" rx="12" fill="#E9F7F1" stroke="#D2ECDD"/><circle cx="90" cy="173" r="4" fill="#20C56A"/><text x="99" y="177" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#34705A" text-anchor="start">Private • Local</text><rect x="10" y="183" width="216" height="40" rx="11" fill="#2F79F2"/><rect x="20" y="188" width="30" height="30" rx="9" fill="#FFFFFF33"/><text x="35" y="209" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">⌂</text><text x="60" y="209" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="start">Today</text><rect x="20" y="233" width="30" height="30" rx="9" fill="#E4ECFF"/><text x="35" y="254" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#5573ED" text-anchor="middle">⌕</text><text x="60" y="254" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#1A2438" text-anchor="start">Ask Memory Trail</text><rect x="20" y="278" width="30" height="30" rx="9" fill="#E8F2FF"/><text x="35" y="299" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#3B8EF0" text-anchor="middle">☆</text><text x="60" y="299" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#1A2438" text-anchor="start">Favorites</text><rect x="20" y="323" width="30" height="30" rx="9" fill="#E5F1FF"/><text x="35" y="344" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#3388ED" text-anchor="middle">▣</text><text x="60" y="344" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#1A2438" text-anchor="start">Clipboard History</text><rect x="20" y="368" width="30" height="30" rx="9" fill="#DDF5FA"/><text x="35" y="389" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#17A9C7" text-anchor="middle">▥</text><text x="60" y="389" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#1A2438" text-anchor="start">Insights</text><rect x="20" y="413" width="30" height="30" rx="9" fill="#E9F0F8"/><text x="35" y="434" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#6F86A6" text-anchor="middle">⚙</text><text x="60" y="434" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#1A2438" text-anchor="start">Settings</text><line x1="16" y1="463" x2="220" y2="463" stroke="#CFD9E6"/><text x="16" y="487" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="600" fill="#75859A" text-anchor="start">Filters</text><rect x="8" y="481" width="220" height="40" rx="12" fill="#CFE2FA"/><g filter="url(#shadowSm)"><rect x="16" y="484" width="33" height="33" rx="10" fill="#DCEAFF" stroke="#FFFFFF" stroke-width=".8"/><rect x="23" y="491" width="8" height="8" rx="2" fill="#176DFF"/><rect x="34" y="491" width="8" height="8" rx="2" fill="#176DFF"/><rect x="23" y="502" width="8" height="8" rx="2" fill="#176DFF"/><rect x="34" y="502" width="8" height="8" rx="2" fill="#176DFF"/></g><text x="58" y="506" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="700" fill="#1B2639" text-anchor="start">All Apps</text><rect x="178" y="487" width="42" height="26" rx="13" fill="#E8F1FF" stroke="#E1E8F1"/><text x="199" y="505" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">2,591</text><g filter="url(#shadowSm)"><rect x="16" y="526" width="33" height="33" rx="10" fill="#DCF6FB" stroke="#FFFFFF" stroke-width=".8"/><circle cx="32.5" cy="542.5" r="10" fill="none" stroke="#16B6D9" stroke-width="2"/>
+<image x="84" y="63" width="68" height="68" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAMAAABrrFhUAAADAFBMVEVcLGNf
+YuTZX1qcX+WhYhXZYJxg3vpunvKg2PmZn/X74GljWSDZYBLZZ96dUV3ikQab
+NF+nVZ8c2/vo2+30mpb61R7enetkMyhbLKZeTln7251lUJ8rTquLPt6YOBEo
+pPYvSSkjSF4EmfkkJ2Co+/yPNaEwatOnXvSthwd9ff+V4foQjvVWNMsabvot
+P/////+kpfwXXPVv+PwC/P2Hp/koK8UDlPbtcverVvFmm/UlES1cRvVmrPyl
+UO3/AP+r9PmNkPYxHaPGPSjUjlJ3n/e9Of/DPVwuy/t/Dv+sZLPwnfrQbvYJ
+Nrxa4vrhjffZkfbF+Ppc5vp/f3+tPbkAY7FxY7HE+PoBf/l/AH9/P79/v7+F
+h0i0tLTRcPoAAH8Af3/AP4IAAAADOK0EKI4FGiwFZ/EDNZQMGHAGV+8DJ3AE
+d/UESMwHJSwuOPYCRbT2+/oEVtIRJxYFhvkEJ08RSPQHGE0FlvpOOvMwKI2P
+RuwvNwwGOcssR/UKG4dNKYswNqoHK6htPO0DZtSxRtFvRvMFGRgsKhIrFWwu
+FjUtJitPR/ZORwn5l09NOAwuV/H4d3DQ+PwHpvkHNHP4iFEud/KOOIsyRQsv
+h/b0Zoz5hm2rSej7101vNowPNE/5p04xFVRyJjD6t00wJXavR4kqZ+9uVwVN
+FzJtRwdvRq3QVdHxaHNuOA5NN60HtvkvSM9MGk76tzVPNJOOKSyPR5L7x0zN
+6PkYNBRrKoqw+vvtWpMtGY4xlvaQNSvHS8z2d4zyeE/5pzVQVgnTVbKuOCwy
+NJTSVwjPV3H7506wRwv5lmssN0rnV6oXPfLOS7TydTdQJzSOZwPqaDRNKhXL
+SHQHVLVNlvaMRqv7+tAAAP+uO4f6tm0Aqv+Q+Pv6xzaNVgavVnL3iDb5qG4w
+V9WRRgcrNy4GRJP1twgJDDYAfv0tKKtOV+/wdwgtOM36+K8QNTDypwj6944G
+xvpNpvhqHC6xVeuxRS4uKUZQRrBMVdBQt/pOh/eyR3fKSS7SVjD4lzMEctgE
+S0aCAAABAHRSTlP8/Pz7/Pz7/Pv7/Pz8+/z8/Pz8+/z8+/z8/Pz8/Pz89fz8
+ovwJ/PoS/AOWb/wKBAEJSAYBmvwcC6N4/EUJWAFbZf38/I8D/KECBRBdA1mZ
+YZ6ZAgcDBGSnAgQE/QOoAgL9APz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8
+/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8
+/Pz8/Pz8/Pz8/Pz8+/z9/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz8/Pz7/PwB
+/PwD+/z8/Pz8/Pz8/Pz8BPz8/Pz8/Pz8/Pz8+/z8/Pz8/Pz8/Pz8rPPQ1wAA
+R3JJREFUeNrtnQl81NXV92cmEzJbMoTJQha2B4FQ8cVX+lTra237+LRv22d5
+32d79y3LDCEznckCEQYUGiWKQyBsCRhAQxKDAWmQJMWCJJE1WDEKIYAGWSNb
+FnkEFATec86997/MErKg7fMpRzJkI+b3veece+7yv1eT+mdumgcAHgB4AOAB
+gAcAHgB4AODfnB37Mwdw7M8awDFmf0YA/MTeR/1/2gCOhXL4Y38mOeDYd/D/
+eNANPgDwAMCfuE0D+zcE4NjUf3zsfz300P947LH/8VBwmxrwmUcV5vfho48+
+hQavk/8F3n9s8tRjf7IApj4G4qZ++x4x+dHJkydP+9MCMA20P8bfxyb9Mdj3
+BmPfl+2vpXfA4K8f/vCHP/kJOMFkjmHyo1P/RABMfWgqV46qDYbtCvvUzwz3
+sggwozFCMul9o2Tf/z6AmMwgTP6jA4CAhtf/+xBKV4se1od9LeyqwtqC2k3J
+FFAQA1DAX2DIfjAkABTyIB60F3PpQeSOUdsOYaWlpTdvlipsZQirrKS/tNyI
+BYOADCZN/iMBINd/6Mf/ubiYiVdIHgEWqDiE0sogtiS0wVc5CILwk0kQCpP+
+CABY4zP1knhJ+LJl+WS5wrJks0tGSjPJlmSSunnz4M+8eTPn9W3wnZcuEQT0
+A5A/9fHvGADKf+zHNpTP1XPty5j0QN12hWUqbGZom/cHP/u1ZIzDKwghzBj2
+xI8gEKZ+lwAg8T30X2zU+EL9W2+ptQcR3g/dQdWGtnmvIIOwsLAnwAse/c4A
+QPM/JssH8V+gekl8oPTMe0gfmGq1vfLKKxKCyd8JAPR+kv8pk//FF0y9suH7
+LX2gTR7Mnn3llRcRwY/+NnXSdwDgIZb6qPUVja9o+iDiZ/bt8b8emj377LMv
+vsicYNKxbxnAtKk883/KG5/kB6q/h/b7otsPQRg6QerTk79VAFDv/9imks8a
+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
+" preserveAspectRatio="xMidYMid meet" filter="url(#shadowMd)"/><text x="118" y="150" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#172238" text-anchor="middle">Memory Trail</text><rect x="76" y="161" width="84" height="24" rx="12" fill="#E9F7F1" stroke="#D2ECDD"/><circle cx="90" cy="173" r="4" fill="#20C56A"/><text x="99" y="177" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#34705A" text-anchor="start">Private • Local</text><rect x="10" y="183" width="216" height="40" rx="11" fill="#2F79F2"/><rect x="20" y="188" width="30" height="30" rx="9" fill="#FFFFFF33"/><text x="35" y="209" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">⌂</text><text x="60" y="209" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="start">Today</text><rect x="20" y="233" width="30" height="30" rx="9" fill="#E4ECFF"/><text x="35" y="254" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#5573ED" text-anchor="middle">⌕</text><text x="60" y="254" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#1A2438" text-anchor="start">Ask Memory Trail</text><rect x="20" y="278" width="30" height="30" rx="9" fill="#E8F2FF"/><text x="35" y="299" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#3B8EF0" text-anchor="middle">☆</text><text x="60" y="299" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#1A2438" text-anchor="start">Favorites</text><rect x="20" y="323" width="30" height="30" rx="9" fill="#E5F1FF"/><text x="35" y="344" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#3388ED" text-anchor="middle">▣</text><text x="60" y="344" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#1A2438" text-anchor="start">Clipboard History</text><rect x="20" y="368" width="30" height="30" rx="9" fill="#DDF5FA"/><text x="35" y="389" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#17A9C7" text-anchor="middle">▥</text><text x="60" y="389" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#1A2438" text-anchor="start">Insights</text><rect x="20" y="413" width="30" height="30" rx="9" fill="#E9F0F8"/><text x="35" y="434" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#6F86A6" text-anchor="middle">⚙</text><text x="60" y="434" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#1A2438" text-anchor="start">Settings</text><line x1="16" y1="463" x2="220" y2="463" stroke="#CFD9E6"/><text x="16" y="487" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="600" fill="#75859A" text-anchor="start">Filters</text><rect x="8" y="481" width="220" height="40" rx="12" fill="#CFE2FA"/><g filter="url(#shadowSm)"><rect x="16" y="484" width="33" height="33" rx="10" fill="#DCEAFF" stroke="#FFFFFF" stroke-width=".8"/><rect x="23" y="491" width="8" height="8" rx="2" fill="#176DFF"/><rect x="34" y="491" width="8" height="8" rx="2" fill="#176DFF"/><rect x="23" y="502" width="8" height="8" rx="2" fill="#176DFF"/><rect x="34" y="502" width="8" height="8" rx="2" fill="#176DFF"/></g><text x="58" y="506" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="700" fill="#1B2639" text-anchor="start">All Apps</text><rect x="178" y="487" width="42" height="26" rx="13" fill="#E8F1FF" stroke="#E1E8F1"/><text x="199" y="505" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">2,591</text><g filter="url(#shadowSm)"><rect x="16" y="526" width="33" height="33" rx="10" fill="#DCF6FB" stroke="#FFFFFF" stroke-width=".8"/><circle cx="32.5" cy="542.5" r="10" fill="none" stroke="#16B6D9" stroke-width="2"/>
       <path d="M23,542.5 H42 M32.5,532.5 C28,536 28,549 32.5,552.5 M32.5,532.5 C37,536 37,549 32.5,552.5" fill="none" stroke="#16B6D9" stroke-width="1.7" stroke-linecap="round"/></g><text x="58" y="548" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Web Browsers</text><rect x="178" y="529" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="547" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">855</text><g filter="url(#shadowSm)"><rect x="16" y="568" width="33" height="33" rx="10" fill="#E1F1FF" stroke="#FFFFFF" stroke-width=".8"/><rect x="22" y="577" width="21" height="16" rx="3" fill="none" stroke="#2497DE" stroke-width="2"/>
       <path d="M23,578 L32.5,586 L42,578" fill="none" stroke="#2497DE" stroke-width="2" stroke-linecap="round"/></g><text x="58" y="590" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Email</text><rect x="178" y="571" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="589" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">519</text><g filter="url(#shadowSm)"><rect x="16" y="610" width="33" height="33" rx="10" fill="#E8EAFF" stroke="#FFFFFF" stroke-width=".8"/><rect x="23" y="619" width="15" height="12" rx="4" fill="#6673E9"/><path d="M27,630 L25,635 L31,631" fill="#6673E9"/>
-      <rect x="31" y="617" width="12" height="10" rx="4" fill="#6673E9" opacity=".78"/></g><text x="58" y="632" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Chat &amp; Meetings</text><rect x="178" y="613" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="631" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">335</text><g filter="url(#shadowSm)"><rect x="16" y="652" width="33" height="33" rx="10" fill="#FFF0D3" stroke="#FFFFFF" stroke-width=".8"/><path d="M22,663 h8 l3,-3 h7 a3,3 0 0 1 3,3 v13 a3,3 0 0 1 -3,3 h-18 a3,3 0 0 1 -3,-3 v-10 a3,3 0 0 1 3,-3z" fill="#F0AD16"/></g><text x="58" y="674" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Files &amp; Documents</text><rect x="178" y="655" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="673" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">187</text><g filter="url(#shadowSm)"><rect x="16" y="694" width="33" height="33" rx="10" fill="#DDF5F8" stroke="#FFFFFF" stroke-width=".8"/><rect x="23" y="712" width="5" height="9" rx="2.5" fill="#17ADC1"/><rect x="30" y="707" width="5" height="14" rx="2.5" fill="#17ADC1"/><rect x="37" y="701" width="5" height="20" rx="2.5" fill="#17ADC1"/></g><text x="58" y="716" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Productivity</text><rect x="178" y="697" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="715" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">142</text><g filter="url(#shadowSm)"><rect x="16" y="736" width="33" height="33" rx="10" fill="#FFE8CF" stroke="#FFFFFF" stroke-width=".8"/><text x="32.5" y="758" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#EE8B21" text-anchor="middle">&lt;/&gt;</text></g><text x="58" y="758" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Development</text><rect x="178" y="739" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="757" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">379</text><g filter="url(#shadowSm)"><rect x="16" y="778" width="33" height="33" rx="10" fill="#E8EEF5" stroke="#FFFFFF" stroke-width=".8"/><circle cx="32.5" cy="794.5" r="7" fill="none" stroke="#7A8DA8" stroke-width="4"/><circle cx="32.5" cy="794.5" r="2.5" fill="#E8EEF5"/></g><text x="58" y="800" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">System</text><rect x="178" y="781" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="799" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">46</text><g filter="url(#shadowSm)"><rect x="16" y="820" width="33" height="33" rx="10" fill="#EDF1F6" stroke="#FFFFFF" stroke-width=".8"/><circle cx="26" cy="836.5" r="2.3" fill="#8493A7"/><circle cx="32.5" cy="836.5" r="2.3" fill="#8493A7"/><circle cx="39" cy="836.5" r="2.3" fill="#8493A7"/></g><text x="58" y="842" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Other</text><rect x="178" y="823" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="841" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">128</text><rect x="10" y="838" width="216" height="50" rx="14" fill="#F9FBFE" stroke="#D7E1EC"/><circle cx="25" cy="857" r="4.5" fill="#22C55E"/><text x="37" y="857" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#1A2438" text-anchor="start">Capturing</text><text x="37" y="874" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="400" fill="#66778F" text-anchor="start">Your activity is stored locally</text>
+      <rect x="31" y="617" width="12" height="10" rx="4" fill="#6673E9" opacity=".78"/></g><text x="58" y="632" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Chat &amp; Meetings</text><rect x="178" y="613" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="631" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">335</text><g filter="url(#shadowSm)"><rect x="16" y="652" width="33" height="33" rx="10" fill="#FFF0D3" stroke="#FFFFFF" stroke-width=".8"/><path d="M22,663 h8 l3,-3 h7 a3,3 0 0 1 3,3 v13 a3,3 0 0 1 -3,3 h-18 a3,3 0 0 1 -3,-3 v-10 a3,3 0 0 1 3,-3z" fill="#F0AD16"/></g><text x="58" y="674" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Files &amp; Documents</text><rect x="178" y="655" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="673" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">187</text><g filter="url(#shadowSm)"><rect x="16" y="694" width="33" height="33" rx="10" fill="#DDF5F8" stroke="#FFFFFF" stroke-width=".8"/><rect x="23" y="712" width="5" height="9" rx="2.5" fill="#17ADC1"/><rect x="30" y="707" width="5" height="14" rx="2.5" fill="#17ADC1"/><rect x="37" y="701" width="5" height="20" rx="2.5" fill="#17ADC1"/></g><text x="58" y="716" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Productivity</text><rect x="178" y="697" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="715" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">142</text><g filter="url(#shadowSm)"><rect x="16" y="736" width="33" height="33" rx="10" fill="#FFE8CF" stroke="#FFFFFF" stroke-width=".8"/><text x="32.5" y="758" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#EE8B21" text-anchor="middle">&lt;/&gt;</text></g><text x="58" y="758" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Development</text><rect x="178" y="739" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="757" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">379</text><g filter="url(#shadowSm)"><rect x="16" y="778" width="33" height="33" rx="10" fill="#E8EEF5" stroke="#FFFFFF" stroke-width=".8"/><circle cx="32.5" cy="794.5" r="7" fill="none" stroke="#7A8DA8" stroke-width="4"/><circle cx="32.5" cy="794.5" r="2.5" fill="#E8EEF5"/></g><text x="58" y="800" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">System</text><rect x="178" y="781" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="799" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">46</text><g filter="url(#shadowSm)"><rect x="16" y="820" width="33" height="33" rx="10" fill="#EDF1F6" stroke="#FFFFFF" stroke-width=".8"/><circle cx="26" cy="836.5" r="2.3" fill="#8493A7"/><circle cx="32.5" cy="836.5" r="2.3" fill="#8493A7"/><circle cx="39" cy="836.5" r="2.3" fill="#8493A7"/></g><text x="58" y="842" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Other</text><rect x="178" y="823" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="841" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">128</text><rect x="10" y="838" width="216" height="50" rx="14" fill="#E7EEF5" stroke="#D7E1EC"/><circle cx="25" cy="857" r="4.5" fill="#22C55E"/><text x="37" y="857" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#1A2438" text-anchor="start">Capturing</text><text x="37" y="874" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="400" fill="#66778F" text-anchor="start">Your activity is stored locally</text>
 <rect x="236" y="42" width="1204" height="858" fill="url(#bg)"/>
 
-<rect x="1165" y="62" width="118" height="44" rx="12" fill="#FFFFFF" stroke="#D7DEE8"/>
-<rect x="1180" y="76" width="15" height="13" rx="2.5" fill="none" stroke="#27313F" stroke-width="1.4"/>
-<path d="M1185 78 v9" stroke="#27313F" stroke-width="1.4"/>
-<text x="1204" y="89" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#1C2430" text-anchor="start">Hide Panels</text>
+<rect x="1264" y="62" width="154" height="44" rx="12" fill="#FFFFFF" stroke="#D7DEE8"/>
+<rect x="1281" y="76" width="15" height="13" rx="2.5" fill="none" stroke="#27313F" stroke-width="1.4"/>
+<path d="M1286 78 v9" stroke="#27313F" stroke-width="1.4"/>
+<text x="1308" y="89" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#1C2430" text-anchor="start">Hide Panels</text>
 <rect x="258" y="64" width="118" height="38" rx="19" fill="#1677FF" stroke="#1677FF"/><g filter="url(#shadowSm)"><rect x="266" y="67" width="30" height="30" rx="9" fill="#DCEAFF" stroke="#FFFFFF" stroke-width=".8"/><rect x="273" y="74" width="8" height="8" rx="2" fill="#176DFF"/><rect x="284" y="74" width="8" height="8" rx="2" fill="#176DFF"/><rect x="273" y="85" width="8" height="8" rx="2" fill="#176DFF"/><rect x="284" y="85" width="8" height="8" rx="2" fill="#176DFF"/></g><text x="302" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#FFFFFF" text-anchor="start">All</text><text x="364" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="500" fill="#DDEBFF" text-anchor="end">(1,563)</text><rect x="384" y="64" width="100" height="38" rx="19" fill="#FFFFFF" stroke="#D8E1EC"/><g filter="url(#shadowSm)"><rect x="392" y="67" width="30" height="30" rx="9" fill="#DCF6FB" stroke="#FFFFFF" stroke-width=".8"/><circle cx="408.5" cy="83.5" r="10" fill="none" stroke="#16B6D9" stroke-width="2"/>
       <path d="M399,83.5 H418 M408.5,73.5 C404,77 404,90 408.5,93.5 M408.5,73.5 C413,77 413,90 408.5,93.5" fill="none" stroke="#16B6D9" stroke-width="1.7" stroke-linecap="round"/></g><text x="428" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1A2438" text-anchor="start">Web</text><text x="472" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="500" fill="#66778F" text-anchor="end">(552)</text><rect x="492" y="64" width="110" height="38" rx="19" fill="#FFFFFF" stroke="#D8E1EC"/><g filter="url(#shadowSm)"><rect x="500" y="67" width="30" height="30" rx="9" fill="#E1F1FF" stroke="#FFFFFF" stroke-width=".8"/><rect x="506" y="76" width="21" height="16" rx="3" fill="none" stroke="#2497DE" stroke-width="2"/>
       <path d="M507,77 L516.5,85 L526,77" fill="none" stroke="#2497DE" stroke-width="2" stroke-linecap="round"/></g><text x="536" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1A2438" text-anchor="start">Email</text><text x="590" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="500" fill="#66778F" text-anchor="end">(292)</text><rect x="610" y="64" width="100" height="38" rx="19" fill="#FFFFFF" stroke="#D8E1EC"/><g filter="url(#shadowSm)"><rect x="618" y="67" width="30" height="30" rx="9" fill="#E8EAFF" stroke="#FFFFFF" stroke-width=".8"/><rect x="625" y="76" width="15" height="12" rx="4" fill="#6673E9"/><path d="M629,87 L627,92 L633,88" fill="#6673E9"/>
       <rect x="633" y="74" width="12" height="10" rx="4" fill="#6673E9" opacity=".78"/></g><text x="654" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1A2438" text-anchor="start">Chat</text><text x="698" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="500" fill="#66778F" text-anchor="end">(90)</text><rect x="718" y="64" width="100" height="38" rx="19" fill="#FFFFFF" stroke="#D8E1EC"/><g filter="url(#shadowSm)"><rect x="726" y="67" width="30" height="30" rx="9" fill="#FFF0D3" stroke="#FFFFFF" stroke-width=".8"/><path d="M732,78 h8 l3,-3 h7 a3,3 0 0 1 3,3 v13 a3,3 0 0 1 -3,3 h-18 a3,3 0 0 1 -3,-3 v-10 a3,3 0 0 1 3,-3z" fill="#F0AD16"/></g><text x="762" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1A2438" text-anchor="start">Files</text><text x="806" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="500" fill="#66778F" text-anchor="end">(137)</text><rect x="826" y="64" width="100" height="38" rx="19" fill="#FFFFFF" stroke="#D8E1EC"/><g filter="url(#shadowSm)"><rect x="834" y="67" width="30" height="30" rx="9" fill="#DDF5F8" stroke="#FFFFFF" stroke-width=".8"/><rect x="841" y="85" width="5" height="9" rx="2.5" fill="#17ADC1"/><rect x="848" y="80" width="5" height="14" rx="2.5" fill="#17ADC1"/><rect x="855" y="74" width="5" height="20" rx="2.5" fill="#17ADC1"/></g><text x="870" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1A2438" text-anchor="start">Apps</text><text x="914" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="500" fill="#66778F" text-anchor="end">(85)</text><circle cx="1035" cy="84" r="4.5" fill="#22C55E"/><text x="1047" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="500" fill="#66778F" text-anchor="start">Capturing</text>
   <rect x="1104" y="66" width="116" height="36" rx="11" fill="#FFFFFF" stroke="#D8E1EC"/>
-  <text x="1122" y="89" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#40506A" text-anchor="start">‹</text><text x="1162" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#1A2438" text-anchor="middle">Today</text><text x="1204" y="89" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#40506A" text-anchor="end">›</text>
+  <text x="1122" y="89" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#40506A" text-anchor="start">‹</text><text x="1110" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#1A2438" text-anchor="middle">Today</text><text x="1204" y="89" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#40506A" text-anchor="end">›</text>
 <line x1="236" y1="114" x2="1440" y2="114" stroke="#D0DAE7"/>
 <text x="260" y="154" font-family="Segoe UI, Arial, sans-serif" font-size="25" font-weight="750" fill="#1A2438" text-anchor="start">Today</text><text x="260" y="176" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#66778F" text-anchor="start">Monday, November 2, 2026</text>
-<text x="1098" y="176" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="600" fill="#1680FF" text-anchor="end">1,563 activities</text>
-<rect x="258" y="190" width="858" height="618" rx="16" fill="#EAF0F8" stroke="#D7E0EA"/>
+<text x="1050" y="176" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="600" fill="#1680FF" text-anchor="end">1,563 activities</text>
+<rect x="258" y="190" width="802" height="618" rx="16" fill="#EAF0F8" stroke="#D7E0EA"/>
 
-<rect x="270" y="200" width="836" height="58" rx="13" fill="#FFFFFF" stroke="#E3EAF2"/>
+<rect x="270" y="200" width="780" height="58" rx="13" fill="#EDF3F8" stroke="#C5D3E1"/>
 <text x="326" y="234" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#66778F" text-anchor="end">11:59 AM</text>
 <line x1="341" y1="204" x2="341" y2="254" stroke="#7DB8FA" stroke-width="2"/>
 <circle cx="341" cy="229" r="5" fill="#1680FF"/>
 
-<rect x="354" y="212" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="354" y="212" width="34" height="34" rx="9" fill="#EAF0F6" stroke="#E1E7EF"/>
 <rect x="359" y="217" width="24" height="24" rx="7" fill="#1680FF"/>
 <text x="371" y="234" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">W</text>
-<text x="398" y="225" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Frontline - Central US - Operations</text>
+<text x="398" y="225" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Project Dashboard - Q4 Launch</text>
 <text x="398" y="243" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#66778F" text-anchor="start">Windows App</text>
 <rect x="620" y="213" width="86" height="22" rx="11" fill="#E7F8ED"/><circle cx="635" cy="224" r="3.5" fill="#22C55E"/><text x="644" y="227" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#168A48" text-anchor="start">Live Activity</text>
-<rect x="930" y="216" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="944" cy="229" r="7" fill="#DCEAFF"/><text x="958" y="233" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Other</text>
-<text x="1043" y="235" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1078" y="234" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
+<rect x="874" y="216" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="888" cy="229" r="7" fill="#DCEAFF"/><text x="902" y="233" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Other</text>
+<text x="987" y="235" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1022" y="234" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
 
-<rect x="270" y="264" width="836" height="58" rx="13" fill="#FFFFFF" stroke="#E3EAF2"/>
+<rect x="270" y="264" width="780" height="58" rx="13" fill="#EDF3F8" stroke="#C5D3E1"/>
 <text x="326" y="298" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#66778F" text-anchor="end">11:58 AM</text>
 <line x1="341" y1="268" x2="341" y2="318" stroke="#7DB8FA" stroke-width="2"/>
 <circle cx="341" cy="293" r="5" fill="#1680FF"/>
 
-<rect x="354" y="276" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="354" y="276" width="34" height="34" rx="9" fill="#EAF0F6" stroke="#E1E7EF"/>
 <rect x="359" y="281" width="24" height="24" rx="7" fill="#22B573"/>
 <text x="371" y="298" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">X</text>
-<text x="398" y="289" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">iPhone DUO Orders</text>
+<text x="398" y="289" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Product Inventory.xlsx</text>
 <text x="398" y="307" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#66778F" text-anchor="start">Microsoft Excel</text>
 
-<rect x="930" y="280" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="944" cy="293" r="7" fill="#DCEAFF"/><text x="958" y="297" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Spreadsheet</text>
-<text x="1043" y="299" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1078" y="298" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
+<rect x="874" y="280" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="888" cy="293" r="7" fill="#DCEAFF"/><text x="902" y="297" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Spreadsheet</text>
+<text x="987" y="299" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1022" y="298" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
 
-<rect x="270" y="328" width="836" height="58" rx="13" fill="#FFFFFF" stroke="#E3EAF2"/>
+<rect x="270" y="328" width="780" height="58" rx="13" fill="#EDF3F8" stroke="#C5D3E1"/>
 <text x="326" y="362" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#66778F" text-anchor="end">11:56 AM</text>
 <line x1="341" y1="332" x2="341" y2="382" stroke="#7DB8FA" stroke-width="2"/>
 <circle cx="341" cy="357" r="5" fill="#1680FF"/>
 
-<rect x="354" y="340" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="354" y="340" width="34" height="34" rx="9" fill="#EAF0F6" stroke="#E1E7EF"/>
 <rect x="359" y="345" width="24" height="24" rx="7" fill="#2C86F5"/>
 <text x="371" y="362" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">O</text>
-<text x="398" y="353" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Incident Update | PH2</text>
+<text x="398" y="353" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Project Launch Status Update</text>
 <text x="398" y="371" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#66778F" text-anchor="start">Microsoft Outlook</text>
 
-<rect x="930" y="344" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="944" cy="357" r="7" fill="#DCEAFF"/><text x="958" y="361" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Email</text>
-<text x="1043" y="363" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1078" y="362" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
+<rect x="874" y="344" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="888" cy="357" r="7" fill="#DCEAFF"/><text x="902" y="361" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Email</text>
+<text x="987" y="363" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1022" y="362" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
 
-<rect x="270" y="392" width="836" height="58" rx="13" fill="#FFFFFF" stroke="#E3EAF2"/>
+<rect x="270" y="392" width="780" height="58" rx="13" fill="#EDF3F8" stroke="#C5D3E1"/>
 <text x="326" y="426" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#66778F" text-anchor="end">11:52 AM</text>
 <line x1="341" y1="396" x2="341" y2="446" stroke="#7DB8FA" stroke-width="2"/>
 <circle cx="341" cy="421" r="5" fill="#1680FF"/>
 
-<rect x="354" y="404" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="354" y="404" width="34" height="34" rx="9" fill="#EAF0F6" stroke="#E1E7EF"/>
 <rect x="359" y="409" width="24" height="24" rx="7" fill="#6C63E9"/>
 <text x="371" y="426" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">T</text>
-<text x="398" y="417" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Project Phoenix | Team Chat</text>
+<text x="398" y="417" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Project Aurora | Team Chat</text>
 <text x="398" y="435" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#66778F" text-anchor="start">Microsoft Teams</text>
 
-<rect x="930" y="408" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="944" cy="421" r="7" fill="#DCEAFF"/><text x="958" y="425" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Chat</text>
-<text x="1043" y="427" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1078" y="426" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
+<rect x="874" y="408" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="888" cy="421" r="7" fill="#DCEAFF"/><text x="902" y="425" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Chat</text>
+<text x="987" y="427" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1022" y="426" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
 
-<rect x="270" y="456" width="836" height="58" rx="13" fill="#FFFFFF" stroke="#E3EAF2"/>
+<rect x="270" y="456" width="780" height="58" rx="13" fill="#EDF3F8" stroke="#C5D3E1"/>
 <text x="326" y="490" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#66778F" text-anchor="end">11:49 AM</text>
 <line x1="341" y1="460" x2="341" y2="510" stroke="#7DB8FA" stroke-width="2"/>
 <circle cx="341" cy="485" r="5" fill="#1680FF"/>
 
-<rect x="354" y="468" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="354" y="468" width="34" height="34" rx="9" fill="#EAF0F6" stroke="#E1E7EF"/>
 <rect x="359" y="473" width="24" height="24" rx="7" fill="#18A8D8"/>
 <text x="371" y="490" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">e</text>
-<text x="398" y="481" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Cisco Room Bar Configuration Guide</text>
+<text x="398" y="481" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Product Documentation - Release Notes</text>
 <text x="398" y="499" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#66778F" text-anchor="start">Microsoft Edge</text>
 
-<rect x="930" y="472" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="944" cy="485" r="7" fill="#DCEAFF"/><text x="958" y="489" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Web</text>
-<text x="1043" y="491" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1078" y="490" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
+<rect x="874" y="472" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="888" cy="485" r="7" fill="#DCEAFF"/><text x="902" y="489" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Web</text>
+<text x="987" y="491" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1022" y="490" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
 
-<rect x="270" y="520" width="836" height="58" rx="13" fill="#FFFFFF" stroke="#E3EAF2"/>
+<rect x="270" y="520" width="780" height="58" rx="13" fill="#EDF3F8" stroke="#C5D3E1"/>
 <text x="326" y="554" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#66778F" text-anchor="end">11:42 AM</text>
 <line x1="341" y1="524" x2="341" y2="574" stroke="#7DB8FA" stroke-width="2"/>
 <circle cx="341" cy="549" r="5" fill="#1680FF"/>
 
-<rect x="354" y="532" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="354" y="532" width="34" height="34" rx="9" fill="#EAF0F6" stroke="#E1E7EF"/>
 <rect x="359" y="537" width="24" height="24" rx="7" fill="#4B5563"/>
 <text x="371" y="554" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">G</text>
 <text x="398" y="545" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Memory Trail - UI Polish</text>
 <text x="398" y="563" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#66778F" text-anchor="start">ChatGPT</text>
 
-<rect x="930" y="536" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="944" cy="549" r="7" fill="#DCEAFF"/><text x="958" y="553" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Development</text>
-<text x="1043" y="555" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1078" y="554" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
+<rect x="874" y="536" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="888" cy="549" r="7" fill="#DCEAFF"/><text x="902" y="553" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Development</text>
+<text x="987" y="555" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1022" y="554" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
 
-<rect x="270" y="584" width="836" height="58" rx="13" fill="#FFFFFF" stroke="#E3EAF2"/>
+<rect x="270" y="584" width="780" height="58" rx="13" fill="#EDF3F8" stroke="#C5D3E1"/>
 <text x="326" y="618" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#66778F" text-anchor="end">11:37 AM</text>
 <line x1="341" y1="588" x2="341" y2="638" stroke="#7DB8FA" stroke-width="2"/>
 <circle cx="341" cy="613" r="5" fill="#1680FF"/>
 
-<rect x="354" y="596" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="354" y="596" width="34" height="34" rx="9" fill="#EAF0F6" stroke="#E1E7EF"/>
 <rect x="359" y="601" width="24" height="24" rx="7" fill="#22B573"/>
 <text x="371" y="618" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">X</text>
 <text x="398" y="609" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">2026 Budget Forecast.xlsx</text>
 <text x="398" y="627" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#66778F" text-anchor="start">Microsoft Excel</text>
 
-<rect x="930" y="600" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="944" cy="613" r="7" fill="#DCEAFF"/><text x="958" y="617" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Spreadsheet</text>
-<text x="1043" y="619" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1078" y="618" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
+<rect x="874" y="600" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="888" cy="613" r="7" fill="#DCEAFF"/><text x="902" y="617" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Spreadsheet</text>
+<text x="987" y="619" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1022" y="618" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
 
-<rect x="270" y="648" width="836" height="58" rx="13" fill="#FFFFFF" stroke="#E3EAF2"/>
+<rect x="270" y="648" width="780" height="58" rx="13" fill="#EDF3F8" stroke="#C5D3E1"/>
 <text x="326" y="682" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#66778F" text-anchor="end">11:31 AM</text>
 <line x1="341" y1="652" x2="341" y2="702" stroke="#7DB8FA" stroke-width="2"/>
 <circle cx="341" cy="677" r="5" fill="#1680FF"/>
 
-<rect x="354" y="660" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="354" y="660" width="34" height="34" rx="9" fill="#EAF0F6" stroke="#E1E7EF"/>
 <rect x="359" y="665" width="24" height="24" rx="7" fill="#2B70C9"/>
 <text x="371" y="682" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">W</text>
-<text x="398" y="673" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Data Center Staffing Plan.docx</text>
+<text x="398" y="673" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Team Planning Notes.docx</text>
 <text x="398" y="691" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#66778F" text-anchor="start">Microsoft Word</text>
 
-<rect x="930" y="664" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="944" cy="677" r="7" fill="#DCEAFF"/><text x="958" y="681" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Document</text>
-<text x="1043" y="683" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1078" y="682" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
+<rect x="874" y="664" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="888" cy="677" r="7" fill="#DCEAFF"/><text x="902" y="681" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Document</text>
+<text x="987" y="683" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1022" y="682" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
 
-<rect x="270" y="712" width="836" height="58" rx="13" fill="#FFFFFF" stroke="#E3EAF2"/>
+<rect x="270" y="712" width="780" height="58" rx="13" fill="#EDF3F8" stroke="#C5D3E1"/>
 <text x="326" y="746" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#66778F" text-anchor="end">11:26 AM</text>
 <line x1="341" y1="716" x2="341" y2="766" stroke="#7DB8FA" stroke-width="2"/>
 <circle cx="341" cy="741" r="5" fill="#1680FF"/>
 
-<rect x="354" y="724" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="354" y="724" width="34" height="34" rx="9" fill="#EAF0F6" stroke="#E1E7EF"/>
 <rect x="359" y="729" width="24" height="24" rx="7" fill="#F0AD16"/>
 <text x="371" y="746" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">F</text>
 <text x="398" y="737" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Opened File Explorer</text>
 <text x="398" y="755" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#66778F" text-anchor="start">File Explorer</text>
 
-<rect x="930" y="728" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="944" cy="741" r="7" fill="#DCEAFF"/><text x="958" y="745" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">File</text>
-<text x="1043" y="747" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1078" y="746" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
+<rect x="874" y="728" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="888" cy="741" r="7" fill="#DCEAFF"/><text x="902" y="745" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">File</text>
+<text x="987" y="747" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1022" y="746" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
 <!-- Right panel -->
-<rect x="1132" y="114" width="308" height="786" fill="#EEF4FB"/>
+<rect x="1022" y="114" width="362" height="786" fill="#D7E2EE"/>
 <circle cx="1152" cy="139" r="4" fill="#22C55E"/><text x="1164" y="143" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#66778F" text-anchor="start">Capturing</text><text x="1416" y="143" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="500" fill="#66778F" text-anchor="end">Mon, Nov 2, 2026</text>
-<rect x="1144" y="160" width="284" height="194" rx="18" fill="#FFFFFF" stroke="#DDE6F0" filter="url(#shadowSm)"/>
-<text x="1162" y="192" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="750" fill="#1A2438" text-anchor="start">Today Summary</text>
-<rect x="1160" y="208" width="119" height="58" rx="13" fill="#F0F7FF" stroke="#DAE9FA"/><g filter="url(#shadowSm)"><rect x="1169" y="220" width="33" height="33" rx="10" fill="#DDF5F8" stroke="#FFFFFF" stroke-width=".8"/><rect x="1176" y="238" width="5" height="9" rx="2.5" fill="#17ADC1"/><rect x="1183" y="233" width="5" height="14" rx="2.5" fill="#17ADC1"/><rect x="1190" y="227" width="5" height="20" rx="2.5" fill="#17ADC1"/></g><text x="1210" y="233" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="750" fill="#1A2438" text-anchor="start">1,563</text><text x="1210" y="250" font-family="Segoe UI, Arial, sans-serif" font-size="9.2" font-weight="500" fill="#66778F" text-anchor="start">Activities</text>
-<rect x="1290" y="208" width="119" height="58" rx="13" fill="#EEF5FF" stroke="#D9E6F8"/><g filter="url(#shadowSm)"><rect x="1299" y="220" width="33" height="33" rx="10" fill="#DCEAFF" stroke="#FFFFFF" stroke-width=".8"/><rect x="1306" y="227" width="8" height="8" rx="2" fill="#176DFF"/><rect x="1317" y="227" width="8" height="8" rx="2" fill="#176DFF"/><rect x="1306" y="238" width="8" height="8" rx="2" fill="#176DFF"/><rect x="1317" y="238" width="8" height="8" rx="2" fill="#176DFF"/></g><text x="1340" y="233" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="750" fill="#1A2438" text-anchor="start">22</text><text x="1340" y="250" font-family="Segoe UI, Arial, sans-serif" font-size="9.2" font-weight="500" fill="#66778F" text-anchor="start">Apps Used</text>
-<rect x="1160" y="278" width="119" height="58" rx="13" fill="#EFF9FC" stroke="#D9EEF3"/><text x="1177" y="313" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#17A9C7" text-anchor="middle">◷</text><text x="1210" y="303" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="750" fill="#1A2438" text-anchor="start">3h 34m</text><text x="1210" y="320" font-family="Segoe UI, Arial, sans-serif" font-size="9.2" font-weight="500" fill="#66778F" text-anchor="start">Active Time</text>
-<rect x="1290" y="278" width="119" height="58" rx="13" fill="#F2F7FF" stroke="#DFE9F7"/><g filter="url(#shadowSm)"><rect x="1299" y="290" width="33" height="33" rx="10" fill="#E1F1FF" stroke="#FFFFFF" stroke-width=".8"/><rect x="1305" y="299" width="21" height="16" rx="3" fill="none" stroke="#2497DE" stroke-width="2"/>
-      <path d="M1306,300 L1315.5,308 L1325,300" fill="none" stroke="#2497DE" stroke-width="2" stroke-linecap="round"/></g><text x="1340" y="303" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="750" fill="#1A2438" text-anchor="start">133</text><text x="1340" y="320" font-family="Segoe UI, Arial, sans-serif" font-size="9.2" font-weight="500" fill="#66778F" text-anchor="start">Clipboard</text>
-<rect x="1144" y="370" width="284" height="328" rx="18" fill="#FFFFFF" stroke="#DDE6F0" filter="url(#shadowSm)"/>
+<rect x="1092" y="160" width="332" height="194" rx="18" fill="#EDF3F8" stroke="#C5D3E1" filter="url(#shadowSm)"/>
+<text x="1110" y="192" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="750" fill="#1A2438" text-anchor="start">Today Summary</text>
+<rect x="1108" y="208" width="146" height="58" rx="13" fill="#F0F7FF" stroke="#DAE9FA"/><g filter="url(#shadowSm)"><rect x="1169" y="220" width="33" height="33" rx="10" fill="#DDF5F8" stroke="#FFFFFF" stroke-width=".8"/><rect x="1176" y="238" width="5" height="9" rx="2.5" fill="#17ADC1"/><rect x="1183" y="233" width="5" height="14" rx="2.5" fill="#17ADC1"/><rect x="1190" y="227" width="5" height="20" rx="2.5" fill="#17ADC1"/></g><text x="1210" y="233" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="750" fill="#1A2438" text-anchor="start">1,563</text><text x="1210" y="250" font-family="Segoe UI, Arial, sans-serif" font-size="9.2" font-weight="500" fill="#66778F" text-anchor="start">Activities</text>
+<rect x="1266" y="208" width="146" height="58" rx="13" fill="#EEF5FF" stroke="#D9E6F8"/><g filter="url(#shadowSm)"><rect x="1277" y="220" width="33" height="33" rx="10" fill="#DCEAFF" stroke="#FFFFFF" stroke-width=".8"/><rect x="1306" y="227" width="8" height="8" rx="2" fill="#176DFF"/><rect x="1317" y="227" width="8" height="8" rx="2" fill="#176DFF"/><rect x="1306" y="238" width="8" height="8" rx="2" fill="#176DFF"/><rect x="1317" y="238" width="8" height="8" rx="2" fill="#176DFF"/></g><text x="1318" y="233" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="750" fill="#1A2438" text-anchor="start">22</text><text x="1318" y="250" font-family="Segoe UI, Arial, sans-serif" font-size="9.2" font-weight="500" fill="#66778F" text-anchor="start">Apps Used</text>
+<rect x="1108" y="278" width="146" height="58" rx="13" fill="#EFF9FC" stroke="#D9EEF3"/><text x="1177" y="313" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#17A9C7" text-anchor="middle">◷</text><text x="1210" y="303" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="750" fill="#1A2438" text-anchor="start">3h 34m</text><text x="1210" y="320" font-family="Segoe UI, Arial, sans-serif" font-size="9.2" font-weight="500" fill="#66778F" text-anchor="start">Active Time</text>
+<rect x="1266" y="278" width="146" height="58" rx="13" fill="#F2F7FF" stroke="#CCD9E8"/><g filter="url(#shadowSm)"><rect x="1277" y="290" width="33" height="33" rx="10" fill="#E1F1FF" stroke="#FFFFFF" stroke-width=".8"/><rect x="1305" y="299" width="21" height="16" rx="3" fill="none" stroke="#2497DE" stroke-width="2"/>
+      <path d="M1306,300 L1315.5,308 L1325,300" fill="none" stroke="#2497DE" stroke-width="2" stroke-linecap="round"/></g><text x="1318" y="303" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="750" fill="#1A2438" text-anchor="start">133</text><text x="1318" y="320" font-family="Segoe UI, Arial, sans-serif" font-size="9.2" font-weight="500" fill="#66778F" text-anchor="start">Clipboard</text>
+<rect x="1092" y="370" width="332" height="328" rx="18" fill="#EDF3F8" stroke="#C5D3E1" filter="url(#shadowSm)"/>
 
-<rect x="1162" y="390" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="1110" y="390" width="34" height="34" rx="9" fill="#EAF0F6" stroke="#E1E7EF"/>
 <rect x="1167" y="395" width="24" height="24" rx="7" fill="#4B5563"/>
 <text x="1179" y="412" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">G</text><text x="1208" y="406" font-family="Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#1A2438" text-anchor="start">Memory Trail - UI Polish</text><text x="1208" y="423" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="500" fill="#66778F" text-anchor="start">ChatGPT</text><text x="1398" y="408" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500" fill="#7A8798" text-anchor="start">☆</text>
 <line x1="1160" y1="444" x2="1410" y2="444" stroke="#E5EBF2"/>
-<text x="1162" y="473" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="500" fill="#8A96A7" text-anchor="start">App</text><text x="1210" y="473" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1A2438" text-anchor="start">ChatGPT</text>
-<text x="1162" y="505" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="500" fill="#8A96A7" text-anchor="start">Type</text><text x="1210" y="505" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1A2438" text-anchor="start">Development</text>
-<text x="1162" y="537" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="500" fill="#8A96A7" text-anchor="start">Time</text><text x="1210" y="537" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1A2438" text-anchor="start">Nov 2, 2026 at 11:42 AM</text>
-<text x="1162" y="569" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="500" fill="#8A96A7" text-anchor="start">Window</text><text x="1210" y="569" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1A2438" text-anchor="start">Memory Trail - UI Polish</text>
-<rect x="1162" y="600" width="248" height="42" rx="11" fill="url(#primary)"/><text x="1286" y="626" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">Open Source</text>
-<rect x="1162" y="651" width="248" height="36" rx="10" fill="#FFFFFF" stroke="#D8E1EC"/><text x="1286" y="674" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="650" fill="#1A2438" text-anchor="middle">Copy Subject</text>
+<text x="1110" y="473" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="500" fill="#8A96A7" text-anchor="start">App</text><text x="1210" y="473" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1A2438" text-anchor="start">ChatGPT</text>
+<text x="1110" y="505" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="500" fill="#8A96A7" text-anchor="start">Type</text><text x="1210" y="505" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1A2438" text-anchor="start">Development</text>
+<text x="1110" y="537" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="500" fill="#8A96A7" text-anchor="start">Time</text><text x="1210" y="537" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1A2438" text-anchor="start">Nov 2, 2026 at 11:42 AM</text>
+<text x="1110" y="569" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="500" fill="#8A96A7" text-anchor="start">Window</text><text x="1210" y="569" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1A2438" text-anchor="start">Memory Trail - UI Polish</text>
+<rect x="1110" y="600" width="296" height="42" rx="11" fill="url(#primary)"/><text x="1258" y="626" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">Open Source</text>
+<rect x="1110" y="651" width="296" height="36" rx="10" fill="#FFFFFF" stroke="#D8E1EC"/><text x="1258" y="674" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="650" fill="#1A2438" text-anchor="middle">Copy Subject</text>
 </svg>
