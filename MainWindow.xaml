@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:MemoryLane.Windows"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        Title="Memory Trail v1.0.0"
+        Title="Memory Trail v1.0.1"
         Width="1580" Height="920"
         MinWidth="1280" MinHeight="760"
         WindowStartupLocation="CenterScreen"
