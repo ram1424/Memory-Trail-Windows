@@ -875,7 +875,7 @@ public partial class MainWindow : Window
         RightSidebar.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
         RightDivider.Visibility = show ? Visibility.Visible : Visibility.Collapsed;
         DetailsSpacerColumn.Width = show ? new GridLength(1) : new GridLength(0);
-        DetailsColumn.Width = show ? new GridLength(390) : new GridLength(0);
+        DetailsColumn.Width = show ? new GridLength(320) : new GridLength(0);
 
         PanelToggleText.Text = show ? "Hide Panels" : "Show Panels";
         RightSidebarToggleIcon.Text = "▥";

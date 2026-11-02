@@ -2,8 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Welcome to Memory Trail"
-        Width="980" Height="720"
-        MinWidth="900" MinHeight="660"
+        Width="920" Height="680"
+        MinWidth="860" MinHeight="620"
         WindowStartupLocation="CenterOwner"
         ResizeMode="CanResize"
         FontFamily="Segoe UI Variable Text"
@@ -38,50 +38,50 @@
       </LinearGradientBrush>
     </Grid.Background>
 
-    <Border Margin="28" Background="#F8FAFE" BorderBrush="#D7E0EC" BorderThickness="1"
-            CornerRadius="26" Padding="0">
+    <Border Margin="20" Background="#F8FAFE" BorderBrush="#D7E0EC" BorderThickness="1"
+            CornerRadius="18" Padding="0">
       <Border.Effect>
         <DropShadowEffect BlurRadius="28" ShadowDepth="10" Opacity="0.10"/>
       </Border.Effect>
       <Grid>
         <Grid.RowDefinitions>
-          <RowDefinition Height="58"/>
+          <RowDefinition Height="50"/>
           <RowDefinition Height="*"/>
-          <RowDefinition Height="72"/>
+          <RowDefinition Height="62"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Margin="30,0">
-          <TextBlock x:Name="PageCounterText" Text="1 of 6" FontSize="11.5" FontWeight="SemiBold"
+        <Grid Grid.Row="0" Margin="22,0">
+          <TextBlock x:Name="PageCounterText" Text="1 of 6" FontSize="10.5" FontWeight="SemiBold"
                      Foreground="#40506A" VerticalAlignment="Center"/>
           <TextBlock x:Name="PageTitleTopText" HorizontalAlignment="Right" VerticalAlignment="Center"
                      FontSize="11.5" FontWeight="SemiBold" Foreground="#66778F" Visibility="Collapsed"/>
         </Grid>
 
-        <Grid Grid.Row="1" Margin="30,6,30,8">
+        <Grid Grid.Row="1" Margin="22,4,22,6">
           <Grid x:Name="Page1">
             <Grid.ColumnDefinitions><ColumnDefinition Width="0.9*"/><ColumnDefinition Width="1.1*"/></Grid.ColumnDefinitions>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="340">
-              <Border Width="156" Height="156" CornerRadius="34" Background="#EAF0F8">
-                <Image x:Name="WelcomeBrandLogo" Width="156" Height="156" Stretch="Uniform"
+              <Border Width="96" Height="96" CornerRadius="24" Background="#EAF0F8">
+                <Image x:Name="WelcomeBrandLogo" Width="118" Height="118" Stretch="Uniform"
                        RenderOptions.BitmapScalingMode="HighQuality"/>
               </Border>
-              <TextBlock Text="Welcome to Memory Trail" FontSize="31" FontWeight="Bold"
-                         Foreground="#1A2438" TextAlignment="Center" Margin="0,20,0,0"/>
+              <TextBlock Text="Welcome to Memory Trail" FontSize="26" FontWeight="Bold"
+                         Foreground="#1A2438" TextAlignment="Center" Margin="0,14,0,0"/>
               <TextBlock Text="A privacy-first, searchable history of the work you do on your PC."
-                         FontSize="15" Foreground="#40506A" TextAlignment="Center" TextWrapping="Wrap"
-                         LineHeight="22" Margin="0,10,0,0"/>
+                         FontSize="13" Foreground="#40506A" TextAlignment="Center" TextWrapping="Wrap"
+                         LineHeight="19" Margin="0,10,0,0"/>
             </StackPanel>
 
-            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="42,0,8,0">
-              <Grid Margin="0,0,0,24">
+            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="30,0,4,0">
+              <Grid Margin="0,0,0,18">
                 <Grid.ColumnDefinitions><ColumnDefinition Width="52"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                <Border Width="42" Height="42" CornerRadius="13" Background="#E2EEFF">
+                <Border Width="36" Height="36" CornerRadius="10" Background="#E2EEFF">
                   <TextBlock Text="◷" FontSize="21" Foreground="#1680FF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
                 <StackPanel Grid.Column="1">
-                  <TextBlock Text="Retrace your work" FontSize="16" FontWeight="SemiBold" Foreground="#1A2438"/>
+                  <TextBlock Text="Retrace your work" FontSize="14" FontWeight="SemiBold" Foreground="#1A2438"/>
                   <TextBlock Text="See a clean chronological history of apps, pages, messages, files, and copied text."
-                             FontSize="12.5" Foreground="#40506A" TextWrapping="Wrap" LineHeight="18" Margin="0,4,0,0"/>
+                             FontSize="11.5" Foreground="#40506A" TextWrapping="Wrap" LineHeight="17" Margin="0,4,0,0"/>
                 </StackPanel>
               </Grid>
               <Grid Margin="0,0,0,24">
@@ -111,10 +111,10 @@
 
           <Grid x:Name="Page2" Visibility="Collapsed">
             <StackPanel>
-              <TextBlock Text="Today, Newest First" FontSize="29" FontWeight="Bold" Foreground="#1A2438" HorizontalAlignment="Center"/>
+              <TextBlock Text="Today, Newest First" FontSize="24" FontWeight="Bold" Foreground="#1A2438" HorizontalAlignment="Center"/>
               <TextBlock Text="A continuous timeline of what you viewed—without rewriting or summarizing your activity."
                          FontSize="14" Foreground="#40506A" TextAlignment="Center" TextWrapping="Wrap"
-                         MaxWidth="650" Margin="0,7,0,20"/>
+                         MaxWidth="620" Margin="0,7,0,20"/>
               <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,16">
                 <Border Background="#1680FF" CornerRadius="13" Padding="12,6" Margin="0,0,8,0"><TextBlock Text="All" Foreground="White" FontWeight="SemiBold"/></Border>
                 <Border Background="#F4F7FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="13" Padding="12,6" Margin="0,0,8,0"><TextBlock Text="Web"/></Border>
@@ -122,13 +122,13 @@
                 <Border Background="#F4F7FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="13" Padding="12,6" Margin="0,0,8,0"><TextBlock Text="Chat"/></Border>
                 <Border Background="#F4F7FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="13" Padding="12,6"><TextBlock Text="Files"/></Border>
               </StackPanel>
-              <Border Style="{StaticResource TourCard}" MaxWidth="700" HorizontalAlignment="Center">
+              <Border Style="{StaticResource TourCard}" MaxWidth="660" HorizontalAlignment="Center">
                 <StackPanel>
-                  <Grid Height="66"><Grid.ColumnDefinitions><ColumnDefinition Width="78"/><ColumnDefinition Width="44"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                  <Grid Height="56"><Grid.ColumnDefinitions><ColumnDefinition Width="70"/><ColumnDefinition Width="40"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                     <TextBlock Text="10:42 AM" Foreground="#66778F" FontSize="11.5" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,12,0"/>
-                    <Image x:Name="EdgeTutorialIcon" Grid.Column="1" Width="34" Height="34"/>
+                    <Image x:Name="EdgeTutorialIcon" Grid.Column="1" Width="30" Height="30"/>
                     <StackPanel Grid.Column="2" Margin="10,0,0,0" VerticalAlignment="Center">
-                      <StackPanel Orientation="Horizontal"><TextBlock Text="Memory Trail · Releases" FontSize="13.5" FontWeight="SemiBold" Foreground="#1A2438"/>
+                      <StackPanel Orientation="Horizontal"><TextBlock Text="Memory Trail · Releases" FontSize="12.5" FontWeight="SemiBold" Foreground="#1A2438"/>
                         <Border Background="#E6F7EC" CornerRadius="10" Padding="7,2" Margin="8,0,0,0"><TextBlock Text="Live Activity" Foreground="#238A50" FontSize="9.5" FontWeight="SemiBold"/></Border>
                       </StackPanel>
                       <TextBlock Text="Microsoft Edge" Foreground="#66778F" FontSize="11.5" Margin="0,3,0,0"/>
@@ -151,7 +151,7 @@
                   </Grid>
                 </StackPanel>
               </Border>
-              <UniformGrid Columns="3" MaxWidth="720" HorizontalAlignment="Center" Margin="0,16,0,0">
+              <UniformGrid Columns="3" MaxWidth="670" HorizontalAlignment="Center" Margin="0,16,0,0">
                 <Border Style="{StaticResource FeatureCard}" Margin="0,0,10,0"><StackPanel><TextBlock Text="Live Activity" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="The newest item is clearly identified." TextWrapping="Wrap" FontSize="11.5" Foreground="#66778F" Margin="0,5,0,0"/></StackPanel></Border>
                 <Border Style="{StaticResource FeatureCard}" Margin="0,0,10,0"><StackPanel><TextBlock Text="Details Panel" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Select anything to inspect it on the right." TextWrapping="Wrap" FontSize="11.5" Foreground="#66778F" Margin="0,5,0,0"/></StackPanel></Border>
                 <Border Style="{StaticResource FeatureCard}"><StackPanel><TextBlock Text="Dynamic Filters" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Only relevant activity categories appear." TextWrapping="Wrap" FontSize="11.5" Foreground="#66778F" Margin="0,5,0,0"/></StackPanel></Border>
@@ -163,7 +163,7 @@
             <StackPanel HorizontalAlignment="Center">
               <TextBlock Text="Ask Memory Trail" FontSize="29" FontWeight="Bold" Foreground="#1A2438"/>
               <TextBlock Text="Use natural-language local search instead of manually scanning your whole timeline."
-                         FontSize="14" Foreground="#40506A" TextAlignment="Center" MaxWidth="650" TextWrapping="Wrap" Margin="0,7,0,22"/>
+                         FontSize="14" Foreground="#40506A" TextAlignment="Center" MaxWidth="620" TextWrapping="Wrap" Margin="0,7,0,22"/>
               <StackPanel Width="650">
                 <Border Style="{StaticResource TourCard}" Margin="0,0,0,10"><StackPanel><TextBlock Text="✦  What was I doing around 10:30 AM?" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Find activity captured near that time." FontSize="11.5" Foreground="#66778F" Margin="28,4,0,0"/></StackPanel></Border>
                 <Border Style="{StaticResource TourCard}" Margin="0,0,0,10"><StackPanel><TextBlock Text="✦  What did I view before opening Teams?" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Trace what happened immediately before another activity." FontSize="11.5" Foreground="#66778F" Margin="28,4,0,0"/></StackPanel></Border>
@@ -192,15 +192,15 @@
           <Grid x:Name="Page5" Visibility="Collapsed">
             <Grid.ColumnDefinitions><ColumnDefinition Width="0.85*"/><ColumnDefinition Width="1.15*"/></Grid.ColumnDefinitions>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="300">
-              <Border Width="210" Height="210" CornerRadius="28" Background="#E5EEF9">
+              <Border Width="170" Height="170" CornerRadius="28" Background="#E5EEF9">
                 <Grid>
-                  <Image x:Name="PrivacyBrandLogo" Width="132" Height="132" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                  <Border Width="54" Height="54" CornerRadius="27" Background="#1680FF" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,24,24">
+                  <Image x:Name="PrivacyBrandLogo" Width="105" Height="105" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                  <Border Width="44" Height="44" CornerRadius="22" Background="#1680FF" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,24,24">
                     <TextBlock Text="✓" Foreground="White" FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                   </Border>
                 </Grid>
               </Border>
-              <TextBlock Text="Your history stays on this PC." FontSize="18" FontWeight="Bold" Foreground="#1A2438" TextAlignment="Center" Margin="0,18,0,0"/>
+              <TextBlock Text="Your history stays on this PC." FontSize="16" FontWeight="Bold" Foreground="#1A2438" TextAlignment="Center" Margin="0,18,0,0"/>
               <TextBlock Text="Private by default. Local by design." FontSize="12.5" Foreground="#66778F" TextAlignment="Center" Margin="0,5,0,0"/>
             </StackPanel>
             <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="30,0,12,0">
@@ -217,7 +217,7 @@
           <Grid x:Name="Page6" Visibility="Collapsed">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" MaxWidth="690">
               <Image x:Name="ContextBrandLogo" Width="118" Height="118" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
-              <TextBlock Text="Ready to Start" FontSize="30" FontWeight="Bold" Foreground="#1A2438" Margin="0,18,0,0"/>
+              <TextBlock Text="Ready to Start" FontSize="25" FontWeight="Bold" Foreground="#1A2438" Margin="0,18,0,0"/>
               <TextBlock Text="Memory Trail uses the window information Windows exposes to create useful local history. You stay in control of capture, exclusions, clipboard history, and startup behavior."
                          FontSize="14" Foreground="#40506A" TextAlignment="Center" TextWrapping="Wrap" LineHeight="21" Margin="0,9,0,20"/>
               <UniformGrid Columns="3" Width="650">
@@ -229,7 +229,7 @@
           </Grid>
         </Grid>
 
-        <Grid Grid.Row="2" Margin="30,0,30,16">
+        <Grid Grid.Row="2" Margin="22,0,22,12">
           <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
           <Button x:Name="BackButton" Content="←  Back" Click="Back_Click" Style="{StaticResource TourButton}" Visibility="Hidden"/>
           <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">

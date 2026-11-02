@@ -35,7 +35,7 @@
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="12"
+                    CornerRadius="10"
                     Padding="{TemplateBinding Padding}">
               <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalAlignment="Center"/>
@@ -69,9 +69,9 @@
       <Setter Property="BorderThickness" Value="0"/>
       <Setter Property="Foreground" Value="#1A2438"/>
       <Setter Property="Padding" Value="13,0"/>
-      <Setter Property="Height" Value="40"/>
+      <Setter Property="Height" Value="36"/>
       <Setter Property="HorizontalContentAlignment" Value="Left"/>
-      <Setter Property="FontSize" Value="14"/>
+      <Setter Property="FontSize" Value="13"/>
       <Setter Property="FontWeight" Value="Medium"/>
       <Setter Property="Cursor" Value="Hand"/>
       <Setter Property="Template">

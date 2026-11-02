@@ -4,8 +4,8 @@
         xmlns:local="clr-namespace:MemoryLane.Windows"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         Title="Memory Trail v1.0.1"
-        Width="1500" Height="900"
-        MinWidth="1180" MinHeight="720"
+        Width="1540" Height="820"
+        MinWidth="1220" MinHeight="700"
         WindowStartupLocation="CenterScreen"
         FontFamily="Segoe UI Variable Text"
         Background="#E8EEF9">
@@ -25,7 +25,7 @@
     <Style x:Key="FilterNavStyle" TargetType="Button" BasedOn="{StaticResource NavButtonStyle}">
       <Setter Property="Padding" Value="11,9"/>
       <Setter Property="Margin" Value="0,0,0,2"/>
-      <Setter Property="FontSize" Value="13"/>
+      <Setter Property="FontSize" Value="12"/>
     </Style>
 
     <Style x:Key="TimelineChipStyle" TargetType="Border">
@@ -54,14 +54,14 @@
     </Style>
   
     <Style x:Key="MacCategoryButtonStyle" TargetType="Button" BasedOn="{StaticResource NavButtonStyle}">
-      <Setter Property="Height" Value="34"/>
-      <Setter Property="Padding" Value="10,0"/>
+      <Setter Property="Height" Value="32"/>
+      <Setter Property="Padding" Value="8,0"/>
       <Setter Property="Margin" Value="0,0,0,3"/>
       <Setter Property="FontSize" Value="13"/>
     </Style>
     <Style x:Key="MacQuickFilterStyle" TargetType="Button">
-      <Setter Property="Height" Value="34"/>
-      <Setter Property="Padding" Value="13,0"/>
+      <Setter Property="Height" Value="32"/>
+      <Setter Property="Padding" Value="12,0"/>
       <Setter Property="Margin" Value="0,0,8,0"/>
       <Setter Property="Background" Value="#F6F9FC"/>
       <Setter Property="BorderBrush" Value="#D8E1EC"/>
@@ -74,7 +74,7 @@
           <ControlTemplate TargetType="Button">
             <Border x:Name="QuickChrome" Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="17" Padding="{TemplateBinding Padding}">
+                    CornerRadius="16" Padding="{TemplateBinding Padding}">
               <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
             <ControlTemplate.Triggers>
@@ -90,7 +90,7 @@
 
   <Grid>
     <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="238"/>
+      <ColumnDefinition Width="204"/>
       <ColumnDefinition Width="*"/>
     </Grid.ColumnDefinitions>
 
@@ -102,7 +102,7 @@
           <GradientStop Color="#D1DEF0" Offset="1"/>
         </LinearGradientBrush>
       </Border.Background>
-      <Grid Margin="12,14,12,12">
+      <Grid Margin="8,10,8,8">
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="Auto"/>
@@ -110,11 +110,11 @@
           <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,4,0,18">
-          <Image x:Name="BrandLogo" Width="68" Height="68" Stretch="Uniform"
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,2,0,14">
+          <Image x:Name="BrandLogo" Width="56" Height="56" Stretch="Uniform"
                  SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="HighQuality"/>
-          <TextBlock Text="Memory Trail" FontSize="21" FontWeight="Bold" Foreground="#1A2438"
-                     HorizontalAlignment="Center" Margin="0,9,0,0"/>
+          <TextBlock Text="Memory Trail" FontSize="16" FontWeight="Bold" Foreground="#1A2438"
+                     HorizontalAlignment="Center" Margin="0,7,0,0"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1">
@@ -162,7 +162,7 @@
           </Button>
         </StackPanel>
 
-        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Margin="0,18,0,12">
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Margin="0,14,0,8">
           <StackPanel>
             <Border Height="1" Background="#D0DAE7" Margin="6,0,6,16"/>
             <Grid Margin="8,0,8,7">
@@ -174,7 +174,7 @@
               <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="28"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                 <TextBlock Text="▦" Foreground="#1680FF" FontSize="15" VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="1" Text="All Apps" VerticalAlignment="Center"/>
-                <Border Grid.Column="2" Background="#F6F9FC" CornerRadius="10" Padding="7,3"><TextBlock x:Name="AllAppsCountText" Text="0" FontSize="10" Foreground="#66778F"/></Border>
+                <Border Grid.Column="2" Background="#F9FBFE" CornerRadius="10" Padding="7,3"><TextBlock x:Name="AllAppsCountText" Text="0" FontSize="10" Foreground="#66778F"/></Border>
               </Grid>
             </Button>
             <Button x:Name="BrowserFilter" Tag="Browser" Click="Category_Click" Style="{StaticResource MacCategoryButtonStyle}">
@@ -263,7 +263,7 @@
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*"/>
           <ColumnDefinition x:Name="DetailsSpacerColumn" Width="1"/>
-          <ColumnDefinition x:Name="DetailsColumn" Width="390"/>
+          <ColumnDefinition x:Name="DetailsColumn" Width="320"/>
         </Grid.ColumnDefinitions>
 
         <!-- macOS TimelineView: toolbar, filters, heading and timeline are one left column -->
@@ -275,31 +275,21 @@
             <RowDefinition Height="*"/>
           </Grid.RowDefinitions>
 
-          <Grid Grid.Row="0" Margin="24,18,24,10">
+          <Grid Grid.Row="0" Margin="18,12,18,8">
             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
             <StackPanel Grid.Column="1" Orientation="Horizontal">
-              <Button Width="34" Height="34" Margin="0,0,8,0" Padding="0"
-                      Background="#FBFCFF" BorderBrush="#D8E1EC" BorderThickness="1"
-                      ToolTip="Add Memory" Click="AddMemory_Click">
-                <TextBlock Text="+" FontSize="19" Foreground="#40506A" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-              </Button>
-              <Button Width="34" Height="34" Margin="0,0,8,0" Padding="0"
-                      Background="#FBFCFF" BorderBrush="#D8E1EC" BorderThickness="1"
-                      ToolTip="Clear Timeline" Click="ClearTimeline_Click">
-                <TextBlock Text="&#xE74D;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#D84A5A"/>
-              </Button>
               <Button x:Name="RightSidebarToggleButton" Click="RightSidebarToggle_Click"
                       Background="#FBFCFF" BorderBrush="#D8E1EC" BorderThickness="1"
-                      Padding="14,0" Height="42">
+                      Padding="13,0" Height="38">
                 <StackPanel Orientation="Horizontal">
                   <TextBlock x:Name="RightSidebarToggleIcon" Text="▥" FontSize="14" Margin="0,0,7,0" Foreground="#40506A"/>
-                  <TextBlock x:Name="PanelToggleText" Text="Hide Panels" FontSize="13" FontWeight="SemiBold" Foreground="#1A2438"/>
+                  <TextBlock x:Name="PanelToggleText" Text="Hide Panels" FontSize="12" FontWeight="SemiBold" Foreground="#1A2438"/>
                 </StackPanel>
               </Button>
             </StackPanel>
           </Grid>
 
-          <Grid x:Name="QuickFiltersBar" Grid.Row="1" Margin="24,0,24,14">
+          <Grid x:Name="QuickFiltersBar" Grid.Row="1" Margin="18,0,18,10">
             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal">
               <Button x:Name="QuickAllFilter" Tag="All" Click="Category_Click" Style="{StaticResource MacQuickFilterStyle}">
@@ -343,11 +333,11 @@
           <Border Grid.Row="2" Height="1" Background="#D0DAE7"/>
 
           <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
-            <StackPanel Margin="24,20,24,24">
+            <StackPanel Margin="18,14,18,18">
               <Grid Margin="2,0,2,12">
                 <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                 <StackPanel>
-                  <TextBlock x:Name="PageTitleText" Text="Today" FontSize="29" FontWeight="Bold" Foreground="#1A2438"/>
+                  <TextBlock x:Name="PageTitleText" Text="Today" FontSize="24" FontWeight="Bold" Foreground="#1A2438"/>
                   <TextBlock x:Name="PageSubtitleText"
                              Text="{Binding Source={x:Static sys:DateTime.Today}, StringFormat={}{0:dddd, MMMM d, yyyy}}"
                              FontSize="12" Foreground="#66778F" Margin="0,3,0,0"/>
@@ -356,7 +346,7 @@
                            FontSize="12" FontWeight="Medium" VerticalAlignment="Bottom" Margin="0,0,0,3"/>
               </Grid>
 
-              <Border Background="#EBF1F9" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="20" Padding="12">
+              <Border Background="#EAF0F8" BorderBrush="#D7E0EA" BorderThickness="1" CornerRadius="11" Padding="8">
                 <ListView x:Name="TimelineList" Background="Transparent" BorderThickness="0"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
@@ -389,7 +379,7 @@
                   </ListView.ItemContainerStyle>
                   <ListView.ItemTemplate>
                     <DataTemplate>
-                      <Grid Height="68" Margin="12,0">
+                      <Grid Height="56" Margin="10,0">
                         <Grid.ColumnDefinitions>
                           <ColumnDefinition Width="70"/>
                           <ColumnDefinition Width="16"/>
@@ -401,7 +391,7 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding CreatedAt, StringFormat={}{0:h:mm tt}}" Foreground="#66778F" FontSize="12"
                                    FontWeight="Medium" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,8,0"/>
-                        <Grid Grid.Column="1" Height="64">
+                        <Grid Grid.Column="1" Height="52">
                           <Border Width="2" Background="#7DB8FA" HorizontalAlignment="Center"/>
                           <Ellipse Width="10" Height="10" Fill="#1680FF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
@@ -409,7 +399,7 @@
                                Stretch="Uniform" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality"/>
                         <StackPanel Grid.Column="3" Margin="8,0,10,0" VerticalAlignment="Center">
                           <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Title}" Foreground="#1A2438" FontSize="14.5" FontWeight="SemiBold"
+                            <TextBlock Text="{Binding Title}" Foreground="#1A2438" FontSize="13" FontWeight="SemiBold"
                                        TextTrimming="CharacterEllipsis" VerticalAlignment="Center"/>
                             <Border Visibility="{Binding IsLiveActivity, Converter={StaticResource BooleanToVisibilityConverter}}"
                                     Background="#E7F8ED" CornerRadius="10" Padding="7,2" Margin="7,0,0,0">
@@ -448,10 +438,10 @@
         <Border x:Name="RightDivider" Grid.Column="1" Width="1" Background="#D0DAE7"/>
 
         <!-- macOS TimelineSummaryColumn: full-height independent right column -->
-        <Border x:Name="RightSidebar" Grid.Column="2" Background="#EBF1F9">
+        <Border x:Name="RightSidebar" Grid.Column="2" Background="#EAF1FB">
           <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <StackPanel Margin="16">
-              <Grid Margin="4,0,4,16">
+            <StackPanel Margin="12">
+              <Grid Margin="4,0,4,12">
                 <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                 <Ellipse x:Name="RightStatusDot" Width="10" Height="10" Fill="#22C55E" VerticalAlignment="Center" Margin="0,0,9,0"/>
                 <TextBlock x:Name="RightStatusText" Grid.Column="1" Text="Capturing" FontSize="11" FontWeight="Medium"
@@ -462,7 +452,7 @@
                            Foreground="#66778F" FontSize="11" FontWeight="Medium" VerticalAlignment="Center"/>
               </Grid>
 
-              <Border Background="#FBFCFF" BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="20" Padding="18">
+              <Border Background="#FBFCFF" BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="15" Padding="13">
                 <StackPanel>
                   <Grid Margin="0,0,0,13">
                     <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
@@ -471,7 +461,7 @@
                     <Button x:Name="ShowDetailsButton" Grid.Column="2" Visibility="Collapsed"/>
                   </Grid>
                   <UniformGrid Columns="2">
-                    <Border Style="{StaticResource MetricCardStyle}"><StackPanel><TextBlock x:Name="TotalActivitiesText" Text="0" FontSize="22" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Total Activities" FontSize="10" Foreground="#66778F"/></StackPanel></Border>
+                    <Border Style="{StaticResource MetricCardStyle}"><StackPanel><TextBlock x:Name="TotalActivitiesText" Text="0" FontSize="20" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Total Activities" FontSize="10" Foreground="#66778F"/></StackPanel></Border>
                     <Border Style="{StaticResource MetricCardStyle}"><StackPanel><TextBlock x:Name="AppsUsedText" Text="0" FontSize="22" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Apps Used" FontSize="10" Foreground="#66778F"/></StackPanel></Border>
                     <Border Style="{StaticResource MetricCardStyle}"><StackPanel><TextBlock x:Name="ActiveTimeText" Text="0m" FontSize="22" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Active Time" FontSize="10" Foreground="#66778F"/></StackPanel></Border>
                     <Border Style="{StaticResource MetricCardStyle}"><StackPanel><TextBlock x:Name="ClipboardItemsText" Text="0" FontSize="22" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Clipboard Items" FontSize="10" Foreground="#66778F"/></StackPanel></Border>
@@ -479,7 +469,7 @@
                 </StackPanel>
               </Border>
 
-              <Grid Height="16"/>
+              <Grid Height="12"/>
 
               <Grid>
                 <Grid.RowDefinitions>
@@ -531,7 +521,7 @@
 
                     <Border Height="1" Background="#D8E1EC" Margin="0,4,0,12"/>
 
-                    <Button Content="Open Source" Height="42" Style="{StaticResource PrimaryButtonStyle}" Click="OpenSelected_Click"/>
+                    <Button Content="Open Source" Height="40" Style="{StaticResource PrimaryButtonStyle}" Click="OpenSelected_Click"/>
                     <Button Content="Copy Subject" Height="38" Margin="0,8,0,0" Click="CopySelectedTitle_Click"/>
                   </StackPanel>
                 </Border>
