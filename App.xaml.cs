@@ -1,4 +1,7 @@
+using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace MemoryLane.Windows;
 
@@ -8,20 +11,46 @@ public partial class App : Application
     public static TimelineStore Store { get; } = new();
     public static CaptureService Capture { get; } = new(Store, Preferences);
 
-    protected override void OnStartup(StartupEventArgs e)
+    protected override async void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
         ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
+        SplashWindow? splash = null;
+        var startupTimer = Stopwatch.StartNew();
+
         try
         {
-            Preferences.Load();
-            Store.Load();
+            splash = new SplashWindow();
+            MainWindow = splash;
+            splash.Show();
+
+            await Dispatcher.Yield(DispatcherPriority.Loaded);
+
+            splash.SetStatus("Loading preferences…");
+            await Task.Run(() => Preferences.Load());
+
+            splash.SetStatus("Restoring your timeline…");
+            await Task.Run(() => Store.Load());
+
+            splash.SetStatus("Preparing your workspace…");
+            await Dispatcher.Yield(DispatcherPriority.Background);
 
             var window = new MainWindow();
             WindowsParityEnhancements.Attach(window);
+
+            var minimumSplashTime = TimeSpan.FromMilliseconds(700);
+            var remaining = minimumSplashTime - startupTimer.Elapsed;
+            if (remaining > TimeSpan.Zero)
+                await Task.Delay(remaining);
+
+            splash.SetStatus("Ready");
+            await Task.Delay(90);
+
             MainWindow = window;
             window.Show();
+            splash.Close();
+            splash = null;
 
             window.Dispatcher.BeginInvoke(new Action(() =>
             {
@@ -31,6 +60,8 @@ public partial class App : Application
         }
         catch (Exception ex)
         {
+            try { splash?.Close(); } catch { }
+
             try
             {
                 var folder = Path.Combine(
