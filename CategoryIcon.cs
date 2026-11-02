@@ -172,11 +172,11 @@ public sealed class CategoryIcon : FrameworkElement
         // Soft Blue theme: cool, readable accents on lightly tinted tiles.
         "All" => (Color.FromRgb(22, 128, 255), Color.FromRgb(223, 237, 255)),
         "Browser" => (Color.FromRgb(28, 174, 232), Color.FromRgb(226, 246, 255)),
-        "Email" => (Color.FromRgb(35, 132, 255), Color.FromRgb(230, 240, 255)),
+        "Email" => (Color.FromRgb(27, 157, 226), Color.FromRgb(225, 243, 255)),
         "Chat" => (Color.FromRgb(104, 103, 232), Color.FromRgb(237, 236, 255)),
         "Files" => (Color.FromRgb(238, 177, 20), Color.FromRgb(255, 246, 216)),
         "Productivity" => (Color.FromRgb(42, 170, 227), Color.FromRgb(226, 246, 255)),
-        "Development" => (Color.FromRgb(37, 122, 242), Color.FromRgb(229, 239, 255)),
+        "Development" => (Color.FromRgb(242, 139, 24), Color.FromRgb(255, 239, 216)),
         "System" => (Color.FromRgb(137, 149, 166), Color.FromRgb(238, 242, 247)),
         "Media" => (Color.FromRgb(88, 133, 232), Color.FromRgb(233, 240, 255)),
         "Design" => (Color.FromRgb(116, 103, 225), Color.FromRgb(239, 237, 255)),
