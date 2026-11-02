@@ -24,8 +24,8 @@
       <Setter Property="Background" Value="#F6F9FC"/>
       <Setter Property="BorderBrush" Value="#D8E1EC"/>
       <Setter Property="BorderThickness" Value="1"/>
-      <Setter Property="Padding" Value="13,9"/>
-      <Setter Property="FontSize" Value="13"/>
+      <Setter Property="Padding" Value="14,9"/>
+      <Setter Property="FontSize" Value="13.5"/>
       <Setter Property="FontWeight" Value="SemiBold"/>
       <Setter Property="Cursor" Value="Hand"/>
       <Setter Property="Template">
@@ -35,7 +35,7 @@
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="11"
+                    CornerRadius="12"
                     Padding="{TemplateBinding Padding}">
               <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalAlignment="Center"/>
@@ -68,8 +68,8 @@
       <Setter Property="BorderBrush" Value="Transparent"/>
       <Setter Property="BorderThickness" Value="0"/>
       <Setter Property="Foreground" Value="#1A2438"/>
-      <Setter Property="Padding" Value="12,0"/>
-      <Setter Property="Height" Value="39"/>
+      <Setter Property="Padding" Value="13,0"/>
+      <Setter Property="Height" Value="40"/>
       <Setter Property="HorizontalContentAlignment" Value="Left"/>
       <Setter Property="FontSize" Value="14"/>
       <Setter Property="FontWeight" Value="Medium"/>
