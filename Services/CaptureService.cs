@@ -11,33 +11,128 @@ public sealed class CaptureService
 {
     private readonly TimelineStore _store;
     private readonly PreferencesService _preferences;
-    private readonly DispatcherTimer _windowTimer;
-    private readonly DispatcherTimer _clipboardTimer;
+    private DispatcherTimer? _windowTimer;
+    private DispatcherTimer? _clipboardTimer;
+    private IntPtr _foregroundHook;
+    private WinEventDelegate? _foregroundDelegate;
+    private bool _started;
     private string _lastWindowSignature = "";
     private string _lastClipboardText = "";
+
+    public bool IsRunning => _started && _windowTimer?.IsEnabled == true;
+    public DateTimeOffset? LastActivityCapturedAt { get; private set; }
 
     public CaptureService(TimelineStore store, PreferencesService preferences)
     {
         _store = store;
         _preferences = preferences;
-
-        _windowTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-        _windowTimer.Tick += (_, _) => PollForegroundWindow();
-
-        _clipboardTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1.5) };
-        _clipboardTimer.Tick += (_, _) => PollClipboard();
     }
 
     public void Start()
     {
-        _windowTimer.Start();
-        _clipboardTimer.Start();
+        var dispatcher = Application.Current?.Dispatcher ?? Dispatcher.CurrentDispatcher;
+        if (!dispatcher.CheckAccess())
+        {
+            dispatcher.Invoke(Start);
+            return;
+        }
+
+        if (_started && _windowTimer?.IsEnabled == true)
+            return;
+
+        try
+        {
+            _windowTimer ??= new DispatcherTimer(DispatcherPriority.Background, dispatcher)
+            {
+                Interval = TimeSpan.FromSeconds(1)
+            };
+            _windowTimer.Tick -= WindowTimer_Tick;
+            _windowTimer.Tick += WindowTimer_Tick;
+
+            _clipboardTimer ??= new DispatcherTimer(DispatcherPriority.Background, dispatcher)
+            {
+                Interval = TimeSpan.FromSeconds(1.5)
+            };
+            _clipboardTimer.Tick -= ClipboardTimer_Tick;
+            _clipboardTimer.Tick += ClipboardTimer_Tick;
+
+            _foregroundDelegate ??= ForegroundChanged;
+            if (_foregroundHook == IntPtr.Zero)
+            {
+                _foregroundHook = SetWinEventHook(
+                    EventSystemForeground,
+                    EventSystemForeground,
+                    IntPtr.Zero,
+                    _foregroundDelegate,
+                    0,
+                    0,
+                    WinEventOutOfContext | WinEventSkipOwnProcess);
+            }
+
+            _windowTimer.Start();
+            _clipboardTimer.Start();
+            _started = true;
+
+            // Capture immediately instead of waiting for the first timer tick.
+            SafeCaptureWindow(GetForegroundWindow());
+        }
+        catch (Exception ex)
+        {
+            _started = false;
+            App.LogNonFatal("CaptureService.Start", ex);
+        }
     }
 
     public void Stop()
     {
-        _windowTimer.Stop();
-        _clipboardTimer.Stop();
+        try
+        {
+            _windowTimer?.Stop();
+            _clipboardTimer?.Stop();
+
+            if (_foregroundHook != IntPtr.Zero)
+            {
+                _ = UnhookWinEvent(_foregroundHook);
+                _foregroundHook = IntPtr.Zero;
+            }
+        }
+        catch (Exception ex)
+        {
+            App.LogNonFatal("CaptureService.Stop", ex);
+        }
+        finally
+        {
+            _started = false;
+        }
+    }
+
+    private void WindowTimer_Tick(object? sender, EventArgs e) => SafeCaptureWindow(GetForegroundWindow());
+
+    private void ClipboardTimer_Tick(object? sender, EventArgs e)
+    {
+        try { PollClipboard(); }
+        catch (Exception ex) { App.LogNonFatal("CaptureService.PollClipboard", ex); }
+    }
+
+    private void ForegroundChanged(
+        IntPtr hWinEventHook,
+        uint eventType,
+        IntPtr hwnd,
+        int idObject,
+        int idChild,
+        uint eventThread,
+        uint eventTime)
+    {
+        if (hwnd == IntPtr.Zero)
+            return;
+
+        var dispatcher = Application.Current?.Dispatcher;
+        if (dispatcher is null || dispatcher.HasShutdownStarted)
+            return;
+
+        dispatcher.BeginInvoke(
+            DispatcherPriority.Background,
+            new Action(() => SafeCaptureWindow(hwnd)));
     }
 
     public void ClearRuntimeCache()
@@ -46,13 +141,29 @@ public sealed class CaptureService
         _lastClipboardText = "";
     }
 
-    private void PollForegroundWindow()
+    private void SafeCaptureWindow(IntPtr hwnd)
     {
-        if (_preferences.CapturePaused || !_preferences.CaptureAppActivity) return;
+        try
+        {
+            CaptureWindow(hwnd);
+        }
+        catch (Exception ex)
+        {
+            App.LogNonFatal("CaptureService.CaptureWindow", ex);
+        }
+    }
 
-        var hwnd = GetForegroundWindow();
-        if (hwnd == IntPtr.Zero) return;
+    private void CaptureWindow(IntPtr hwnd)
+    {
+        if (_preferences.CapturePaused || !_preferences.CaptureAppActivity)
+            return;
+
+        if (hwnd == IntPtr.Zero)
+            return;
+
         _ = GetWindowThreadProcessId(hwnd, out var pid);
+        if (pid == 0 || pid == Environment.ProcessId)
+            return;
 
         Process process;
         try { process = Process.GetProcessById((int)pid); }
@@ -60,39 +171,85 @@ public sealed class CaptureService
 
         using (process)
         {
-        var processName = process.ProcessName;
-        if (_preferences.IsExcluded(processName)) return;
-        if (processName.Equals("Memory Trail", StringComparison.OrdinalIgnoreCase) ||
-            processName.Equals("Memory Lane", StringComparison.OrdinalIgnoreCase) ||
-            processName.Equals("MemoryLane.Windows", StringComparison.OrdinalIgnoreCase))
-            return;
+            var processName = process.ProcessName?.Trim() ?? "";
+            if (string.IsNullOrWhiteSpace(processName) || _preferences.IsExcluded(processName))
+                return;
 
-        var title = NormalizeTitle(GetWindowTitle(hwnd), processName);
+            if (IsMemoryTrailProcess(processName))
+                return;
 
-        if (IsOutlookProcess(processName))
-        {
-            var outlookSubject = TryGetClassicOutlookSelectedSubject()
-                ?? TryGetOutlookSubjectFromUiAutomation(hwnd);
+            var friendlyApp = FriendlyAppName(processName);
+            var rawTitle = GetWindowTitle(hwnd);
 
-            if (!string.IsNullOrWhiteSpace(outlookSubject))
-                title = NormalizeTitle(outlookSubject, processName);
+            if (string.IsNullOrWhiteSpace(rawTitle))
+            {
+                try { rawTitle = process.MainWindowTitle; }
+                catch { }
+            }
+
+            if (string.IsNullOrWhiteSpace(rawTitle))
+                rawTitle = TryGetAutomationWindowName(hwnd) ?? "";
+
+            var title = NormalizeTitle(rawTitle, processName);
+
+            if (IsOutlookProcess(processName))
+            {
+                var outlookSubject = TryGetClassicOutlookSelectedSubject()
+                    ?? TryGetOutlookSubjectFromUiAutomation(hwnd);
+
+                if (!string.IsNullOrWhiteSpace(outlookSubject))
+                    title = NormalizeTitle(outlookSubject, processName);
+            }
+
+            var hasUsefulTitle = !string.IsNullOrWhiteSpace(title) && !IsGeneric(title, processName);
+            if (!hasUsefulTitle)
+                title = $"Opened {friendlyApp}";
+
+            var signature = (processName + "|" + title).ToLowerInvariant();
+            if (signature == _lastWindowSignature)
+                return;
+
+            _lastWindowSignature = signature;
+
+            _store.Add(new MemoryItem
+            {
+                Title = title,
+                Body = hasUsefulTitle
+                    ? DetailedBody(title, processName)
+                    : $"Application became active: {friendlyApp}",
+                SourceApp = friendlyApp,
+                SourceProcess = processName,
+                SourceExecutable = GetExecutablePath(process),
+                SourceKind = SourceKind.AppActivity
+            });
+
+            LastActivityCapturedAt = DateTimeOffset.Now;
         }
+    }
 
-        if (string.IsNullOrWhiteSpace(title) || IsGeneric(title, processName)) return;
+    private static bool IsMemoryTrailProcess(string processName)
+    {
+        var value = processName.Replace(" ", "", StringComparison.Ordinal)
+            .Replace(".", "", StringComparison.Ordinal)
+            .Replace("-", "", StringComparison.Ordinal);
 
-        var signature = (processName + "|" + title).ToLowerInvariant();
-        if (signature == _lastWindowSignature) return;
-        _lastWindowSignature = signature;
+        return value.Equals("MemoryTrail", StringComparison.OrdinalIgnoreCase)
+            || value.Equals("MemoryLane", StringComparison.OrdinalIgnoreCase)
+            || value.Equals("MemoryLaneWindows", StringComparison.OrdinalIgnoreCase)
+            || value.Equals("MemoryTrailWindows", StringComparison.OrdinalIgnoreCase);
+    }
 
-        _store.Add(new MemoryItem
+    private static string? TryGetAutomationWindowName(IntPtr hwnd)
+    {
+        try
         {
-            Title = title,
-            Body = DetailedBody(title, processName),
-            SourceApp = FriendlyAppName(processName),
-            SourceProcess = processName,
-            SourceExecutable = GetExecutablePath(process),
-            SourceKind = SourceKind.AppActivity
-        });
+            var root = AutomationElement.FromHandle(hwnd);
+            var name = root?.Current.Name?.Trim();
+            return string.IsNullOrWhiteSpace(name) ? null : name;
+        }
+        catch
+        {
+            return null;
         }
     }
 
@@ -124,7 +281,7 @@ public sealed class CaptureService
         }
         catch { }
 
-        if (_preferences.IsExcluded(processName)) return;
+        if (!string.IsNullOrWhiteSpace(processName) && _preferences.IsExcluded(processName)) return;
 
         var preview = text.Replace("\r", " ").Replace("\n", " ");
         _store.Add(new MemoryItem
@@ -140,6 +297,8 @@ public sealed class CaptureService
                 ? uri.ToString()
                 : null
         });
+
+        LastActivityCapturedAt = DateTimeOffset.Now;
     }
 
     private static string? GetExecutablePath(Process process)
@@ -407,6 +566,33 @@ public sealed class CaptureService
         "explorer" => "File Explorer",
         _ => string.IsNullOrWhiteSpace(processName) ? "Application" : processName
     };
+
+    private const uint EventSystemForeground = 0x0003;
+    private const uint WinEventOutOfContext = 0x0000;
+    private const uint WinEventSkipOwnProcess = 0x0002;
+
+    private delegate void WinEventDelegate(
+        IntPtr hWinEventHook,
+        uint eventType,
+        IntPtr hwnd,
+        int idObject,
+        int idChild,
+        uint eventThread,
+        uint eventTime);
+
+    [DllImport("user32.dll")]
+    private static extern IntPtr SetWinEventHook(
+        uint eventMin,
+        uint eventMax,
+        IntPtr hmodWinEventProc,
+        WinEventDelegate lpfnWinEventProc,
+        uint idProcess,
+        uint idThread,
+        uint flags);
+
+    [DllImport("user32.dll")]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static extern bool UnhookWinEvent(IntPtr hWinEventHook);
 
     [DllImport("user32.dll")]
     private static extern IntPtr GetForegroundWindow();

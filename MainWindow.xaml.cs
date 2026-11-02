@@ -66,8 +66,12 @@ public partial class MainWindow : Window
         _liveTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(15) };
         _liveTimer.Tick += (_, _) =>
         {
+            if (!App.Capture.IsRunning)
+                App.Capture.Start();
+
             UpdateLiveActivity();
             UpdateActivityCount();
+            UpdateCaptureState();
         };
         _liveTimer.Start();
 
@@ -1004,17 +1008,40 @@ public partial class MainWindow : Window
 
     private void UpdateCaptureState()
     {
-        StatusText.Text = App.Preferences.CapturePaused ? "Capture paused" : "Capturing";
-        CaptureSubtext.Text = App.Preferences.CapturePaused ? "Click to resume" : "Your activity is stored locally";
-        QuickCaptureText.Text = App.Preferences.CapturePaused ? "Paused" : "Capturing";
+        var paused = App.Preferences.CapturePaused;
+        var appCaptureOff = !App.Preferences.CaptureAppActivity;
+        var running = App.Capture.IsRunning;
 
-        var color = App.Preferences.CapturePaused
+        var label = paused
+            ? "Capture paused"
+            : appCaptureOff
+                ? "App capture off"
+                : running
+                    ? "Capturing"
+                    : "Starting capture";
+
+        var subtext = paused
+            ? "Click to resume"
+            : appCaptureOff
+                ? "Enable App Activity in Settings"
+                : "Your activity is stored locally";
+
+        StatusText.Text = label;
+        CaptureSubtext.Text = subtext;
+        QuickCaptureText.Text = paused ? "Paused" : appCaptureOff ? "Off" : running ? "Capturing" : "Starting";
+
+        var color = paused
             ? Color.FromRgb(245, 158, 11)
-            : Color.FromRgb(34, 197, 94);
+            : appCaptureOff
+                ? Color.FromRgb(148, 163, 184)
+                : running
+                    ? Color.FromRgb(34, 197, 94)
+                    : Color.FromRgb(59, 130, 246);
+
         StatusDot.Fill = new SolidColorBrush(color);
         QuickCaptureDot.Fill = new SolidColorBrush(color);
         RightStatusDot.Fill = new SolidColorBrush(color);
-        RightStatusText.Text = App.Preferences.CapturePaused ? "Paused" : "Capturing";
+        RightStatusText.Text = paused ? "Paused" : appCaptureOff ? "App capture off" : running ? "Capturing" : "Starting";
     }
 
     private void SettingChanged(object sender, RoutedEventArgs e)
@@ -1024,6 +1051,13 @@ public partial class MainWindow : Window
         App.Preferences.CaptureAppActivity = AppCaptureCheckBox.IsChecked == true;
         App.Preferences.CaptureClipboard = ClipboardCaptureCheckBox.IsChecked == true;
         App.Preferences.Save();
+
+        if (App.Preferences.CaptureAppActivity && !App.Preferences.CapturePaused)
+        {
+            App.Capture.ClearRuntimeCache();
+            App.Capture.Start();
+        }
+
         UpdateCaptureState();
     }
 
