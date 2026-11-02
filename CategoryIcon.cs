@@ -88,10 +88,10 @@ public sealed class CategoryIcon : FrameworkElement
         }
 
         var inner = new Rect(
-            tile.X + size * 0.21,
-            tile.Y + size * 0.21,
-            size * 0.58,
-            size * 0.58);
+            tile.X + size * 0.18,
+            tile.Y + size * 0.18,
+            size * 0.64,
+            size * 0.64);
 
         switch (kind)
         {
@@ -169,19 +169,20 @@ public sealed class CategoryIcon : FrameworkElement
 
     private static (Color icon, Color background) ColorsFor(string kind) => kind switch
     {
-        "All" => (Color.FromRgb(18, 92, 245), Color.FromRgb(211, 227, 255)),
-        "Browser" => (Color.FromRgb(9, 187, 216), Color.FromRgb(210, 246, 251)),
-        "Email" => (Color.FromRgb(255, 113, 15), Color.FromRgb(255, 228, 208)),
-        "Chat" => (Color.FromRgb(195, 42, 230), Color.FromRgb(243, 216, 251)),
-        "Files" => (Color.FromRgb(246, 187, 0), Color.FromRgb(255, 242, 194)),
-        "Productivity" => (Color.FromRgb(10, 181, 194), Color.FromRgb(211, 246, 245)),
-        "Development" => (Color.FromRgb(255, 105, 15), Color.FromRgb(255, 225, 205)),
-        "System" => (Color.FromRgb(126, 139, 156), Color.FromRgb(226, 232, 239)),
-        "Media" => (Color.FromRgb(235, 77, 85), Color.FromRgb(253, 235, 237)),
-        "Design" => (Color.FromRgb(98, 87, 217), Color.FromRgb(239, 237, 253)),
-        "Remote" => (Color.FromRgb(24, 175, 200), Color.FromRgb(230, 248, 251)),
-        "Clipboard" => (Color.FromRgb(255, 138, 52), Color.FromRgb(255, 240, 227)),
-        _ => (Color.FromRgb(126, 139, 156), Color.FromRgb(229, 234, 240))
+        // Soft Blue theme: cool, readable accents on lightly tinted tiles.
+        "All" => (Color.FromRgb(22, 128, 255), Color.FromRgb(223, 237, 255)),
+        "Browser" => (Color.FromRgb(28, 174, 232), Color.FromRgb(226, 246, 255)),
+        "Email" => (Color.FromRgb(35, 132, 255), Color.FromRgb(230, 240, 255)),
+        "Chat" => (Color.FromRgb(104, 103, 232), Color.FromRgb(237, 236, 255)),
+        "Files" => (Color.FromRgb(238, 177, 20), Color.FromRgb(255, 246, 216)),
+        "Productivity" => (Color.FromRgb(42, 170, 227), Color.FromRgb(226, 246, 255)),
+        "Development" => (Color.FromRgb(37, 122, 242), Color.FromRgb(229, 239, 255)),
+        "System" => (Color.FromRgb(137, 149, 166), Color.FromRgb(238, 242, 247)),
+        "Media" => (Color.FromRgb(88, 133, 232), Color.FromRgb(233, 240, 255)),
+        "Design" => (Color.FromRgb(116, 103, 225), Color.FromRgb(239, 237, 255)),
+        "Remote" => (Color.FromRgb(31, 166, 214), Color.FromRgb(228, 247, 252)),
+        "Clipboard" => (Color.FromRgb(48, 137, 241), Color.FromRgb(231, 241, 255)),
+        _ => (Color.FromRgb(137, 149, 166), Color.FromRgb(240, 243, 247))
     };
 
     private static Pen Pen(Brush brush, double size, double ratio = 0.095)
