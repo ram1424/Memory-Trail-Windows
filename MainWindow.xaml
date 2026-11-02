@@ -8,14 +8,14 @@
         MinWidth="1240" MinHeight="720"
         WindowStartupLocation="CenterScreen"
         FontFamily="Segoe UI Variable Text"
-        Background="#F1F5FB">
+        Background="#DCE6F2">
   <Window.Resources>
     <local:AppIconConverter x:Key="AppIconConverter"/>
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
     <Style x:Key="MetricCardStyle" TargetType="Border">
-      <Setter Property="Background" Value="#F8FAFD"/>
-      <Setter Property="BorderBrush" Value="#DEE6EF"/>
+      <Setter Property="Background" Value="#E8EFF6"/>
+      <Setter Property="BorderBrush" Value="#C4D1E0"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="CornerRadius" Value="14"/>
       <Setter Property="Padding" Value="11"/>
@@ -121,7 +121,7 @@
       <Setter Property="Height" Value="36"/>
       <Setter Property="Padding" Value="11,0"/>
       <Setter Property="Margin" Value="0,0,8,0"/>
-      <Setter Property="Background" Value="#F6F9FC"/>
+      <Setter Property="Background" Value="#E4EBF3"/>
       <Setter Property="BorderBrush" Value="#D8E1EC"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="Foreground" Value="#1A2438"/>
@@ -137,7 +137,7 @@
             </Border>
             <ControlTemplate.Triggers>
               <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="QuickChrome" Property="Background" Value="#FBFCFF"/>
+                <Setter TargetName="QuickChrome" Property="Background" Value="#EDF3F8"/>
               </Trigger>
             </ControlTemplate.Triggers>
           </ControlTemplate>
@@ -156,8 +156,8 @@
     <Border Grid.Column="0" BorderBrush="#D0DAE7" BorderThickness="0,0,1,0">
       <Border.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-          <GradientStop Color="#F1F6FD" Offset="0"/>
-          <GradientStop Color="#DCE7F6" Offset="1"/>
+          <GradientStop Color="#DFE7F1" Offset="0"/>
+          <GradientStop Color="#C8D6E7" Offset="1"/>
         </LinearGradientBrush>
       </Border.Background>
       <Grid Margin="10,12,10,10">
@@ -307,7 +307,7 @@
         </ScrollViewer>
 
         <Button x:Name="PauseButton" Grid.Row="3" Click="PauseButton_Click"
-                Background="#F9FBFE" BorderBrush="#D7E1EC" BorderThickness="1"
+                Background="#E7EEF5" BorderBrush="#C3D0DE" BorderThickness="1"
                 Padding="11,9" HorizontalContentAlignment="Stretch">
           <Grid>
             <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
@@ -326,15 +326,15 @@
     <Grid Grid.Column="1">
       <Grid.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-          <GradientStop Color="#F7F9FD" Offset="0"/>
-          <GradientStop Color="#E2EBF7" Offset="1"/>
+          <GradientStop Color="#E3EAF3" Offset="0"/>
+          <GradientStop Color="#CCD9E8" Offset="1"/>
         </LinearGradientBrush>
       </Grid.Background>
       <Grid x:Name="ActivityShell">
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*"/>
           <ColumnDefinition x:Name="DetailsSpacerColumn" Width="1"/>
-          <ColumnDefinition x:Name="DetailsColumn" Width="320"/>
+          <ColumnDefinition x:Name="DetailsColumn" Width="360"/>
         </Grid.ColumnDefinitions>
 
         <!-- macOS TimelineView: toolbar, filters, heading and timeline are one left column -->
@@ -414,7 +414,7 @@
                 </StackPanel>
               </Button>
               <Button x:Name="MoreFiltersButton" Width="32" Height="32" Padding="0"
-                      Background="#F6F9FC" BorderBrush="#D8E1EC" BorderThickness="1" Click="MoreFilters_Click" ToolTip="More filters">
+                      Background="#E3EBF3" BorderBrush="#C3D0DE" BorderThickness="1" Click="MoreFilters_Click" ToolTip="More filters">
                 <TextBlock Text="&#xE712;" FontFamily="Segoe MDL2 Assets" FontSize="13" Foreground="#66778F"/>
               </Button>
             </StackPanel>
@@ -423,7 +423,7 @@
               <Ellipse x:Name="QuickCaptureDot" Width="9" Height="9" Fill="#22C55E" Margin="0,0,7,0"/>
               <TextBlock x:Name="QuickCaptureText" Text="Capturing" Foreground="#66778F" FontSize="11"
                          Margin="0,0,14,0" VerticalAlignment="Center"/>
-              <Border Background="#F6F9FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="11">
+              <Border Background="#E3EBF3" BorderBrush="#C3D0DE" BorderThickness="1" CornerRadius="11">
                 <StackPanel Orientation="Horizontal">
                   <Button Width="32" Height="32" Padding="0" BorderThickness="0" Background="Transparent" Click="PreviousDay_Click" ToolTip="Previous day">
                     <TextBlock Text="&#xE76B;" FontFamily="Segoe MDL2 Assets" FontSize="11" Foreground="#40506A"/>
@@ -455,7 +455,7 @@
                            FontSize="12" FontWeight="Medium" VerticalAlignment="Bottom" Margin="0,0,0,3"/>
               </Grid>
 
-              <Border Background="#EAF0F8" BorderBrush="#D7E0EA" BorderThickness="1" CornerRadius="11" Padding="8">
+              <Border Background="#CEDAE7" BorderBrush="#B9C8D9" BorderThickness="1" CornerRadius="11" Padding="8">
                 <ListView x:Name="TimelineList" Background="Transparent" BorderThickness="0"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
@@ -465,7 +465,7 @@
                       <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                       <Setter Property="Padding" Value="0"/>
                       <Setter Property="Margin" Value="0,0,0,2"/>
-                      <Setter Property="Background" Value="#F6F9FC"/>
+                      <Setter Property="Background" Value="#E4EBF3"/>
                       <Setter Property="Template">
                         <Setter.Value>
                           <ControlTemplate TargetType="ListViewItem">
@@ -474,9 +474,9 @@
                               <ContentPresenter/>
                             </Border>
                             <ControlTemplate.Triggers>
-                              <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Row" Property="Background" Value="#F8FBFF"/></Trigger>
+                              <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="Row" Property="Background" Value="#EEF3F8"/></Trigger>
                               <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="Row" Property="Background" Value="#EAF4FF"/>
+                                <Setter TargetName="Row" Property="Background" Value="#D8E8FA"/>
                                 <Setter TargetName="Row" Property="BorderBrush" Value="#55A0FF"/>
                                 <Setter TargetName="Row" Property="BorderThickness" Value="1.5"/>
                               </Trigger>
@@ -504,7 +504,7 @@
                           <Border Width="2" Background="#7DB8FA" HorizontalAlignment="Center"/>
                           <Ellipse Width="10" Height="10" Fill="#1680FF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Grid>
-                        <Border Grid.Column="2" Width="34" Height="34" CornerRadius="8" Background="#FBFCFF"
+                        <Border Grid.Column="2" Width="34" Height="34" CornerRadius="8" Background="#EAF0F6"
                                 BorderBrush="#E1E7EF" BorderThickness="1" VerticalAlignment="Center">
                           <Image Source="{Binding Converter={StaticResource AppIconConverter}}" Width="27" Height="27"
                                  Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
@@ -606,8 +606,8 @@
         <Border x:Name="RightSidebar" Grid.Column="2">
           <Border.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-              <GradientStop Color="#F4F8FE" Offset="0"/>
-              <GradientStop Color="#E8F1FB" Offset="1"/>
+              <GradientStop Color="#DEE7F1" Offset="0"/>
+              <GradientStop Color="#CFDCEA" Offset="1"/>
             </LinearGradientBrush>
           </Border.Background>
           <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -623,7 +623,7 @@
                            Foreground="#66778F" FontSize="11" FontWeight="Medium" VerticalAlignment="Center"/>
               </Grid>
 
-              <Border Background="#FFFFFF" BorderBrush="#DDE6F0" BorderThickness="1" CornerRadius="19" Padding="14" Effect="{StaticResource SoftShadow}">
+              <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="19" Padding="14" Effect="{StaticResource SoftShadow}">
                 <StackPanel>
                   <Grid Margin="1,0,1,12">
                     <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
@@ -695,12 +695,12 @@
                   <RowDefinition x:Name="DetailsGapRow" Height="0"/>
                   <RowDefinition x:Name="DetailsRow" Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Border x:Name="DetailsPanel" Grid.Row="1" Background="#FFFFFF" BorderBrush="#DDE6F0"
+                <Border x:Name="DetailsPanel" Grid.Row="1" Background="#EDF3F8" BorderBrush="#C5D3E1"
                         BorderThickness="1" CornerRadius="19" Padding="15" Effect="{StaticResource SoftShadow}">
                   <StackPanel>
                     <Grid Margin="0,0,0,14">
                       <Grid.ColumnDefinitions><ColumnDefinition Width="50"/><ColumnDefinition Width="*"/><ColumnDefinition Width="34"/><ColumnDefinition Width="28"/></Grid.ColumnDefinitions>
-                      <Border Width="44" Height="44" CornerRadius="10" Background="#F4F7FB"
+                      <Border Width="44" Height="44" CornerRadius="10" Background="#E1E8F0"
                               BorderBrush="#E1E7EF" BorderThickness="1">
                         <Image Source="{Binding SelectedItem, ElementName=TimelineList, Converter={StaticResource AppIconConverter}}"
                                Width="34" Height="34" RenderOptions.BitmapScalingMode="HighQuality"/>
@@ -708,13 +708,13 @@
                       <StackPanel Grid.Column="1" Margin="8,0,8,0" VerticalAlignment="Center">
                         <TextBlock Text="{Binding SelectedItem.Title, ElementName=TimelineList, TargetNullValue=Select an activity}"
                                    FontSize="14" FontWeight="SemiBold" Foreground="#1A2438" TextWrapping="Wrap" MaxHeight="38"/>
-                        <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
+                        <WrapPanel Margin="0,3,0,0">
                           <TextBlock Text="{Binding SelectedItem.SourceApp, ElementName=TimelineList}" FontSize="10" Foreground="#66778F"/>
                           <TextBlock Text="  •  " FontSize="10" Foreground="#66778F"/>
                           <TextBlock Text="{Binding SelectedItem.ActivityLabel, ElementName=TimelineList}" FontSize="10" Foreground="#66778F"/>
                           <TextBlock Text="  •  " FontSize="10" Foreground="#66778F"/>
-                          <TextBlock Text="{Binding SelectedItem.CreatedAt, ElementName=TimelineList, StringFormat={}{0:h:mm tt}}" FontSize="10" Foreground="#66778F"/>
-                        </StackPanel>
+                          <TextBlock Text="{Binding SelectedItem.CreatedAt, ElementName=TimelineList, StringFormat={}{0:h:mm tt}}" FontSize="10" Foreground="#66778F" TextWrapping="NoWrap"/>
+                        </WrapPanel>
                       </StackPanel>
                       <Button Grid.Column="2" Width="30" Height="30" Padding="0"
                               Style="{StaticResource IconButtonStyle}" Click="FavoriteSelected_Click" ToolTip="Favorite">
@@ -738,7 +738,7 @@
                     </Grid>
                     <Grid Margin="0,0,0,8"><Grid.ColumnDefinitions><ColumnDefinition Width="54"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                       <TextBlock Text="Time" FontSize="10" Foreground="#66778F"/>
-                      <TextBlock Grid.Column="1" Text="{Binding SelectedItem.CreatedAt, ElementName=TimelineList, StringFormat={}{0:MMM d, yyyy h:mm tt}}" FontSize="10" Foreground="#1A2438"/>
+                      <TextBlock Grid.Column="1" Text="{Binding SelectedItem.CreatedAt, ElementName=TimelineList, StringFormat={}{0:MMM d, yyyy h:mm tt}}" FontSize="10" Foreground="#1A2438" TextWrapping="Wrap" LineHeight="15" MinHeight="16"/>
                     </Grid>
                     <Grid Margin="0,0,0,8"><Grid.ColumnDefinitions><ColumnDefinition Width="54"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                       <TextBlock Text="Window" FontSize="10" Foreground="#66778F"/>
@@ -775,32 +775,32 @@
             <TextBlock Text="A quick view of how your day is distributed." FontSize="13" Foreground="#66778F" Margin="0,6,0,0"/>
           </StackPanel>
           <UniformGrid Columns="2" Margin="0,0,0,18">
-            <Border Background="#FFFFFF" BorderBrush="#DCE5EF" BorderThickness="1" CornerRadius="18" Padding="16" Margin="0,0,12,12">
+            <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="18" Padding="16" Margin="0,0,12,12">
               <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="Productivity" Width="42" Height="42"/>
+                <local:CategoryIcon Category="All" Width="42" Height="42"/>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center"><TextBlock x:Name="InsightsTotalActivitiesText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Total Activities" Foreground="#66778F" FontSize="12"/></StackPanel>
               </Grid>
             </Border>
-            <Border Background="#FFFFFF" BorderBrush="#DCE5EF" BorderThickness="1" CornerRadius="18" Padding="16" Margin="0,0,0,12">
+            <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="18" Padding="16" Margin="0,0,0,12">
               <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="All" Width="42" Height="42"/>
+                <local:CategoryIcon Category="Productivity" Width="42" Height="42"/>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center"><TextBlock x:Name="InsightsAppsUsedText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Apps Used" Foreground="#66778F" FontSize="12"/></StackPanel>
               </Grid>
             </Border>
-            <Border Background="#FFFFFF" BorderBrush="#DCE5EF" BorderThickness="1" CornerRadius="18" Padding="16" Margin="0,0,12,0">
+            <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="18" Padding="16" Margin="0,0,12,0">
               <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                <Border Width="38" Height="38" CornerRadius="11" Background="#E8F0FF"><TextBlock Text="&#xE735;" FontFamily="Segoe MDL2 Assets" Foreground="#4E7FD2" FontSize="17" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <local:CategoryIcon Category="Favorites" Width="42" Height="42"/>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center"><TextBlock x:Name="InsightsFavoritesText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Favorites" Foreground="#66778F" FontSize="12"/></StackPanel>
               </Grid>
             </Border>
-            <Border Background="#FFFFFF" BorderBrush="#DCE5EF" BorderThickness="1" CornerRadius="18" Padding="16">
+            <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="18" Padding="16">
               <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                 <local:CategoryIcon Category="Clipboard" Width="42" Height="42"/>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center"><TextBlock x:Name="InsightsClipboardText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Clipboard Items" Foreground="#66778F" FontSize="12"/></StackPanel>
               </Grid>
             </Border>
           </UniformGrid>
-          <Border Background="#FBFCFE" BorderBrush="#DCE5EF" BorderThickness="1" CornerRadius="16" Padding="18">
+          <Border Background="#E6EDF5" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="16" Padding="18">
             <StackPanel>
               <TextBlock Text="Activity by Category" FontSize="16" FontWeight="SemiBold" Foreground="#1A2438" Margin="0,0,0,12"/>
               <TextBlock x:Name="InsightsCategoryText" Text="Open a few apps to build today's category distribution." Foreground="#40506A" TextWrapping="Wrap"/>
@@ -814,7 +814,7 @@
           <TextBlock Text="Privacy" FontSize="31" FontWeight="Bold" Foreground="#1A2438"/>
           <TextBlock Text="Memory Trail is privacy-first by design and gives you direct control over what is captured."
                      Margin="0,7,0,22" FontSize="14" Foreground="#66778F"/>
-          <Border Background="#FFFFFF" BorderBrush="#DCE5F0" BorderThickness="1"
+          <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1"
                   CornerRadius="19" Padding="21" Margin="0,0,0,12">
             <StackPanel>
               <TextBlock Text="Local processing and storage" FontSize="17" FontWeight="SemiBold" Foreground="#1A2438"/>
@@ -827,7 +827,7 @@
               </Border>
             </StackPanel>
           </Border>
-          <Border Background="#FFFFFF" BorderBrush="#DCE5F0" BorderThickness="1"
+          <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1"
                   CornerRadius="19" Padding="21" Margin="0,0,0,12">
             <StackPanel>
               <TextBlock Text="No outside connectors" FontSize="17" FontWeight="SemiBold" Foreground="#1A2438"/>
@@ -839,7 +839,7 @@
             </StackPanel>
           </Border>
 
-          <Border Background="#FFFFFF" BorderBrush="#DCE5F0" BorderThickness="1"
+          <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1"
                   CornerRadius="19" Padding="21">
             <StackPanel>
               <TextBlock Text="Capture controls" FontSize="17" FontWeight="SemiBold" Foreground="#1A2438"/>
@@ -873,7 +873,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Margin="0,0,0,18">
-          <Border Background="#FFFFFF" BorderBrush="#D5E1EE" BorderThickness="1"
+          <Border Background="#E9F0F6" BorderBrush="#C4D1E0" BorderThickness="1"
                   CornerRadius="22" Padding="15,12">
             <Grid>
               <Grid.ColumnDefinitions>
@@ -949,7 +949,7 @@
           </WrapPanel>
         </StackPanel>
 
-        <Border Grid.Row="2" Background="#FFFFFF" BorderBrush="#DCE5F0" BorderThickness="1"
+        <Border Grid.Row="2" Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1"
                 CornerRadius="22" Padding="22">
           <Grid>
             <Grid x:Name="AskEmptyState">
@@ -1003,7 +1003,7 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                   <DataTemplate>
-                    <Border Background="#F6F9FC" BorderBrush="#D8E1EC" BorderThickness="1"
+                    <Border Background="#E3EBF3" BorderBrush="#C3D0DE" BorderThickness="1"
                             CornerRadius="13" Padding="13">
                       <Grid>
                         <Grid.ColumnDefinitions>
@@ -1039,7 +1039,7 @@
           <TextBlock Text="Control what Memory Trail remembers, how it behaves, and review its privacy-first design."
                      Margin="0,7,0,22" FontSize="14" Foreground="#66778F"/>
 
-          <Border Background="#FFFFFF" BorderBrush="#DCE5F0" BorderThickness="1" CornerRadius="19" Padding="22" Margin="0,0,0,14">
+          <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="19" Padding="22" Margin="0,0,0,14">
             <StackPanel>
               <TextBlock Text="Capture" FontSize="18" FontWeight="SemiBold" Foreground="#1A2438"/>
               <TextBlock Text="Choose what Memory Trail remembers." Margin="0,5,0,16" Foreground="#66778F"/>
@@ -1049,7 +1049,7 @@
             </StackPanel>
           </Border>
 
-          <Border Background="#F6F9FC" BorderBrush="#D8E1EC" BorderThickness="1"
+          <Border Background="#E3EBF3" BorderBrush="#C3D0DE" BorderThickness="1"
                   CornerRadius="16" Padding="22" Margin="0,0,0,14">
             <StackPanel>
               <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
@@ -1098,7 +1098,7 @@
             </StackPanel>
           </Border>
 
-          <Border Background="#FFFFFF" BorderBrush="#DCE5F0" BorderThickness="1" CornerRadius="19" Padding="22" Margin="0,0,0,14">
+          <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="19" Padding="22" Margin="0,0,0,14">
             <StackPanel>
               <TextBlock Text="Privacy exclusions" FontSize="18" FontWeight="SemiBold" Foreground="#1A2438"/>
               <TextBlock Text="One Windows process name per line. Excluded apps are not intentionally recorded."
@@ -1108,7 +1108,7 @@
             </StackPanel>
           </Border>
 
-          <Border Background="#FFFFFF" BorderBrush="#DCE5F0" BorderThickness="1" CornerRadius="19" Padding="22" Margin="0,0,0,14">
+          <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="19" Padding="22" Margin="0,0,0,14">
             <StackPanel>
               <TextBlock Text="Windows" FontSize="18" FontWeight="SemiBold" Foreground="#1A2438"/>
               <CheckBox x:Name="StartWithWindowsCheckBox" Content="Start Memory Trail when I sign in to Windows"
@@ -1116,7 +1116,7 @@
             </StackPanel>
           </Border>
 
-          <Border Background="#FFFFFF" BorderBrush="#DCE5F0" BorderThickness="1" CornerRadius="19" Padding="22" Margin="0,0,0,14">
+          <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="19" Padding="22" Margin="0,0,0,14">
             <StackPanel>
               <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                 <Border Width="40" Height="40" CornerRadius="12" Background="#E5F1FF" Margin="0,0,11,0">
@@ -1139,7 +1139,7 @@
             </StackPanel>
           </Border>
 
-          <Border Background="#FFFFFF" BorderBrush="#DCE5F0" BorderThickness="1" CornerRadius="19" Padding="22">
+          <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="19" Padding="22">
             <StackPanel>
               <TextBlock Text="Maintenance" FontSize="18" FontWeight="SemiBold" Foreground="#1A2438"/>
               <TextBlock Text="Tutorial, reset, and history controls." Margin="0,5,0,14" Foreground="#66778F"/>

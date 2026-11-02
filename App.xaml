@@ -3,31 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <Application.Resources>
     <!-- Exact Windows translation of MemoryTrailPalette from macOS RootView.swift -->
-    <SolidColorBrush x:Key="BackgroundBrush" Color="#F1F5FB"/>
-    <SolidColorBrush x:Key="BackgroundBottomBrush" Color="#DFE9F7"/>
-    <SolidColorBrush x:Key="SidebarBrush" Color="#EEF4FC"/>
-    <SolidColorBrush x:Key="SidebarBottomBrush" Color="#DCE8F8"/>
-    <SolidColorBrush x:Key="PanelBrush" Color="#F4F8FD"/>
-    <SolidColorBrush x:Key="PanelAltBrush" Color="#FAFCFF"/>
-    <SolidColorBrush x:Key="ElevatedStrongBrush" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="BackgroundBrush" Color="#DCE6F2"/>
+    <SolidColorBrush x:Key="BackgroundBottomBrush" Color="#CAD7E7"/>
+    <SolidColorBrush x:Key="SidebarBrush" Color="#D9E4F0"/>
+    <SolidColorBrush x:Key="SidebarBottomBrush" Color="#C8D6E7"/>
+    <SolidColorBrush x:Key="PanelBrush" Color="#E2EAF4"/>
+    <SolidColorBrush x:Key="PanelAltBrush" Color="#EAF0F6"/>
+    <SolidColorBrush x:Key="ElevatedStrongBrush" Color="#F0F4F8"/>
     <SolidColorBrush x:Key="PrimaryTextBrush" Color="#1A2438"/>
     <SolidColorBrush x:Key="SecondaryTextBrush" Color="#40506A"/>
     <SolidColorBrush x:Key="TertiaryTextBrush" Color="#66778F"/>
     <SolidColorBrush x:Key="AccentBrush" Color="#1677FF"/>
     <SolidColorBrush x:Key="AccentSoftBrush" Color="#D9E9FF"/>
-    <SolidColorBrush x:Key="BorderBrush" Color="#DCE5F0"/>
-    <SolidColorBrush x:Key="DividerBrush" Color="#D6E0EC"/>
+    <SolidColorBrush x:Key="BorderBrush" Color="#C4D1E0"/>
+    <SolidColorBrush x:Key="DividerBrush" Color="#C1CEDD"/>
     <SolidColorBrush x:Key="DangerBrush" Color="#D84A5A"/>
 
     <LinearGradientBrush x:Key="AppBackgroundGradient" StartPoint="0,0" EndPoint="1,1">
-      <GradientStop Color="#F6F9FE" Offset="0"/>
-      <GradientStop Color="#EAF1FA" Offset="0.56"/>
-      <GradientStop Color="#DFE9F7" Offset="1"/>
+      <GradientStop Color="#E7EDF5" Offset="0"/>
+      <GradientStop Color="#D8E2EE" Offset="0.56"/>
+      <GradientStop Color="#C9D7E7" Offset="1"/>
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="SidebarGradient" StartPoint="0,0" EndPoint="0,1">
-      <GradientStop Color="#F1F6FD" Offset="0"/>
-      <GradientStop Color="#E4EDF9" Offset="0.55"/>
-      <GradientStop Color="#DCE7F6" Offset="1"/>
+      <GradientStop Color="#DFE7F1" Offset="0"/>
+      <GradientStop Color="#D3DEEB" Offset="0.55"/>
+      <GradientStop Color="#C7D5E6" Offset="1"/>
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="PrimaryGradientBrush" StartPoint="0,0" EndPoint="1,1">
       <GradientStop Color="#2095FF" Offset="0"/>
@@ -35,15 +35,15 @@
       <GradientStop Color="#5B62F6" Offset="1"/>
     </LinearGradientBrush>
     <LinearGradientBrush x:Key="GlassSurfaceBrush" StartPoint="0,0" EndPoint="1,1">
-      <GradientStop Color="#FFFFFF" Offset="0"/>
-      <GradientStop Color="#F7FAFE" Offset="1"/>
+      <GradientStop Color="#F0F4F8" Offset="0"/>
+      <GradientStop Color="#E4EBF3" Offset="1"/>
     </LinearGradientBrush>
     <DropShadowEffect x:Key="SoftShadow" BlurRadius="16" ShadowDepth="3" Opacity="0.12" Color="#40516A"/>
     <DropShadowEffect x:Key="FloatingShadow" BlurRadius="24" ShadowDepth="6" Opacity="0.15" Color="#30445F"/>
 
     <Style x:Key="ModernButtonStyle" TargetType="Button">
       <Setter Property="Foreground" Value="#26364E"/>
-      <Setter Property="Background" Value="#FAFCFF"/>
+      <Setter Property="Background" Value="#EAF0F6"/>
       <Setter Property="BorderBrush" Value="#DCE5F0"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="Padding" Value="15,9"/>
@@ -64,12 +64,12 @@
             </Border>
             <ControlTemplate.Triggers>
               <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="Chrome" Property="Background" Value="#FFFFFF"/>
+                <Setter TargetName="Chrome" Property="Background" Value="#F0F4F8"/>
                 <Setter TargetName="Chrome" Property="BorderBrush" Value="#C9D8EB"/>
                 <Setter TargetName="Chrome" Property="Effect" Value="{StaticResource SoftShadow}"/>
               </Trigger>
               <Trigger Property="IsPressed" Value="True">
-                <Setter TargetName="Chrome" Property="Background" Value="#E9F0F9"/>
+                <Setter TargetName="Chrome" Property="Background" Value="#D8E2EC"/>
               </Trigger>
               <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" Value="0.42"/>
@@ -148,8 +148,8 @@
     <Style x:Key="ChipButtonStyle" TargetType="Button" BasedOn="{StaticResource ModernButtonStyle}">
       <Setter Property="Padding" Value="12,7"/>
       <Setter Property="FontSize" Value="12"/>
-      <Setter Property="Background" Value="#F7FAFE"/>
-      <Setter Property="BorderBrush" Value="#D9E5F2"/>
+      <Setter Property="Background" Value="#E6EDF5"/>
+      <Setter Property="BorderBrush" Value="#C4D1E0"/>
       <Setter Property="Foreground" Value="#40506A"/>
     </Style>
 
@@ -164,9 +164,9 @@
     <Style TargetType="Button" BasedOn="{StaticResource ModernButtonStyle}"/>
 
     <Style TargetType="TextBox">
-      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="Background" Value="#EEF3F8"/>
       <Setter Property="Foreground" Value="#1A2438"/>
-      <Setter Property="BorderBrush" Value="#D9E5F2"/>
+      <Setter Property="BorderBrush" Value="#C4D1E0"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="Padding" Value="12,9"/>
       <Setter Property="FontSize" Value="14"/>
@@ -174,9 +174,9 @@
     </Style>
 
     <Style TargetType="ComboBox">
-      <Setter Property="Background" Value="#FBFCFF"/>
+      <Setter Property="Background" Value="#EAF0F6"/>
       <Setter Property="Foreground" Value="#1A2438"/>
-      <Setter Property="BorderBrush" Value="#D8E1EC"/>
+      <Setter Property="BorderBrush" Value="#C4D1E0"/>
       <Setter Property="Padding" Value="8"/>
       <Setter Property="MinHeight" Value="36"/>
     </Style>

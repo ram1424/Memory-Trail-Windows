@@ -131,6 +131,9 @@ public sealed class CategoryIcon : FrameworkElement
             case "Clipboard":
                 DrawClipboard(dc, inner, iconBrush);
                 break;
+            case "Favorites":
+                DrawTextIcon(dc, "★", "Segoe UI Symbol", inner, iconBrush, 0.92);
+                break;
             default:
                 DrawOther(dc, inner, iconBrush);
                 break;
@@ -153,6 +156,7 @@ public sealed class CategoryIcon : FrameworkElement
         if (value.Contains("design")) return "Design";
         if (value.Contains("remote")) return "Remote";
         if (value.Contains("clipboard")) return "Clipboard";
+        if (value.Contains("favorite")) return "Favorites";
 
         return "Other";
     }
@@ -182,6 +186,7 @@ public sealed class CategoryIcon : FrameworkElement
         "Design" => (Color.FromRgb(116, 103, 225), Color.FromRgb(239, 237, 255)),
         "Remote" => (Color.FromRgb(31, 166, 214), Color.FromRgb(228, 247, 252)),
         "Clipboard" => (Color.FromRgb(48, 137, 241), Color.FromRgb(231, 241, 255)),
+        "Favorites" => (Color.FromRgb(83, 126, 225), Color.FromRgb(229, 236, 255)),
         _ => (Color.FromRgb(137, 149, 166), Color.FromRgb(240, 243, 247))
     };
 

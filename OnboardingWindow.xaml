@@ -8,11 +8,11 @@
         WindowStartupLocation="CenterOwner"
         ResizeMode="CanResize"
         FontFamily="Segoe UI Variable Text"
-        Background="#D8E3F3">
+        Background="#C0CEE1">
   <Window.Resources>
     <Style x:Key="TourCard" TargetType="Border">
-      <Setter Property="Background" Value="#FFFFFF"/>
-      <Setter Property="BorderBrush" Value="#D9E5F2"/>
+      <Setter Property="Background" Value="#E6EDF5"/>
+      <Setter Property="BorderBrush" Value="#BAC9DA"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="CornerRadius" Value="20"/>
       <Setter Property="Padding" Value="18"/>
@@ -21,8 +21,8 @@
       </Setter>
     </Style>
     <Style x:Key="FeatureCard" TargetType="Border">
-      <Setter Property="Background" Value="#FAFCFF"/>
-      <Setter Property="BorderBrush" Value="#DCE6F2"/>
+      <Setter Property="Background" Value="#E1E9F3"/>
+      <Setter Property="BorderBrush" Value="#B9C8D9"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="CornerRadius" Value="18"/>
       <Setter Property="Padding" Value="16"/>
@@ -49,13 +49,13 @@
   <Grid>
     <Grid.Background>
       <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#E5EDF8" Offset="0"/>
-        <GradientStop Color="#D5E1F1" Offset="0.58"/>
-        <GradientStop Color="#C8D7EB" Offset="1"/>
+        <GradientStop Color="#D3DEEC" Offset="0"/>
+        <GradientStop Color="#C2D0E2" Offset="0.58"/>
+        <GradientStop Color="#B3C4DA" Offset="1"/>
       </LinearGradientBrush>
     </Grid.Background>
 
-    <Border Margin="20" Background="#F4F8FD" BorderBrush="#C9D8EA" BorderThickness="1"
+    <Border Margin="20" Background="#DCE6F2" BorderBrush="#B2C2D5" BorderThickness="1"
             CornerRadius="24" Padding="0">
       <Border.Effect>
         <DropShadowEffect BlurRadius="34" ShadowDepth="10" Opacity="0.15"/>
@@ -78,7 +78,7 @@
           <Grid x:Name="Page1">
             <Grid.ColumnDefinitions><ColumnDefinition Width="0.9*"/><ColumnDefinition Width="1.1*"/></Grid.ColumnDefinitions>
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="340">
-              <Border Width="96" Height="96" CornerRadius="24" Background="#EAF0F8">
+              <Border Width="96" Height="96" CornerRadius="24" Background="#CEDAE7">
                 <Image x:Name="WelcomeBrandLogo" Width="118" Height="118" Stretch="Uniform"
                        RenderOptions.BitmapScalingMode="HighQuality"/>
               </Border>
@@ -128,10 +128,10 @@
                          MaxWidth="620" Margin="0,7,0,20"/>
               <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,16">
                 <Border Background="#1680FF" CornerRadius="13" Padding="9,5" Margin="0,0,8,0"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="All" Width="22" Height="22" Margin="0,0,5,0"/><TextBlock Text="All" Foreground="White" FontWeight="SemiBold" VerticalAlignment="Center"/></StackPanel></Border>
-                <Border Background="#F8FBFF" BorderBrush="#DCE6F2" BorderThickness="1" CornerRadius="13" Padding="9,5" Margin="0,0,8,0"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Browser" Width="22" Height="22" Margin="0,0,5,0"/><TextBlock Text="Web" VerticalAlignment="Center"/></StackPanel></Border>
-                <Border Background="#F4F7FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="13" Padding="9,5" Margin="0,0,8,0"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Email" Width="22" Height="22" Margin="0,0,5,0"/><TextBlock Text="Email" VerticalAlignment="Center"/></StackPanel></Border>
-                <Border Background="#F4F7FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="13" Padding="9,5" Margin="0,0,8,0"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Chat" Width="22" Height="22" Margin="0,0,5,0"/><TextBlock Text="Chat" VerticalAlignment="Center"/></StackPanel></Border>
-                <Border Background="#F4F7FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="13" Padding="9,5"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Files" Width="22" Height="22" Margin="0,0,5,0"/><TextBlock Text="Files" VerticalAlignment="Center"/></StackPanel></Border>
+                <Border Background="#E4ECF5" BorderBrush="#DCE6F2" BorderThickness="1" CornerRadius="13" Padding="9,5" Margin="0,0,8,0"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Browser" Width="22" Height="22" Margin="0,0,5,0"/><TextBlock Text="Web" VerticalAlignment="Center"/></StackPanel></Border>
+                <Border Background="#DCE5F0" BorderBrush="#B9C8D9" BorderThickness="1" CornerRadius="13" Padding="9,5" Margin="0,0,8,0"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Email" Width="22" Height="22" Margin="0,0,5,0"/><TextBlock Text="Email" VerticalAlignment="Center"/></StackPanel></Border>
+                <Border Background="#DCE5F0" BorderBrush="#B9C8D9" BorderThickness="1" CornerRadius="13" Padding="9,5" Margin="0,0,8,0"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Chat" Width="22" Height="22" Margin="0,0,5,0"/><TextBlock Text="Chat" VerticalAlignment="Center"/></StackPanel></Border>
+                <Border Background="#DCE5F0" BorderBrush="#B9C8D9" BorderThickness="1" CornerRadius="13" Padding="9,5"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Files" Width="22" Height="22" Margin="0,0,5,0"/><TextBlock Text="Files" VerticalAlignment="Center"/></StackPanel></Border>
               </StackPanel>
               <Border Style="{StaticResource TourCard}" MaxWidth="660" HorizontalAlignment="Center">
                 <StackPanel>
@@ -146,14 +146,14 @@
                     </StackPanel>
                     <Border Grid.Column="3" Background="#E8F2FF" CornerRadius="12" Padding="7,4" VerticalAlignment="Center"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Browser" Width="18" Height="18" Margin="0,0,5,0"/><TextBlock Text="Web" Foreground="#176EC7" FontSize="10.5" FontWeight="SemiBold" VerticalAlignment="Center"/></StackPanel></Border>
                   </Grid>
-                  <Border Height="1" Background="#E3E8EF"/>
+                  <Border Height="1" Background="#C4D1DF"/>
                   <Grid Height="66"><Grid.ColumnDefinitions><ColumnDefinition Width="78"/><ColumnDefinition Width="44"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                     <TextBlock Text="10:18 AM" Foreground="#66778F" FontSize="11.5" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,12,0"/>
                     <Image x:Name="OutlookTutorialIcon" Grid.Column="1" Width="34" Height="34"/>
                     <StackPanel Grid.Column="2" Margin="10,0,0,0" VerticalAlignment="Center"><TextBlock Text="RE: Project Update" FontSize="13.5" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Microsoft Outlook" Foreground="#66778F" FontSize="11.5" Margin="0,3,0,0"/></StackPanel>
                     <Border Grid.Column="3" Background="#ECF4FF" CornerRadius="12" Padding="7,4" VerticalAlignment="Center"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Email" Width="18" Height="18" Margin="0,0,5,0"/><TextBlock Text="Email" Foreground="#347ED1" FontSize="10.5" FontWeight="SemiBold" VerticalAlignment="Center"/></StackPanel></Border>
                   </Grid>
-                  <Border Height="1" Background="#E3E8EF"/>
+                  <Border Height="1" Background="#C4D1DF"/>
                   <Grid Height="66"><Grid.ColumnDefinitions><ColumnDefinition Width="78"/><ColumnDefinition Width="44"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                     <TextBlock Text="9:54 AM" Foreground="#66778F" FontSize="11.5" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,12,0"/>
                     <local:CategoryIcon Grid.Column="1" Category="Files" Width="34" Height="34" VerticalAlignment="Center"/>
