@@ -711,6 +711,7 @@ public partial class MainWindow : Window
         }
 
         DayLabelText.Text = _dayOffset == 0 ? "Today" : SelectedDay.ToString("MMM d");
+        RightDateText.Text = SelectedDay.ToString("ddd, MMM d, yyyy");
         NextDayButton.IsEnabled = _dayOffset < 0;
         ApplyRightSidebarVisibility();
         UpdateActivityCount();
@@ -827,49 +828,6 @@ public partial class MainWindow : Window
             ActiveTimeText.Text = "0m";
         }
 
-        var topApps = today
-            .Where(x => !string.IsNullOrWhiteSpace(x.SourceApp))
-            .GroupBy(x => x.SourceApp, StringComparer.OrdinalIgnoreCase)
-            .Select(g => new
-            {
-                Name = g.Key,
-                Count = g.Count(),
-                Process = g.Select(x => x.SourceProcess).FirstOrDefault(x => !string.IsNullOrWhiteSpace(x)) ?? ""
-            })
-            .OrderByDescending(x => x.Count)
-            .ThenBy(x => x.Name)
-            .Take(5)
-            .ToList();
-
-        var max = Math.Max(1, topApps.FirstOrDefault()?.Count ?? 1);
-
-        var names = new[] { TopApp1Name, TopApp2Name, TopApp3Name, TopApp4Name, TopApp5Name };
-        var counts = new[] { TopApp1Count, TopApp2Count, TopApp3Count, TopApp4Count, TopApp5Count };
-        var bars = new[] { TopApp1Bar, TopApp2Bar, TopApp3Bar, TopApp4Bar, TopApp5Bar };
-        var icons = new[] { TopApp1Icon, TopApp2Icon, TopApp3Icon, TopApp4Icon, TopApp5Icon };
-
-        for (var i = 0; i < names.Length; i++)
-        {
-            if (i < topApps.Count)
-            {
-                var app = topApps[i];
-                names[i].Text = app.Name;
-                counts[i].Text = app.Count.ToString();
-                bars[i].Maximum = max;
-                bars[i].Value = app.Count;
-                icons[i].Source = AppIconConverter.ResolveAppIcon(app.Name, app.Process);
-                names[i].Opacity = counts[i].Opacity = bars[i].Opacity = icons[i].Opacity = 1;
-            }
-            else
-            {
-                names[i].Text = "—";
-                counts[i].Text = "";
-                bars[i].Maximum = 1;
-                bars[i].Value = 0;
-                icons[i].Source = null;
-                names[i].Opacity = counts[i].Opacity = bars[i].Opacity = icons[i].Opacity = 0.25;
-            }
-        }
     }
 
     private void AddMemory_Click(object sender, RoutedEventArgs e)
@@ -920,15 +878,6 @@ public partial class MainWindow : Window
     }
 
     private void ShowDetailsPane_Click(object sender, RoutedEventArgs e) => ShowDetailsPane();
-
-    private void TimelineList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-    {
-        if (TimelineList.SelectedItem is not MemoryItem)
-            return;
-
-        ShowDetailsPane();
-        e.Handled = true;
-    }
 
     private void ShowDetailsPane()
     {
@@ -1037,6 +986,8 @@ public partial class MainWindow : Window
             : Color.FromRgb(34, 197, 94);
         StatusDot.Fill = new SolidColorBrush(color);
         QuickCaptureDot.Fill = new SolidColorBrush(color);
+        RightStatusDot.Fill = new SolidColorBrush(color);
+        RightStatusText.Text = App.Preferences.CapturePaused ? "Paused" : "Capturing";
     }
 
     private void SettingChanged(object sender, RoutedEventArgs e)
