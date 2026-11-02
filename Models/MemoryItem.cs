@@ -113,6 +113,25 @@ public sealed class MemoryItem : INotifyPropertyChanged
         }
     }
 
+    public string ActivityLabel
+    {
+        get
+        {
+            var app = $"{SourceApp} {Title}".ToLowerInvariant();
+
+            if (app.Contains("outlook") || app.Contains("mail")) return "Email";
+            if (app.Contains("teams") || app.Contains("slack") || app.Contains("messages")) return "Chat";
+            if (app.Contains("excel") || app.Contains(".xlsx")) return "Spreadsheet";
+            if (app.Contains("onenote") || app.Contains("notes")) return "Notes";
+            if (app.Contains("word") || app.Contains(".doc")) return "Document";
+            if (app.Contains("powerpoint") || app.Contains(".ppt")) return "Presentation";
+            if (CategoryLabel == "Web") return "Web";
+            if (SourceKind == SourceKind.Clipboard) return "Clipboard";
+            if (SourceKind == SourceKind.File) return "File";
+            return CategoryLabel;
+        }
+    }
+
     public string SearchableText =>
         string.Join(" ", Title, Body, SourceApp, SourceProcess, SourceExecutable ?? "", SourceUrl ?? "")
             .ToLowerInvariant();

@@ -430,7 +430,7 @@
                                      TextTrimming="CharacterEllipsis"/>
                         </StackPanel>
                         <Border Grid.Column="4" Background="#EEF3F9" CornerRadius="14" Padding="12,5" VerticalAlignment="Center">
-                          <TextBlock Text="{Binding CategoryLabel}" Foreground="#40506A" FontSize="10" FontWeight="SemiBold"/>
+                          <TextBlock Text="{Binding ActivityLabel}" Foreground="#40506A" FontSize="10" FontWeight="SemiBold"/>
                         </Border>
                         <Button Grid.Column="5" Content="☆" FontSize="16" Width="30" Height="30" Padding="0"
                                 Background="Transparent" BorderThickness="0" Tag="{Binding}" Click="Favorite_Click"/>
@@ -499,7 +499,7 @@
                         <StackPanel Orientation="Horizontal" Margin="0,3,0,0">
                           <TextBlock Text="{Binding SelectedItem.SourceApp, ElementName=TimelineList}" FontSize="10" Foreground="#66778F"/>
                           <TextBlock Text="  •  " FontSize="10" Foreground="#66778F"/>
-                          <TextBlock Text="{Binding SelectedItem.CategoryLabel, ElementName=TimelineList}" FontSize="10" Foreground="#66778F"/>
+                          <TextBlock Text="{Binding SelectedItem.ActivityLabel, ElementName=TimelineList}" FontSize="10" Foreground="#66778F"/>
                           <TextBlock Text="  •  " FontSize="10" Foreground="#66778F"/>
                           <TextBlock Text="{Binding SelectedItem.CreatedAt, ElementName=TimelineList, StringFormat={}{0:h:mm tt}}" FontSize="10" Foreground="#66778F"/>
                         </StackPanel>
@@ -518,7 +518,7 @@
                     </Grid>
                     <Grid Margin="0,0,0,8"><Grid.ColumnDefinitions><ColumnDefinition Width="54"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                       <TextBlock Text="Type" FontSize="10" Foreground="#66778F"/>
-                      <TextBlock Grid.Column="1" Text="{Binding SelectedItem.CategoryLabel, ElementName=TimelineList}" FontSize="10" Foreground="#1A2438"/>
+                      <TextBlock Grid.Column="1" Text="{Binding SelectedItem.ActivityLabel, ElementName=TimelineList}" FontSize="10" Foreground="#1A2438"/>
                     </Grid>
                     <Grid Margin="0,0,0,8"><Grid.ColumnDefinitions><ColumnDefinition Width="54"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                       <TextBlock Text="Time" FontSize="10" Foreground="#66778F"/>
@@ -542,7 +542,7 @@
       </Grid>
 
       <!-- PRIVACY -->
-            <ScrollViewer x:Name="InsightsPanel" Visibility="Collapsed" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer x:Name="InsightsPanel" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Margin="24">
         <StackPanel Margin="4,4,20,30">
           <StackPanel Margin="0,0,0,20">
             <TextBlock Text="Insights" FontSize="28" FontWeight="Bold" Foreground="#1A2438"/>
@@ -563,7 +563,7 @@
         </StackPanel>
       </ScrollViewer>
 
-<ScrollViewer x:Name="PrivacyPanel" Visibility="Collapsed" VerticalScrollBarVisibility="Auto">
+<ScrollViewer x:Name="PrivacyPanel" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Margin="24">
         <StackPanel MaxWidth="820" HorizontalAlignment="Left">
           <TextBlock Text="Privacy" FontSize="30" FontWeight="SemiBold" Foreground="#1A2438"/>
           <TextBlock Text="Memory Trail is privacy-first by design and gives you direct control over what is captured."
@@ -607,7 +607,7 @@
 
       <!-- SETTINGS -->
       <!-- ASK MEMORY TRAIL -->
-      <Grid x:Name="AskMemoryTrailPanel" Visibility="Collapsed">
+      <Grid x:Name="AskMemoryTrailPanel" Visibility="Collapsed" Margin="24">
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="Auto"/>

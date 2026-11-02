@@ -816,12 +816,28 @@ public partial class MainWindow : Window
 
         if (today.Count > 1)
         {
-            var first = today.Min(x => x.CreatedAt);
-            var last = today.Max(x => x.CreatedAt);
-            var span = last - first;
-            ActiveTimeText.Text = span.TotalHours >= 1
-                ? $"{(int)span.TotalHours}h {span.Minutes}m"
-                : $"{Math.Max(0, span.Minutes)}m";
+            var ascending = today.OrderBy(x => x.CreatedAt).ToList();
+            var activeSeconds = 0d;
+            var inactivityThreshold = TimeSpan.FromMinutes(5);
+
+            for (var i = 0; i < ascending.Count - 1; i++)
+            {
+                var gap = ascending[i + 1].CreatedAt - ascending[i].CreatedAt;
+                if (gap > TimeSpan.Zero && gap <= inactivityThreshold)
+                    activeSeconds += gap.TotalSeconds;
+            }
+
+            var totalSeconds = Math.Max(0, (int)activeSeconds);
+            if (totalSeconds == 0)
+                ActiveTimeText.Text = "0m";
+            else if (totalSeconds < 60)
+                ActiveTimeText.Text = "<1m";
+            else
+            {
+                var hours = totalSeconds / 3600;
+                var minutes = (totalSeconds % 3600) / 60;
+                ActiveTimeText.Text = hours > 0 ? $"{hours}h {minutes}m" : $"{minutes}m";
+            }
         }
         else
         {
