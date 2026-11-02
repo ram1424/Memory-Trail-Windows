@@ -23,7 +23,6 @@
     <Reference Include="UIAutomationClient" />
     <Reference Include="UIAutomationTypes" />
     <Resource Include="Assets\MemoryTrailApp.ico" />
-    <Resource Include="Assets\MemoryTrailIcon.png" />
     <Resource Include="Assets\MemoryTrailIconMaster.png" />
   </ItemGroup>
 </Project>

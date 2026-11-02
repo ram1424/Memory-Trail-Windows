@@ -30,11 +30,7 @@ jobs:
           "VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           Write-Host "Building Memory Trail for Windows v$version"
 
-      - name: Generate Memory Trail branding assets
-        shell: pwsh
-        run: ./Scripts/Generate-MemoryTrailIcon.ps1
-
-      - name: Verify branding assets
+      - name: Verify committed Memory Trail branding assets
         shell: pwsh
         run: |
           $required = @(
@@ -47,10 +43,10 @@ jobs:
           }
 
       - name: Restore
-        run: dotnet restore MemoryTrail.Windows.csproj
+        run: dotnet restore MemoryTrail.Windows.csproj -r win-x64
 
       - name: Build
-        run: dotnet build MemoryTrail.Windows.csproj -c Release --no-restore
+        run: dotnet build MemoryTrail.Windows.csproj -c Release -r win-x64 --no-restore
 
       - name: Publish self-contained Windows x64 app
         run: >-
@@ -98,7 +94,7 @@ jobs:
             - Correct session-based active-time calculation
             - Dynamic filters that appear only when matching activity exists
             - Ask Memory Trail with app-aware website, email, conversation, file, and time searches
-            - Click or press Enter on Ask results to open complete activity details
+            - Double-click or press Enter on Ask results to open complete activity details
             - Installed-app privacy picker plus manual process exclusions
             - Clipboard history, Favorites, manual memories, tray operation, and startup controls
             - Private local JSON storage with no cloud account, analytics SDK, or external connector
