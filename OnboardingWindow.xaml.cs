@@ -73,7 +73,7 @@ public partial class OnboardingWindow : Window
             3 => "Ask Memory Trail",
             4 => "Capture & Files",
             5 => "Privacy & Controls",
-            6 => "Window Context",
+            6 => "Ready to Start",
             _ => "Welcome"
         };
 
