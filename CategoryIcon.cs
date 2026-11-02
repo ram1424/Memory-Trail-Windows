@@ -53,12 +53,39 @@ public sealed class CategoryIcon : FrameworkElement
         var kind = Normalize(Category);
         var (iconColor, backgroundColor) = ColorsFor(kind);
         var iconBrush = new SolidColorBrush(iconColor);
-        var backgroundBrush = new SolidColorBrush(backgroundColor);
         iconBrush.Freeze();
-        backgroundBrush.Freeze();
 
         if (SoftBackground)
-            dc.DrawRoundedRectangle(backgroundBrush, null, tile, size * 0.28, size * 0.28);
+        {
+            var shadowColor = Color.FromArgb(34, iconColor.R, iconColor.G, iconColor.B);
+            var shadowBrush = new SolidColorBrush(shadowColor);
+            shadowBrush.Freeze();
+
+            var shadow = new Rect(tile.X, tile.Y + size * 0.055, tile.Width, tile.Height);
+            dc.DrawRoundedRectangle(shadowBrush, null, shadow, size * 0.30, size * 0.30);
+
+            var top = Lighten(backgroundColor, 0.52);
+            var bottom = Lighten(backgroundColor, 0.10);
+            var backgroundBrush = new LinearGradientBrush(top, bottom, new Point(0, 0), new Point(1, 1));
+            backgroundBrush.Freeze();
+
+            var borderColor = Color.FromArgb(82, iconColor.R, iconColor.G, iconColor.B);
+            var borderBrush = new SolidColorBrush(borderColor);
+            borderBrush.Freeze();
+            var borderPen = new Pen(borderBrush, Math.Max(0.75, size * 0.028));
+            borderPen.Freeze();
+
+            dc.DrawRoundedRectangle(backgroundBrush, borderPen, tile, size * 0.30, size * 0.30);
+
+            var highlightBrush = new SolidColorBrush(Color.FromArgb(95, 255, 255, 255));
+            highlightBrush.Freeze();
+            var highlight = new Rect(
+                tile.X + size * 0.12,
+                tile.Y + size * 0.10,
+                tile.Width * 0.76,
+                tile.Height * 0.17);
+            dc.DrawRoundedRectangle(highlightBrush, null, highlight, size * 0.08, size * 0.08);
+        }
 
         var inner = new Rect(
             tile.X + size * 0.21,
@@ -130,21 +157,31 @@ public sealed class CategoryIcon : FrameworkElement
         return "Other";
     }
 
+    private static Color Lighten(Color color, double amount)
+    {
+        amount = Math.Clamp(amount, 0, 1);
+        return Color.FromArgb(
+            color.A,
+            (byte)Math.Clamp(color.R + (255 - color.R) * amount, 0, 255),
+            (byte)Math.Clamp(color.G + (255 - color.G) * amount, 0, 255),
+            (byte)Math.Clamp(color.B + (255 - color.B) * amount, 0, 255));
+    }
+
     private static (Color icon, Color background) ColorsFor(string kind) => kind switch
     {
-        "All" => (Color.FromRgb(22, 102, 241), Color.FromRgb(231, 240, 255)),
-        "Browser" => (Color.FromRgb(18, 188, 211), Color.FromRgb(229, 249, 252)),
-        "Email" => (Color.FromRgb(255, 122, 26), Color.FromRgb(255, 240, 229)),
-        "Chat" => (Color.FromRgb(202, 55, 230), Color.FromRgb(248, 232, 253)),
-        "Files" => (Color.FromRgb(244, 193, 0), Color.FromRgb(255, 247, 216)),
-        "Productivity" => (Color.FromRgb(17, 184, 196), Color.FromRgb(229, 248, 248)),
-        "Development" => (Color.FromRgb(255, 116, 24), Color.FromRgb(255, 239, 229)),
-        "System" => (Color.FromRgb(139, 150, 165), Color.FromRgb(239, 242, 246)),
+        "All" => (Color.FromRgb(18, 92, 245), Color.FromRgb(211, 227, 255)),
+        "Browser" => (Color.FromRgb(9, 187, 216), Color.FromRgb(210, 246, 251)),
+        "Email" => (Color.FromRgb(255, 113, 15), Color.FromRgb(255, 228, 208)),
+        "Chat" => (Color.FromRgb(195, 42, 230), Color.FromRgb(243, 216, 251)),
+        "Files" => (Color.FromRgb(246, 187, 0), Color.FromRgb(255, 242, 194)),
+        "Productivity" => (Color.FromRgb(10, 181, 194), Color.FromRgb(211, 246, 245)),
+        "Development" => (Color.FromRgb(255, 105, 15), Color.FromRgb(255, 225, 205)),
+        "System" => (Color.FromRgb(126, 139, 156), Color.FromRgb(226, 232, 239)),
         "Media" => (Color.FromRgb(235, 77, 85), Color.FromRgb(253, 235, 237)),
         "Design" => (Color.FromRgb(98, 87, 217), Color.FromRgb(239, 237, 253)),
         "Remote" => (Color.FromRgb(24, 175, 200), Color.FromRgb(230, 248, 251)),
         "Clipboard" => (Color.FromRgb(255, 138, 52), Color.FromRgb(255, 240, 227)),
-        _ => (Color.FromRgb(139, 150, 165), Color.FromRgb(241, 243, 246))
+        _ => (Color.FromRgb(126, 139, 156), Color.FromRgb(229, 234, 240))
     };
 
     private static Pen Pen(Brush brush, double size, double ratio = 0.095)

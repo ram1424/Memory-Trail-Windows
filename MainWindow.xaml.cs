@@ -268,7 +268,7 @@ public partial class MainWindow : Window
         {
             var selected = _mode == "Timeline" && entry.Category == category;
             entry.Button.Background = selected
-                ? new SolidColorBrush(Color.FromArgb(28, 22, 128, 255))
+                ? new SolidColorBrush(Color.FromArgb(38, 22, 119, 255))
                 : Brushes.Transparent;
             entry.Button.Foreground = new SolidColorBrush(Color.FromRgb(26, 36, 56));
             entry.Button.FontWeight = selected ? FontWeights.SemiBold : FontWeights.Medium;
@@ -288,7 +288,7 @@ public partial class MainWindow : Window
         {
             var selected = entry.Category == category;
             entry.Button.Background = selected
-                ? new SolidColorBrush(Color.FromRgb(22, 128, 255))
+                ? new SolidColorBrush(Color.FromRgb(22, 119, 255))
                 : new SolidColorBrush(Color.FromRgb(246, 249, 252));
             entry.Button.BorderBrush = selected
                 ? new SolidColorBrush(Color.FromRgb(22, 128, 255))
@@ -889,7 +889,7 @@ public partial class MainWindow : Window
         DetailsColumn.Width = show ? new GridLength(320) : new GridLength(0);
 
         PanelToggleText.Text = show ? "Hide Panels" : "Show Panels";
-        RightSidebarToggleIcon.Text = "▥";
+        RightSidebarToggleIcon.Text = "\uE765";
         RightSidebarToggleButton.ToolTip = show
             ? "Hide Today Summary and Activity Details"
             : "Show Today Summary and Activity Details";

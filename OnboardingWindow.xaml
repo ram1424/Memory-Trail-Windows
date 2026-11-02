@@ -8,21 +8,31 @@
         WindowStartupLocation="CenterOwner"
         ResizeMode="CanResize"
         FontFamily="Segoe UI Variable Text"
-        Background="#E8EEF9">
+        Background="#F1F5FB">
   <Window.Resources>
     <Style x:Key="TourCard" TargetType="Border">
-      <Setter Property="Background" Value="#FBFCFF"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
       <Setter Property="BorderBrush" Value="#D8E1EC"/>
       <Setter Property="BorderThickness" Value="1"/>
-      <Setter Property="CornerRadius" Value="18"/>
+      <Setter Property="CornerRadius" Value="20"/>
       <Setter Property="Padding" Value="18"/>
     </Style>
     <Style x:Key="FeatureCard" TargetType="Border">
-      <Setter Property="Background" Value="#F4F7FC"/>
+      <Setter Property="Background" Value="#FAFCFF"/>
       <Setter Property="BorderBrush" Value="#E0E7F0"/>
       <Setter Property="BorderThickness" Value="1"/>
-      <Setter Property="CornerRadius" Value="16"/>
+      <Setter Property="CornerRadius" Value="18"/>
       <Setter Property="Padding" Value="16"/>
+    </Style>
+    <Style x:Key="FeatureIconTile" TargetType="Border">
+      <Setter Property="Width" Value="42"/>
+      <Setter Property="Height" Value="42"/>
+      <Setter Property="CornerRadius" Value="13"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="Margin" Value="0,0,10,0"/>
+      <Setter Property="Effect">
+        <Setter.Value><DropShadowEffect BlurRadius="12" ShadowDepth="2" Opacity="0.12" Color="#36516F"/></Setter.Value>
+      </Setter>
     </Style>
     <Style x:Key="TourButton" TargetType="Button" BasedOn="{StaticResource ModernButtonStyle}">
       <Setter Property="MinWidth" Value="112"/>
@@ -33,16 +43,16 @@
   <Grid>
     <Grid.Background>
       <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#E8EEF9" Offset="0"/>
-        <GradientStop Color="#DCE6F5" Offset="0.58"/>
-        <GradientStop Color="#D2DFEF" Offset="1"/>
+        <GradientStop Color="#F6F9FE" Offset="0"/>
+        <GradientStop Color="#EAF1FA" Offset="0.58"/>
+        <GradientStop Color="#DFE9F7" Offset="1"/>
       </LinearGradientBrush>
     </Grid.Background>
 
-    <Border Margin="20" Background="#F8FAFE" BorderBrush="#D7E0EC" BorderThickness="1"
-            CornerRadius="18" Padding="0">
+    <Border Margin="20" Background="#FBFDFF" BorderBrush="#D9E3EF" BorderThickness="1"
+            CornerRadius="24" Padding="0">
       <Border.Effect>
-        <DropShadowEffect BlurRadius="28" ShadowDepth="10" Opacity="0.10"/>
+        <DropShadowEffect BlurRadius="34" ShadowDepth="10" Opacity="0.15"/>
       </Border.Effect>
       <Grid>
         <Grid.RowDefinitions>
@@ -76,9 +86,7 @@
             <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="30,0,4,0">
               <Grid Margin="0,0,0,18">
                 <Grid.ColumnDefinitions><ColumnDefinition Width="52"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                <Border Width="36" Height="36" CornerRadius="10" Background="#E2EEFF">
-                  <TextBlock Text="◷" FontSize="21" Foreground="#1680FF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Border>
+                <Border Style="{StaticResource FeatureIconTile}" Background="#E1ECFF"><TextBlock Text="&#xE823;" FontFamily="Segoe MDL2 Assets" FontSize="19" Foreground="#176DFF" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
                 <StackPanel Grid.Column="1">
                   <TextBlock Text="Retrace your work" FontSize="14" FontWeight="SemiBold" Foreground="#1A2438"/>
                   <TextBlock Text="See a clean chronological history of apps, pages, messages, files, and copied text."
@@ -87,9 +95,7 @@
               </Grid>
               <Grid Margin="0,0,0,24">
                 <Grid.ColumnDefinitions><ColumnDefinition Width="52"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                <Border Width="42" Height="42" CornerRadius="13" Background="#EFE7FC">
-                  <TextBlock Text="✦" FontSize="19" Foreground="#7B52D2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Border>
+                <Border Style="{StaticResource FeatureIconTile}" Background="#E8E8FF"><TextBlock Text="&#xE721;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="#5962F2" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
                 <StackPanel Grid.Column="1">
                   <TextBlock Text="Ask Memory Trail" FontSize="16" FontWeight="SemiBold" Foreground="#1A2438"/>
                   <TextBlock Text="Find local history by time, app, filename, subject, page, or nearby activity."
@@ -98,9 +104,7 @@
               </Grid>
               <Grid>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="52"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                <Border Width="42" Height="42" CornerRadius="13" Background="#E3F5EB">
-                  <TextBlock Text="✓" FontSize="19" Foreground="#26945E" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Border>
+                <Border Style="{StaticResource FeatureIconTile}" Background="#E3F7EC"><TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="#22945D" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
                 <StackPanel Grid.Column="1">
                   <TextBlock Text="Private by design" FontSize="16" FontWeight="SemiBold" Foreground="#1A2438"/>
                   <TextBlock Text="Captured history is sourced, processed, and stored locally on this PC."
@@ -117,11 +121,11 @@
                          FontSize="14" Foreground="#40506A" TextAlignment="Center" TextWrapping="Wrap"
                          MaxWidth="620" Margin="0,7,0,20"/>
               <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,16">
-                <Border Background="#1680FF" CornerRadius="13" Padding="9,5" Margin="0,0,8,0"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="All" Width="19" Height="19" Margin="0,0,5,0"/><TextBlock Text="All" Foreground="White" FontWeight="SemiBold" VerticalAlignment="Center"/></StackPanel></Border>
-                <Border Background="#F4F7FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="13" Padding="9,5" Margin="0,0,8,0"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Browser" Width="19" Height="19" Margin="0,0,5,0"/><TextBlock Text="Web" VerticalAlignment="Center"/></StackPanel></Border>
-                <Border Background="#F4F7FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="13" Padding="9,5" Margin="0,0,8,0"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Email" Width="19" Height="19" Margin="0,0,5,0"/><TextBlock Text="Email" VerticalAlignment="Center"/></StackPanel></Border>
-                <Border Background="#F4F7FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="13" Padding="9,5" Margin="0,0,8,0"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Chat" Width="19" Height="19" Margin="0,0,5,0"/><TextBlock Text="Chat" VerticalAlignment="Center"/></StackPanel></Border>
-                <Border Background="#F4F7FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="13" Padding="9,5"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Files" Width="19" Height="19" Margin="0,0,5,0"/><TextBlock Text="Files" VerticalAlignment="Center"/></StackPanel></Border>
+                <Border Background="#1680FF" CornerRadius="13" Padding="9,5" Margin="0,0,8,0"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="All" Width="22" Height="22" Margin="0,0,5,0"/><TextBlock Text="All" Foreground="White" FontWeight="SemiBold" VerticalAlignment="Center"/></StackPanel></Border>
+                <Border Background="#F4F7FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="13" Padding="9,5" Margin="0,0,8,0"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Browser" Width="22" Height="22" Margin="0,0,5,0"/><TextBlock Text="Web" VerticalAlignment="Center"/></StackPanel></Border>
+                <Border Background="#F4F7FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="13" Padding="9,5" Margin="0,0,8,0"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Email" Width="22" Height="22" Margin="0,0,5,0"/><TextBlock Text="Email" VerticalAlignment="Center"/></StackPanel></Border>
+                <Border Background="#F4F7FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="13" Padding="9,5" Margin="0,0,8,0"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Chat" Width="22" Height="22" Margin="0,0,5,0"/><TextBlock Text="Chat" VerticalAlignment="Center"/></StackPanel></Border>
+                <Border Background="#F4F7FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="13" Padding="9,5"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Files" Width="22" Height="22" Margin="0,0,5,0"/><TextBlock Text="Files" VerticalAlignment="Center"/></StackPanel></Border>
               </StackPanel>
               <Border Style="{StaticResource TourCard}" MaxWidth="660" HorizontalAlignment="Center">
                 <StackPanel>
@@ -180,12 +184,12 @@
               <TextBlock Text="Memory Trail records meaningful window context—not just the application name."
                          FontSize="14" Foreground="#40506A" HorizontalAlignment="Center" Margin="0,7,0,22"/>
               <UniformGrid Columns="3" Rows="2" MaxWidth="760" HorizontalAlignment="Center">
-                <Border Style="{StaticResource FeatureCard}" Margin="0,0,12,12"><StackPanel><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Browser" Width="28" Height="28" Margin="0,0,8,0"/><TextBlock Text="Web Browsers" FontWeight="SemiBold" Foreground="#1A2438" VerticalAlignment="Center"/></StackPanel><TextBlock Text="Page titles and URLs when available." FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel></Border>
-                <Border Style="{StaticResource FeatureCard}" Margin="0,0,12,12"><StackPanel><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Email" Width="28" Height="28" Margin="0,0,8,0"/><TextBlock Text="Email &amp; Chat" FontWeight="SemiBold" Foreground="#1A2438" VerticalAlignment="Center"/></StackPanel><TextBlock Text="Email subjects and supported conversation titles." FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel></Border>
-                <Border Style="{StaticResource FeatureCard}" Margin="0,0,0,12"><StackPanel><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Files" Width="28" Height="28" Margin="0,0,8,0"/><TextBlock Text="Files &amp; Notes" FontWeight="SemiBold" Foreground="#1A2438" VerticalAlignment="Center"/></StackPanel><TextBlock Text="Folders, filenames, documents, and supported notes." FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel></Border>
-                <Border Style="{StaticResource FeatureCard}" Margin="0,0,12,0"><StackPanel><TextBlock Text="▣  Clipboard" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Copied text, links, and code when enabled." FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel></Border>
-                <Border Style="{StaticResource FeatureCard}" Margin="0,0,12,0"><StackPanel><TextBlock Text="+  Add Memory" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Save a manual note or reference whenever you need it." FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel></Border>
-                <Border Style="{StaticResource FeatureCard}"><StackPanel><TextBlock Text="★  Favorites" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Keep important timeline items easy to find later." FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel></Border>
+                <Border Style="{StaticResource FeatureCard}" Margin="0,0,12,12"><StackPanel><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Browser" Width="34" Height="34" Margin="0,0,8,0"/><TextBlock Text="Web Browsers" FontWeight="SemiBold" Foreground="#1A2438" VerticalAlignment="Center"/></StackPanel><TextBlock Text="Page titles and URLs when available." FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel></Border>
+                <Border Style="{StaticResource FeatureCard}" Margin="0,0,12,12"><StackPanel><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Email" Width="34" Height="34" Margin="0,0,8,0"/><TextBlock Text="Email &amp; Chat" FontWeight="SemiBold" Foreground="#1A2438" VerticalAlignment="Center"/></StackPanel><TextBlock Text="Email subjects and supported conversation titles." FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel></Border>
+                <Border Style="{StaticResource FeatureCard}" Margin="0,0,0,12"><StackPanel><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Files" Width="34" Height="34" Margin="0,0,8,0"/><TextBlock Text="Files &amp; Notes" FontWeight="SemiBold" Foreground="#1A2438" VerticalAlignment="Center"/></StackPanel><TextBlock Text="Folders, filenames, documents, and supported notes." FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel></Border>
+                <Border Style="{StaticResource FeatureCard}" Margin="0,0,12,0"><StackPanel><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Clipboard" Width="34" Height="34" Margin="0,0,8,0"/><TextBlock Text="Clipboard" FontWeight="SemiBold" Foreground="#1A2438" VerticalAlignment="Center"/></StackPanel><TextBlock Text="Copied text, links, and code when enabled." FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel></Border>
+                <Border Style="{StaticResource FeatureCard}" Margin="0,0,12,0"><StackPanel><Border Style="{StaticResource FeatureIconTile}" Background="#E4EDFF" Margin="0,0,0,8"><TextBlock Text="+" FontSize="22" Foreground="#176DFF" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="Add Memory" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Save a manual note or reference whenever you need it." FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel></Border>
+                <Border Style="{StaticResource FeatureCard}"><StackPanel><Border Style="{StaticResource FeatureIconTile}" Background="#FFF1D3" Margin="0,0,0,8"><TextBlock Text="&#xE735;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="#E7A300" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="Favorites" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Keep important timeline items easy to find later." FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel></Border>
               </UniformGrid>
             </StackPanel>
           </Grid>
@@ -208,10 +212,10 @@
               <TextBlock Text="Privacy First. By Design." FontSize="29" FontWeight="Bold" Foreground="#1A2438"/>
               <TextBlock Text="Your activity is captured, processed, and stored locally. Memory Trail does not require cloud sync or an external connector for its timeline."
                          FontSize="13" Foreground="#40506A" TextWrapping="Wrap" LineHeight="20" Margin="0,8,0,18"/>
-              <Border Style="{StaticResource FeatureCard}" Margin="0,0,0,10"><TextBlock Text="✓  Local processing and local storage" Foreground="#1A2438" FontWeight="SemiBold"/></Border>
-              <Border Style="{StaticResource FeatureCard}" Margin="0,0,0,10"><TextBlock Text="✓  Pause capture or disable clipboard capture anytime" Foreground="#1A2438" FontWeight="SemiBold"/></Border>
-              <Border Style="{StaticResource FeatureCard}" Margin="0,0,0,10"><TextBlock Text="✓  Exclude apps and processes you do not want recorded" Foreground="#1A2438" FontWeight="SemiBold"/></Border>
-              <Border Style="{StaticResource FeatureCard}"><TextBlock Text="✓  Source code available for review and verification" Foreground="#1A2438" FontWeight="SemiBold"/></Border>
+              <Border Style="{StaticResource FeatureCard}" Margin="0,0,0,10"><StackPanel Orientation="Horizontal"><Border Width="30" Height="30" CornerRadius="9" Background="#E4F7EC" Margin="0,0,9,0"><TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" Foreground="#23925D" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="Local processing and local storage" Foreground="#1A2438" FontWeight="SemiBold" VerticalAlignment="Center"/></StackPanel></Border>
+              <Border Style="{StaticResource FeatureCard}" Margin="0,0,0,10"><StackPanel Orientation="Horizontal"><Border Width="30" Height="30" CornerRadius="9" Background="#FFF2D9" Margin="0,0,9,0"><TextBlock Text="&#xE769;" FontFamily="Segoe MDL2 Assets" Foreground="#D99800" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="Pause capture or disable clipboard capture anytime" Foreground="#1A2438" FontWeight="SemiBold" VerticalAlignment="Center"/></StackPanel></Border>
+              <Border Style="{StaticResource FeatureCard}" Margin="0,0,0,10"><StackPanel Orientation="Horizontal"><Border Width="30" Height="30" CornerRadius="9" Background="#F0EBFF" Margin="0,0,9,0"><TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" Foreground="#7457C6" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="Exclude apps and processes you do not want recorded" Foreground="#1A2438" FontWeight="SemiBold" VerticalAlignment="Center"/></StackPanel></Border>
+              <Border Style="{StaticResource FeatureCard}"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Development" Width="30" Height="30" Margin="0,0,9,0"/><TextBlock Text="Source code available for review and verification" Foreground="#1A2438" FontWeight="SemiBold" VerticalAlignment="Center"/></StackPanel></Border>
             </StackPanel>
           </Grid>
 
@@ -222,9 +226,9 @@
               <TextBlock Text="Memory Trail uses the window information Windows exposes to create useful local history. You stay in control of capture, exclusions, clipboard history, and startup behavior."
                          FontSize="14" Foreground="#40506A" TextAlignment="Center" TextWrapping="Wrap" LineHeight="21" Margin="0,9,0,20"/>
               <UniformGrid Columns="3" Width="650">
-                <Border Style="{StaticResource FeatureCard}" Margin="0,0,10,0"><StackPanel><TextBlock Text="Local" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="History remains on this computer." FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,5,0,0"/></StackPanel></Border>
-                <Border Style="{StaticResource FeatureCard}" Margin="0,0,10,0"><StackPanel><TextBlock Text="Controllable" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Pause or exclude apps whenever needed." FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,5,0,0"/></StackPanel></Border>
-                <Border Style="{StaticResource FeatureCard}"><StackPanel><TextBlock Text="Searchable" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Find what you were doing without scrolling." FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,5,0,0"/></StackPanel></Border>
+                <Border Style="{StaticResource FeatureCard}" Margin="0,0,10,0"><StackPanel><Border Style="{StaticResource FeatureIconTile}" Background="#E3F7EC" Margin="0,0,0,9"><TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" Foreground="#23925D" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="Local" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="History remains on this computer." FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,5,0,0"/></StackPanel></Border>
+                <Border Style="{StaticResource FeatureCard}" Margin="0,0,10,0"><StackPanel><Border Style="{StaticResource FeatureIconTile}" Background="#E4EDFF" Margin="0,0,0,9"><TextBlock Text="&#xE713;" FontFamily="Segoe MDL2 Assets" Foreground="#176DFF" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="Controllable" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Pause or exclude apps whenever needed." FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,5,0,0"/></StackPanel></Border>
+                <Border Style="{StaticResource FeatureCard}"><StackPanel><Border Style="{StaticResource FeatureIconTile}" Background="#E8E8FF" Margin="0,0,0,9"><TextBlock Text="&#xE721;" FontFamily="Segoe MDL2 Assets" Foreground="#5962F2" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="Searchable" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Find what you were doing without scrolling." FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,5,0,0"/></StackPanel></Border>
               </UniformGrid>
             </StackPanel>
           </Grid>
@@ -232,16 +236,16 @@
 
         <Grid Grid.Row="2" Margin="22,0,22,12">
           <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-          <Button x:Name="BackButton" Content="←  Back" Click="Back_Click" Style="{StaticResource TourButton}" Visibility="Hidden"/>
+          <Button x:Name="BackButton" Content="Back" Click="Back_Click" Style="{StaticResource TourButton}" Visibility="Hidden"/>
           <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Ellipse x:Name="Dot1" Width="7" Height="7" Fill="#1680FF" Margin="4"/>
+            <Ellipse x:Name="Dot1" Width="8" Height="8" Fill="#1680FF" Margin="4"/>
             <Ellipse x:Name="Dot2" Width="7" Height="7" Fill="#BDC9D9" Margin="4"/>
             <Ellipse x:Name="Dot3" Width="7" Height="7" Fill="#BDC9D9" Margin="4"/>
             <Ellipse x:Name="Dot4" Width="7" Height="7" Fill="#BDC9D9" Margin="4"/>
             <Ellipse x:Name="Dot5" Width="7" Height="7" Fill="#BDC9D9" Margin="4"/>
             <Ellipse x:Name="Dot6" Width="7" Height="7" Fill="#BDC9D9" Margin="4"/>
           </StackPanel>
-          <Button x:Name="NextButton" Grid.Column="2" Content="Continue  →" Click="Next_Click"
+          <Button x:Name="NextButton" Grid.Column="2" Content="Continue" Click="Next_Click"
                   Style="{StaticResource PrimaryButtonStyle}" MinWidth="138" Height="40"/>
         </Grid>
       </Grid>
