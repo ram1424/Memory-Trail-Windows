@@ -6,6 +6,26 @@
 
 [Download the latest release](https://github.com/ram1424/Memory-Lane-Windows/releases/latest) · [Privacy & data handling](PRIVACY.md) · [macOS edition](https://github.com/ram1424/Memory-Lane)
 
+## Screenshots
+
+> UI shown with representative demo data. Memory Trail stores captured activity locally on the Windows PC where it runs.
+
+### Today timeline
+
+<img src="docs/screenshots/timeline.svg" alt="Memory Trail Today timeline showing filters, live activity, summary metrics, and activity details" width="100%">
+
+### Ask Memory Trail
+
+<img src="docs/screenshots/ask-memory-trail.svg" alt="Ask Memory Trail local activity search interface" width="100%">
+
+### Settings & privacy
+
+<img src="docs/screenshots/privacy-settings.svg" alt="Memory Trail settings and privacy controls" width="100%">
+
+### First-run tutorial
+
+<img src="docs/screenshots/onboarding.svg" alt="Memory Trail privacy-first onboarding tutorial" width="100%">
+
 ## What Memory Trail does
 
 Memory Trail builds a newest-first history of your workday from information Windows exposes locally. The current Windows release includes:

@@ -1,74 +1,207 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="620" viewBox="0 0 1180 620">
-  <rect width="1180" height="620" fill="#F4F7FB"/>
-  <rect width="210" height="620" fill="#FFFFFF"/>
-  <line x1="210" y1="0" x2="210" y2="620" stroke="#E2E8F0"/>
-  <rect x="20" y="22" width="38" height="38" rx="10" fill="#0B1F4A"/>
-  <path d="M30 44 C38 28,50 30,48 43 C44 48,38 50,32 56" fill="none" stroke="#56B6FF" stroke-width="3" stroke-linecap="round"/>
-  <text x="70" y="42" font-family="Segoe UI,Arial" font-size="16" font-weight="600" fill="#172033">Memory Trail</text>
-  <text x="70" y="57" font-family="Segoe UI,Arial" font-size="10" fill="#7B8798">v0.3.1</text>
-  <rect x="16" y="95" width="178" height="38" rx="9" fill="#EAF3FF"/><text x="34" y="120" font-family="Segoe UI,Arial" font-size="14" font-weight="600" fill="#1F5EA8">Timeline</text><rect x="16" y="139" width="178" height="38" rx="9" fill="transparent"/><text x="34" y="164" font-family="Segoe UI,Arial" font-size="14" font-weight="400" fill="#526174">Search</text><rect x="16" y="183" width="178" height="38" rx="9" fill="transparent"/><text x="34" y="208" font-family="Segoe UI,Arial" font-size="14" font-weight="400" fill="#526174">Favorites</text><rect x="16" y="227" width="178" height="38" rx="9" fill="transparent"/><text x="34" y="252" font-family="Segoe UI,Arial" font-size="14" font-weight="400" fill="#526174">Settings</text>
-  <rect x="16" y="540" width="178" height="60" rx="10" fill="#F7F9FC"/>
-  <circle cx="30" cy="558" r="4" fill="#22C55E"/><text x="42" y="562" font-family="Segoe UI,Arial" font-size="12" fill="#68778A">Capture active</text>
-  <text x="34" y="586" font-family="Segoe UI,Arial" font-size="12" fill="#526174">Pause Capture</text>
-  <text x="238" y="52" font-family="Segoe UI,Arial" font-size="28" font-weight="600" fill="#172033">Timeline</text>
-  <text x="238" y="74" font-family="Segoe UI,Arial" font-size="13" fill="#68778A">A clean history of your recent activity</text>
-  <rect x="1015" y="28" width="130" height="38" rx="9" fill="#1677FF"/><text x="1080" y="52" text-anchor="middle" font-family="Segoe UI,Arial" font-size="13" font-weight="600" fill="white">+  Add Memory</text>
-  <rect x="238" y="100" width="907" height="50" rx="12" fill="#FFFFFF" stroke="#E2E8F0"/><text x="258" y="132" font-family="Segoe UI,Arial" font-size="14" fill="#8794A6">⌕  Search apps, titles, notes, and clipboard text</text>
-  <rect x="238" y="165" width="907" height="390" rx="14" fill="#FFFFFF" stroke="#E2E8F0"/>
-  <line x1="236" y1="243" x2="1145" y2="243" stroke="#EEF2F6"/>
-    <text x="252" y="209" font-size="13" font-weight="600" fill="#344054">9:14 AM</text>
-    <text x="252" y="227" font-size="10" fill="#98A2B3">Oct 29</text>
-    <rect x="326" y="194" width="40" height="40" rx="10" fill="#F5F8FC" stroke="#E3EAF2"/>
-    <rect x="332" y="200" width="28" height="28" rx="8" fill="#16A7D8"/>
-    <text x="346" y="220" text-anchor="middle" font-size="16" font-weight="700" fill="white">e</text>
-    <text x="386" y="209" font-size="11" font-weight="600" fill="#667085">Microsoft Edge</text>
-    <text x="386" y="229" font-size="14" font-weight="600" fill="#172033">Product documentation</text>
-    <text x="986" y="220" text-anchor="middle" font-size="20" fill="#64748B">☆</text>
-    <rect x="1010" y="195" width="72" height="34" rx="9" fill="#FFFFFF" stroke="#D9E2EC"/>
-    <text x="1046" y="217" text-anchor="middle" font-size="12" font-weight="600" fill="#344054">Details</text>
-    <text x="1112" y="220" text-anchor="middle" font-size="20" fill="#C2414B">×</text><line x1="236" y1="315" x2="1145" y2="315" stroke="#EEF2F6"/>
-    <text x="252" y="281" font-size="13" font-weight="600" fill="#344054">9:38 AM</text>
-    <text x="252" y="299" font-size="10" fill="#98A2B3">Oct 29</text>
-    <rect x="326" y="266" width="40" height="40" rx="10" fill="#F5F8FC" stroke="#E3EAF2"/>
-    <rect x="332" y="272" width="28" height="28" rx="8" fill="#F4B63D"/>
-    <text x="346" y="292" text-anchor="middle" font-size="16" font-weight="700" fill="white">F</text>
-    <text x="386" y="281" font-size="11" font-weight="600" fill="#667085">File Explorer</text>
-    <text x="386" y="301" font-size="14" font-weight="600" fill="#172033">Project Phoenix</text>
-    <text x="986" y="292" text-anchor="middle" font-size="20" fill="#64748B">☆</text>
-    <rect x="1010" y="267" width="72" height="34" rx="9" fill="#FFFFFF" stroke="#D9E2EC"/>
-    <text x="1046" y="289" text-anchor="middle" font-size="12" font-weight="600" fill="#344054">Details</text>
-    <text x="1112" y="292" text-anchor="middle" font-size="20" fill="#C2414B">×</text><line x1="236" y1="387" x2="1145" y2="387" stroke="#EEF2F6"/>
-    <text x="252" y="353" font-size="13" font-weight="600" fill="#344054">10:05 AM</text>
-    <text x="252" y="371" font-size="10" fill="#98A2B3">Oct 29</text>
-    <rect x="326" y="338" width="40" height="40" rx="10" fill="#F5F8FC" stroke="#E3EAF2"/>
-    <rect x="332" y="344" width="28" height="28" rx="8" fill="#1677E8"/>
-    <text x="346" y="364" text-anchor="middle" font-size="16" font-weight="700" fill="white">O</text>
-    <text x="386" y="353" font-size="11" font-weight="600" fill="#667085">Outlook</text>
-    <text x="386" y="373" font-size="14" font-weight="600" fill="#172033">Weekly project update</text>
-    <text x="986" y="364" text-anchor="middle" font-size="20" fill="#64748B">☆</text>
-    <rect x="1010" y="339" width="72" height="34" rx="9" fill="#FFFFFF" stroke="#D9E2EC"/>
-    <text x="1046" y="361" text-anchor="middle" font-size="12" font-weight="600" fill="#344054">Details</text>
-    <text x="1112" y="364" text-anchor="middle" font-size="20" fill="#C2414B">×</text><line x1="236" y1="459" x2="1145" y2="459" stroke="#EEF2F6"/>
-    <text x="252" y="425" font-size="13" font-weight="600" fill="#344054">10:42 AM</text>
-    <text x="252" y="443" font-size="10" fill="#98A2B3">Oct 29</text>
-    <rect x="326" y="410" width="40" height="40" rx="10" fill="#F5F8FC" stroke="#E3EAF2"/>
-    <rect x="332" y="416" width="28" height="28" rx="8" fill="#6554C0"/>
-    <text x="346" y="436" text-anchor="middle" font-size="16" font-weight="700" fill="white">T</text>
-    <text x="386" y="425" font-size="11" font-weight="600" fill="#667085">Microsoft Teams</text>
-    <text x="386" y="445" font-size="14" font-weight="600" fill="#172033">Design review discussion</text>
-    <text x="986" y="436" text-anchor="middle" font-size="20" fill="#64748B">☆</text>
-    <rect x="1010" y="411" width="72" height="34" rx="9" fill="#FFFFFF" stroke="#D9E2EC"/>
-    <text x="1046" y="433" text-anchor="middle" font-size="12" font-weight="600" fill="#344054">Details</text>
-    <text x="1112" y="436" text-anchor="middle" font-size="20" fill="#C2414B">×</text><line x1="236" y1="531" x2="1145" y2="531" stroke="#EEF2F6"/>
-    <text x="252" y="497" font-size="13" font-weight="600" fill="#344054">11:18 AM</text>
-    <text x="252" y="515" font-size="10" fill="#98A2B3">Oct 29</text>
-    <rect x="326" y="482" width="40" height="40" rx="10" fill="#F5F8FC" stroke="#E3EAF2"/>
-    <rect x="332" y="488" width="28" height="28" rx="8" fill="#18A6A6"/>
-    <text x="346" y="508" text-anchor="middle" font-size="16" font-weight="700" fill="white">N</text>
-    <text x="386" y="497" font-size="11" font-weight="600" fill="#667085">Notepad</text>
-    <text x="386" y="517" font-size="14" font-weight="600" fill="#172033">Site walkthrough notes</text>
-    <text x="986" y="508" text-anchor="middle" font-size="20" fill="#64748B">☆</text>
-    <rect x="1010" y="483" width="72" height="34" rx="9" fill="#FFFFFF" stroke="#D9E2EC"/>
-    <text x="1046" y="505" text-anchor="middle" font-size="12" font-weight="600" fill="#344054">Details</text>
-    <text x="1112" y="508" text-anchor="middle" font-size="20" fill="#C2414B">×</text>
-  </svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900">
+
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#F8FAFE"/><stop offset="1" stop-color="#DFE9F7"/>
+  </linearGradient>
+  <linearGradient id="sidebar" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#F1F6FD"/><stop offset="1" stop-color="#DCE7F6"/>
+  </linearGradient>
+  <linearGradient id="appIconGrad" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0EC8FF"/><stop offset=".34" stop-color="#2148E6"/><stop offset=".66" stop-color="#8E3EF2"/><stop offset="1" stop-color="#FF7A34"/>
+  </linearGradient>
+  <linearGradient id="primary" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#2095FF"/><stop offset=".55" stop-color="#126EFF"/><stop offset="1" stop-color="#5B62F6"/>
+  </linearGradient>
+  <filter id="shadowSm" x="-40%" y="-40%" width="180%" height="180%">
+    <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#38577C" flood-opacity=".16"/>
+  </filter>
+  <filter id="shadowMd" x="-40%" y="-40%" width="180%" height="180%">
+    <feDropShadow dx="0" dy="5" stdDeviation="8" flood-color="#2D4665" flood-opacity=".20"/>
+  </filter>
+</defs>
+<rect x="0" y="0" width="1440" height="900" rx="22" fill="#F8FAFD"/>
+<rect x="0" y="0" width="1440" height="42" rx="22" fill="#F5F7FA"/>
+<rect x="0" y="22" width="1440" height="20" fill="#F5F7FA"/>
+<text x="18" y="27" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="500" fill="#67768A" text-anchor="start">Memory Trail 1.0 (Build 1)</text>
+<rect x="1322" y="0" width="38" height="42" fill="transparent"/><path d="M1335 21 h12" stroke="#68778A" stroke-width="1.4"/>
+<rect x="1360" y="0" width="38" height="42" fill="transparent"/><rect x="1373" y="15" width="11" height="11" fill="none" stroke="#68778A" stroke-width="1.2"/>
+<rect x="1398" y="0" width="42" height="42" fill="transparent"/><path d="M1412 15 l12 12 M1424 15 l-12 12" stroke="#68778A" stroke-width="1.2"/><rect x="0" y="42" width="236" height="858" fill="url(#sidebar)"/><line x1="236" y1="42" x2="236" y2="900" stroke="#D2DDE9"/>
+<g filter="url(#shadowMd)">
+  <rect x="84" y="63" width="68" height="68" rx="17" fill="url(#appIconGrad)"/>
+  <path d="M95.56,112.64 C105.76,99.72 116.64,92.92 130.24,82.04
+           C135.68,77.96000000000001 140.44,78.64 143.16,82.72"
+        fill="none" stroke="#FFF6D5" stroke-width="3.74" stroke-linecap="round"/>
+  <path d="M100.32,110.6 C112.56,101.08000000000001 120.72,94.96 131.6,86.12"
+        fill="none" stroke="#FF7A38" stroke-width="2.176" stroke-linecap="round"/>
+  <rect x="96.24" y="73.88" width="21.08" height="23.12" rx="3.74" fill="#102E67" opacity=".84" stroke="#7AC9FF"/>
+  <path d="M100.32,79.32 h12.24 M100.32,84.08 h8.16 M100.32,88.84 h10.88" stroke="#9CE7FF" stroke-width="1.224" stroke-linecap="round"/>
+</g><text x="118" y="150" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#172238" text-anchor="middle">Memory Trail</text><rect x="76" y="161" width="84" height="24" rx="12" fill="#E9F7F1" stroke="#D2ECDD"/><circle cx="90" cy="173" r="4" fill="#20C56A"/><text x="99" y="177" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#34705A" text-anchor="start">Private • Local</text><rect x="10" y="183" width="216" height="40" rx="11" fill="#2F79F2"/><rect x="20" y="188" width="30" height="30" rx="9" fill="#FFFFFF33"/><text x="35" y="209" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#FFFFFF" text-anchor="middle">⌂</text><text x="60" y="209" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="start">Today</text><rect x="20" y="233" width="30" height="30" rx="9" fill="#E4ECFF"/><text x="35" y="254" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#5573ED" text-anchor="middle">⌕</text><text x="60" y="254" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#1A2438" text-anchor="start">Ask Memory Trail</text><rect x="20" y="278" width="30" height="30" rx="9" fill="#E8F2FF"/><text x="35" y="299" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#3B8EF0" text-anchor="middle">☆</text><text x="60" y="299" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#1A2438" text-anchor="start">Favorites</text><rect x="20" y="323" width="30" height="30" rx="9" fill="#E5F1FF"/><text x="35" y="344" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#3388ED" text-anchor="middle">▣</text><text x="60" y="344" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#1A2438" text-anchor="start">Clipboard History</text><rect x="20" y="368" width="30" height="30" rx="9" fill="#DDF5FA"/><text x="35" y="389" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#17A9C7" text-anchor="middle">▥</text><text x="60" y="389" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#1A2438" text-anchor="start">Insights</text><rect x="20" y="413" width="30" height="30" rx="9" fill="#E9F0F8"/><text x="35" y="434" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#6F86A6" text-anchor="middle">⚙</text><text x="60" y="434" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="500" fill="#1A2438" text-anchor="start">Settings</text><line x1="16" y1="463" x2="220" y2="463" stroke="#CFD9E6"/><text x="16" y="487" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="600" fill="#75859A" text-anchor="start">Filters</text><rect x="8" y="481" width="220" height="40" rx="12" fill="#CFE2FA"/><g filter="url(#shadowSm)"><rect x="16" y="484" width="33" height="33" rx="10" fill="#DCEAFF" stroke="#FFFFFF" stroke-width=".8"/><rect x="23" y="491" width="8" height="8" rx="2" fill="#176DFF"/><rect x="34" y="491" width="8" height="8" rx="2" fill="#176DFF"/><rect x="23" y="502" width="8" height="8" rx="2" fill="#176DFF"/><rect x="34" y="502" width="8" height="8" rx="2" fill="#176DFF"/></g><text x="58" y="506" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="700" fill="#1B2639" text-anchor="start">All Apps</text><rect x="178" y="487" width="42" height="26" rx="13" fill="#E8F1FF" stroke="#E1E8F1"/><text x="199" y="505" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">2,591</text><g filter="url(#shadowSm)"><rect x="16" y="526" width="33" height="33" rx="10" fill="#DCF6FB" stroke="#FFFFFF" stroke-width=".8"/><circle cx="32.5" cy="542.5" r="10" fill="none" stroke="#16B6D9" stroke-width="2"/>
+      <path d="M23,542.5 H42 M32.5,532.5 C28,536 28,549 32.5,552.5 M32.5,532.5 C37,536 37,549 32.5,552.5" fill="none" stroke="#16B6D9" stroke-width="1.7" stroke-linecap="round"/></g><text x="58" y="548" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Web Browsers</text><rect x="178" y="529" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="547" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">855</text><g filter="url(#shadowSm)"><rect x="16" y="568" width="33" height="33" rx="10" fill="#E1F1FF" stroke="#FFFFFF" stroke-width=".8"/><rect x="22" y="577" width="21" height="16" rx="3" fill="none" stroke="#2497DE" stroke-width="2"/>
+      <path d="M23,578 L32.5,586 L42,578" fill="none" stroke="#2497DE" stroke-width="2" stroke-linecap="round"/></g><text x="58" y="590" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Email</text><rect x="178" y="571" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="589" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">519</text><g filter="url(#shadowSm)"><rect x="16" y="610" width="33" height="33" rx="10" fill="#E8EAFF" stroke="#FFFFFF" stroke-width=".8"/><rect x="23" y="619" width="15" height="12" rx="4" fill="#6673E9"/><path d="M27,630 L25,635 L31,631" fill="#6673E9"/>
+      <rect x="31" y="617" width="12" height="10" rx="4" fill="#6673E9" opacity=".78"/></g><text x="58" y="632" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Chat &amp; Meetings</text><rect x="178" y="613" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="631" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">335</text><g filter="url(#shadowSm)"><rect x="16" y="652" width="33" height="33" rx="10" fill="#FFF0D3" stroke="#FFFFFF" stroke-width=".8"/><path d="M22,663 h8 l3,-3 h7 a3,3 0 0 1 3,3 v13 a3,3 0 0 1 -3,3 h-18 a3,3 0 0 1 -3,-3 v-10 a3,3 0 0 1 3,-3z" fill="#F0AD16"/></g><text x="58" y="674" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Files &amp; Documents</text><rect x="178" y="655" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="673" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">187</text><g filter="url(#shadowSm)"><rect x="16" y="694" width="33" height="33" rx="10" fill="#DDF5F8" stroke="#FFFFFF" stroke-width=".8"/><rect x="23" y="712" width="5" height="9" rx="2.5" fill="#17ADC1"/><rect x="30" y="707" width="5" height="14" rx="2.5" fill="#17ADC1"/><rect x="37" y="701" width="5" height="20" rx="2.5" fill="#17ADC1"/></g><text x="58" y="716" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Productivity</text><rect x="178" y="697" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="715" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">142</text><g filter="url(#shadowSm)"><rect x="16" y="736" width="33" height="33" rx="10" fill="#FFE8CF" stroke="#FFFFFF" stroke-width=".8"/><text x="32.5" y="758" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#EE8B21" text-anchor="middle">&lt;/&gt;</text></g><text x="58" y="758" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Development</text><rect x="178" y="739" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="757" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">379</text><g filter="url(#shadowSm)"><rect x="16" y="778" width="33" height="33" rx="10" fill="#E8EEF5" stroke="#FFFFFF" stroke-width=".8"/><circle cx="32.5" cy="794.5" r="7" fill="none" stroke="#7A8DA8" stroke-width="4"/><circle cx="32.5" cy="794.5" r="2.5" fill="#E8EEF5"/></g><text x="58" y="800" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">System</text><rect x="178" y="781" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="799" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">46</text><g filter="url(#shadowSm)"><rect x="16" y="820" width="33" height="33" rx="10" fill="#EDF1F6" stroke="#FFFFFF" stroke-width=".8"/><circle cx="26" cy="836.5" r="2.3" fill="#8493A7"/><circle cx="32.5" cy="836.5" r="2.3" fill="#8493A7"/><circle cx="39" cy="836.5" r="2.3" fill="#8493A7"/></g><text x="58" y="842" font-family="Segoe UI, Arial, sans-serif" font-size="12.3" font-weight="500" fill="#1B2639" text-anchor="start">Other</text><rect x="178" y="823" width="42" height="26" rx="13" fill="#F5F8FC" stroke="#E1E8F1"/><text x="199" y="841" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#64758A" text-anchor="middle">128</text><rect x="10" y="838" width="216" height="50" rx="14" fill="#F9FBFE" stroke="#D7E1EC"/><circle cx="25" cy="857" r="4.5" fill="#22C55E"/><text x="37" y="857" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#1A2438" text-anchor="start">Capturing</text><text x="37" y="874" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="400" fill="#66778F" text-anchor="start">Your activity is stored locally</text>
+<rect x="236" y="42" width="1204" height="858" fill="url(#bg)"/>
+
+<rect x="1165" y="62" width="118" height="44" rx="12" fill="#FFFFFF" stroke="#D7DEE8"/>
+<rect x="1180" y="76" width="15" height="13" rx="2.5" fill="none" stroke="#27313F" stroke-width="1.4"/>
+<path d="M1185 78 v9" stroke="#27313F" stroke-width="1.4"/>
+<text x="1204" y="89" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#1C2430" text-anchor="start">Hide Panels</text>
+<rect x="258" y="64" width="118" height="38" rx="19" fill="#1677FF" stroke="#1677FF"/><g filter="url(#shadowSm)"><rect x="266" y="67" width="30" height="30" rx="9" fill="#DCEAFF" stroke="#FFFFFF" stroke-width=".8"/><rect x="273" y="74" width="8" height="8" rx="2" fill="#176DFF"/><rect x="284" y="74" width="8" height="8" rx="2" fill="#176DFF"/><rect x="273" y="85" width="8" height="8" rx="2" fill="#176DFF"/><rect x="284" y="85" width="8" height="8" rx="2" fill="#176DFF"/></g><text x="302" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#FFFFFF" text-anchor="start">All</text><text x="364" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="500" fill="#DDEBFF" text-anchor="end">(1,563)</text><rect x="384" y="64" width="100" height="38" rx="19" fill="#FFFFFF" stroke="#D8E1EC"/><g filter="url(#shadowSm)"><rect x="392" y="67" width="30" height="30" rx="9" fill="#DCF6FB" stroke="#FFFFFF" stroke-width=".8"/><circle cx="408.5" cy="83.5" r="10" fill="none" stroke="#16B6D9" stroke-width="2"/>
+      <path d="M399,83.5 H418 M408.5,73.5 C404,77 404,90 408.5,93.5 M408.5,73.5 C413,77 413,90 408.5,93.5" fill="none" stroke="#16B6D9" stroke-width="1.7" stroke-linecap="round"/></g><text x="428" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1A2438" text-anchor="start">Web</text><text x="472" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="500" fill="#66778F" text-anchor="end">(552)</text><rect x="492" y="64" width="110" height="38" rx="19" fill="#FFFFFF" stroke="#D8E1EC"/><g filter="url(#shadowSm)"><rect x="500" y="67" width="30" height="30" rx="9" fill="#E1F1FF" stroke="#FFFFFF" stroke-width=".8"/><rect x="506" y="76" width="21" height="16" rx="3" fill="none" stroke="#2497DE" stroke-width="2"/>
+      <path d="M507,77 L516.5,85 L526,77" fill="none" stroke="#2497DE" stroke-width="2" stroke-linecap="round"/></g><text x="536" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1A2438" text-anchor="start">Email</text><text x="590" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="500" fill="#66778F" text-anchor="end">(292)</text><rect x="610" y="64" width="100" height="38" rx="19" fill="#FFFFFF" stroke="#D8E1EC"/><g filter="url(#shadowSm)"><rect x="618" y="67" width="30" height="30" rx="9" fill="#E8EAFF" stroke="#FFFFFF" stroke-width=".8"/><rect x="625" y="76" width="15" height="12" rx="4" fill="#6673E9"/><path d="M629,87 L627,92 L633,88" fill="#6673E9"/>
+      <rect x="633" y="74" width="12" height="10" rx="4" fill="#6673E9" opacity=".78"/></g><text x="654" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1A2438" text-anchor="start">Chat</text><text x="698" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="500" fill="#66778F" text-anchor="end">(90)</text><rect x="718" y="64" width="100" height="38" rx="19" fill="#FFFFFF" stroke="#D8E1EC"/><g filter="url(#shadowSm)"><rect x="726" y="67" width="30" height="30" rx="9" fill="#FFF0D3" stroke="#FFFFFF" stroke-width=".8"/><path d="M732,78 h8 l3,-3 h7 a3,3 0 0 1 3,3 v13 a3,3 0 0 1 -3,3 h-18 a3,3 0 0 1 -3,-3 v-10 a3,3 0 0 1 3,-3z" fill="#F0AD16"/></g><text x="762" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1A2438" text-anchor="start">Files</text><text x="806" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="500" fill="#66778F" text-anchor="end">(137)</text><rect x="826" y="64" width="100" height="38" rx="19" fill="#FFFFFF" stroke="#D8E1EC"/><g filter="url(#shadowSm)"><rect x="834" y="67" width="30" height="30" rx="9" fill="#DDF5F8" stroke="#FFFFFF" stroke-width=".8"/><rect x="841" y="85" width="5" height="9" rx="2.5" fill="#17ADC1"/><rect x="848" y="80" width="5" height="14" rx="2.5" fill="#17ADC1"/><rect x="855" y="74" width="5" height="20" rx="2.5" fill="#17ADC1"/></g><text x="870" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="600" fill="#1A2438" text-anchor="start">Apps</text><text x="914" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="500" fill="#66778F" text-anchor="end">(85)</text><circle cx="1035" cy="84" r="4.5" fill="#22C55E"/><text x="1047" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="500" fill="#66778F" text-anchor="start">Capturing</text>
+  <rect x="1104" y="66" width="116" height="36" rx="11" fill="#FFFFFF" stroke="#D8E1EC"/>
+  <text x="1122" y="89" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#40506A" text-anchor="start">‹</text><text x="1162" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#1A2438" text-anchor="middle">Today</text><text x="1204" y="89" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#40506A" text-anchor="end">›</text>
+<line x1="236" y1="114" x2="1440" y2="114" stroke="#D0DAE7"/>
+<text x="260" y="154" font-family="Segoe UI, Arial, sans-serif" font-size="25" font-weight="750" fill="#1A2438" text-anchor="start">Today</text><text x="260" y="176" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="400" fill="#66778F" text-anchor="start">Monday, November 2, 2026</text>
+<text x="1098" y="176" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="600" fill="#1680FF" text-anchor="end">1,563 activities</text>
+<rect x="258" y="190" width="858" height="618" rx="16" fill="#EAF0F8" stroke="#D7E0EA"/>
+
+<rect x="270" y="200" width="836" height="58" rx="13" fill="#FFFFFF" stroke="#E3EAF2"/>
+<text x="326" y="234" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#66778F" text-anchor="end">11:59 AM</text>
+<line x1="341" y1="204" x2="341" y2="254" stroke="#7DB8FA" stroke-width="2"/>
+<circle cx="341" cy="229" r="5" fill="#1680FF"/>
+
+<rect x="354" y="212" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="359" y="217" width="24" height="24" rx="7" fill="#1680FF"/>
+<text x="371" y="234" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">W</text>
+<text x="398" y="225" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Frontline - Central US - Operations</text>
+<text x="398" y="243" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#66778F" text-anchor="start">Windows App</text>
+<rect x="620" y="213" width="86" height="22" rx="11" fill="#E7F8ED"/><circle cx="635" cy="224" r="3.5" fill="#22C55E"/><text x="644" y="227" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#168A48" text-anchor="start">Live Activity</text>
+<rect x="930" y="216" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="944" cy="229" r="7" fill="#DCEAFF"/><text x="958" y="233" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Other</text>
+<text x="1043" y="235" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1078" y="234" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
+
+<rect x="270" y="264" width="836" height="58" rx="13" fill="#FFFFFF" stroke="#E3EAF2"/>
+<text x="326" y="298" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#66778F" text-anchor="end">11:58 AM</text>
+<line x1="341" y1="268" x2="341" y2="318" stroke="#7DB8FA" stroke-width="2"/>
+<circle cx="341" cy="293" r="5" fill="#1680FF"/>
+
+<rect x="354" y="276" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="359" y="281" width="24" height="24" rx="7" fill="#22B573"/>
+<text x="371" y="298" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">X</text>
+<text x="398" y="289" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">iPhone DUO Orders</text>
+<text x="398" y="307" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#66778F" text-anchor="start">Microsoft Excel</text>
+
+<rect x="930" y="280" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="944" cy="293" r="7" fill="#DCEAFF"/><text x="958" y="297" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Spreadsheet</text>
+<text x="1043" y="299" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1078" y="298" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
+
+<rect x="270" y="328" width="836" height="58" rx="13" fill="#FFFFFF" stroke="#E3EAF2"/>
+<text x="326" y="362" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#66778F" text-anchor="end">11:56 AM</text>
+<line x1="341" y1="332" x2="341" y2="382" stroke="#7DB8FA" stroke-width="2"/>
+<circle cx="341" cy="357" r="5" fill="#1680FF"/>
+
+<rect x="354" y="340" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="359" y="345" width="24" height="24" rx="7" fill="#2C86F5"/>
+<text x="371" y="362" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">O</text>
+<text x="398" y="353" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Incident Update | PH2</text>
+<text x="398" y="371" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#66778F" text-anchor="start">Microsoft Outlook</text>
+
+<rect x="930" y="344" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="944" cy="357" r="7" fill="#DCEAFF"/><text x="958" y="361" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Email</text>
+<text x="1043" y="363" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1078" y="362" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
+
+<rect x="270" y="392" width="836" height="58" rx="13" fill="#FFFFFF" stroke="#E3EAF2"/>
+<text x="326" y="426" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#66778F" text-anchor="end">11:52 AM</text>
+<line x1="341" y1="396" x2="341" y2="446" stroke="#7DB8FA" stroke-width="2"/>
+<circle cx="341" cy="421" r="5" fill="#1680FF"/>
+
+<rect x="354" y="404" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="359" y="409" width="24" height="24" rx="7" fill="#6C63E9"/>
+<text x="371" y="426" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">T</text>
+<text x="398" y="417" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Project Phoenix | Team Chat</text>
+<text x="398" y="435" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#66778F" text-anchor="start">Microsoft Teams</text>
+
+<rect x="930" y="408" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="944" cy="421" r="7" fill="#DCEAFF"/><text x="958" y="425" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Chat</text>
+<text x="1043" y="427" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1078" y="426" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
+
+<rect x="270" y="456" width="836" height="58" rx="13" fill="#FFFFFF" stroke="#E3EAF2"/>
+<text x="326" y="490" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#66778F" text-anchor="end">11:49 AM</text>
+<line x1="341" y1="460" x2="341" y2="510" stroke="#7DB8FA" stroke-width="2"/>
+<circle cx="341" cy="485" r="5" fill="#1680FF"/>
+
+<rect x="354" y="468" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="359" y="473" width="24" height="24" rx="7" fill="#18A8D8"/>
+<text x="371" y="490" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">e</text>
+<text x="398" y="481" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Cisco Room Bar Configuration Guide</text>
+<text x="398" y="499" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#66778F" text-anchor="start">Microsoft Edge</text>
+
+<rect x="930" y="472" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="944" cy="485" r="7" fill="#DCEAFF"/><text x="958" y="489" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Web</text>
+<text x="1043" y="491" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1078" y="490" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
+
+<rect x="270" y="520" width="836" height="58" rx="13" fill="#FFFFFF" stroke="#E3EAF2"/>
+<text x="326" y="554" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#66778F" text-anchor="end">11:42 AM</text>
+<line x1="341" y1="524" x2="341" y2="574" stroke="#7DB8FA" stroke-width="2"/>
+<circle cx="341" cy="549" r="5" fill="#1680FF"/>
+
+<rect x="354" y="532" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="359" y="537" width="24" height="24" rx="7" fill="#4B5563"/>
+<text x="371" y="554" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">G</text>
+<text x="398" y="545" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Memory Trail - UI Polish</text>
+<text x="398" y="563" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#66778F" text-anchor="start">ChatGPT</text>
+
+<rect x="930" y="536" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="944" cy="549" r="7" fill="#DCEAFF"/><text x="958" y="553" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Development</text>
+<text x="1043" y="555" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1078" y="554" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
+
+<rect x="270" y="584" width="836" height="58" rx="13" fill="#FFFFFF" stroke="#E3EAF2"/>
+<text x="326" y="618" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#66778F" text-anchor="end">11:37 AM</text>
+<line x1="341" y1="588" x2="341" y2="638" stroke="#7DB8FA" stroke-width="2"/>
+<circle cx="341" cy="613" r="5" fill="#1680FF"/>
+
+<rect x="354" y="596" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="359" y="601" width="24" height="24" rx="7" fill="#22B573"/>
+<text x="371" y="618" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">X</text>
+<text x="398" y="609" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">2026 Budget Forecast.xlsx</text>
+<text x="398" y="627" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#66778F" text-anchor="start">Microsoft Excel</text>
+
+<rect x="930" y="600" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="944" cy="613" r="7" fill="#DCEAFF"/><text x="958" y="617" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Spreadsheet</text>
+<text x="1043" y="619" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1078" y="618" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
+
+<rect x="270" y="648" width="836" height="58" rx="13" fill="#FFFFFF" stroke="#E3EAF2"/>
+<text x="326" y="682" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#66778F" text-anchor="end">11:31 AM</text>
+<line x1="341" y1="652" x2="341" y2="702" stroke="#7DB8FA" stroke-width="2"/>
+<circle cx="341" cy="677" r="5" fill="#1680FF"/>
+
+<rect x="354" y="660" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="359" y="665" width="24" height="24" rx="7" fill="#2B70C9"/>
+<text x="371" y="682" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">W</text>
+<text x="398" y="673" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Data Center Staffing Plan.docx</text>
+<text x="398" y="691" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#66778F" text-anchor="start">Microsoft Word</text>
+
+<rect x="930" y="664" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="944" cy="677" r="7" fill="#DCEAFF"/><text x="958" y="681" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">Document</text>
+<text x="1043" y="683" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1078" y="682" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
+
+<rect x="270" y="712" width="836" height="58" rx="13" fill="#FFFFFF" stroke="#E3EAF2"/>
+<text x="326" y="746" font-family="Segoe UI, Arial, sans-serif" font-size="11.5" font-weight="500" fill="#66778F" text-anchor="end">11:26 AM</text>
+<line x1="341" y1="716" x2="341" y2="766" stroke="#7DB8FA" stroke-width="2"/>
+<circle cx="341" cy="741" r="5" fill="#1680FF"/>
+
+<rect x="354" y="724" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="359" y="729" width="24" height="24" rx="7" fill="#F0AD16"/>
+<text x="371" y="746" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">F</text>
+<text x="398" y="737" font-family="Segoe UI, Arial, sans-serif" font-size="12.8" font-weight="650" fill="#1A2438" text-anchor="start">Opened File Explorer</text>
+<text x="398" y="755" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="400" fill="#66778F" text-anchor="start">File Explorer</text>
+
+<rect x="930" y="728" width="94" height="26" rx="13" fill="#EDF4FF"/><circle cx="944" cy="741" r="7" fill="#DCEAFF"/><text x="958" y="745" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="650" fill="#4774B9" text-anchor="start">File</text>
+<text x="1043" y="747" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="500" fill="#7A8798" text-anchor="start">☆</text><text x="1078" y="746" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#7A8798" text-anchor="middle">•••</text>
+<!-- Right panel -->
+<rect x="1132" y="114" width="308" height="786" fill="#EEF4FB"/>
+<circle cx="1152" cy="139" r="4" fill="#22C55E"/><text x="1164" y="143" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="600" fill="#66778F" text-anchor="start">Capturing</text><text x="1416" y="143" font-family="Segoe UI, Arial, sans-serif" font-size="9.5" font-weight="500" fill="#66778F" text-anchor="end">Mon, Nov 2, 2026</text>
+<rect x="1144" y="160" width="284" height="194" rx="18" fill="#FFFFFF" stroke="#DDE6F0" filter="url(#shadowSm)"/>
+<text x="1162" y="192" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="750" fill="#1A2438" text-anchor="start">Today Summary</text>
+<rect x="1160" y="208" width="119" height="58" rx="13" fill="#F0F7FF" stroke="#DAE9FA"/><g filter="url(#shadowSm)"><rect x="1169" y="220" width="33" height="33" rx="10" fill="#DDF5F8" stroke="#FFFFFF" stroke-width=".8"/><rect x="1176" y="238" width="5" height="9" rx="2.5" fill="#17ADC1"/><rect x="1183" y="233" width="5" height="14" rx="2.5" fill="#17ADC1"/><rect x="1190" y="227" width="5" height="20" rx="2.5" fill="#17ADC1"/></g><text x="1210" y="233" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="750" fill="#1A2438" text-anchor="start">1,563</text><text x="1210" y="250" font-family="Segoe UI, Arial, sans-serif" font-size="9.2" font-weight="500" fill="#66778F" text-anchor="start">Activities</text>
+<rect x="1290" y="208" width="119" height="58" rx="13" fill="#EEF5FF" stroke="#D9E6F8"/><g filter="url(#shadowSm)"><rect x="1299" y="220" width="33" height="33" rx="10" fill="#DCEAFF" stroke="#FFFFFF" stroke-width=".8"/><rect x="1306" y="227" width="8" height="8" rx="2" fill="#176DFF"/><rect x="1317" y="227" width="8" height="8" rx="2" fill="#176DFF"/><rect x="1306" y="238" width="8" height="8" rx="2" fill="#176DFF"/><rect x="1317" y="238" width="8" height="8" rx="2" fill="#176DFF"/></g><text x="1340" y="233" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="750" fill="#1A2438" text-anchor="start">22</text><text x="1340" y="250" font-family="Segoe UI, Arial, sans-serif" font-size="9.2" font-weight="500" fill="#66778F" text-anchor="start">Apps Used</text>
+<rect x="1160" y="278" width="119" height="58" rx="13" fill="#EFF9FC" stroke="#D9EEF3"/><text x="1177" y="313" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#17A9C7" text-anchor="middle">◷</text><text x="1210" y="303" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="750" fill="#1A2438" text-anchor="start">3h 34m</text><text x="1210" y="320" font-family="Segoe UI, Arial, sans-serif" font-size="9.2" font-weight="500" fill="#66778F" text-anchor="start">Active Time</text>
+<rect x="1290" y="278" width="119" height="58" rx="13" fill="#F2F7FF" stroke="#DFE9F7"/><g filter="url(#shadowSm)"><rect x="1299" y="290" width="33" height="33" rx="10" fill="#E1F1FF" stroke="#FFFFFF" stroke-width=".8"/><rect x="1305" y="299" width="21" height="16" rx="3" fill="none" stroke="#2497DE" stroke-width="2"/>
+      <path d="M1306,300 L1315.5,308 L1325,300" fill="none" stroke="#2497DE" stroke-width="2" stroke-linecap="round"/></g><text x="1340" y="303" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="750" fill="#1A2438" text-anchor="start">133</text><text x="1340" y="320" font-family="Segoe UI, Arial, sans-serif" font-size="9.2" font-weight="500" fill="#66778F" text-anchor="start">Clipboard</text>
+<rect x="1144" y="370" width="284" height="328" rx="18" fill="#FFFFFF" stroke="#DDE6F0" filter="url(#shadowSm)"/>
+
+<rect x="1162" y="390" width="34" height="34" rx="9" fill="#FBFCFF" stroke="#E1E7EF"/>
+<rect x="1167" y="395" width="24" height="24" rx="7" fill="#4B5563"/>
+<text x="1179" y="412" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">G</text><text x="1208" y="406" font-family="Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="700" fill="#1A2438" text-anchor="start">Memory Trail - UI Polish</text><text x="1208" y="423" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="500" fill="#66778F" text-anchor="start">ChatGPT</text><text x="1398" y="408" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500" fill="#7A8798" text-anchor="start">☆</text>
+<line x1="1160" y1="444" x2="1410" y2="444" stroke="#E5EBF2"/>
+<text x="1162" y="473" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="500" fill="#8A96A7" text-anchor="start">App</text><text x="1210" y="473" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1A2438" text-anchor="start">ChatGPT</text>
+<text x="1162" y="505" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="500" fill="#8A96A7" text-anchor="start">Type</text><text x="1210" y="505" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1A2438" text-anchor="start">Development</text>
+<text x="1162" y="537" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="500" fill="#8A96A7" text-anchor="start">Time</text><text x="1210" y="537" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1A2438" text-anchor="start">Nov 2, 2026 at 11:42 AM</text>
+<text x="1162" y="569" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="500" fill="#8A96A7" text-anchor="start">Window</text><text x="1210" y="569" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="600" fill="#1A2438" text-anchor="start">Memory Trail - UI Polish</text>
+<rect x="1162" y="600" width="248" height="42" rx="11" fill="url(#primary)"/><text x="1286" y="626" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">Open Source</text>
+<rect x="1162" y="651" width="248" height="36" rx="10" fill="#FFFFFF" stroke="#D8E1EC"/><text x="1286" y="674" font-family="Segoe UI, Arial, sans-serif" font-size="10.5" font-weight="650" fill="#1A2438" text-anchor="middle">Copy Subject</text>
+</svg>
