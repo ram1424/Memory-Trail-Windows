@@ -864,12 +864,6 @@ public partial class MainWindow : Window
         ApplyRightSidebarVisibility();
     }
 
-    private void RightSidebarToggle_Click(object sender, RoutedEventArgs e)
-    {
-        _rightSidebarVisible = !_rightSidebarVisible;
-        ApplyRightSidebarVisibility();
-    }
-
     private void ApplyRightSidebarVisibility()
     {
         var show = _mode == "Timeline" && _rightSidebarVisible;
