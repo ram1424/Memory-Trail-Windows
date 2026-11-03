@@ -26,7 +26,7 @@ public partial class App : Application
                 Preferences.HasCompletedOnboarding = true;
                 var outputDirectory =
                     Environment.GetEnvironmentVariable("MEMORY_TRAIL_SCREENSHOT_DIR")
-                    ?? Path.Combine(Environment.CurrentDirectory, "docs", "screenshots");
+                    ?? Path.Combine(Environment.CurrentDirectory, "docs", "images", "screenshots");
                 ScreenshotExporter.ExportAll(outputDirectory);
             }
             catch (Exception ex)

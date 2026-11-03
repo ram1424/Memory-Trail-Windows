@@ -126,6 +126,22 @@ If Windows does not expose a useful window title, Memory Trail can save an app-l
 
 Memory Trail records metadata/context exposed by Windows and supported applications; it is not a screen recorder.
 
+## Repository Layout
+
+```text
+Assets/              App icons and branding
+Controls/            Reusable UI controls
+Core/                Shared application-level source
+Models/              Timeline/data models
+Services/            Capture, storage, preferences, updates
+Tools/               Build and screenshot tooling
+Views/               Windows and their code-behind
+Reference/macOS/     macOS UI reference used for parity
+docs/                Privacy, changelog, release notes, screenshots
+```
+
+The repository root intentionally contains only the application entry point, project file, README, and top-level project folders.
+
 ## Build From Source
 
 1. Clone this repository.

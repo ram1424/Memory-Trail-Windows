@@ -46,7 +46,7 @@ jobs:
       - name: Build standards-compliant Windows icon
         shell: pwsh
         run: |
-          python Scripts/generate_windows_icon.py .
+          python Tools/Icons/generate_windows_icon.py .
 
           $pngRequired = @(
             "Assets/MemoryTrailIcon.png",

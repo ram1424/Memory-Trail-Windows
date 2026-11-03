@@ -9,7 +9,7 @@
     <ImplicitUsings>false</ImplicitUsings>
     <AssemblyName>Memory Trail</AssemblyName>
     <RootNamespace>MemoryLane.Windows</RootNamespace>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationManifest>Config\app.manifest</ApplicationManifest>
     <ApplicationIcon>Assets\MemoryTrailApp.ico</ApplicationIcon>
     <Version>1.0.0</Version>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
@@ -27,5 +27,64 @@
     <Resource Include="Assets\MemoryTrailIconMaster.png" />
     <Resource Include="Assets\MemoryTrailIcon.png" />
     <Resource Include="Assets\OnboardingIcon.png" />
+  </ItemGroup>
+
+  <!-- Keep WPF view/code-behind relationships explicit after organizing source into folders. -->
+  <ItemGroup>
+    <Page Update="Views\AddMemoryWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Update="Views\AddMemoryWindow.xaml.cs">
+      <DependentUpon>AddMemoryWindow.xaml</DependentUpon>
+    </Compile>
+
+    <Page Update="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Update="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+
+    <Page Update="Views\MemoryDetailWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Update="Views\MemoryDetailWindow.xaml.cs">
+      <DependentUpon>MemoryDetailWindow.xaml</DependentUpon>
+    </Compile>
+
+    <Page Update="Views\OnboardingWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Update="Views\OnboardingWindow.xaml.cs">
+      <DependentUpon>OnboardingWindow.xaml</DependentUpon>
+    </Compile>
+
+    <Page Update="Views\SplashWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Update="Views\SplashWindow.xaml.cs">
+      <DependentUpon>SplashWindow.xaml</DependentUpon>
+    </Compile>
+
+    <Page Update="Views\UpdateAvailableWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Update="Views\UpdateAvailableWindow.xaml.cs">
+      <DependentUpon>UpdateAvailableWindow.xaml</DependentUpon>
+    </Compile>
+
+    <Page Update="Views\WhatsNewWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Update="Views\WhatsNewWindow.xaml.cs">
+      <DependentUpon>WhatsNewWindow.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
