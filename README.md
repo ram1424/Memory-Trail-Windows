@@ -8,11 +8,11 @@
 
 Memory Trail is a privacy-first Windows activity timeline for retracing what you were doing across browsers, email, chat, files, documents, apps, and the clipboard. It turns useful local Windows app/window context into a searchable chronological history without requiring a cloud account or external data connector.
 
-**Current release: Memory Trail 1.0 (Build 1)**
+**Current release: Memory Trail 1.0 (Build 2)**
 
 ## Download
 
-[Download Memory Trail 1.0 for Windows](https://github.com/ram1424/Memory-Trail-Windows/releases/download/v1.0-build.1/Memory-Trail-Windows-1.0-build-1-x64.zip)
+[Download Memory Trail 1.0 for Windows](https://github.com/ram1424/Memory-Trail-Windows/releases/download/v1.0-build.2/Memory-Trail-Windows-1.0-build-2-x64.zip)
 
 Requires **Windows 10 or Windows 11 (x64)**. The release is self-contained and does not require a separate .NET installation.
 
@@ -32,6 +32,8 @@ Requires **Windows 10 or Windows 11 (x64)**. The release is self-contained and d
 - **App/process exclusions** so selected software is not recorded
 - **Pause capture** and independent App Activity / Clipboard controls
 - **System tray operation** and optional **Start with Windows**
+- **Built-in update checks** with manual Check for Updates and optional automatic daily checks
+- **What's New** changelog shown after upgrading
 - **Local JSON storage** under the signed-in Windows user profile
 - **Privacy-focused onboarding and Settings controls**
 - **No AI-generated timeline summaries**
@@ -84,6 +86,10 @@ Memory Trail currently relies on Windows account/file-system protections and any
 - **No AI-generated summaries of your timeline**
 
 Opening the GitHub project from Settings is a user-initiated browser action and is separate from the local capture/storage workflow.
+
+When automatic update checks are enabled, Memory Trail makes a separate request to GitHub for release metadata. The request does **not** include captured timeline history, clipboard content, window titles, or file paths. Automatic update checks can be disabled in Settings.
+
+The current source repository is private, so anonymous GitHub release checks cannot read its releases. Authorized private-repository checks can use the `MEMORY_TRAIL_GITHUB_TOKEN` environment variable; otherwise the updater fails safely and offers the Releases page.
 
 ### User controls
 
@@ -146,13 +152,13 @@ dotnet publish .\MemoryTrail.Windows.csproj `
 ```
 
 **Marketing version:** `1.0`  
-**Build:** `1`
+**Build:** `2`
 
 ## Release
 
 Only the current production release is retained on the GitHub Releases page.
 
-**Memory Trail 1.0 (Build 1)** is the current Windows release.
+**Memory Trail 1.0 (Build 2)** is the current Windows release.
 
 [macOS edition](https://github.com/ram1424/Memory-Trail)
 

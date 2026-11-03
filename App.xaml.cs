@@ -62,13 +62,12 @@ public partial class App : Application
             var window = new MainWindow();
             WindowsParityEnhancements.Attach(window);
 
-            var minimumSplashTime = TimeSpan.FromMilliseconds(700);
+            var minimumSplashTime = TimeSpan.FromSeconds(2);
             var remaining = minimumSplashTime - startupTimer.Elapsed;
             if (remaining > TimeSpan.Zero)
                 await Task.Delay(remaining);
 
             splash.SetStatus("Ready");
-            await Task.Delay(90);
 
             MainWindow = window;
             window.Show();

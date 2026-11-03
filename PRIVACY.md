@@ -1,6 +1,6 @@
 # Memory Trail Privacy & Data Handling
 
-**Applies to:** Memory Trail for Windows 1.0 (Build 1)
+**Applies to:** Memory Trail for Windows 1.0 (Build 2)
 
 Memory Trail is designed as a **privacy-first, local-first application**. Its purpose is to help you retrace recent computer activity while keeping the captured timeline on the Windows PC where the application runs.
 
@@ -151,6 +151,16 @@ Memory Trail does not require network access to:
 
 The app includes a **View Memory Trail on GitHub** action in Settings. Selecting it launches your default browser to GitHub. That is a deliberate, user-initiated navigation outside the app and is separate from the captured-history workflow.
 
+### Update checks
+
+Memory Trail 1.0 (Build 2) adds manual and optional automatic update checks. When enabled, the app requests release metadata from GitHub. Update checks are separate from the capture/storage/search pipeline and do **not** attach timeline entries, clipboard text, window titles, file paths, or other captured activity to the request.
+
+Automatic update checks are enabled by default and run no more than once every 24 hours. They can be disabled under **Settings → Updates**.
+
+The current Memory Trail GitHub repository is private. Anonymous GitHub API requests cannot read private release metadata. If the environment variable `MEMORY_TRAIL_GITHUB_TOKEN` contains an authorized GitHub token, Memory Trail can use it only for the release-metadata request. Memory Trail does not write that token into its preferences file.
+
+If the release feed is unavailable, the updater fails safely and the local capture workflow continues normally.
+
 ## Diagnostic logs
 
 If startup or a non-fatal component error occurs, Memory Trail may write exception details to `crash.log` under Local AppData. This file is local and is not automatically uploaded by Memory Trail.
@@ -192,6 +202,10 @@ Enter one Windows process name per line. Memory Trail checks the foreground proc
 ### Start with Windows
 
 Startup is optional and can be enabled or disabled in Settings.
+
+### Automatic update checks
+
+**Settings → Updates → Automatically check for updates** controls the once-per-day GitHub release check. Manual checks are available from Settings and the Memory Trail system-tray menu.
 
 ## Source-code verification
 

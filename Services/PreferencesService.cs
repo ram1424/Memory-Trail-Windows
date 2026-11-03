@@ -18,6 +18,9 @@ public sealed class PreferencesService
     public bool CaptureClipboard { get; set; } = true;
     public bool HasCompletedOnboarding { get; set; }
     public bool StartWithWindows { get; set; }
+    public bool AutomaticUpdateChecks { get; set; } = true;
+    public DateTimeOffset? LastUpdateCheckUtc { get; set; }
+    public string LastSeenVersion { get; set; } = "";
 
     public HashSet<string> ExcludedProcesses { get; set; } = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -52,6 +55,7 @@ public sealed class PreferencesService
         CapturePaused = false;
         CaptureAppActivity = true;
         CaptureClipboard = true;
+        AutomaticUpdateChecks = true;
         StartWithWindows = false;
         SetStartWithWindows(false);
         ExcludedProcesses = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
@@ -78,6 +82,9 @@ public sealed class PreferencesService
             CaptureClipboard = loaded.CaptureClipboard;
             HasCompletedOnboarding = loaded.HasCompletedOnboarding;
             StartWithWindows = loaded.StartWithWindows;
+            AutomaticUpdateChecks = loaded.AutomaticUpdateChecks;
+            LastUpdateCheckUtc = loaded.LastUpdateCheckUtc;
+            LastSeenVersion = loaded.LastSeenVersion ?? "";
             ExcludedProcesses = new HashSet<string>(
                 loaded.ExcludedProcesses ?? [],
                 StringComparer.OrdinalIgnoreCase);

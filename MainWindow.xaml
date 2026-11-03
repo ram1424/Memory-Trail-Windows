@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:MemoryLane.Windows"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        Title="Memory Trail 1.0 (Build 1)"
+        Title="Memory Trail 1.0 (Build 2)"
         Width="1560" Height="860"
         MinWidth="1240" MinHeight="720"
         WindowStartupLocation="CenterScreen"
@@ -1129,6 +1129,21 @@
                 </Grid>
               </Border>
 
+              <Border Background="#F8FBFF" BorderBrush="#DDE7F2" BorderThickness="1" CornerRadius="12" Padding="12" Margin="0,0,0,8">
+                <Grid>
+                  <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                  <Border Width="36" Height="36" CornerRadius="10" Background="#E7F1FF" VerticalAlignment="Top">
+                    <TextBlock Text="&#xE895;" FontFamily="Segoe MDL2 Assets" FontSize="17" Foreground="#347FD1"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                  </Border>
+                  <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock Text="5  Update checks are separate" Foreground="#1A2438" FontWeight="SemiBold"/>
+                    <TextBlock Text="When update checks are enabled, Memory Trail contacts GitHub only to read release metadata. Captured timeline, clipboard, titles, and file paths are not included in update requests."
+                               Foreground="#66778F" FontSize="12" Margin="0,3,0,0" TextWrapping="Wrap"/>
+                  </StackPanel>
+                </Grid>
+              </Border>
+
               <Border Background="#F6F9FC" BorderBrush="#E1E8F0" BorderThickness="1" CornerRadius="12" Padding="12">
                 <StackPanel Orientation="Horizontal">
                   <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="#2F8BCB" Width="28"/>
@@ -1163,13 +1178,38 @@
           <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="19" Padding="22" Margin="0,0,0,14">
             <StackPanel>
               <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
+                <Border Width="40" Height="40" CornerRadius="12" Background="#E6F2FF" Margin="0,0,11,0">
+                  <TextBlock Text="&#xE777;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="#287DD8"
+                             HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <StackPanel VerticalAlignment="Center">
+                  <TextBlock Text="Updates" FontSize="18" FontWeight="SemiBold" Foreground="#1A2438"/>
+                  <TextBlock Text="Stay current without sending your activity history." FontSize="12" Foreground="#66778F" Margin="0,2,0,0"/>
+                </StackPanel>
+              </StackPanel>
+              <TextBlock Text="Memory Trail can check GitHub for newer releases. The check sends only a normal release-metadata request; your timeline and captured content remain local."
+                         Foreground="#40506A" TextWrapping="Wrap" LineHeight="20" Margin="0,0,0,12"/>
+              <CheckBox x:Name="AutomaticUpdateCheckBox" Content="Automatically check for updates"
+                        Checked="AutomaticUpdatesChanged" Unchecked="AutomaticUpdatesChanged" Margin="0,0,0,12"/>
+              <WrapPanel>
+                <Button Content="Check for Updates" Click="CheckForUpdates_Click" Margin="0,0,8,8"/>
+                <Button Content="What's New" Click="ShowWhatsNew_Click" Margin="0,0,8,8"/>
+              </WrapPanel>
+              <TextBlock x:Name="UpdateStatusText" Text="Updates have not been checked yet."
+                         Foreground="#66778F" FontSize="11.5" TextWrapping="Wrap" Margin="0,4,0,0"/>
+            </StackPanel>
+          </Border>
+
+          <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="19" Padding="22" Margin="0,0,0,14">
+            <StackPanel>
+              <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                 <Border Width="40" Height="40" CornerRadius="12" Background="#E5F1FF" Margin="0,0,11,0">
                   <TextBlock Text="&#xE946;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="#347FD1"
                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
                 <StackPanel VerticalAlignment="Center">
                   <TextBlock Text="About Memory Trail" FontSize="18" FontWeight="SemiBold" Foreground="#1A2438"/>
-                  <TextBlock Text="Version 1.0 (Build 1)" FontSize="12" Foreground="#66778F" Margin="0,2,0,0"/>
+                  <TextBlock x:Name="AboutVersionText" Text="Version 1.0 (Build 2)" FontSize="12" Foreground="#66778F" Margin="0,2,0,0"/>
                 </StackPanel>
               </StackPanel>
               <TextBlock Text="Memory Trail is a private, local-first, open-source Windows activity timeline. Review the source code, privacy implementation, release information, and project history on GitHub."

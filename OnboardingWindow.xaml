@@ -256,8 +256,8 @@
                                  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <StackPanel Grid.Column="1" Margin="0,1,0,0">
-                      <TextBlock Text="No external data connectors" FontSize="13.5" FontWeight="SemiBold" Foreground="#1A2438"/>
-                      <TextBlock Text="Memory Trail does not use cloud sync, analytics services, remote accounts, or external data connectors for its capture and storage workflow."
+                      <TextBlock Text="No external capture connectors" FontSize="13.5" FontWeight="SemiBold" Foreground="#1A2438"/>
+                      <TextBlock Text="Capture, storage, Insights, and Ask Memory Trail do not use cloud connectors. Optional update checks contact GitHub only for release metadata."
                                  FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" LineHeight="17" Margin="0,3,0,0"/>
                     </StackPanel>
                   </Grid>

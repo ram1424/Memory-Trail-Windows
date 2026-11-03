@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0 (Build 2)
+
+- Reduced the startup/loading screen target to **2 seconds**.
+- Added **Check for Updates** to the Memory Trail system-tray menu and Settings.
+- Added automatic update checks once every 24 hours when enabled.
+- Added an update-available window with release notes and a **Download Update** action.
+- Added a polished **What's New** changelog window shown once after an upgrade for returning users.
+- Added version-aware About/window branding.
+- Added explicit privacy disclosure that update checks contact GitHub only for release metadata and do not send captured timeline, clipboard, window-title, or file-path data.
+- Added safe handling for private GitHub release feeds; authorized private-feed checks can use `MEMORY_TRAIL_GITHUB_TOKEN`.
+
 ## 1.0 (Build 1)
 
 - Promoted the Windows edition to **Memory Trail 1.0 (Build 1)**.

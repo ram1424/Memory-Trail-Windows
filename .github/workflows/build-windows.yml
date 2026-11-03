@@ -129,33 +129,5 @@ jobs:
           target_commitish: main
           name: ${{ env.RELEASE_NAME }}
           make_latest: true
-          body: |
-            # Memory Trail 1.0 (Build 1)
-
-            A private, local-first Windows activity timeline with a polished Soft Blue interface.
-
-            ## Highlights
-            - Hardened Windows activity capture using foreground-window events plus polling fallback
-            - Automatic capture-service recovery and app-level fallback events when window titles are unavailable
-            - Newest-first Today timeline with Live Activity state and session-based active time
-            - Ask Memory Trail for local website, email, conversation, file, app, and time-aware searches
-            - Favorites, Clipboard History, manual memories, Insights, filters, and activity details
-            - Polished loading screen, tutorial, dimensional filter icons, and Hide/Show Panels control
-            - Windows tray operation and optional Start with Windows
-            - Self-contained Windows x64 build; no separate .NET installation required
-
-            ## Privacy
-            - Timeline data is stored locally under %LOCALAPPDATA%\Memory Trail
-            - No Memory Trail account is required
-            - No captured timeline history is uploaded or synchronized by the app
-            - No analytics or advertising SDK is included
-            - No external connector is required for capture, storage, display, or Ask Memory Trail
-            - App Activity and Clipboard capture can be disabled independently
-            - Capture can be paused at any time
-            - Process exclusions are supported
-            - CredentialUIBroker, 1Password, and Bitwarden are excluded by default
-            - Memory Trail does not record the screen and is not a keylogger
-            - Source code and full privacy details are available in this repository
-
-            See PRIVACY.md for the full privacy and data-handling description.
+          body_path: RELEASE_NOTES.md
           files: artifacts/${{ env.ARTIFACT_NAME }}

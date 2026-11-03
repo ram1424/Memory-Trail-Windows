@@ -1,5 +1,4 @@
 using System.Collections.Specialized;
-using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -53,22 +52,7 @@ public static class WindowsParityEnhancements
 
     private static void ApplyCurrentBrand(MainWindow window)
     {
-        var version = Assembly.GetExecutingAssembly().GetName().Version;
-        var label = version is null
-            ? "1.0.0"
-            : $"{version.Major}.{version.Minor}.{version.Build}";
-
-        window.Title = $"Memory Trail v{label}";
-
-        foreach (var text in FindVisualChildren<TextBlock>(window))
-        {
-            if (text.Text.StartsWith("v0.", StringComparison.OrdinalIgnoreCase) ||
-                text.Text.StartsWith("v1.", StringComparison.OrdinalIgnoreCase))
-            {
-                text.Text = $"v{label}";
-                break;
-            }
-        }
+        window.Title = $"Memory Trail {AppVersion.FriendlyVersion}";
     }
 
     private static void UpdateActiveTime(MainWindow window)

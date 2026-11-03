@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -86,6 +87,9 @@ public partial class MainWindow : Window
 
             var menu = new Forms.ContextMenuStrip();
             menu.Items.Add("Open Memory Trail", null, (_, _) => Dispatcher.Invoke(ShowFromTray));
+            menu.Items.Add("Check for Updates...", null, (_, _) => Dispatcher.BeginInvoke(new Action(CheckForUpdatesFromTray)));
+            menu.Items.Add("What's New", null, (_, _) => Dispatcher.BeginInvoke(new Action(() => ShowWhatsNewWindow(false))));
+            menu.Items.Add(new Forms.ToolStripSeparator());
             menu.Items.Add("Pause / Resume Capture", null, (_, _) => Dispatcher.Invoke(ToggleCapture));
             menu.Items.Add(new Forms.ToolStripSeparator());
             menu.Items.Add("Quit", null, (_, _) => Dispatcher.Invoke(QuitApplication));
@@ -117,26 +121,34 @@ public partial class MainWindow : Window
         }
     }
 
-    private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+    private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
         Loaded -= MainWindow_Loaded;
 
-        if (!App.Preferences.HasCompletedOnboarding)
+        var returningUser = App.Preferences.HasCompletedOnboarding;
+
+        if (!returningUser)
         {
-            Dispatcher.BeginInvoke(new Action(() =>
+            try { ShowOnboarding(); }
+            catch (Exception ex)
             {
-                try { ShowOnboarding(); }
-                catch (Exception ex)
-                {
-                    App.LogNonFatal("Onboarding", ex);
-                    MessageBox.Show(
-                        "Memory Trail started successfully, but the welcome tutorial could not be opened. You can retry it later from Settings.",
-                        "Memory Trail",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Information);
-                }
-            }));
+                App.LogNonFatal("Onboarding", ex);
+                MessageBox.Show(
+                    "Memory Trail started successfully, but the welcome tutorial could not be opened. You can retry it later from Settings.",
+                    "Memory Trail",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+            }
+
+            App.Preferences.LastSeenVersion = AppVersion.ReleaseTag;
+            App.Preferences.Save();
         }
+        else
+        {
+            ShowWhatsNewIfNeeded();
+        }
+
+        await MaybeCheckForUpdatesAsync();
     }
 
     private void LoadSettingsIntoUi()
@@ -145,6 +157,11 @@ public partial class MainWindow : Window
         AppCaptureCheckBox.IsChecked = App.Preferences.CaptureAppActivity;
         ClipboardCaptureCheckBox.IsChecked = App.Preferences.CaptureClipboard;
         StartWithWindowsCheckBox.IsChecked = App.Preferences.StartWithWindows;
+        AutomaticUpdateCheckBox.IsChecked = App.Preferences.AutomaticUpdateChecks;
+        AboutVersionText.Text = $"Version {AppVersion.FriendlyVersion}";
+        UpdateStatusText.Text = App.Preferences.LastUpdateCheckUtc is DateTimeOffset checkedAt
+            ? $"Last checked {checkedAt.ToLocalTime():MMM d, yyyy h:mm tt}."
+            : "Updates have not been checked yet.";
         ExclusionsBox.Text = string.Join(Environment.NewLine, App.Preferences.ExcludedProcesses.OrderBy(x => x));
     }
 
@@ -1085,7 +1102,7 @@ public partial class MainWindow : Window
         {
             Process.Start(new ProcessStartInfo
             {
-                FileName = "https://github.com/ram1424/Memory-Lane-Windows",
+                FileName = "https://github.com/ram1424/Memory-Trail-Windows",
                 UseShellExecute = true
             });
         }
@@ -1097,6 +1114,126 @@ public partial class MainWindow : Window
                 "Memory Trail",
                 MessageBoxButton.OK,
                 MessageBoxImage.Information);
+        }
+    }
+
+    private async void CheckForUpdates_Click(object sender, RoutedEventArgs e)
+        => await CheckForUpdatesAsync(manual: true);
+
+    private async void CheckForUpdatesFromTray()
+        => await CheckForUpdatesAsync(manual: true);
+
+    private void ShowWhatsNew_Click(object sender, RoutedEventArgs e)
+        => ShowWhatsNewWindow(markSeen: true);
+
+    private void AutomaticUpdatesChanged(object sender, RoutedEventArgs e)
+    {
+        if (_initializingSettings) return;
+
+        App.Preferences.AutomaticUpdateChecks = AutomaticUpdateCheckBox.IsChecked == true;
+        App.Preferences.Save();
+
+        if (App.Preferences.AutomaticUpdateChecks)
+            _ = CheckForUpdatesAsync(manual: false);
+    }
+
+    private async Task MaybeCheckForUpdatesAsync()
+    {
+        if (!App.Preferences.AutomaticUpdateChecks)
+            return;
+
+        if (App.Preferences.LastUpdateCheckUtc is DateTimeOffset lastCheck &&
+            DateTimeOffset.UtcNow - lastCheck < TimeSpan.FromHours(24))
+            return;
+
+        await CheckForUpdatesAsync(manual: false);
+    }
+
+    private async Task CheckForUpdatesAsync(bool manual)
+    {
+        try
+        {
+            UpdateStatusText.Text = "Checking GitHub for updates...";
+
+            var result = await UpdateService.CheckAsync();
+            App.Preferences.LastUpdateCheckUtc = DateTimeOffset.UtcNow;
+            App.Preferences.Save();
+
+            if (!result.CheckSucceeded)
+            {
+                UpdateStatusText.Text = result.Message;
+
+                if (manual)
+                {
+                    var open = MessageBox.Show(
+                        result.Message + "\n\nOpen the Memory Trail Releases page in your browser?",
+                        "Memory Trail Updates",
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Information);
+
+                    if (open == MessageBoxResult.Yes)
+                        UpdateService.OpenReleasesPage();
+                }
+
+                return;
+            }
+
+            if (!result.IsUpdateAvailable)
+            {
+                UpdateStatusText.Text = $"You're up to date — {AppVersion.FriendlyVersion}.";
+
+                if (manual)
+                {
+                    MessageBox.Show(
+                        $"You're running the latest version of Memory Trail.\n\n{AppVersion.FriendlyVersion}",
+                        "Memory Trail Updates",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                }
+
+                return;
+            }
+
+            UpdateStatusText.Text = $"{result.ReleaseName} is available.";
+            var prompt = new UpdateAvailableWindow(result) { Owner = this };
+            prompt.ShowDialog();
+        }
+        catch (Exception ex)
+        {
+            App.LogNonFatal("Update check", ex);
+            UpdateStatusText.Text = "Update check could not be completed.";
+
+            if (manual)
+            {
+                MessageBox.Show(
+                    "Memory Trail could not complete the update check. You can still open the Releases page from GitHub.",
+                    "Memory Trail Updates",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+            }
+        }
+    }
+
+    private void ShowWhatsNewIfNeeded()
+    {
+        if (string.Equals(
+                App.Preferences.LastSeenVersion,
+                AppVersion.ReleaseTag,
+                StringComparison.OrdinalIgnoreCase))
+            return;
+
+        ShowWhatsNewWindow(markSeen: true);
+    }
+
+    private void ShowWhatsNewWindow(bool markSeen)
+    {
+        var window = new WhatsNewWindow { Owner = this };
+        window.ShowDialog();
+
+        if (markSeen)
+        {
+            App.Preferences.LastSeenVersion = AppVersion.ReleaseTag;
+            App.Preferences.Save();
         }
     }
 
