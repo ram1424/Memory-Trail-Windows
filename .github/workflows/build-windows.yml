@@ -1,4 +1,4 @@
-name: Build and Release Memory Trail for Windows
+name: Release Memory Trail
 
 on:
   push:
@@ -50,8 +50,7 @@ jobs:
 
           $pngRequired = @(
             "Assets/MemoryTrailIcon.png",
-            "Assets/MemoryTrailIconMaster.png",
-            "Assets/OnboardingIcon.png"
+            "Assets/MemoryTrailIconMaster.png"
           )
           foreach ($path in $pngRequired) {
             if (-not (Test-Path $path)) { throw "Required branding asset is missing: $path" }
@@ -127,5 +126,5 @@ jobs:
           target_commitish: main
           name: ${{ env.RELEASE_NAME }}
           make_latest: true
-          body_path: RELEASE_NOTES.md
+          body_path: docs/RELEASE_NOTES.md
           files: artifacts/${{ env.ARTIFACT_NAME }}

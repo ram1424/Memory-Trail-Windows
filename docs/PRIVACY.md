@@ -195,9 +195,9 @@ Enter one Windows process name per line. Memory Trail checks the foreground proc
 
 **Settings → Clear history** clears the local timeline collection.
 
-### Reset preferences
+### Clear App Cache
 
-**Reset preferences** restores capture settings and default exclusions. It does not delete timeline history unless **Clear history** is used separately.
+**Clear App Cache** resets cached capture state and Memory Trail preferences to their defaults. It does not delete timeline history; use **Clear history** separately when you want to remove activity history.
 
 ### Start with Windows
 
@@ -219,8 +219,8 @@ Privacy-sensitive implementation is primarily located in:
 - `Services/TimelineStore.cs`
 - `Services/PreferencesService.cs`
 - `App.xaml.cs`
-- `MainWindow.xaml`
-- `MainWindow.xaml.cs`
+- `Views/MainWindow.xaml`
+- `Views/MainWindow.xaml.cs`
 
 The repository history can be used to review changes to capture, storage, privacy UI, and documentation over time.
 

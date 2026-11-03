@@ -22,4 +22,4 @@ Memory Trail Version 1 is the first official Windows release of Memory Trail —
 
 Captured timeline history remains local to the PC. Update checks are a separate request for GitHub release metadata and do not include timeline entries, clipboard content, window titles, or file paths.
 
-See PRIVACY.md for the complete privacy and data-handling description.
+See `docs/PRIVACY.md` for the complete privacy and data-handling description.

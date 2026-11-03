@@ -12,7 +12,7 @@ Memory Trail is a privacy-first Windows activity timeline for retracing what you
 
 ## Download
 
-[Download Memory Trail 1.0 for Windows](https://github.com/ram1424/Memory-Trail-Windows/releases/download/v1/Memory-Trail-Windows-Version-1-x64.zip)
+[Download Memory Trail Version 1 for Windows](https://github.com/ram1424/Memory-Trail-Windows/releases/download/v1/Memory-Trail-Windows-Version-1-x64.zip)
 
 Requires **Windows 10 or Windows 11 (x64)**. The release is self-contained and does not require a separate .NET installation.
 
@@ -42,16 +42,16 @@ Requires **Windows 10 or Windows 11 (x64)**. The release is self-contained and d
 ## Screenshots
 
 ### Today
-![Memory Trail Today view](docs/screenshots/today-ui.png)
+![Memory Trail Today view](docs/images/screenshots/today-ui.png)
 
 ### Ask Memory Trail
-![Ask Memory Trail](docs/screenshots/ask-memory-trail-ui.png)
+![Ask Memory Trail](docs/images/screenshots/ask-memory-trail-ui.png)
 
 ### Settings & Privacy
-![Memory Trail privacy settings](docs/screenshots/privacy-settings-ui.png)
+![Memory Trail privacy settings](docs/images/screenshots/privacy-settings-ui.png)
 
 ### First-run Tutorial
-![Memory Trail onboarding](docs/screenshots/onboarding-privacy-ui.png)
+![Memory Trail onboarding](docs/images/screenshots/onboarding-privacy-ui.png)
 
 _All screenshots use generic demo data._
 
@@ -99,14 +99,14 @@ The current source repository is private, so anonymous GitHub release checks can
 - Exclude installed processes from capture.
 - `CredentialUIBroker`, `1Password`, and `Bitwarden` are excluded by default.
 - Clear local timeline history from Settings.
-- Reset capture preferences separately from history deletion.
+- Clear App Cache resets cached capture state and preferences without deleting activity history.
 - Review the source code in this repository to verify capture, storage, and privacy behavior.
 
 Clipboard capture is enabled by default in the current Windows build. When enabled, copied text may be stored locally in the timeline. Clipboard text longer than 20,000 characters is ignored by the current collector.
 
 Memory Trail is intended as a personal productivity and activity-retracing tool. It is **not** designed as employee monitoring software, a keylogger, or a screen recorder.
 
-See [PRIVACY.md](PRIVACY.md) for the full privacy and data-handling description.
+See [Privacy & Data Handling](docs/PRIVACY.md) for the full privacy and data-handling description.
 
 ## Data Sources
 

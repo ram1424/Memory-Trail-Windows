@@ -34,7 +34,7 @@ public partial class WhatsNewWindow : Window
         {
             Process.Start(new ProcessStartInfo
             {
-                FileName = "https://github.com/ram1424/Memory-Trail-Windows/blob/main/CHANGELOG.md",
+                FileName = "https://github.com/ram1424/Memory-Trail-Windows/blob/main/docs/CHANGELOG.md",
                 UseShellExecute = true
             });
         }
