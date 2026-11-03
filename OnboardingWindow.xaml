@@ -201,27 +201,95 @@
           </Grid>
 
           <Grid x:Name="Page5" Visibility="Collapsed">
-            <Grid.ColumnDefinitions><ColumnDefinition Width="0.85*"/><ColumnDefinition Width="1.15*"/></Grid.ColumnDefinitions>
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="300">
-              <Border Width="170" Height="170" CornerRadius="28" Background="#E5EEF9">
-                <Grid>
-                  <Image x:Name="PrivacyBrandLogo" Width="105" Height="105" Stretch="Uniform" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                  <Border Width="44" Height="44" CornerRadius="22" Background="#1680FF" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,24,24">
-                    <TextBlock Text="✓" Foreground="White" FontSize="23" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                  </Border>
-                </Grid>
+            <StackPanel MaxWidth="760" HorizontalAlignment="Center">
+              <StackPanel Margin="0,0,0,14">
+                <Border HorizontalAlignment="Left" Background="#DCEBFF" BorderBrush="#B8D2F5" BorderThickness="1"
+                        CornerRadius="12" Padding="10,5" Margin="0,0,0,10">
+                  <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#176DFF"
+                               VerticalAlignment="Center" Margin="0,0,7,0"/>
+                    <TextBlock Text="PRIVACY" FontSize="10.5" FontWeight="Bold" Foreground="#176DFF"
+                               VerticalAlignment="Center"/>
+                  </StackPanel>
+                </Border>
+                <TextBlock Text="Privacy-first by design" FontSize="29" FontWeight="Bold" Foreground="#1A2438"/>
+                <TextBlock Text="Memory Trail is a private, locally run Windows app. Captured activity history is processed and stored on this PC."
+                           FontSize="13" Foreground="#40506A" TextWrapping="Wrap" LineHeight="20" Margin="0,7,0,0"/>
+              </StackPanel>
+
+              <Border Style="{StaticResource TourCard}" Padding="18,14">
+                <StackPanel>
+                  <Grid Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                    <Border Width="38" Height="38" CornerRadius="11" Background="#DDEBFF" VerticalAlignment="Top">
+                      <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" FontSize="17" Foreground="#176DFF"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="0,1,0,0">
+                      <TextBlock Text="Sourced and stored locally" FontSize="13.5" FontWeight="SemiBold" Foreground="#1A2438"/>
+                      <TextBlock Text="Timeline data comes from local Windows app and window context, local files and paths, and the clipboard when enabled. Captured history is stored locally on this PC."
+                                 FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" LineHeight="17" Margin="0,3,0,0"/>
+                    </StackPanel>
+                  </Grid>
+
+                  <Border Height="1" Background="#C6D3E2" Margin="48,0,0,12"/>
+
+                  <Grid Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                    <Border Width="38" Height="38" CornerRadius="11" Background="#DDEBFF" VerticalAlignment="Top">
+                      <TextBlock Text="&#xE769;" FontFamily="Segoe MDL2 Assets" FontSize="17" Foreground="#176DFF"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="0,1,0,0">
+                      <TextBlock Text="No captured-data transmission" FontSize="13.5" FontWeight="SemiBold" Foreground="#1A2438"/>
+                      <TextBlock Text="Memory Trail does not upload, sync, or send your captured timeline data outside of this computer."
+                                 FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" LineHeight="17" Margin="0,3,0,0"/>
+                    </StackPanel>
+                  </Grid>
+
+                  <Border Height="1" Background="#C6D3E2" Margin="48,0,0,12"/>
+
+                  <Grid Margin="0,0,0,12">
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                    <Border Width="38" Height="38" CornerRadius="11" Background="#DDEBFF" VerticalAlignment="Top">
+                      <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" FontSize="17" Foreground="#176DFF"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="0,1,0,0">
+                      <TextBlock Text="No external data connectors" FontSize="13.5" FontWeight="SemiBold" Foreground="#1A2438"/>
+                      <TextBlock Text="Memory Trail does not use cloud sync, analytics services, remote accounts, or external data connectors for its capture and storage workflow."
+                                 FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" LineHeight="17" Margin="0,3,0,0"/>
+                    </StackPanel>
+                  </Grid>
+
+                  <Border Height="1" Background="#C6D3E2" Margin="48,0,0,12"/>
+
+                  <Grid>
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                    <Border Width="38" Height="38" CornerRadius="11" Background="#DDEBFF" VerticalAlignment="Top">
+                      <local:CategoryIcon Category="Development" Width="24" Height="24"
+                                          HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="0,1,0,0">
+                      <TextBlock Text="Verifiable source code" FontSize="13.5" FontWeight="SemiBold" Foreground="#1A2438"/>
+                      <TextBlock Text="The source code is available for review so you can verify how Memory Trail captures, processes, and stores data."
+                                 FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" LineHeight="17" Margin="0,3,0,0"/>
+                    </StackPanel>
+                  </Grid>
+                </StackPanel>
               </Border>
-              <TextBlock Text="Your history stays on this PC." FontSize="16" FontWeight="Bold" Foreground="#1A2438" TextAlignment="Center" Margin="0,18,0,0"/>
-              <TextBlock Text="Private by default. Local by design." FontSize="12.5" Foreground="#66778F" TextAlignment="Center" Margin="0,5,0,0"/>
-            </StackPanel>
-            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="30,0,12,0">
-              <TextBlock Text="Privacy First. By Design." FontSize="29" FontWeight="Bold" Foreground="#1A2438"/>
-              <TextBlock Text="Your activity is captured, processed, and stored locally. Memory Trail does not require cloud sync or an external connector for its timeline."
-                         FontSize="13" Foreground="#40506A" TextWrapping="Wrap" LineHeight="20" Margin="0,8,0,18"/>
-              <Border Style="{StaticResource FeatureCard}" Margin="0,0,0,10"><StackPanel Orientation="Horizontal"><Border Width="30" Height="30" CornerRadius="9" Background="#E4F2FF" Margin="0,0,9,0"><TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" Foreground="#347FD1" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="Local processing and local storage" Foreground="#1A2438" FontWeight="SemiBold" VerticalAlignment="Center"/></StackPanel></Border>
-              <Border Style="{StaticResource FeatureCard}" Margin="0,0,0,10"><StackPanel Orientation="Horizontal"><Border Width="30" Height="30" CornerRadius="9" Background="#EAF4FF" Margin="0,0,9,0"><TextBlock Text="&#xE769;" FontFamily="Segoe MDL2 Assets" Foreground="#3F83D0" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="Pause capture or disable clipboard capture anytime" Foreground="#1A2438" FontWeight="SemiBold" VerticalAlignment="Center"/></StackPanel></Border>
-              <Border Style="{StaticResource FeatureCard}" Margin="0,0,0,10"><StackPanel Orientation="Horizontal"><Border Width="30" Height="30" CornerRadius="9" Background="#E9EEFF" Margin="0,0,9,0"><TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" Foreground="#5A73D2" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><TextBlock Text="Exclude apps and processes you do not want recorded" Foreground="#1A2438" FontWeight="SemiBold" VerticalAlignment="Center"/></StackPanel></Border>
-              <Border Style="{StaticResource FeatureCard}"><StackPanel Orientation="Horizontal"><local:CategoryIcon Category="Development" Width="30" Height="30" Margin="0,0,9,0"/><TextBlock Text="Source code available for review and verification" Foreground="#1A2438" FontWeight="SemiBold" VerticalAlignment="Center"/></StackPanel></Border>
+
+              <Border Background="#D7E8FB" BorderBrush="#B7CDE8" BorderThickness="1" CornerRadius="14"
+                      Padding="14,10" Margin="0,12,0,0">
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="✓" Foreground="#176DFF" FontSize="17" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,9,0"/>
+                  <StackPanel>
+                    <TextBlock Text="Your history stays on this PC." FontSize="12.5" FontWeight="SemiBold" Foreground="#1A2438"/>
+                    <TextBlock Text="Private by default. Local by design. You remain in control of capture, clipboard history, and exclusions."
+                               FontSize="10.8" Foreground="#52647D" TextWrapping="Wrap" Margin="0,2,0,0"/>
+                  </StackPanel>
+                </StackPanel>
+              </Border>
             </StackPanel>
           </Grid>
 
