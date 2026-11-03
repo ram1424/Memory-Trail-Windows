@@ -158,7 +158,7 @@ public partial class MainWindow : Window
         ClipboardCaptureCheckBox.IsChecked = App.Preferences.CaptureClipboard;
         StartWithWindowsCheckBox.IsChecked = App.Preferences.StartWithWindows;
         AutomaticUpdateCheckBox.IsChecked = App.Preferences.AutomaticUpdateChecks;
-        AboutVersionText.Text = $"Version {AppVersion.FriendlyVersion}";
+        AboutVersionText.Text = AppVersion.FriendlyVersion;
         UpdateStatusText.Text = App.Preferences.LastUpdateCheckUtc is DateTimeOffset checkedAt
             ? $"Last checked {checkedAt.ToLocalTime():MMM d, yyyy h:mm tt}."
             : "Updates have not been checked yet.";
@@ -1255,7 +1255,7 @@ public partial class MainWindow : Window
         App.Capture.ClearRuntimeCache();
         LoadSettingsIntoUi();
         UpdateCaptureState();
-        MessageBox.Show("App cache and preferences were reset. Timeline history was not deleted.", "Memory Trail");
+        MessageBox.Show("App cache and Memory Trail preferences were cleared. Your activity history was not deleted.", "Memory Trail");
     }
 
     protected override void OnClosed(EventArgs e)

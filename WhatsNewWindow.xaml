@@ -8,29 +8,77 @@
         Background="#DCE6F2"
         FontFamily="Segoe UI Variable Text">
   <Border Margin="18" BorderBrush="#C3D0DE" BorderThickness="1" CornerRadius="26" Padding="26">
-    <Border.Background><LinearGradientBrush StartPoint="0,0" EndPoint="1,1"><GradientStop Color="#F4F8FC" Offset="0"/><GradientStop Color="#E7EEF7" Offset="0.62"/><GradientStop Color="#DCE7F4" Offset="1"/></LinearGradientBrush></Border.Background>
+    <Border.Background>
+      <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#F5F8FC" Offset="0"/>
+        <GradientStop Color="#E8EFF7" Offset="0.6"/>
+        <GradientStop Color="#DCE7F4" Offset="1"/>
+      </LinearGradientBrush>
+    </Border.Background>
     <Border.Effect><DropShadowEffect BlurRadius="28" ShadowDepth="7" Opacity="0.16" Color="#30445F"/></Border.Effect>
+
     <Grid>
       <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+
       <Grid Margin="0,0,0,18">
         <Grid.ColumnDefinitions><ColumnDefinition Width="88"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-        <Border Width="74" Height="74" CornerRadius="20" Background="#FFFFFF" BorderBrush="#D8E3EE" BorderThickness="1"><Image x:Name="BrandLogo" Width="68" Height="68" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/></Border>
+        <Border Width="74" Height="74" CornerRadius="20" Background="#FFFFFF" BorderBrush="#D8E3EE" BorderThickness="1">
+          <Image x:Name="BrandLogo" Width="68" Height="68" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+        </Border>
         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-          <Border Background="#DCEBFF" BorderBrush="#B9D3F6" BorderThickness="1" CornerRadius="10" Padding="9,4" HorizontalAlignment="Left"><TextBlock x:Name="VersionBadgeText" Text="MEMORY TRAIL" FontSize="9.5" FontWeight="Bold" Foreground="#176DFF"/></Border>
-          <TextBlock Text="What's New" FontSize="30" FontWeight="Bold" Foreground="#1A2438" Margin="0,7,0,0"/>
-          <TextBlock Text="A more polished launch and a built-in path to future updates." FontSize="13" Foreground="#66778F" Margin="0,5,0,0"/>
+          <Border Background="#DCEBFF" BorderBrush="#B9D3F6" BorderThickness="1" CornerRadius="10" Padding="9,4" HorizontalAlignment="Left">
+            <TextBlock x:Name="VersionBadgeText" Text="VERSION 1" FontSize="9.5" FontWeight="Bold" Foreground="#176DFF"/>
+          </Border>
+          <TextBlock Text="Welcome to Memory Trail" FontSize="29" FontWeight="Bold" Foreground="#1A2438" Margin="0,7,0,0"/>
+          <TextBlock Text="Version 1 — the first official release." FontSize="13.5" FontWeight="SemiBold" Foreground="#40506A" Margin="0,5,0,0"/>
         </StackPanel>
       </Grid>
+
       <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
         <StackPanel>
-          <Border Background="#F8FBFF" BorderBrush="#D9E5F0" BorderThickness="1" CornerRadius="15" Padding="14" Margin="0,0,0,9"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="52"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><Border Width="40" Height="40" CornerRadius="12" Background="#E2EEFF"><TextBlock Text="&#xE823;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="#176DFF" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><StackPanel Grid.Column="1"><TextBlock Text="Two-second startup experience" FontSize="14" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="The Memory Trail loading screen now targets two seconds, keeping the polished startup experience without holding you longer than necessary." FontSize="11.8" Foreground="#66778F" TextWrapping="Wrap" LineHeight="18" Margin="0,3,0,0"/></StackPanel></Grid></Border>
-          <Border Background="#F8FBFF" BorderBrush="#D9E5F0" BorderThickness="1" CornerRadius="15" Padding="14" Margin="0,0,0,9"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="52"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><Border Width="40" Height="40" CornerRadius="12" Background="#E5F1FF"><TextBlock Text="&#xE777;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="#287DD8" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><StackPanel Grid.Column="1"><TextBlock Text="Built-in update checking" FontSize="14" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Check for Updates is available from the Memory Trail tray menu and Settings. Automatic checks can run once per day when enabled." FontSize="11.8" Foreground="#66778F" TextWrapping="Wrap" LineHeight="18" Margin="0,3,0,0"/></StackPanel></Grid></Border>
-          <Border Background="#F8FBFF" BorderBrush="#D9E5F0" BorderThickness="1" CornerRadius="15" Padding="14" Margin="0,0,0,9"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="52"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><Border Width="40" Height="40" CornerRadius="12" Background="#E8EDFF"><TextBlock Text="&#xE896;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="#5E69DB" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><StackPanel Grid.Column="1"><TextBlock Text="Update available prompt" FontSize="14" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="When a newer release is found, Memory Trail shows the version, release notes, and a Download Update button that opens the current release in your browser." FontSize="11.8" Foreground="#66778F" TextWrapping="Wrap" LineHeight="18" Margin="0,3,0,0"/></StackPanel></Grid></Border>
-          <Border Background="#F8FBFF" BorderBrush="#D9E5F0" BorderThickness="1" CornerRadius="15" Padding="14" Margin="0,0,0,9"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="52"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><Border Width="40" Height="40" CornerRadius="12" Background="#E7F5F0"><TextBlock Text="&#xE8A5;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="#29956E" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><StackPanel Grid.Column="1"><TextBlock Text="A polished What's New experience" FontSize="14" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="After upgrading, returning users see this changelog once so new behavior and controls are easy to discover." FontSize="11.8" Foreground="#66778F" TextWrapping="Wrap" LineHeight="18" Margin="0,3,0,0"/></StackPanel></Grid></Border>
-          <Border Background="#EEF6FF" BorderBrush="#C9DDF6" BorderThickness="1" CornerRadius="15" Padding="14"><Grid><Grid.ColumnDefinitions><ColumnDefinition Width="52"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><Border Width="40" Height="40" CornerRadius="12" Background="#DDEBFF"><TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="#176DFF" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border><StackPanel Grid.Column="1"><TextBlock Text="Privacy remains explicit" FontSize="14" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Update checks only request GitHub release metadata. Memory Trail does not attach timeline history, clipboard content, window titles, or file paths to update requests." FontSize="11.8" Foreground="#66778F" TextWrapping="Wrap" LineHeight="18" Margin="0,3,0,0"/></StackPanel></Grid></Border>
+          <Border Background="#EEF6FF" BorderBrush="#C9DDF6" BorderThickness="1" CornerRadius="15" Padding="14" Margin="0,0,0,9">
+            <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="52"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+              <Border Width="40" Height="40" CornerRadius="12" Background="#DDEBFF"><TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="#176DFF" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <StackPanel Grid.Column="1"><TextBlock Text="Privacy-first from day one" FontSize="14" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Activity capture, timeline storage, Insights, and Ask Memory Trail are designed around local processing and local storage on your PC." FontSize="11.8" Foreground="#66778F" TextWrapping="Wrap" LineHeight="18" Margin="0,3,0,0"/></StackPanel>
+            </Grid>
+          </Border>
+
+          <Border Background="#F8FBFF" BorderBrush="#D9E5F0" BorderThickness="1" CornerRadius="15" Padding="14" Margin="0,0,0,9">
+            <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="52"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+              <Border Width="40" Height="40" CornerRadius="12" Background="#E2EEFF"><TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="#176DFF" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <StackPanel Grid.Column="1"><TextBlock Text="Your workday, remembered" FontSize="14" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="The Today timeline captures useful app, window, browser, document, email, chat, file, and clipboard context as Windows exposes it." FontSize="11.8" Foreground="#66778F" TextWrapping="Wrap" LineHeight="18" Margin="0,3,0,0"/></StackPanel>
+            </Grid>
+          </Border>
+
+          <Border Background="#F8FBFF" BorderBrush="#D9E5F0" BorderThickness="1" CornerRadius="15" Padding="14" Margin="0,0,0,9">
+            <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="52"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+              <Border Width="40" Height="40" CornerRadius="12" Background="#E8EDFF"><TextBlock Text="&#xE721;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="#5E69DB" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <StackPanel Grid.Column="1"><TextBlock Text="Ask Memory Trail" FontSize="14" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Search your locally stored history for recent websites, conversations, documents, files, applications, and time-based activity." FontSize="11.8" Foreground="#66778F" TextWrapping="Wrap" LineHeight="18" Margin="0,3,0,0"/></StackPanel>
+            </Grid>
+          </Border>
+
+          <Border Background="#F8FBFF" BorderBrush="#D9E5F0" BorderThickness="1" CornerRadius="15" Padding="14" Margin="0,0,0,9">
+            <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="52"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+              <Border Width="40" Height="40" CornerRadius="12" Background="#E7F5F0"><TextBlock Text="&#xE777;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="#29956E" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <StackPanel Grid.Column="1"><TextBlock Text="Ready for future releases" FontSize="14" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="Version 1 includes manual and optional automatic update checking, plus a What's New experience so future improvements are easy to discover." FontSize="11.8" Foreground="#66778F" TextWrapping="Wrap" LineHeight="18" Margin="0,3,0,0"/></StackPanel>
+            </Grid>
+          </Border>
+
+          <Border Background="#F8FBFF" BorderBrush="#D9E5F0" BorderThickness="1" CornerRadius="15" Padding="14">
+            <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="52"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+              <Border Width="40" Height="40" CornerRadius="12" Background="#E4EEFF"><TextBlock Text="&#xE823;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="#5573ED" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <StackPanel Grid.Column="1"><TextBlock Text="Polished startup" FontSize="14" FontWeight="SemiBold" Foreground="#1A2438"/><TextBlock Text="The launch experience uses the approved Memory Trail branding and a two-second startup target before handing off to your timeline." FontSize="11.8" Foreground="#66778F" TextWrapping="Wrap" LineHeight="18" Margin="0,3,0,0"/></StackPanel>
+            </Grid>
+          </Border>
         </StackPanel>
       </ScrollViewer>
-      <Grid Grid.Row="2" Margin="0,18,0,0"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><TextBlock Text="Your workday, remembered locally." Foreground="#7A8798" FontSize="10.5" VerticalAlignment="Center"/><Button Grid.Column="1" Content="View Changelog" Click="ViewChangelog_Click" Margin="0,0,9,0"/><Button Grid.Column="2" Content="Got It" Style="{StaticResource PrimaryButtonStyle}" Click="GotIt_Click"/></Grid>
+
+      <Grid Grid.Row="2" Margin="0,18,0,0">
+        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+        <TextBlock Text="Memory Trail Version 1 • First official release" Foreground="#7A8798" FontSize="10.5" VerticalAlignment="Center"/>
+        <Button Grid.Column="1" Content="View Changelog" Click="ViewChangelog_Click" Margin="0,0,9,0"/>
+        <Button Grid.Column="2" Content="Get Started" Style="{StaticResource PrimaryButtonStyle}" Click="GotIt_Click"/>
+      </Grid>
     </Grid>
   </Border>
 </Window>

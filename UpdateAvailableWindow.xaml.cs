@@ -50,8 +50,8 @@ public partial class UpdateAvailableWindow : Window
 
     private static string FriendlyReleaseName(string tag)
     {
-        var value = tag.TrimStart('v', 'V').Replace("-build.", " (Build ", StringComparison.OrdinalIgnoreCase);
-        return value.Contains("(Build ", StringComparison.Ordinal) ? value + ")" : value;
+        var value = tag.TrimStart('v', 'V');
+        return $"Version {value}";
     }
 
     private static string CleanReleaseNotes(string notes)

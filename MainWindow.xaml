@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:MemoryLane.Windows"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        Title="Memory Trail 1.0 (Build 2)"
+        Title="Memory Trail Version 1"
         Width="1560" Height="860"
         MinWidth="1240" MinHeight="720"
         WindowStartupLocation="CenterScreen"
@@ -1033,207 +1033,161 @@
         </Border>
       </Grid>
 
-      <ScrollViewer x:Name="SettingsPanel" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Margin="24">
-        <StackPanel MaxWidth="860" HorizontalAlignment="Left">
-          <TextBlock Text="Settings" FontSize="31" FontWeight="Bold" Foreground="#1A2438"/>
-          <TextBlock Text="Control what Memory Trail remembers, where it is stored, and review its local-first privacy model."
-                     Margin="0,7,0,22" FontSize="14" Foreground="#66778F"/>
+      <ScrollViewer x:Name="SettingsPanel" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Margin="22">
+        <StackPanel MaxWidth="1040" HorizontalAlignment="Stretch">
 
-          <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="19" Padding="22" Margin="0,0,0,14">
+          <!-- Privacy card: intentionally mirrors the clean macOS Settings presentation. -->
+          <Border Background="#F2F6FB" BorderBrush="#CBD7E4" BorderThickness="1" CornerRadius="24" Padding="22" Margin="0,0,0,16">
             <StackPanel>
-              <TextBlock Text="Capture" FontSize="18" FontWeight="SemiBold" Foreground="#1A2438"/>
-              <TextBlock Text="Choose what Memory Trail remembers." Margin="0,5,0,16" Foreground="#66778F"/>
-              <CheckBox x:Name="PauseCaptureCheckBox" Content="Pause all capture" Margin="0,0,0,12" Checked="SettingChanged" Unchecked="SettingChanged"/>
-              <CheckBox x:Name="AppCaptureCheckBox" Content="Remember app switches and focused windows" Margin="0,0,0,12" Checked="SettingChanged" Unchecked="SettingChanged"/>
-              <CheckBox x:Name="ClipboardCaptureCheckBox" Content="Remember copied text" Checked="SettingChanged" Unchecked="SettingChanged"/>
-              <TextBlock Text="Clipboard capture is enabled by default. When enabled, copied text is stored in the local timeline; you can turn it off at any time."
-                         Foreground="#66778F" FontSize="12" TextWrapping="Wrap" LineHeight="18" Margin="22,10,0,0"/>
-            </StackPanel>
-          </Border>
-
-          <Border Background="#E3EBF3" BorderBrush="#C3D0DE" BorderThickness="1"
-                  CornerRadius="16" Padding="22" Margin="0,0,0,14">
-            <StackPanel>
-              <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
-                <Border Width="36" Height="36" Background="#E5F1FF" CornerRadius="10" Margin="0,0,10,0">
-                  <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" Foreground="#347FD1"
-                             FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Border>
-                <StackPanel VerticalAlignment="Center">
-                  <TextBlock Text="Privacy &amp; Data" FontSize="18" FontWeight="SemiBold" Foreground="#1A2438"/>
-                  <TextBlock Text="Local by design • transparent by default" Foreground="#66778F" FontSize="12" Margin="0,2,0,0"/>
-                </StackPanel>
-              </StackPanel>
-
-              <TextBlock Text="Memory Trail keeps its core timeline workflow on this computer: capture, processing, storage, summaries, and Ask Memory Trail search are performed locally."
-                         Foreground="#40506A" TextWrapping="Wrap" LineHeight="20" Margin="0,0,0,14"/>
-
-              <TextBlock Text="How your data is handled" FontSize="14" FontWeight="SemiBold" Foreground="#1A2438" Margin="0,0,0,8"/>
-
-              <Border Background="#F8FBFF" BorderBrush="#DDE7F2" BorderThickness="1" CornerRadius="12" Padding="12" Margin="0,0,0,8">
-                <Grid>
-                  <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                  <Border Width="36" Height="36" CornerRadius="10" Background="#E8F2FF" VerticalAlignment="Top">
-                    <local:CategoryIcon Category="All" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                  </Border>
-                  <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                    <TextBlock Text="1  Captured locally" Foreground="#1A2438" FontWeight="SemiBold"/>
-                    <TextBlock Text="Foreground app/window context and copied text (when enabled) are read from Windows APIs on this PC."
-                               Foreground="#66778F" FontSize="12" Margin="0,3,0,0" TextWrapping="Wrap"/>
-                  </StackPanel>
-                </Grid>
-              </Border>
-
-              <Border Background="#F8FBFF" BorderBrush="#DDE7F2" BorderThickness="1" CornerRadius="12" Padding="12" Margin="0,0,0,8">
-                <Grid>
-                  <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                  <Border Width="36" Height="36" CornerRadius="10" Background="#E9F7F1" VerticalAlignment="Top">
-                    <local:CategoryIcon Category="Productivity" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                  </Border>
-                  <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                    <TextBlock Text="2  Processed locally" Foreground="#1A2438" FontWeight="SemiBold"/>
-                    <TextBlock Text="Titles, categories, duplicate detection, summaries, active-time calculations, and Ask Memory Trail searches are handled inside the app."
-                               Foreground="#66778F" FontSize="12" Margin="0,3,0,0" TextWrapping="Wrap"/>
-                  </StackPanel>
-                </Grid>
-              </Border>
-
-              <Border Background="#F8FBFF" BorderBrush="#DDE7F2" BorderThickness="1" CornerRadius="12" Padding="12" Margin="0,0,0,8">
-                <Grid>
-                  <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                  <Border Width="36" Height="36" CornerRadius="10" Background="#EAF5FF" VerticalAlignment="Top">
-                    <local:CategoryIcon Category="Files" Width="25" Height="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                  </Border>
-                  <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                    <TextBlock Text="3  Stored locally" Foreground="#1A2438" FontWeight="SemiBold"/>
-                    <TextBlock Text="Timeline: %LOCALAPPDATA%\Memory Trail\timeline.json"
-                               Foreground="#40506A" FontFamily="Consolas" FontSize="11.5" Margin="0,4,0,0" TextWrapping="Wrap"/>
-                    <TextBlock Text="Preferences: %LOCALAPPDATA%\Memory Trail\preferences.json"
-                               Foreground="#40506A" FontFamily="Consolas" FontSize="11.5" Margin="0,2,0,0" TextWrapping="Wrap"/>
-                  </StackPanel>
-                </Grid>
-              </Border>
-
-              <Border Background="#F8FBFF" BorderBrush="#DDE7F2" BorderThickness="1" CornerRadius="12" Padding="12" Margin="0,0,0,8">
-                <Grid>
-                  <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                  <Border Width="36" Height="36" CornerRadius="10" Background="#EDEFFF" VerticalAlignment="Top">
-                    <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" FontSize="17" Foreground="#5F74D8"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                  </Border>
-                  <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                    <TextBlock Text="4  No automatic upload or sync" Foreground="#1A2438" FontWeight="SemiBold"/>
-                    <TextBlock Text="Captured timeline history is not uploaded or synchronized by Memory Trail and is not sent to analytics or advertising providers."
-                               Foreground="#66778F" FontSize="12" Margin="0,3,0,0" TextWrapping="Wrap"/>
-                  </StackPanel>
-                </Grid>
-              </Border>
-
-              <Border Background="#F8FBFF" BorderBrush="#DDE7F2" BorderThickness="1" CornerRadius="12" Padding="12" Margin="0,0,0,8">
-                <Grid>
-                  <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                  <Border Width="36" Height="36" CornerRadius="10" Background="#E7F1FF" VerticalAlignment="Top">
-                    <TextBlock Text="&#xE895;" FontFamily="Segoe MDL2 Assets" FontSize="17" Foreground="#347FD1"
-                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                  </Border>
-                  <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                    <TextBlock Text="5  Update checks are separate" Foreground="#1A2438" FontWeight="SemiBold"/>
-                    <TextBlock Text="When update checks are enabled, Memory Trail contacts GitHub only to read release metadata. Captured timeline, clipboard, titles, and file paths are not included in update requests."
-                               Foreground="#66778F" FontSize="12" Margin="0,3,0,0" TextWrapping="Wrap"/>
-                  </StackPanel>
-                </Grid>
-              </Border>
-
-              <Border Background="#F6F9FC" BorderBrush="#E1E8F0" BorderThickness="1" CornerRadius="12" Padding="12">
-                <StackPanel Orientation="Horizontal">
-                  <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="#2F8BCB" Width="28"/>
-                  <StackPanel>
-                    <TextBlock Text="Open source for verification" Foreground="#1A2438" FontWeight="SemiBold"/>
-                    <TextBlock Text="Review the source code and privacy implementation on GitHub from About Memory Trail."
-                               Foreground="#66778F" FontSize="12" Margin="0,3,0,0" TextWrapping="Wrap"/>
-                  </StackPanel>
-                </StackPanel>
-              </Border>
-            </StackPanel>
-          </Border>
-
-          <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="19" Padding="22" Margin="0,0,0,14">
-            <StackPanel>
-              <TextBlock Text="Privacy exclusions" FontSize="18" FontWeight="SemiBold" Foreground="#1A2438"/>
-              <TextBlock Text="One Windows process name per line. Excluded apps are not intentionally recorded."
-                         Margin="0,5,0,14" Foreground="#66778F" TextWrapping="Wrap"/>
-              <TextBox x:Name="ExclusionsBox" AcceptsReturn="True" MinHeight="110"/>
-              <Button Content="Apply exclusions" Margin="0,12,0,0" HorizontalAlignment="Left" Click="ApplyExclusions_Click"/>
-            </StackPanel>
-          </Border>
-
-          <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="19" Padding="22" Margin="0,0,0,14">
-            <StackPanel>
-              <TextBlock Text="Windows" FontSize="18" FontWeight="SemiBold" Foreground="#1A2438"/>
-              <CheckBox x:Name="StartWithWindowsCheckBox" Content="Start Memory Trail when I sign in to Windows"
-                        Margin="0,14,0,0" Checked="StartWithWindowsChanged" Unchecked="StartWithWindowsChanged"/>
-            </StackPanel>
-          </Border>
-
-          <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="19" Padding="22" Margin="0,0,0,14">
-            <StackPanel>
-              <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                <Border Width="40" Height="40" CornerRadius="12" Background="#E6F2FF" Margin="0,0,11,0">
-                  <TextBlock Text="&#xE777;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="#287DD8"
+              <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
+                <Border Width="28" Height="28" CornerRadius="8" Background="#E7EEF7" Margin="0,0,9,0">
+                  <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#25344A"
                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
-                <StackPanel VerticalAlignment="Center">
-                  <TextBlock Text="Updates" FontSize="18" FontWeight="SemiBold" Foreground="#1A2438"/>
-                  <TextBlock Text="Stay current without sending your activity history." FontSize="12" Foreground="#66778F" Margin="0,2,0,0"/>
-                </StackPanel>
+                <TextBlock Text="Privacy" FontSize="13" FontWeight="SemiBold" Foreground="#1A2438" VerticalAlignment="Center"/>
               </StackPanel>
-              <TextBlock Text="Memory Trail can check GitHub for newer releases. The check sends only a normal release-metadata request; your timeline and captured content remain local."
-                         Foreground="#40506A" TextWrapping="Wrap" LineHeight="20" Margin="0,0,0,12"/>
-              <CheckBox x:Name="AutomaticUpdateCheckBox" Content="Automatically check for updates"
-                        Checked="AutomaticUpdatesChanged" Unchecked="AutomaticUpdatesChanged" Margin="0,0,0,12"/>
-              <WrapPanel>
-                <Button Content="Check for Updates" Click="CheckForUpdates_Click" Margin="0,0,8,8"/>
-                <Button Content="What's New" Click="ShowWhatsNew_Click" Margin="0,0,8,8"/>
-              </WrapPanel>
-              <TextBlock x:Name="UpdateStatusText" Text="Updates have not been checked yet."
-                         Foreground="#66778F" FontSize="11.5" TextWrapping="Wrap" Margin="0,4,0,0"/>
-            </StackPanel>
-          </Border>
 
-          <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="19" Padding="22" Margin="0,0,0,14">
-            <StackPanel>
-              <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                <Border Width="40" Height="40" CornerRadius="12" Background="#E5F1FF" Margin="0,0,11,0">
-                  <TextBlock Text="&#xE946;" FontFamily="Segoe MDL2 Assets" FontSize="18" Foreground="#347FD1"
+              <TextBlock Text="Privacy-first by design" FontSize="18" FontWeight="Bold" Foreground="#1A2438"/>
+              <TextBlock Text="Memory Trail is a private, locally run Windows app. Its captured activity history is processed and stored on this computer."
+                         FontSize="12.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,5,0,15"/>
+
+              <Border Height="1" Background="#D5DEE8" Margin="0,0,0,14"/>
+
+              <Grid Margin="0,0,0,12">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="42"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <Border Width="30" Height="30" CornerRadius="9" Background="#E0EDFF" VerticalAlignment="Top">
+                  <TextBlock Text="&#xE7B8;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#176DFF"
                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
-                <StackPanel VerticalAlignment="Center">
-                  <TextBlock Text="About Memory Trail" FontSize="18" FontWeight="SemiBold" Foreground="#1A2438"/>
-                  <TextBlock x:Name="AboutVersionText" Text="Version 1.0 (Build 2)" FontSize="12" Foreground="#66778F" Margin="0,2,0,0"/>
+                <StackPanel Grid.Column="1">
+                  <TextBlock Text="Sourced and stored locally" FontSize="12.5" FontWeight="SemiBold" Foreground="#1A2438"/>
+                  <TextBlock Text="Timeline data comes from local Windows app/window context, local files and paths, and the clipboard when enabled. Captured history is stored locally on this PC."
+                             FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,3,0,0"/>
                 </StackPanel>
-              </StackPanel>
-              <TextBlock Text="Memory Trail is a private, local-first, open-source Windows activity timeline. Review the source code, privacy implementation, release information, and project history on GitHub."
-                         Foreground="#40506A" TextWrapping="Wrap" LineHeight="20" Margin="0,0,0,14"/>
-              <Button Click="OpenGitHub_Click" HorizontalAlignment="Left" Style="{StaticResource PrimaryButtonStyle}">
+              </Grid>
+
+              <Grid Margin="0,0,0,12">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="42"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <Border Width="30" Height="30" CornerRadius="9" Background="#E5EEFF" VerticalAlignment="Top">
+                  <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#176DFF"
+                             HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <StackPanel Grid.Column="1">
+                  <TextBlock Text="No captured-data transmission" FontSize="12.5" FontWeight="SemiBold" Foreground="#1A2438"/>
+                  <TextBlock Text="Memory Trail does not upload, sync, or send your captured timeline data outside of this computer."
+                             FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,3,0,0"/>
+                </StackPanel>
+              </Grid>
+
+              <Grid Margin="0,0,0,12">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="42"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <Border Width="30" Height="30" CornerRadius="9" Background="#E3EFFF" VerticalAlignment="Top">
+                  <TextBlock Text="&#xE71B;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#176DFF"
+                             HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <StackPanel Grid.Column="1">
+                  <TextBlock Text="No external data connectors" FontSize="12.5" FontWeight="SemiBold" Foreground="#1A2438"/>
+                  <TextBlock Text="Memory Trail does not use cloud sync, analytics services, or a remote account for its capture and storage workflow. Optional update checks retrieve release metadata only."
+                             FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,3,0,0"/>
+                </StackPanel>
+              </Grid>
+
+              <Grid Margin="0,0,0,12">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="42"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <Border Width="30" Height="30" CornerRadius="9" Background="#E4EEFF" VerticalAlignment="Top">
+                  <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#176DFF"
+                             HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <StackPanel Grid.Column="1">
+                  <TextBlock Text="Verifiable source code" FontSize="12.5" FontWeight="SemiBold" Foreground="#1A2438"/>
+                  <TextBlock Text="The source code is available for review so you can verify how Memory Trail captures, processes, and stores data."
+                             FontSize="11.5" Foreground="#66778F" TextWrapping="Wrap" Margin="0,3,0,0"/>
+                </StackPanel>
+              </Grid>
+
+              <Button Click="OpenGitHub_Click" HorizontalAlignment="Left" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,0,14">
                 <StackPanel Orientation="Horizontal">
-                  <TextBlock Text="&#xE8A7;" FontFamily="Segoe MDL2 Assets" FontSize="13" Margin="0,0,7,0" VerticalAlignment="Center"/>
-                  <TextBlock Text="View Memory Trail on GitHub" VerticalAlignment="Center"/>
+                  <TextBlock Text="&lt;/&gt;" FontFamily="Consolas" FontSize="12" Margin="0,0,7,0" VerticalAlignment="Center"/>
+                  <TextBlock Text="Review Memory Trail Source Code" VerticalAlignment="Center"/>
                 </StackPanel>
               </Button>
+
+              <Border Height="1" Background="#D5DEE8" Margin="0,0,0,14"/>
+
+              <Button Click="ClearCache_Click" HorizontalAlignment="Left" Padding="12,7" Margin="0,0,0,6">
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock Text="&#xE74D;" FontFamily="Segoe MDL2 Assets" FontSize="13" Margin="0,0,7,0" VerticalAlignment="Center"/>
+                  <TextBlock Text="Clear App Cache" VerticalAlignment="Center"/>
+                </StackPanel>
+              </Button>
+              <TextBlock Text="Resets cached capture state and Memory Trail preferences without deleting your activity history."
+                         FontSize="11" Foreground="#66778F" TextWrapping="Wrap"/>
             </StackPanel>
           </Border>
 
-          <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="19" Padding="22">
+          <!-- Functional controls retained, but visually simplified to match the reference. -->
+          <Border Background="#F2F6FB" BorderBrush="#CBD7E4" BorderThickness="1" CornerRadius="24" Padding="22" Margin="0,0,0,16">
             <StackPanel>
-              <TextBlock Text="Maintenance" FontSize="18" FontWeight="SemiBold" Foreground="#1A2438"/>
-              <TextBlock Text="Tutorial, reset, and history controls." Margin="0,5,0,14" Foreground="#66778F"/>
-              <WrapPanel>
-                <Button Content="Show tutorial" Click="ShowTutorial_Click" Margin="0,0,8,8"/>
-                <Button Content="Reset preferences" Click="ClearCache_Click" Margin="0,0,8,8"/>
-                <Button x:Name="ClearTimelineButton" Content="Clear history" Click="ClearTimeline_Click" Margin="0,0,8,8"/>
-              </WrapPanel>
+              <TextBlock Text="Controls" FontSize="16" FontWeight="Bold" Foreground="#1A2438" Margin="0,0,0,14"/>
+
+              <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="22"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                  <TextBlock Text="Capture" FontSize="12.5" FontWeight="SemiBold" Foreground="#1A2438" Margin="0,0,0,9"/>
+                  <CheckBox x:Name="PauseCaptureCheckBox" Content="Pause all capture" Margin="0,0,0,9" Checked="SettingChanged" Unchecked="SettingChanged"/>
+                  <CheckBox x:Name="AppCaptureCheckBox" Content="Remember app switches and focused windows" Margin="0,0,0,9" Checked="SettingChanged" Unchecked="SettingChanged"/>
+                  <CheckBox x:Name="ClipboardCaptureCheckBox" Content="Remember copied text" Checked="SettingChanged" Unchecked="SettingChanged"/>
+                  <TextBlock Text="Copied text stays in the local timeline when clipboard capture is enabled."
+                             Foreground="#66778F" FontSize="10.8" TextWrapping="Wrap" Margin="22,7,0,0"/>
+
+                  <TextBlock Text="Privacy exclusions" FontSize="12.5" FontWeight="SemiBold" Foreground="#1A2438" Margin="0,18,0,7"/>
+                  <TextBlock Text="One Windows process name per line." Foreground="#66778F" FontSize="10.8" Margin="0,0,0,7"/>
+                  <StackPanel>
+                    <TextBox x:Name="ExclusionsBox" AcceptsReturn="True" MinHeight="90"/>
+                    <Button Content="Apply exclusions" Margin="0,9,0,0" HorizontalAlignment="Left" Click="ApplyExclusions_Click"/>
+                  </StackPanel>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                  <TextBlock Text="Windows" FontSize="12.5" FontWeight="SemiBold" Foreground="#1A2438" Margin="0,0,0,9"/>
+                  <CheckBox x:Name="StartWithWindowsCheckBox" Content="Start Memory Trail when I sign in to Windows"
+                            Checked="StartWithWindowsChanged" Unchecked="StartWithWindowsChanged"/>
+
+                  <Border Height="1" Background="#D5DEE8" Margin="0,17,0,15"/>
+
+                  <TextBlock Text="Updates" FontSize="12.5" FontWeight="SemiBold" Foreground="#1A2438" Margin="0,0,0,9"/>
+                  <CheckBox x:Name="AutomaticUpdateCheckBox" Content="Automatically check for updates"
+                            Checked="AutomaticUpdatesChanged" Unchecked="AutomaticUpdatesChanged" Margin="0,0,0,9"/>
+                  <WrapPanel>
+                    <Button Content="Check for Updates" Click="CheckForUpdates_Click" Margin="0,0,8,8"/>
+                    <Button Content="What's New" Click="ShowWhatsNew_Click" Margin="0,0,8,8"/>
+                  </WrapPanel>
+                  <TextBlock x:Name="UpdateStatusText" Text="Updates have not been checked yet."
+                             Foreground="#66778F" FontSize="10.8" TextWrapping="Wrap" Margin="0,2,0,0"/>
+
+                  <Border Height="1" Background="#D5DEE8" Margin="0,17,0,15"/>
+
+                  <TextBlock Text="History" FontSize="12.5" FontWeight="SemiBold" Foreground="#1A2438" Margin="0,0,0,9"/>
+                  <Button x:Name="ClearTimelineButton" Content="Clear history" Click="ClearTimeline_Click" HorizontalAlignment="Left"/>
+                </StackPanel>
+              </Grid>
             </StackPanel>
           </Border>
+
+          <!-- About block intentionally sits directly on the Settings background like the reference. -->
+          <StackPanel Margin="4,2,0,8">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+              <TextBlock Text="&#xE946;" FontFamily="Segoe MDL2 Assets" FontSize="12" Foreground="#66778F"
+                         Margin="0,0,7,0" VerticalAlignment="Center"/>
+              <TextBlock Text="About Memory Trail" FontSize="11.5" FontWeight="SemiBold" Foreground="#66778F"/>
+            </StackPanel>
+            <TextBlock x:Name="AboutVersionText" Text="Version 1" FontSize="11.5" Foreground="#52647D" Margin="0,0,0,3"/>
+            <TextBlock Text="Created By: Roman Zakharov" FontSize="11.5" Foreground="#52647D" Margin="0,0,0,3"/>
+            <TextBlock Text="Source code, privacy details, documentation, and the latest release are available on GitHub."
+                       FontSize="11" Foreground="#66778F" TextWrapping="Wrap"/>
+          </StackPanel>
+
         </StackPanel>
       </ScrollViewer>
     </Grid>

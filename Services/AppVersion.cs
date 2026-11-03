@@ -6,7 +6,7 @@ namespace MemoryLane.Windows;
 public static class AppVersion
 {
     private static readonly Regex ReleasePattern = new(
-        @"v?(?<major>\d+)\.(?<minor>\d+)(?:\.(?<patch>\d+))?(?:[-.]?build[.-]?(?<build>\d+))?",
+        @"v?(?<major>\d+)(?:\.(?<minor>\d+))?(?:\.(?<patch>\d+))?(?:[-.]?build[.-]?(?<build>\d+))?",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
     public static string InformationalVersion { get; } = ResolveInformationalVersion();
@@ -21,13 +21,10 @@ public static class AppVersion
 
         var result = a.Major.CompareTo(b.Major);
         if (result != 0) return result;
-
         result = a.Minor.CompareTo(b.Minor);
         if (result != 0) return result;
-
         result = a.Patch.CompareTo(b.Patch);
         if (result != 0) return result;
-
         return a.Build.CompareTo(b.Build);
     }
 
@@ -38,7 +35,7 @@ public static class AppVersion
             .InformationalVersion;
 
         if (string.IsNullOrWhiteSpace(value))
-            return "1.0-build.2";
+            return "1";
 
         var plusIndex = value.IndexOf('+');
         return plusIndex >= 0 ? value[..plusIndex] : value;
@@ -47,14 +44,17 @@ public static class AppVersion
     private static string Normalize(string value)
     {
         var parsed = Parse(value);
-        return $"{parsed.Major}.{parsed.Minor}-build.{parsed.Build}";
+        if (parsed.Minor == 0 && parsed.Patch == 0 && parsed.Build == 0)
+            return $"{parsed.Major}";
+
+        if (parsed.Patch == 0 && parsed.Build == 0)
+            return $"{parsed.Major}.{parsed.Minor}";
+
+        return $"{parsed.Major}.{parsed.Minor}.{parsed.Patch}";
     }
 
     private static string FormatFriendly(string value)
-    {
-        var parsed = Parse(value);
-        return $"{parsed.Major}.{parsed.Minor} (Build {parsed.Build})";
-    }
+        => $"Version {value}";
 
     private static (int Major, int Minor, int Patch, int Build) Parse(string value)
     {

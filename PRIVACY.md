@@ -1,6 +1,6 @@
 # Memory Trail Privacy & Data Handling
 
-**Applies to:** Memory Trail for Windows 1.0 (Build 2)
+**Applies to:** Memory Trail for Windows Version 1
 
 Memory Trail is designed as a **privacy-first, local-first application**. Its purpose is to help you retrace recent computer activity while keeping the captured timeline on the Windows PC where the application runs.
 
@@ -153,7 +153,7 @@ The app includes a **View Memory Trail on GitHub** action in Settings. Selecting
 
 ### Update checks
 
-Memory Trail 1.0 (Build 2) adds manual and optional automatic update checks. When enabled, the app requests release metadata from GitHub. Update checks are separate from the capture/storage/search pipeline and do **not** attach timeline entries, clipboard text, window titles, file paths, or other captured activity to the request.
+Memory Trail Version 1 includes manual and optional automatic update checks. When enabled, the app requests release metadata from GitHub. Update checks are separate from the capture/storage/search pipeline and do **not** attach timeline entries, clipboard text, window titles, file paths, or other captured activity to the request.
 
 Automatic update checks are enabled by default and run no more than once every 24 hours. They can be disabled under **Settings → Updates**.
 
