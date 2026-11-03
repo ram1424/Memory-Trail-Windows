@@ -16,6 +16,29 @@ public partial class App : Application
         base.OnStartup(e);
         ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
+        if (string.Equals(
+                Environment.GetEnvironmentVariable("MEMORY_TRAIL_EXPORT_SCREENSHOTS"),
+                "1",
+                StringComparison.Ordinal))
+        {
+            try
+            {
+                Preferences.HasCompletedOnboarding = true;
+                var outputDirectory =
+                    Environment.GetEnvironmentVariable("MEMORY_TRAIL_SCREENSHOT_DIR")
+                    ?? Path.Combine(Environment.CurrentDirectory, "docs", "screenshots");
+                ScreenshotExporter.ExportAll(outputDirectory);
+            }
+            catch (Exception ex)
+            {
+                LogNonFatal("ScreenshotExporter", ex);
+                Environment.ExitCode = 1;
+            }
+
+            Shutdown();
+            return;
+        }
+
         SplashWindow? splash = null;
         var startupTimer = Stopwatch.StartNew();
 
