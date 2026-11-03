@@ -19,7 +19,6 @@ public partial class OnboardingWindow : Window
             {
                 Icon = brand;
                 WelcomeBrandLogo.Source = brand;
-                PrivacyBrandLogo.Source = brand;
                 ContextBrandLogo.Source = brand;
             }
 
