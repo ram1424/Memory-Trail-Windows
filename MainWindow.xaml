@@ -1036,7 +1036,7 @@
       <ScrollViewer x:Name="SettingsPanel" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Margin="24">
         <StackPanel MaxWidth="860" HorizontalAlignment="Left">
           <TextBlock Text="Settings" FontSize="31" FontWeight="Bold" Foreground="#1A2438"/>
-          <TextBlock Text="Control what Memory Trail remembers, how it behaves, and review its privacy-first design."
+          <TextBlock Text="Control what Memory Trail remembers, where it is stored, and review its local-first privacy model."
                      Margin="0,7,0,22" FontSize="14" Foreground="#66778F"/>
 
           <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="19" Padding="22" Margin="0,0,0,14">
@@ -1046,6 +1046,8 @@
               <CheckBox x:Name="PauseCaptureCheckBox" Content="Pause all capture" Margin="0,0,0,12" Checked="SettingChanged" Unchecked="SettingChanged"/>
               <CheckBox x:Name="AppCaptureCheckBox" Content="Remember app switches and focused windows" Margin="0,0,0,12" Checked="SettingChanged" Unchecked="SettingChanged"/>
               <CheckBox x:Name="ClipboardCaptureCheckBox" Content="Remember copied text" Checked="SettingChanged" Unchecked="SettingChanged"/>
+              <TextBlock Text="Clipboard capture is enabled by default. When enabled, copied text is stored in the local timeline; you can turn it off at any time."
+                         Foreground="#66778F" FontSize="12" TextWrapping="Wrap" LineHeight="18" Margin="22,10,0,0"/>
             </StackPanel>
           </Border>
 
@@ -1058,31 +1060,47 @@
                              FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
                 <StackPanel VerticalAlignment="Center">
-                  <TextBlock Text="Privacy &amp; Transparency" FontSize="18" FontWeight="SemiBold" Foreground="#1A2438"/>
-                  <TextBlock Text="Privacy first by design" Foreground="#66778F" FontSize="12" Margin="0,2,0,0"/>
+                  <TextBlock Text="Privacy &amp; Data" FontSize="18" FontWeight="SemiBold" Foreground="#1A2438"/>
+                  <TextBlock Text="Local by design • transparent by default" Foreground="#66778F" FontSize="12" Margin="0,2,0,0"/>
                 </StackPanel>
               </StackPanel>
 
-              <TextBlock Text="Memory Trail is designed as a private, locally run application. Activity used by the timeline is sourced, processed, and stored on this computer."
+              <TextBlock Text="Memory Trail keeps its core timeline workflow on this computer: capture, processing, storage, summaries, and Ask Memory Trail search are performed locally."
                          Foreground="#40506A" TextWrapping="Wrap" LineHeight="20" Margin="0,0,0,14"/>
 
+              <TextBlock Text="How your data is handled" FontSize="14" FontWeight="SemiBold" Foreground="#1A2438" Margin="0,0,0,8"/>
+
               <Border Background="#F8FBFF" BorderBrush="#DDE7F2" BorderThickness="1" CornerRadius="12" Padding="12" Margin="0,0,0,8">
-                <StackPanel Orientation="Horizontal">
-                  <TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="#347FD1" Width="28"/>
-                  <StackPanel>
-                    <TextBlock Text="Local data only" Foreground="#1A2438" FontWeight="SemiBold"/>
-                    <TextBlock Text="Captured timeline data remains stored locally on this PC." Foreground="#66778F" FontSize="12" Margin="0,3,0,0"/>
-                  </StackPanel>
+                <StackPanel>
+                  <TextBlock Text="1  Captured locally" Foreground="#1A2438" FontWeight="SemiBold"/>
+                  <TextBlock Text="Foreground app/window context and copied text (when enabled) are read from Windows APIs on this PC."
+                             Foreground="#66778F" FontSize="12" Margin="0,3,0,0" TextWrapping="Wrap"/>
                 </StackPanel>
               </Border>
 
-              <Border Background="#F6F9FC" BorderBrush="#E1E8F0" BorderThickness="1" CornerRadius="12" Padding="12" Margin="0,0,0,8">
-                <StackPanel Orientation="Horizontal">
-                  <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="#4F78D7" Width="28"/>
-                  <StackPanel>
-                    <TextBlock Text="No external connectors" Foreground="#1A2438" FontWeight="SemiBold"/>
-                    <TextBlock Text="The timeline does not require external connectors or cloud services to capture, search, or display activity." Foreground="#66778F" FontSize="12" Margin="0,3,0,0" TextWrapping="Wrap"/>
-                  </StackPanel>
+              <Border Background="#F8FBFF" BorderBrush="#DDE7F2" BorderThickness="1" CornerRadius="12" Padding="12" Margin="0,0,0,8">
+                <StackPanel>
+                  <TextBlock Text="2  Processed locally" Foreground="#1A2438" FontWeight="SemiBold"/>
+                  <TextBlock Text="Titles, categories, duplicate detection, summaries, active-time calculations, and Ask Memory Trail searches are handled inside the app."
+                             Foreground="#66778F" FontSize="12" Margin="0,3,0,0" TextWrapping="Wrap"/>
+                </StackPanel>
+              </Border>
+
+              <Border Background="#F8FBFF" BorderBrush="#DDE7F2" BorderThickness="1" CornerRadius="12" Padding="12" Margin="0,0,0,8">
+                <StackPanel>
+                  <TextBlock Text="3  Stored locally" Foreground="#1A2438" FontWeight="SemiBold"/>
+                  <TextBlock Text="Timeline: %LOCALAPPDATA%\Memory Trail\timeline.json"
+                             Foreground="#40506A" FontFamily="Consolas" FontSize="11.5" Margin="0,4,0,0" TextWrapping="Wrap"/>
+                  <TextBlock Text="Preferences: %LOCALAPPDATA%\Memory Trail\preferences.json"
+                             Foreground="#40506A" FontFamily="Consolas" FontSize="11.5" Margin="0,2,0,0" TextWrapping="Wrap"/>
+                </StackPanel>
+              </Border>
+
+              <Border Background="#F8FBFF" BorderBrush="#DDE7F2" BorderThickness="1" CornerRadius="12" Padding="12" Margin="0,0,0,8">
+                <StackPanel>
+                  <TextBlock Text="4  No automatic upload or sync" Foreground="#1A2438" FontWeight="SemiBold"/>
+                  <TextBlock Text="Captured timeline history is not uploaded or synchronized by Memory Trail and is not sent to analytics or advertising providers."
+                             Foreground="#66778F" FontSize="12" Margin="0,3,0,0" TextWrapping="Wrap"/>
                 </StackPanel>
               </Border>
 
@@ -1090,8 +1108,9 @@
                 <StackPanel Orientation="Horizontal">
                   <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="#2F8BCB" Width="28"/>
                   <StackPanel>
-                    <TextBlock Text="Source available for verification" Foreground="#1A2438" FontWeight="SemiBold"/>
-                    <TextBlock Text="The source code is available for review so you can inspect how Memory Trail captures, stores, and protects data." Foreground="#66778F" FontSize="12" Margin="0,3,0,0" TextWrapping="Wrap"/>
+                    <TextBlock Text="Open source for verification" Foreground="#1A2438" FontWeight="SemiBold"/>
+                    <TextBlock Text="Review the source code and privacy implementation on GitHub from About Memory Trail."
+                               Foreground="#66778F" FontSize="12" Margin="0,3,0,0" TextWrapping="Wrap"/>
                   </StackPanel>
                 </StackPanel>
               </Border>

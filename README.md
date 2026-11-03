@@ -1,116 +1,161 @@
 # Memory Trail for Windows
 
-**Memory Trail 1.0 (Build 1)** is a private, local-first Windows activity timeline that helps you retrace what you were working on without sending your captured history to a cloud service.
+**Memory Trail 1.0 (Build 1)** is a privacy-first Windows activity timeline that helps you retrace what you were working on while keeping captured history on the Windows PC where it was created.
 
-> **Private by design · Local storage · Open source · Windows 10/11 · Self-contained x64 build**
+> **Local capture · Local processing · Local storage · Local search · No Memory Trail account · No captured-history cloud sync · Open source**
 
-[Download the latest release](https://github.com/ram1424/Memory-Lane-Windows/releases/latest) · [Privacy & data handling](PRIVACY.md) · [macOS edition](https://github.com/ram1424/Memory-Lane)
+[Download the latest release](https://github.com/ram1424/Memory-Lane-Windows/releases/latest) · [Read the privacy & data-handling policy](PRIVACY.md) · [macOS edition](https://github.com/ram1424/Memory-Lane)
 
-## Screenshots
+## Privacy at a glance
 
-> UI shown with representative demo data. Memory Trail stores captured activity locally on the Windows PC where it runs.
+Memory Trail is intentionally built so its core timeline workflow stays on your computer.
 
-### Today timeline
+| Stage | What Memory Trail does |
+| --- | --- |
+| **Capture** | Reads foreground-app/window context and, when enabled, copied text from Windows APIs on this PC. |
+| **Process** | Normalizes titles, categorizes activity, removes duplicate events, calculates local summaries, and prepares search results inside the app. |
+| **Store** | Saves timeline history and preferences as local JSON files under your Windows user profile. |
+| **Search** | **Ask Memory Trail** searches the locally stored timeline; it does not require a cloud AI service or external connector. |
+| **Control** | Pause capture, disable app activity or clipboard capture, exclude processes, clear history, and reset preferences from Settings. |
+| **Network** | Memory Trail does not upload or synchronize captured timeline history and does not include analytics or advertising SDKs. |
 
-<img src="docs/screenshots/timeline.svg" alt="Memory Trail Today timeline showing filters, live activity, summary metrics, and activity details" width="100%">
+### Local data locations
 
-### Ask Memory Trail
-
-<img src="docs/screenshots/ask-memory-trail.svg" alt="Ask Memory Trail local activity search interface" width="100%">
-
-### Settings & privacy
-
-<img src="docs/screenshots/privacy-settings.svg" alt="Memory Trail settings and privacy controls" width="100%">
-
-### First-run tutorial
-
-<img src="docs/screenshots/onboarding.svg" alt="Memory Trail privacy-first onboarding tutorial" width="100%">
-
-## What Memory Trail does
-
-Memory Trail builds a newest-first history of your workday from information Windows exposes locally. The current Windows release includes:
-
-- **Today timeline** with newest activity first and a green **Live Activity** marker on the latest item.
-- **Foreground-app capture** using the Windows foreground-event system with polling fallback and automatic collector recovery.
-- **Window context capture** for meaningful titles Windows exposes, including browser tabs/pages, Outlook subjects, Teams/chat titles, File Explorer folders, Office documents, PDFs, and other desktop windows.
-- **Application fallback logging** so an app switch can still be recorded when Windows does not expose a useful window title.
-- **Clipboard history** for copied text when clipboard capture is enabled.
-- **Ask Memory Trail**, a local search experience for recent apps, websites, email, conversations, files, time ranges, and nearby activity.
-- **Favorites**, manual memories, category filters, Today Summary, Insights, and activity details.
-- **Session-based active time** using inactivity boundaries instead of counting every event as a separate minute.
-- **Show/Hide Panels** for a cleaner workspace.
-- **Windows system tray** operation and optional **Start with Windows**.
-- A polished **Soft Blue** Windows UI, loading screen, and privacy-first first-run tutorial.
-- Self-contained Windows x64 packaging with no separate .NET installation required.
-
-## Privacy first
-
-Memory Trail is designed around local capture and local storage.
-
-### What stays on your PC
-
-Captured timeline data is stored in:
+Timeline history:
 
 ```text
 %LOCALAPPDATA%\Memory Trail\timeline.json
 ```
 
-Preferences, exclusions, onboarding state, and capture settings are stored in:
+Preferences, capture settings, and exclusions:
 
 ```text
 %LOCALAPPDATA%\Memory Trail\preferences.json
 ```
 
-### What Memory Trail does not do
+Local crash/non-fatal diagnostics, when generated:
 
-- No Memory Trail account is required.
-- No captured timeline history is uploaded or synchronized by the app.
-- No analytics or advertising SDK is included.
-- No external connector is required for capture, storage, timeline display, or Ask Memory Trail.
-- Memory Trail does **not** record your screen.
-- Memory Trail is **not** a keylogger and does not capture typed keystrokes.
-- Memory Trail does not intentionally capture excluded processes.
+```text
+%LOCALAPPDATA%\Memory Trail\crash.log
+```
 
-### Privacy controls
+**Important clipboard note:** clipboard capture is enabled by default. When enabled, copied text can be stored in the local timeline. You can turn clipboard capture off at any time in **Settings → Capture**. Memory Trail currently ignores clipboard text longer than 20,000 characters.
 
-You can:
+Memory Trail does not add a separate application-level encryption layer to these JSON/log files. They are stored inside the signed-in user's Windows profile and rely on Windows account/file-system protections and any device encryption you have enabled.
 
-- Pause all capture at any time.
-- Turn **App Activity** capture on or off.
-- Turn **Clipboard** capture on or off.
-- Exclude Windows processes from capture.
-- Clear the timeline explicitly.
-- Reset preferences without deleting timeline history.
-- Review the source code in this repository.
+## Screenshots
 
-The default exclusion list includes:
+The screenshots below use representative demo data. They are **SVG** images so text remains crisp when zoomed.
+
+**Click any screenshot to open the full-resolution version.**
+
+### Today timeline
+
+<a href="docs/screenshots/timeline.svg">
+  <img src="docs/screenshots/timeline.svg" alt="Memory Trail Today timeline showing filters, live activity, summary metrics, and activity details" width="1200">
+</a>
+
+### Ask Memory Trail
+
+<a href="docs/screenshots/ask-memory-trail.svg">
+  <img src="docs/screenshots/ask-memory-trail.svg" alt="Ask Memory Trail local activity search interface" width="1200">
+</a>
+
+### Settings — Privacy & Data
+
+<a href="docs/screenshots/privacy-settings.svg">
+  <img src="docs/screenshots/privacy-settings.svg" alt="Memory Trail Settings showing local-only privacy and data controls" width="1200">
+</a>
+
+### First-run tutorial
+
+<a href="docs/screenshots/onboarding.svg">
+  <img src="docs/screenshots/onboarding.svg" alt="Memory Trail privacy-first onboarding tutorial" width="1200">
+</a>
+
+## What Memory Trail does
+
+The current Windows release includes:
+
+- **Today timeline** with newest activity first and a green **Live Activity** indicator tied to the latest captured activity.
+- **Foreground-app capture** using Windows foreground events, a polling fallback, and automatic collector recovery.
+- **Window context capture** for meaningful titles Windows exposes, including browser pages/tabs, Outlook subjects, Teams/conversation titles, File Explorer folders, Office documents, PDFs, and other desktop windows.
+- **Application fallback logging** so an app switch can still be recorded when Windows does not expose a useful title.
+- **Clipboard History** for copied text when clipboard capture is enabled.
+- **Ask Memory Trail** for local searches across apps, websites, email, conversations, files, time ranges, and nearby activity.
+- **Favorites**, manual memories, category filters, **Today Summary**, **Insights**, and a detailed activity side panel.
+- **Session-based active time** using inactivity boundaries instead of counting every event as a separate minute.
+- **Show/Hide Panels** for a cleaner workspace.
+- **Windows system tray** operation and optional **Start with Windows**.
+- A privacy-first onboarding tutorial and polished startup/loading experience.
+- Self-contained Windows x64 packaging with no separate .NET installation required.
+
+## What may be captured
+
+Depending on the active application and what Windows exposes, a timeline item may include:
+
+- process and friendly application name;
+- executable path used to reopen an application;
+- foreground window title;
+- browser page/tab title;
+- Outlook email subject;
+- Teams or other conversation title;
+- File Explorer folder/file context;
+- Word, Excel, PowerPoint, OneNote, Notepad, PDF, or other document title;
+- copied text when **Clipboard** capture is enabled;
+- a copied HTTP/HTTPS URL when clipboard text is recognized as a URL;
+- timestamp, category, favorite state, and locally generated activity metadata.
+
+If a useful title is unavailable, Memory Trail can record an app-level event such as **Opened Microsoft Edge** rather than dropping the activity.
+
+## What Memory Trail does not intentionally capture
+
+Memory Trail is not designed to:
+
+- record your screen or take screenshots;
+- record audio or video;
+- capture typed keystrokes;
+- act as a keylogger;
+- upload captured timeline history to a Memory Trail cloud service;
+- synchronize captured timeline history between computers;
+- send captured history to analytics or advertising providers;
+- require a Memory Trail account;
+- require an external connector for capture, storage, timeline display, Insights, or Ask Memory Trail.
+
+Opening GitHub from the app is a user-initiated action that launches your default browser and is separate from the local capture/storage workflow.
+
+## Privacy controls in Settings
+
+**Settings → Privacy & Data** explains how information moves through the app:
+
+1. **Captured locally** from Windows foreground/UI Automation and clipboard APIs.
+2. **Processed locally** inside Memory Trail.
+3. **Stored locally** under `%LOCALAPPDATA%\Memory Trail`.
+4. **Searched locally** by Ask Memory Trail.
+5. **Not automatically uploaded, synchronized, or sent to analytics/advertising services** by Memory Trail.
+
+You can also:
+
+- pause all capture;
+- turn **App Activity** capture on or off;
+- turn **Clipboard** capture on or off;
+- exclude Windows processes from both app-activity and clipboard writes;
+- clear the local timeline;
+- reset preferences without deleting timeline history;
+- enable or disable **Start with Windows**;
+- review the source code in this repository.
+
+Default excluded processes:
 
 - `CredentialUIBroker`
 - `1Password`
 - `Bitwarden`
 
-See [PRIVACY.md](PRIVACY.md) for the full privacy and data-handling description.
-
-## What may be captured
-
-Depending on the application and what Windows exposes, a timeline item may contain:
-
-- application/process name;
-- foreground window title;
-- browser page or tab title;
-- Outlook email subject;
-- Teams or other supported conversation title;
-- File Explorer folder or filename;
-- Word, Excel, PowerPoint, OneNote, Notepad, PDF, or other document title;
-- executable path used for reopening an application;
-- copied text when clipboard capture is enabled;
-- timestamp, category, favorite state, and locally generated activity metadata.
-
-Some applications expose less context than others. When a useful title is unavailable, Memory Trail can record an app-level event such as **Opened Microsoft Edge** rather than dropping the event.
+See [PRIVACY.md](PRIVACY.md) for the complete privacy and data-handling description.
 
 ## Capture reliability
 
-Build 1 includes a hardened Windows capture pipeline:
+Build 1 includes:
 
 - Windows foreground-change event hook;
 - one-second polling fallback;
@@ -171,4 +216,4 @@ Memory Trail for Windows is built with:
 
 **Memory Trail 1.0 (Build 1)**
 
-The in-app **Settings → About Memory Trail** section links back to this GitHub repository for source review, privacy verification, and release information.
+The in-app **Settings → About Memory Trail** section links back to this repository for source review, privacy verification, release information, and project history.

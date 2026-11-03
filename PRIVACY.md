@@ -2,18 +2,53 @@
 
 **Applies to:** Memory Trail for Windows 1.0 (Build 1)
 
-Memory Trail is designed as a **privacy-first, local-first application**. Its purpose is to help you retrace your recent computer activity while keeping captured history on the Windows PC where the application runs.
+Memory Trail is designed as a **privacy-first, local-first application**. Its purpose is to help you retrace recent computer activity while keeping the captured timeline on the Windows PC where the application runs.
 
-This document describes what the Windows application captures, where it stores data, what it does not intentionally collect, and the controls available to you.
+This document explains what Memory Trail may capture, how that information is processed, where it is stored, what does and does not leave the app's local workflow, and the controls available to you.
 
 ## Core privacy model
 
-Memory Trail's timeline workflow is designed around four principles:
+Memory Trail's timeline workflow is built around five principles:
 
 1. **Local capture** — activity is read from Windows APIs on the local computer.
-2. **Local processing** — timeline construction and Ask Memory Trail searches run in the application.
-3. **Local storage** — captured history and preferences are stored under the current Windows user's Local AppData folder.
-4. **User control** — app activity, clipboard capture, exclusions, pause/resume, history deletion, and startup behavior are user-controlled.
+2. **Local processing** — titles, categories, duplicate detection, summaries, active-time calculations, and Ask Memory Trail searches are processed inside the application.
+3. **Local storage** — captured history and preferences are written to files under the current Windows user's Local AppData folder.
+4. **No captured-history cloud dependency** — capture, timeline display, Insights, and Ask Memory Trail do not require a Memory Trail account, external connector, or cloud AI service.
+5. **User control** — app activity, clipboard capture, exclusions, pause/resume, history deletion, and startup behavior are controlled from Settings.
+
+## How data moves through Memory Trail
+
+### 1. Capture
+
+When **App Activity** is enabled, Memory Trail reads locally available foreground-window information through Windows foreground-window APIs and Windows UI Automation.
+
+When **Clipboard** capture is enabled, Memory Trail reads copied text from the Windows clipboard.
+
+### 2. Process
+
+Memory Trail processes captured information inside the application. Processing includes:
+
+- normalizing window titles;
+- mapping process names to friendly application names;
+- choosing an activity category;
+- suppressing duplicate consecutive app/window entries;
+- preparing timeline details;
+- calculating local summaries and active-time information;
+- searching the local timeline for Ask Memory Trail.
+
+### 3. Store
+
+Timeline history is serialized to a local JSON file. Preferences and exclusions are serialized to a separate local JSON file.
+
+No database server or remote storage service is required.
+
+### 4. Search and display
+
+The timeline, Favorites, Clipboard History, Today Summary, Insights, and Ask Memory Trail operate against the locally loaded timeline data.
+
+### 5. Delete or change capture
+
+You can pause capture, disable a capture type, add exclusions, or clear history from Settings.
 
 ## Local storage locations
 
@@ -29,17 +64,21 @@ Preferences and exclusions:
 %LOCALAPPDATA%\Memory Trail\preferences.json
 ```
 
-Crash/non-fatal diagnostic logs may also be written under:
+Crash and non-fatal diagnostic information may be appended to:
 
 ```text
-%LOCALAPPDATA%\Memory Trail
+%LOCALAPPDATA%\Memory Trail\crash.log
 ```
 
-These files are local files owned by the signed-in Windows user.
+These are normal files inside the signed-in Windows user's profile.
+
+### Encryption note
+
+Memory Trail does **not currently add its own application-level encryption layer** to `timeline.json`, `preferences.json`, or `crash.log`. Access therefore depends on Windows user permissions, device security, and any disk encryption configured on the PC.
 
 ## Data Memory Trail may capture
 
-When **App Activity** capture is enabled, Memory Trail may store information Windows exposes for the foreground application, including:
+When **App Activity** capture is enabled, Memory Trail may store information Windows exposes for the active application, including:
 
 - process name;
 - friendly application name;
@@ -51,11 +90,39 @@ When **App Activity** capture is enabled, Memory Trail may store information Win
 - File Explorer folder or file context;
 - Word, Excel, PowerPoint, OneNote, Notepad, PDF, and other document titles;
 - app-level fallback activity such as **Opened Microsoft Edge** when a meaningful title is unavailable;
-- timestamp and locally generated category metadata.
+- timestamp and locally generated category/activity metadata.
 
-When **Clipboard** capture is enabled, Memory Trail may store copied **text** and related local metadata.
+### Clipboard capture
 
-## Data Memory Trail does not intentionally capture
+Clipboard capture is **enabled by default** in the current Windows build.
+
+When enabled, Memory Trail may store:
+
+- copied text;
+- a shortened preview for timeline display;
+- the foreground process/application associated with the clipboard event when available;
+- the executable path when available;
+- an HTTP/HTTPS URL if the copied text itself is recognized as a URL.
+
+Clipboard text longer than 20,000 characters is ignored by the current collector.
+
+If you do not want copied text retained in Memory Trail, disable **Settings → Capture → Remember copied text**.
+
+## Privacy exclusions
+
+The default exclusion list contains:
+
+- `CredentialUIBroker`
+- `1Password`
+- `Bitwarden`
+
+You can add or remove process names in **Settings → Privacy exclusions**.
+
+Before Memory Trail writes a foreground-app activity item, it checks the active process against the exclusion list. Clipboard capture also checks the foreground process against the exclusion list before writing the clipboard item when a process name is available.
+
+Excluded processes are therefore not intentionally written to the timeline by these collectors.
+
+## What Memory Trail does not intentionally capture
 
 Memory Trail is not designed to:
 
@@ -67,21 +134,34 @@ Memory Trail is not designed to:
 - synchronize captured timeline history between computers;
 - send captured timeline history to analytics or advertising providers;
 - require a Memory Trail account;
-- require an external connector for timeline capture, storage, display, or Ask Memory Trail.
+- require an external connector for capture, storage, display, Insights, or Ask Memory Trail.
 
-Opening the project's GitHub page from **Settings → About Memory Trail** launches your default browser to GitHub. That user-initiated browser navigation is separate from the local capture/storage workflow.
+## Network boundary
 
-## Default exclusions
+The core capture/storage/search workflow is local.
 
-The Windows application starts with these process exclusions:
+Memory Trail does not require network access to:
 
-- `CredentialUIBroker`
-- `1Password`
-- `Bitwarden`
+- capture foreground activity;
+- capture clipboard text;
+- write or read timeline history;
+- display the timeline;
+- calculate Insights;
+- search with Ask Memory Trail.
 
-You can add or remove process names in **Settings → Privacy exclusions**.
+The app includes a **View Memory Trail on GitHub** action in Settings. Selecting it launches your default browser to GitHub. That is a deliberate, user-initiated navigation outside the app and is separate from the captured-history workflow.
 
-Excluded processes are not intentionally recorded by the activity collector.
+## Diagnostic logs
+
+If startup or a non-fatal component error occurs, Memory Trail may write exception details to `crash.log` under Local AppData. This file is local and is not automatically uploaded by Memory Trail.
+
+Because exception text can sometimes include file paths or system details, users who share a crash log should review it before sending it to another person.
+
+## Retention
+
+Memory Trail does not currently apply an automatic cloud retention policy because captured history is not stored in a Memory Trail cloud service.
+
+Local timeline entries remain in `timeline.json` until they are removed through the app's history controls, overwritten through normal local file operations, or the local file is deleted.
 
 ## User controls
 
@@ -99,11 +179,11 @@ Excluded processes are not intentionally recorded by the activity collector.
 
 ### Privacy exclusions
 
-You can enter one Windows process name per line. Memory Trail checks the foreground process against this exclusion list before writing an activity item.
+Enter one Windows process name per line. Memory Trail checks the foreground process against this exclusion list before writing supported activity.
 
 ### Clear history
 
-**Settings → Clear history** permanently clears the local timeline collection.
+**Settings → Clear history** clears the local timeline collection.
 
 ### Reset preferences
 
@@ -113,38 +193,27 @@ You can enter one Windows process name per line. Memory Trail checks the foregro
 
 Startup is optional and can be enabled or disabled in Settings.
 
-## Ask Memory Trail
-
-Ask Memory Trail searches the locally stored timeline. The current Windows implementation performs its search against local Memory Trail data and does not require an external connector or cloud account.
-
-## Capture reliability and fallback behavior
-
-Memory Trail uses:
-
-- the Windows foreground-window event system;
-- periodic polling as a fallback;
-- Windows UI Automation when useful for exposed window names;
-- a self-healing collector health check.
-
-If Windows does not expose a meaningful title, Memory Trail may store an application-level fallback event rather than silently dropping the activity.
-
 ## Source-code verification
 
-Memory Trail is open source. You can review the Windows implementation here:
+Memory Trail is open source. The Windows implementation is available at:
 
 https://github.com/ram1424/Memory-Lane-Windows
 
-Relevant privacy-sensitive code is primarily located in:
+Privacy-sensitive implementation is primarily located in:
 
 - `Services/CaptureService.cs`
 - `Services/TimelineStore.cs`
 - `Services/PreferencesService.cs`
+- `App.xaml.cs`
+- `MainWindow.xaml`
 - `MainWindow.xaml.cs`
+
+The repository history can be used to review changes to capture, storage, privacy UI, and documentation over time.
 
 ## Important Windows limitation
 
-Memory Trail can only work with information exposed by Windows and the active application. Different applications expose different amounts of context. This means capture quality can vary by app and Windows configuration.
+Memory Trail can only work with information exposed by Windows and the active application. Different applications expose different amounts of context, so capture quality varies by app and Windows configuration.
 
 ## Changes to this document
 
-Privacy behavior should be reviewed alongside source-code changes. The repository history provides a public record of modifications to the Windows implementation.
+Privacy behavior should be reviewed alongside source-code changes. This document should be updated whenever a change materially affects what Memory Trail captures, processes, stores, transmits, or exposes through user controls.
