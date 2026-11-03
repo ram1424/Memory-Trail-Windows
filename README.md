@@ -40,16 +40,16 @@ Requires **Windows 10 or Windows 11 (x64)**. The release is self-contained and d
 ## Screenshots
 
 ### Today
-![Memory Trail Today view](docs/screenshots/today-ui-v3.svg)
+![Memory Trail Today view](docs/screenshots/today-ui-v4.svg)
 
 ### Ask Memory Trail
-![Ask Memory Trail](docs/screenshots/ask-memory-trail-ui-v3.svg)
+![Ask Memory Trail](docs/screenshots/ask-memory-trail-ui-v4.svg)
 
 ### Settings & Privacy
-![Memory Trail privacy settings](docs/screenshots/privacy-settings-ui-v3.svg)
+![Memory Trail privacy settings](docs/screenshots/privacy-settings-ui-v4.svg)
 
 ### First-run Tutorial
-![Memory Trail onboarding](docs/screenshots/onboarding-ui-v3.svg)
+![Memory Trail onboarding](docs/screenshots/onboarding-ui-v4.svg)
 
 _All screenshots use generic demo data._
 
