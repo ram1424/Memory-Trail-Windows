@@ -45,33 +45,25 @@ Memory Trail does not add a separate application-level encryption layer to these
 
 ## Screenshots
 
-The screenshots below use representative demo data. They are **SVG** images so text remains crisp when zoomed.
+The screenshots below use representative demo data. They are SVG images, so text stays crisp and the previews scale responsively to the GitHub page.
 
 **Click any screenshot to open the full-resolution version.**
 
 ### Today timeline
 
-<a href="docs/screenshots/timeline.svg">
-  <img src="docs/screenshots/timeline.svg" alt="Memory Trail Today timeline showing filters, live activity, summary metrics, and activity details" width="1200">
-</a>
+[![Memory Trail Today timeline showing filters, live activity, summary metrics, and activity details](docs/screenshots/timeline.svg)](docs/screenshots/timeline.svg)
 
 ### Ask Memory Trail
 
-<a href="docs/screenshots/ask-memory-trail.svg">
-  <img src="docs/screenshots/ask-memory-trail.svg" alt="Ask Memory Trail local activity search interface" width="1200">
-</a>
+[![Ask Memory Trail local activity search interface](docs/screenshots/ask-memory-trail.svg)](docs/screenshots/ask-memory-trail.svg)
 
 ### Settings — Privacy & Data
 
-<a href="docs/screenshots/privacy-settings.svg">
-  <img src="docs/screenshots/privacy-settings.svg" alt="Memory Trail Settings showing local-only privacy and data controls" width="1200">
-</a>
+[![Memory Trail Settings showing local-only privacy and data controls](docs/screenshots/privacy-settings.svg)](docs/screenshots/privacy-settings.svg)
 
 ### First-run tutorial
 
-<a href="docs/screenshots/onboarding.svg">
-  <img src="docs/screenshots/onboarding.svg" alt="Memory Trail privacy-first onboarding tutorial" width="1200">
-</a>
+[![Memory Trail privacy-first onboarding tutorial](docs/screenshots/onboarding.svg)](docs/screenshots/onboarding.svg)
 
 ## What Memory Trail does
 
