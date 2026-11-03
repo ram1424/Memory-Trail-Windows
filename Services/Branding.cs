@@ -15,6 +15,26 @@ public static class Branding
 
     public static System.Drawing.Icon CreateTrayIcon()
     {
+        // Prefer the packaged multi-resolution ICO so the tray uses the same
+        // approved artwork at native Windows icon sizes.
+        try
+        {
+            var resource = Application.GetResourceStream(
+                new Uri("pack://application:,,,/Assets/MemoryTrailApp.ico", UriKind.Absolute));
+
+            if (resource?.Stream is not null)
+            {
+                using var stream = resource.Stream;
+                using var icon = new System.Drawing.Icon(stream, 32, 32);
+                return (System.Drawing.Icon)icon.Clone();
+            }
+        }
+        catch (Exception ex)
+        {
+            App.LogNonFatal("Branding.CreateTrayIcon.ico", ex);
+        }
+
+        // If the ICO stream cannot be opened, render the exact packaged PNG.
         const int size = 64;
         var visual = new DrawingVisual();
 
@@ -27,11 +47,11 @@ public static class Branding
         var encoder = new PngBitmapEncoder();
         encoder.Frames.Add(BitmapFrame.Create(bitmap));
 
-        using var stream = new MemoryStream();
-        encoder.Save(stream);
-        stream.Position = 0;
+        using var pngStream = new MemoryStream();
+        encoder.Save(pngStream);
+        pngStream.Position = 0;
 
-        using var sourceBitmap = new System.Drawing.Bitmap(stream);
+        using var sourceBitmap = new System.Drawing.Bitmap(pngStream);
         var hIcon = sourceBitmap.GetHicon();
         try
         {
@@ -46,45 +66,47 @@ public static class Branding
 
     private static ImageSource LoadMasterIcon()
     {
-        try
+        Exception? lastError = null;
+
+        // Absolute pack URIs are required here. The previous leading-slash
+        // relative URI could fail in the published single-file app and caused
+        // the blue-square/white-dot emergency fallback seen in the UI.
+        foreach (var uriText in new[]
         {
-            var resource = Application.GetResourceStream(
-                new Uri("/Assets/MemoryTrailIconMaster.png", UriKind.Relative));
-
-            if (resource?.Stream is null)
-                throw new InvalidOperationException("MemoryTrailIconMaster.png was not found in app resources.");
-
-            using var stream = resource.Stream;
-            var bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.CacheOption = BitmapCacheOption.OnLoad;
-            bitmap.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-            bitmap.StreamSource = stream;
-            bitmap.DecodePixelWidth = 512;
-            bitmap.EndInit();
-            bitmap.Freeze();
-            return bitmap;
-        }
-        catch (Exception ex)
+            "pack://application:,,,/Assets/MemoryTrailIconMaster.png",
+            "pack://application:,,,/Assets/MemoryTrailIcon.png",
+            "pack://application:,,,/Assets/MemoryTrailApp.ico",
+        })
         {
-            App.LogNonFatal("Branding.LoadMasterIcon", ex);
-
-            var fallback = new DrawingGroup();
-            using (var dc = fallback.Open())
+            try
             {
-                dc.DrawRoundedRectangle(
-                    new SolidColorBrush(Color.FromRgb(31, 120, 240)),
-                    null,
-                    new Rect(0, 0, 64, 64),
-                    14, 14);
-                dc.DrawEllipse(Brushes.White, null, new Point(32, 32), 12, 12);
-            }
+                var bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.CreateOptions =
+                    BitmapCreateOptions.IgnoreImageCache |
+                    BitmapCreateOptions.PreservePixelFormat;
+                bitmap.UriSource = new Uri(uriText, UriKind.Absolute);
+                bitmap.EndInit();
 
-            fallback.Freeze();
-            var image = new DrawingImage(fallback);
-            image.Freeze();
-            return image;
+                if (bitmap.PixelWidth <= 0 || bitmap.PixelHeight <= 0)
+                    throw new InvalidOperationException($"Branding resource loaded with invalid dimensions: {uriText}");
+
+                bitmap.Freeze();
+                return bitmap;
+            }
+            catch (Exception ex)
+            {
+                lastError = ex;
+                App.LogNonFatal($"Branding.LoadMasterIcon {uriText}", ex);
+            }
         }
+
+        // Do not draw a substitute logo. If the approved artwork is missing,
+        // surface the packaging error instead of silently showing the wrong icon.
+        throw new InvalidOperationException(
+            "The approved Memory Trail icon could not be loaded from packaged resources.",
+            lastError);
     }
 
     [DllImport("user32.dll", SetLastError = true)]
