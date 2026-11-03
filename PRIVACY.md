@@ -197,7 +197,7 @@ Startup is optional and can be enabled or disabled in Settings.
 
 Memory Trail is open source. The Windows implementation is available at:
 
-https://github.com/ram1424/Memory-Lane-Windows
+https://github.com/ram1424/Memory-Trail-Windows
 
 Privacy-sensitive implementation is primarily located in:
 
