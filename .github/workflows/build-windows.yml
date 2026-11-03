@@ -50,7 +50,8 @@ jobs:
 
           $pngRequired = @(
             "Assets/MemoryTrailIcon.png",
-            "Assets/MemoryTrailIconMaster.png"
+            "Assets/MemoryTrailIconMaster.png",
+            "Assets/OnboardingIcon.png"
           )
           foreach ($path in $pngRequired) {
             if (-not (Test-Path $path)) { throw "Required branding asset is missing: $path" }
