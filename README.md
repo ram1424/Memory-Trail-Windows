@@ -40,16 +40,16 @@ Requires **Windows 10 or Windows 11 (x64)**. The release is self-contained and d
 ## Screenshots
 
 ### Today
-![Memory Trail Today view](docs/screenshots/today-ui-v4.svg)
+![Memory Trail Today view](docs/screenshots/today-ui.png)
 
 ### Ask Memory Trail
-![Ask Memory Trail](docs/screenshots/ask-memory-trail-ui-v4.svg)
+![Ask Memory Trail](docs/screenshots/ask-memory-trail-ui.png)
 
 ### Settings & Privacy
-![Memory Trail privacy settings](docs/screenshots/privacy-settings-ui-v4.svg)
+![Memory Trail privacy settings](docs/screenshots/privacy-settings-ui.png)
 
 ### First-run Tutorial
-![Memory Trail onboarding](docs/screenshots/onboarding-ui-v4.svg)
+![Memory Trail onboarding](docs/screenshots/onboarding-privacy-ui.png)
 
 _All screenshots use generic demo data._
 
@@ -155,3 +155,4 @@ Only the current production release is retained on the GitHub Releases page.
 **Memory Trail 1.0 (Build 1)** is the current Windows release.
 
 [macOS edition](https://github.com/ram1424/Memory-Trail)
+
