@@ -161,6 +161,30 @@
       <Setter Property="Foreground" Value="#66778F"/>
     </Style>
 
+
+    <!-- High-definition rendering defaults for all Memory Trail windows. -->
+    <Style TargetType="{x:Type Window}">
+      <Setter Property="FontFamily" Value="Segoe UI Variable Text"/>
+      <Setter Property="UseLayoutRounding" Value="True"/>
+      <Setter Property="SnapsToDevicePixels" Value="True"/>
+      <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+      <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+      <Setter Property="TextOptions.TextHintingMode" Value="Fixed"/>
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}">
+      <Setter Property="SnapsToDevicePixels" Value="True"/>
+      <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+      <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+      <Setter Property="TextOptions.TextHintingMode" Value="Fixed"/>
+    </Style>
+
+    <Style TargetType="{x:Type Image}">
+      <Setter Property="SnapsToDevicePixels" Value="True"/>
+      <Setter Property="UseLayoutRounding" Value="True"/>
+      <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
+    </Style>
+
     <Style TargetType="Button" BasedOn="{StaticResource ModernButtonStyle}"/>
 
     <Style TargetType="TextBox">

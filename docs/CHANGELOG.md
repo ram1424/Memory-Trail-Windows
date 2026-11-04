@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 1.0.2
+
+- Fixed the Microsoft Outlook icon in **Today → Newest First** by bypassing unreliable package/executable icon extraction and using deterministic Outlook artwork.
+- Increased generated fallback app icons to a 4× render target for sharper timeline and tutorial presentation on high-DPI displays.
+- Enabled **Per-Monitor-V2 DPI awareness** for Windows scaling and monitor changes.
+- Applied app-wide ClearType/display text formatting, fixed text hinting, layout rounding, pixel snapping, and high-quality image scaling.
+- Polished visual rendering across the main window, onboarding, update dialogs, What's New, Settings, and supporting screens while retaining the existing UI design.
+
+
 ## Version 1.0.1
 
 - Established semantic patch versioning for production releases.

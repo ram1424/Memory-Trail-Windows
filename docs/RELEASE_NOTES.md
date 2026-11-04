@@ -1,5 +1,10 @@
 ## Current release highlights
 
+- Version 1.0.2 sharpens the full interface for high-DPI displays
+- Fixed Outlook artwork in Today → Newest First
+- Per-Monitor-V2 DPI awareness and ClearType/display text rendering
+- 4× high-resolution fallback app icons
+
 - Privacy-first local activity capture and local timeline storage
 - Today timeline with Live Activity state
 - Ask Memory Trail local search

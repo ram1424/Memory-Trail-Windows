@@ -16,6 +16,9 @@ public sealed class AppIconConverter : IValueConverter
 
     public static ImageSource? ResolveAppIcon(string appName, string processName = "")
     {
+        if (IsOutlook(appName, processName, ""))
+            return CreateBrandFallback("Microsoft Outlook") ?? LoadGenericIcon();
+
         var path = ResolveExecutable(processName, appName);
         return LoadExecutableIcon(path) ?? CreateBrandFallback(appName) ?? LoadGenericIcon();
     }
@@ -30,7 +33,11 @@ public sealed class AppIconConverter : IValueConverter
         if (value is not MemoryItem item)
             return null;
 
-        var key = item.SourceExecutable ?? item.SourceProcess ?? item.SourceApp;
+        var outlook = IsOutlook(item.SourceApp, item.SourceProcess, item.SourceExecutable);
+        var key = outlook
+            ? "brand::microsoft-outlook"
+            : item.SourceExecutable ?? item.SourceProcess ?? item.SourceApp;
+
         if (!string.IsNullOrWhiteSpace(key) && Cache.TryGetValue(key, out var cached))
             return cached;
 
@@ -39,6 +46,13 @@ public sealed class AppIconConverter : IValueConverter
             item.SourceApp.Equals("Memory Lane", StringComparison.OrdinalIgnoreCase))
         {
             image = Branding.LoadImage();
+        }
+        else if (outlook)
+        {
+            // New Outlook can expose a package-backed executable whose associated icon
+            // is generic, blank, or low resolution. Always use the deterministic,
+            // vector-rendered Outlook artwork for timeline rows.
+            image = CreateBrandFallback("Microsoft Outlook");
         }
         else
         {
@@ -79,6 +93,17 @@ public sealed class AppIconConverter : IValueConverter
         {
             return null;
         }
+    }
+
+    private static bool IsOutlook(string? appName, string? processName, string? executable)
+    {
+        var process = Path.GetFileNameWithoutExtension(processName ?? "");
+        var executableName = Path.GetFileNameWithoutExtension(executable ?? "");
+        var combined = $"{appName} {process} {executableName}";
+
+        return combined.Contains("outlook", StringComparison.OrdinalIgnoreCase) ||
+               string.Equals(process, "olk", StringComparison.OrdinalIgnoreCase) ||
+               string.Equals(executableName, "olk", StringComparison.OrdinalIgnoreCase);
     }
 
     private static string? ResolveExecutable(string processName, string appName)
@@ -181,11 +206,15 @@ public sealed class AppIconConverter : IValueConverter
               key.Contains("word") || key.Contains("explorer") || key.Contains("file explorer")))
             return null;
 
-        const int size = 48;
+        const int logicalSize = 48;
+        const int pixelSize = 192;
+        const double scale = pixelSize / (double)logicalSize;
         var visual = new DrawingVisual();
 
         using (var dc = visual.RenderOpen())
         {
+            dc.PushTransform(new ScaleTransform(scale, scale));
+
             if (key.Contains("edge"))
             {
                 dc.DrawEllipse(new SolidColorBrush(Color.FromRgb(12, 121, 209)), null, new Point(24, 24), 22, 22);
@@ -220,9 +249,11 @@ public sealed class AppIconConverter : IValueConverter
                 dc.DrawRoundedRectangle(new SolidColorBrush(Color.FromRgb(244, 181, 42)), null, new Rect(5, 13, 38, 27), 6, 6);
                 dc.DrawRoundedRectangle(new SolidColorBrush(Color.FromRgb(255, 215, 82)), null, new Rect(6, 10, 18, 10), 4, 4);
             }
+
+            dc.Pop();
         }
 
-        var bitmap = new RenderTargetBitmap(size, size, 96, 96, PixelFormats.Pbgra32);
+        var bitmap = new RenderTargetBitmap(pixelSize, pixelSize, 384, 384, PixelFormats.Pbgra32);
         bitmap.Render(visual);
         bitmap.Freeze();
         return bitmap;
