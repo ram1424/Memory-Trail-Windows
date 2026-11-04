@@ -8,25 +8,27 @@ In Partner Center, use an **MSIX or PWA app** product. MSIX packages are uploade
 
 Microsoft Store signs MSIX packages during Store submission, so a CA-trusted signing certificate is not required for the Store-submitted MSIX.
 
-## Required Partner Center identity values
+## Partner Center identity
 
-Open **Partner Center → Memory Trail → Product management → Product identity** and copy these values exactly:
+The Store package is now pinned to the reserved **Memory Trail** Partner Center identity:
 
-1. **Package/Identity/Name**
-2. **Package/Identity/Publisher**
-3. **Package/Properties/PublisherDisplayName**
+- **Package/Identity/Name:** `RomanZakharov.MemoryTrail`
+- **Package/Identity/Publisher:** `CN=E557088E-D2D5-43E9-9789-6E873A1C61AA`
+- **Package/Properties/PublisherDisplayName:** `Roman Zakharov`
 
-The manifest values are case-sensitive where applicable and must match Partner Center.
+These values are stored in `Packaging/MSIX/StoreIdentity.json` and are validated against the generated manifest during every MSIX build.
 
 ## Build the Store package
 
-Open GitHub → Actions → **Build Microsoft Store MSIX** → **Run workflow**, then paste the three Product identity values.
+Open GitHub → Actions → **Build Microsoft Store MSIX** → **Run workflow**. No identity fields need to be entered manually.
 
 The Store build is compiled with the `MicrosoftStore` distribution channel. That build disables Memory Trail’s GitHub self-updater and relies on Microsoft Store for package updates. The normal direct-download build keeps the existing updater.
 
-## Development smoke package
+## Store package output
 
-Packaging-related pushes also create an unsigned development MSIX with a development-only identity. It validates the MakeAppx pipeline only; do not submit it to Partner Center.
+The workflow generates `Memory-Trail-1.0.5-x64.msix`, validates the Partner Center identity in the manifest, uploads it as a workflow artifact, and attaches it to the matching GitHub release.
+
+The package is intentionally not developer-signed for Store submission; Microsoft Store signs/re-signs MSIX packages during the publishing process. Do not use the unsigned Store package for direct sideload distribution outside Microsoft Store.
 
 ## Versioning
 

@@ -7,8 +7,10 @@ A concise record of production changes. Each release is organized by area so upd
 ### 📦 Distribution
 - **Microsoft Store MSIX packaging** — added a dedicated x64 MSIX build pipeline for Store submission.
 - **Store-managed updates** — Microsoft Store builds disable Memory Trail’s GitHub self-updater so Store owns package updates.
-- **Partner Center identity support** — the workflow accepts the exact Package Name, Publisher, and Publisher Display Name from Product identity.
-- **Development packaging smoke test** — packaging-related pushes generate an unsigned development MSIX to validate the MakeAppx pipeline.
+- **Partner Center identity support** — the MSIX manifest uses the exact Package Name, Publisher, and Publisher Display Name assigned by Microsoft.
+- **Final Partner Center identity** — Store packages are now pinned to `RomanZakharov.MemoryTrail` and the Microsoft-assigned publisher identity.
+- **Manifest verification** — every Store build validates Name, Publisher, Publisher Display Name, and four-part package version before publication.
+- **Store release attachment** — the final MSIX is attached to the matching GitHub release after the release tag is confirmed to point to the same commit.
 
 ### 🔒 Privacy
 - **Full in-app Privacy Policy** — added a dedicated, scrollable privacy-policy window accessible directly from Settings.
