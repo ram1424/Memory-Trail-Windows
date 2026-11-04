@@ -23,7 +23,7 @@ public partial class OnboardingWindow : Window
             }
 
             EdgeTutorialIcon.Source = AppIconConverter.ResolveAppIcon("Microsoft Edge", "msedge");
-            OutlookTutorialIcon.Source = AppIconConverter.ResolveAppIcon("Outlook", "olk");
+            OutlookTutorialIcon.Source = AppIconConverter.ResolveTutorialBrandIcon("Microsoft Outlook");
         }
         catch (Exception ex)
         {

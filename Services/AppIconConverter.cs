@@ -20,6 +20,11 @@ public sealed class AppIconConverter : IValueConverter
         return LoadExecutableIcon(path) ?? CreateBrandFallback(appName) ?? LoadGenericIcon();
     }
 
+    // Tutorial artwork should be stable across machines. New Outlook can expose
+    // package-backed or generic executable icons, so use our deterministic brand fallback.
+    public static ImageSource? ResolveTutorialBrandIcon(string appName)
+        => CreateBrandFallback(appName) ?? LoadGenericIcon();
+
     public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         if (value is not MemoryItem item)

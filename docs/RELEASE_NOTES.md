@@ -11,6 +11,9 @@
 - Launch-time **Update / Remind Me in 24 Hours / Skip This Version** prompt
 - Background update download and SHA-256 verification
 - Silent staged installation after Memory Trail exits
+- Polished up-to-date confirmation screen for manual checks
+- Faster Today filter switching
+- Reliable Outlook icon in the tutorial
 - What's New experience for each new app version
 - Six-page first-run tutorial for Version 1 users
 - White activity-count badges and summary cards for improved readability

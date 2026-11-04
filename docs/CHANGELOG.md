@@ -13,6 +13,9 @@
 - Reworked launch-time updates with an **Update / Remind Me in 24 Hours / Skip This Version** prompt.
 - Added background ZIP download, GitHub SHA-256 verification, local staging, and silent install after Memory Trail exits.
 - Added internal build-commit identity so a refreshed 1.0.1 release can be detected even when the visible semantic version is unchanged.
+- Added a polished “You’re All Caught Up!” screen when a manual update check finds no newer release.
+- Reduced Today-filter work by avoiding unnecessary count/summary recomputation and full live-marker scans.
+- Replaced tutorial Outlook executable-icon lookup with a deterministic Outlook-branded fallback so the icon renders reliably.
 
 
 ## Version 1.0.0 — First Official Release

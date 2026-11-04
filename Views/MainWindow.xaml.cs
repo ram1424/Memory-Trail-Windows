@@ -21,6 +21,7 @@ public partial class MainWindow : Window
 
     private readonly ICollectionView _view;
     private Forms.NotifyIcon? _trayIcon;
+    private MemoryItem? _lastLiveItem;
     private bool _quitting;
     private string _mode = "Timeline";
     private string _category = "All";
@@ -261,8 +262,13 @@ public partial class MainWindow : Window
         if (sender is not Button button || button.Tag is not string category)
             return;
 
+        var modeChanged = _mode != "Timeline";
+        if (!modeChanged && string.Equals(_category, category, StringComparison.Ordinal))
+            return;
+
         _category = category;
-        if (_mode != "Timeline")
+
+        if (modeChanged)
         {
             _mode = "Timeline";
             UpdateNavSelection("Timeline");
@@ -273,11 +279,21 @@ public partial class MainWindow : Window
             PrivacyPanel.Visibility = Visibility.Collapsed;
         }
 
+        // Update the selected tab immediately so the UI feels responsive.
         UpdateCategorySelection(category);
+
+        // Filtering is the only data operation required here. Counts do not change
+        // when the user switches tabs, so avoid the full count/summary recomputation.
         _view.Refresh();
-        UpdateModeChrome();
-        UpdateLiveActivity();
-        UpdateCountsAndChrome();
+        UpdateActivityCount();
+
+        if (modeChanged)
+            UpdateModeChrome();
+
+        // Paint the selected filter first, then refresh the live marker at background priority.
+        Dispatcher.BeginInvoke(
+            new Action(UpdateLiveActivity),
+            System.Windows.Threading.DispatcherPriority.Background);
     }
 
     private void UpdateCategorySelection(string category)
@@ -718,27 +734,30 @@ public partial class MainWindow : Window
 
     private void UpdateLiveActivity()
     {
-        foreach (var item in App.Store.Items)
+        if (_lastLiveItem is not null)
         {
-            item.IsLiveActivity = false;
-            item.IsLatestActivity = false;
+            _lastLiveItem.IsLiveActivity = false;
+            _lastLiveItem.IsLatestActivity = false;
+            _lastLiveItem = null;
         }
 
         if (_mode != "Timeline" || _dayOffset != 0)
             return;
 
+        // The collection view is already sorted newest-first, so avoid an extra OrderBy
+        // and avoid resetting flags on every stored activity.
         var latestVisible = _view.Cast<object>()
             .OfType<MemoryItem>()
-            .OrderByDescending(x => x.CreatedAt)
             .FirstOrDefault();
 
         if (latestVisible is null)
             return;
 
-        if ((DateTime.Now - latestVisible.CreatedAt).TotalMinutes <= 2)
-            latestVisible.IsLiveActivity = true;
-        else
-            latestVisible.IsLatestActivity = true;
+        latestVisible.IsLatestActivity = true;
+        latestVisible.IsLiveActivity =
+            (DateTime.Now - latestVisible.CreatedAt).TotalMinutes <= 2;
+
+        _lastLiveItem = latestVisible;
     }
 
     private void UpdateModeChrome()
@@ -1201,11 +1220,8 @@ public partial class MainWindow : Window
 
                 if (manual)
                 {
-                    MessageBox.Show(
-                        $"You're running the latest version of Memory Trail.\n\n{AppVersion.FriendlyVersion}",
-                        "Memory Trail Updates",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Information);
+                    var upToDate = new UpToDateWindow { Owner = this };
+                    upToDate.ShowDialog();
                 }
 
                 return;
