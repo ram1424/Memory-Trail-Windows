@@ -4,6 +4,12 @@ A concise record of production changes. Each release is organized by area so upd
 
 ## Version 1.0.5
 
+### 📦 Distribution
+- **Microsoft Store MSIX packaging** — added a dedicated x64 MSIX build pipeline for Store submission.
+- **Store-managed updates** — Microsoft Store builds disable Memory Trail’s GitHub self-updater so Store owns package updates.
+- **Partner Center identity support** — the workflow accepts the exact Package Name, Publisher, and Publisher Display Name from Product identity.
+- **Development packaging smoke test** — packaging-related pushes generate an unsigned development MSIX to validate the MakeAppx pipeline.
+
 ### 🔒 Privacy
 - **Full in-app Privacy Policy** — added a dedicated, scrollable privacy-policy window accessible directly from Settings.
 - **Local-first disclosures** — documents what Memory Trail may capture, where data is stored, and what is never included in update-check requests.

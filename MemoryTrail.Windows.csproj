@@ -33,6 +33,10 @@
     <AssemblyMetadata Include="BuildCommit" Value="$(BuildCommit)" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(DistributionChannel)' != ''">
+    <AssemblyMetadata Include="DistributionChannel" Value="$(DistributionChannel)" />
+  </ItemGroup>
+
   <!-- Keep WPF view/code-behind relationships explicit after organizing source into folders. -->
   <ItemGroup>
     <Page Update="Views\AddMemoryWindow.xaml">

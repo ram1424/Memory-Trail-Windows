@@ -13,7 +13,10 @@ public static class AppVersion
     public static string NormalizedVersion { get; } = Normalize(InformationalVersion);
     public static string ReleaseTag => $"v{NormalizedVersion}";
     public static string FriendlyVersion { get; } = FormatFriendly(NormalizedVersion);
-    public static string BuildCommit { get; } = ResolveBuildCommit();
+    public static string BuildCommit { get; } = ResolveMetadata("BuildCommit");
+    public static string DistributionChannel { get; } = ResolveMetadata("DistributionChannel");
+    public static bool IsMicrosoftStoreBuild =>
+        string.Equals(DistributionChannel, "MicrosoftStore", StringComparison.OrdinalIgnoreCase);
 
     public static int CompareReleaseTags(string left, string right)
     {
@@ -29,14 +32,14 @@ public static class AppVersion
         return a.Build.CompareTo(b.Build);
     }
 
-    private static string ResolveBuildCommit()
+    private static string ResolveMetadata(string key)
     {
         var metadata = Assembly.GetEntryAssembly()?
             .GetCustomAttributes<AssemblyMetadataAttribute>();
 
         return metadata?
             .FirstOrDefault(item =>
-                string.Equals(item.Key, "BuildCommit", StringComparison.OrdinalIgnoreCase))
+                string.Equals(item.Key, key, StringComparison.OrdinalIgnoreCase))
             ?.Value ?? "";
     }
 

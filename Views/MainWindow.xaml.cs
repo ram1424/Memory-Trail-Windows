@@ -92,7 +92,9 @@ public partial class MainWindow : Window
 
             var menu = new Forms.ContextMenuStrip();
             menu.Items.Add("Open Memory Trail", null, (_, _) => Dispatcher.Invoke(ShowFromTray));
-            menu.Items.Add("Check for Updates...", null, (_, _) => Dispatcher.BeginInvoke(new Action(CheckForUpdatesFromTray)));
+            if (!AppVersion.IsMicrosoftStoreBuild)
+                menu.Items.Add("Check for Updates...", null, (_, _) => Dispatcher.BeginInvoke(new Action(CheckForUpdatesFromTray)));
+
             menu.Items.Add("What's New", null, (_, _) => Dispatcher.BeginInvoke(new Action(() => ShowWhatsNewWindow(false))));
             menu.Items.Add(new Forms.ToolStripSeparator());
             menu.Items.Add("Pause / Resume Capture", null, (_, _) => Dispatcher.Invoke(ToggleCapture));
@@ -173,9 +175,21 @@ public partial class MainWindow : Window
         StartWithWindowsCheckBox.IsChecked = App.Preferences.StartWithWindows;
         AutomaticUpdateCheckBox.IsChecked = App.Preferences.AutomaticUpdateChecks;
         AboutVersionText.Text = AppVersion.FriendlyVersion;
-        UpdateStatusText.Text = App.Preferences.LastUpdateCheckUtc is DateTimeOffset checkedAt
-            ? $"Last checked {checkedAt.ToLocalTime():MMM d, yyyy h:mm tt}."
-            : "Updates have not been checked yet.";
+
+        if (AppVersion.IsMicrosoftStoreBuild)
+        {
+            StartWithWindowsCheckBox.IsChecked = false;
+            StartWithWindowsCheckBox.IsEnabled = false;
+            AutomaticUpdateCheckBox.IsChecked = false;
+            AutomaticUpdateCheckBox.IsEnabled = false;
+            UpdateStatusText.Text = "Updates for this installation are managed by Microsoft Store.";
+        }
+        else
+        {
+            UpdateStatusText.Text = App.Preferences.LastUpdateCheckUtc is DateTimeOffset checkedAt
+                ? $"Last checked {checkedAt.ToLocalTime():MMM d, yyyy h:mm tt}."
+                : "Updates have not been checked yet.";
+        }
         ExclusionsBox.Text = string.Join(Environment.NewLine, App.Preferences.ExcludedProcesses.OrderBy(x => x));
     }
 
@@ -1131,7 +1145,7 @@ public partial class MainWindow : Window
 
     private void StartWithWindowsChanged(object sender, RoutedEventArgs e)
     {
-        if (_initializingSettings) return;
+        if (_initializingSettings || AppVersion.IsMicrosoftStoreBuild) return;
         App.Preferences.SetStartWithWindows(StartWithWindowsCheckBox.IsChecked == true);
         App.Preferences.Save();
     }
@@ -1174,7 +1188,7 @@ public partial class MainWindow : Window
 
     private void AutomaticUpdatesChanged(object sender, RoutedEventArgs e)
     {
-        if (_initializingSettings) return;
+        if (_initializingSettings || AppVersion.IsMicrosoftStoreBuild) return;
 
         App.Preferences.AutomaticUpdateChecks = AutomaticUpdateCheckBox.IsChecked == true;
         App.Preferences.Save();
@@ -1185,7 +1199,7 @@ public partial class MainWindow : Window
 
     private async Task MaybeCheckForUpdatesAsync()
     {
-        if (!App.Preferences.AutomaticUpdateChecks)
+        if (AppVersion.IsMicrosoftStoreBuild || !App.Preferences.AutomaticUpdateChecks)
             return;
 
         await CheckForUpdatesAsync(manual: false);
@@ -1193,6 +1207,22 @@ public partial class MainWindow : Window
 
     private async Task CheckForUpdatesAsync(bool manual)
     {
+        if (AppVersion.IsMicrosoftStoreBuild)
+        {
+            UpdateStatusText.Text = "Updates for this installation are managed by Microsoft Store.";
+
+            if (manual)
+            {
+                MessageBox.Show(
+                    "This copy of Memory Trail is installed from Microsoft Store. Windows and Microsoft Store manage its updates automatically.",
+                    "Memory Trail Updates",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+            }
+
+            return;
+        }
+
         try
         {
             UpdateStatusText.Text = "Checking GitHub for updates...";

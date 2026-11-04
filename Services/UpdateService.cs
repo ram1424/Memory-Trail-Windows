@@ -230,6 +230,9 @@ public static class UpdateService
         PreferencesService preferences,
         bool relaunchAfterInstall = false)
     {
+        if (AppVersion.IsMicrosoftStoreBuild)
+            return false;
+
         if (_installScheduled)
             return true;
 

@@ -1,0 +1,94 @@
+name: Build Microsoft Store MSIX
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "Packaging/MSIX/**"
+      - "Tools/Packaging/**"
+      - "Services/AppVersion.cs"
+      - "Views/MainWindow.xaml.cs"
+      - "App.xaml.cs"
+      - "Services/UpdateService.cs"
+      - "MemoryTrail.Windows.csproj"
+      - ".github/workflows/build-msix.yml"
+  workflow_dispatch:
+    inputs:
+      package_identity_name:
+        description: "Partner Center Package/Identity/Name"
+        required: true
+        type: string
+      publisher:
+        description: "Partner Center Package/Identity/Publisher"
+        required: true
+        type: string
+      publisher_display_name:
+        description: "Partner Center PublisherDisplayName"
+        required: true
+        type: string
+      publish_to_release:
+        description: "Attach MSIX to matching GitHub release"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  build-msix:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install image tooling
+        run: python -m pip install pillow
+      - name: Resolve package identity and version
+        shell: pwsh
+        run: |
+          [xml]$project = Get-Content "MemoryTrail.Windows.csproj"
+          $displayVersion = [string]$project.Project.PropertyGroup.DisplayVersion
+          $msixVersion = "$displayVersion.0"
+          if ("${{ github.event_name }}" -eq "workflow_dispatch") {
+            $packageName = "${{ inputs.package_identity_name }}"
+            $publisher = "${{ inputs.publisher }}"
+            $publisherDisplayName = "${{ inputs.publisher_display_name }}"
+          } else {
+            $packageName = "MemoryTrail.Development"
+            $publisher = "CN=Memory Trail Development, OID.2.25.311729368913984317654407730594956997722=1"
+            $publisherDisplayName = "Memory Trail"
+          }
+          "DISPLAY_VERSION=$displayVersion" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
+          "MSIX_VERSION=$msixVersion" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
+          "PACKAGE_NAME=$packageName" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
+          "PUBLISHER=$publisher" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
+          "PUBLISHER_DISPLAY_NAME=$publisherDisplayName" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
+          "MSIX_NAME=Memory-Trail-$displayVersion-x64.msix" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Restore
+        run: dotnet restore MemoryTrail.Windows.csproj -r win-x64
+      - name: Publish Microsoft Store build
+        shell: pwsh
+        run: |
+          $args = @("publish","MemoryTrail.Windows.csproj","-c","Release","-r","win-x64","--self-contained","true","--no-restore","-p:Version=$env:DISPLAY_VERSION","-p:AssemblyVersion=$env:MSIX_VERSION","-p:FileVersion=$env:MSIX_VERSION","-p:InformationalVersion=$env:DISPLAY_VERSION","-p:BuildCommit=$env:GITHUB_SHA","-p:DistributionChannel=MicrosoftStore","-p:PublishSingleFile=true","-p:IncludeNativeLibrariesForSelfExtract=true","-p:EnableCompressionInSingleFile=true","-o","artifacts/store-publish")
+          & dotnet @args
+          if ($LASTEXITCODE -ne 0) { throw "dotnet publish failed" }
+      - name: Build MSIX
+        shell: pwsh
+        run: |
+          ./Tools/Packaging/build-msix.ps1 -SourceDirectory "artifacts/store-publish" -OutputPath "artifacts/$env:MSIX_NAME" -PackageName "$env:PACKAGE_NAME" -Publisher "$env:PUBLISHER" -PublisherDisplayName "$env:PUBLISHER_DISPLAY_NAME" -Version "$env:MSIX_VERSION" -RepositoryRoot "$PWD"
+      - name: Upload MSIX workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.MSIX_NAME }}
+          path: artifacts/${{ env.MSIX_NAME }}
+      - name: Attach Store MSIX to GitHub release
+        if: github.event_name == 'workflow_dispatch' && inputs.publish_to_release == true
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "v$env:DISPLAY_VERSION" "artifacts/$env:MSIX_NAME" --clobber

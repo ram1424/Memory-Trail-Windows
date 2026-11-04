@@ -180,3 +180,8 @@ Only the current production release is retained on the GitHub Releases page.
 
 
 
+
+
+## Microsoft Store / MSIX
+
+Memory Trail includes a dedicated Microsoft Store MSIX packaging pipeline. Store builds disable the GitHub self-updater and rely on Microsoft Store for updates. See [docs/MICROSOFT_STORE.md](docs/MICROSOFT_STORE.md).
