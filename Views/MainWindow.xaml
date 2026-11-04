@@ -459,7 +459,8 @@
                 <ListView x:Name="TimelineList" Background="Transparent" BorderThickness="0"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
-                          SelectionChanged="TimelineList_SelectionChanged">
+                          SelectionChanged="TimelineList_SelectionChanged"
+                          MouseDoubleClick="TimelineList_MouseDoubleClick">
                   <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                       <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -528,7 +529,7 @@
                               </StackPanel>
                             </Border>
                           </StackPanel>
-                          <TextBlock Text="{Binding SourceApp}" Foreground="#66778F" FontSize="12" Margin="0,3,0,0"
+                          <TextBlock Text="{Binding TimelineSubtitle}" Foreground="#66778F" FontSize="12" Margin="0,3,0,0"
                                      TextTrimming="CharacterEllipsis"/>
                         </StackPanel>
                         <Border x:Name="CategoryChip" Grid.Column="4" Background="#EEF3F9" CornerRadius="13" Padding="7,3" VerticalAlignment="Center">
@@ -743,6 +744,10 @@
                     <Grid Margin="0,0,0,8"><Grid.ColumnDefinitions><ColumnDefinition Width="54"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                       <TextBlock Text="Window" FontSize="10" Foreground="#66778F"/>
                       <TextBlock Grid.Column="1" Text="{Binding SelectedItem.Title, ElementName=TimelineList}" FontSize="10" Foreground="#1A2438" TextWrapping="Wrap"/>
+                    </Grid>
+                    <Grid Margin="0,0,0,8"><Grid.ColumnDefinitions><ColumnDefinition Width="54"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                      <TextBlock Text="Details" FontSize="10" Foreground="#66778F"/>
+                      <TextBlock Grid.Column="1" Text="{Binding SelectedItem.Body, ElementName=TimelineList}" FontSize="10" Foreground="#1A2438" TextWrapping="Wrap" LineHeight="15"/>
                     </Grid>
 
                     <Border Height="1" Background="#D8E1EC" Margin="0,4,0,12"/>

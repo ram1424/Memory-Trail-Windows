@@ -192,13 +192,22 @@ public sealed class CaptureService
 
             var title = NormalizeTitle(rawTitle, processName);
 
+            string? outlookSender = null;
+
             if (IsOutlookProcess(processName))
             {
-                var outlookSubject = TryGetClassicOutlookSelectedSubject()
-                    ?? TryGetOutlookSubjectFromUiAutomation(hwnd);
+                // Classic Outlook can safely use the Outlook COM selection. New Outlook
+                // (olk.exe) must never use that COM state because it can point at a stale
+                // or completely different message in Classic Outlook.
+                var outlookMessage = IsClassicOutlookProcess(processName)
+                    ? TryGetClassicOutlookSelectedMessage() ?? TryGetOutlookMessageFromUiAutomation(hwnd)
+                    : TryGetOutlookMessageFromUiAutomation(hwnd);
 
-                if (!string.IsNullOrWhiteSpace(outlookSubject))
-                    title = NormalizeTitle(outlookSubject, processName);
+                if (outlookMessage is not null)
+                {
+                    title = NormalizeTitle(outlookMessage.Subject, processName);
+                    outlookSender = outlookMessage.Sender;
+                }
             }
 
             var hasUsefulTitle = !string.IsNullOrWhiteSpace(title) && !IsGeneric(title, processName);
@@ -215,7 +224,7 @@ public sealed class CaptureService
             {
                 Title = title,
                 Body = hasUsefulTitle
-                    ? DetailedBody(title, processName)
+                    ? DetailedBody(title, processName, outlookSender)
                     : $"Application became active: {friendlyApp}",
                 SourceApp = friendlyApp,
                 SourceProcess = processName,
@@ -363,7 +372,19 @@ public sealed class CaptureService
         return value == "olk" || value.Contains("outlook", StringComparison.OrdinalIgnoreCase);
     }
 
-    private static string? TryGetClassicOutlookSelectedSubject()
+    private static bool IsClassicOutlookProcess(string processName)
+        => processName.Trim().Equals("outlook", StringComparison.OrdinalIgnoreCase);
+
+    private sealed record OutlookMessageInfo(string Subject, string? Sender);
+
+    private sealed record OutlookUiCandidate(
+        string Text,
+        Rect Bounds,
+        string AutomationId,
+        string ClassName,
+        string ControlType);
+
+    private static OutlookMessageInfo? TryGetClassicOutlookSelectedMessage()
     {
         object? app = null;
         object? explorer = null;
@@ -401,11 +422,26 @@ public sealed class CaptureService
             dynamic selectedItem = item;
 
             string? subject = null;
+            string? sender = null;
+
             try { subject = selectedItem.Subject as string; }
             catch { }
 
+            try { sender = selectedItem.SenderName as string; }
+            catch { }
+
+            if (string.IsNullOrWhiteSpace(sender))
+            {
+                try { sender = selectedItem.SenderEmailAddress as string; }
+                catch { }
+            }
+
             subject = CleanOutlookSubject(subject);
-            return string.IsNullOrWhiteSpace(subject) ? null : subject;
+            sender = CleanOutlookSender(sender);
+
+            return string.IsNullOrWhiteSpace(subject)
+                ? null
+                : new OutlookMessageInfo(subject, sender);
         }
         catch
         {
@@ -420,7 +456,7 @@ public sealed class CaptureService
         }
     }
 
-    private static string? TryGetOutlookSubjectFromUiAutomation(IntPtr hwnd)
+    private static OutlookMessageInfo? TryGetOutlookMessageFromUiAutomation(IntPtr hwnd)
     {
         try
         {
@@ -428,45 +464,201 @@ public sealed class CaptureService
             if (root is null)
                 return null;
 
-            var selectedRows = root.FindAll(
-                TreeScope.Descendants,
-                new PropertyCondition(
-                    AutomationElement.IsSelectionItemPatternAvailableProperty,
-                    true));
+            var rootBounds = SafeBounds(root);
+            if (rootBounds.IsEmpty || rootBounds.Width <= 0 || rootBounds.Height <= 0)
+                return null;
 
-            for (var i = 0; i < selectedRows.Count; i++)
+            var all = root.FindAll(TreeScope.Descendants, Condition.TrueCondition);
+            var candidates = new List<OutlookUiCandidate>();
+
+            foreach (AutomationElement element in all)
             {
-                var element = selectedRows[i];
-
                 try
                 {
-                    if (element.GetCurrentPattern(SelectionItemPattern.Pattern) is not SelectionItemPattern pattern ||
-                        !pattern.Current.IsSelected)
+                    if (element.Current.IsOffscreen)
                         continue;
 
-                    var candidate = CleanUiAutomationSubject(element.Current.Name);
-                    if (LooksLikeOutlookMessageSubject(candidate))
-                        return candidate;
+                    var text = CleanUiAutomationSubject(element.Current.Name);
+                    if (string.IsNullOrWhiteSpace(text) || IsOutlookUiChromeText(text))
+                        continue;
+
+                    var bounds = SafeBounds(element);
+                    if (bounds.IsEmpty || bounds.Width < 2 || bounds.Height < 2)
+                        continue;
+
+                    // New Outlook's selected-message reading pane is on the right side.
+                    // Do not inspect the message list or left navigation because those can
+                    // expose a different selected row than the message currently rendered.
+                    var rightPaneStart = rootBounds.Left + (rootBounds.Width * 0.52);
+                    var sufficientlyRight =
+                        bounds.Left >= rightPaneStart ||
+                        bounds.Right >= rootBounds.Left + (rootBounds.Width * 0.72);
+
+                    if (!sufficientlyRight)
+                        continue;
+
+                    // Subjects and sender metadata live in the upper portion of the reading
+                    // pane. Restricting the scan keeps body text and Copilot content from
+                    // competing with the real message header.
+                    var maxHeaderY = rootBounds.Top + Math.Max(430, rootBounds.Height * 0.58);
+                    if (bounds.Top < rootBounds.Top || bounds.Top > maxHeaderY)
+                        continue;
+
+                    candidates.Add(new OutlookUiCandidate(
+                        text,
+                        bounds,
+                        element.Current.AutomationId ?? "",
+                        element.Current.ClassName ?? "",
+                        element.Current.ControlType?.ProgrammaticName ?? ""));
                 }
-                catch { }
+                catch
+                {
+                    // WebView2-backed UIA nodes can disappear between enumeration and read.
+                }
             }
 
-            var textElements = root.FindAll(
-                TreeScope.Descendants,
-                new PropertyCondition(
-                    AutomationElement.ControlTypeProperty,
-                    ControlType.Text));
+            if (candidates.Count == 0)
+                return null;
 
-            foreach (AutomationElement element in textElements)
-            {
-                var candidate = CleanUiAutomationSubject(element.Current.Name);
-                if (LooksLikeOutlookMessageSubject(candidate))
-                    return candidate;
-            }
+            var subjectCandidate = candidates
+                .Where(c => LooksLikeOutlookMessageSubject(c.Text))
+                .OrderByDescending(c => ScoreOutlookSubjectCandidate(c, rootBounds))
+                .ThenBy(c => c.Bounds.Top)
+                .FirstOrDefault();
+
+            if (subjectCandidate is null ||
+                ScoreOutlookSubjectCandidate(subjectCandidate, rootBounds) < 20)
+                return null;
+
+            var senderCandidate = candidates
+                .Where(c => !ReferenceEquals(c, subjectCandidate))
+                .Where(c => LooksLikeOutlookSenderCandidate(c, subjectCandidate))
+                .OrderByDescending(c => ScoreOutlookSenderCandidate(c, subjectCandidate))
+                .ThenBy(c => Math.Abs(c.Bounds.Top - subjectCandidate.Bounds.Bottom))
+                .FirstOrDefault();
+
+            return new OutlookMessageInfo(
+                subjectCandidate.Text,
+                CleanOutlookSender(senderCandidate?.Text));
         }
-        catch { }
+        catch
+        {
+            return null;
+        }
+    }
 
-        return null;
+    private static Rect SafeBounds(AutomationElement element)
+    {
+        try
+        {
+            return element.Current.BoundingRectangle;
+        }
+        catch
+        {
+            return Rect.Empty;
+        }
+    }
+
+    private static int ScoreOutlookSubjectCandidate(OutlookUiCandidate candidate, Rect rootBounds)
+    {
+        var score = 0;
+        var metadata = $"{candidate.AutomationId} {candidate.ClassName}".ToLowerInvariant();
+        var relativeTop = (candidate.Bounds.Top - rootBounds.Top) / Math.Max(1, rootBounds.Height);
+
+        if (metadata.Contains("subject", StringComparison.Ordinal))
+            score += 140;
+
+        if (candidate.ControlType.Contains("Text", StringComparison.OrdinalIgnoreCase) ||
+            candidate.ControlType.Contains("Header", StringComparison.OrdinalIgnoreCase))
+            score += 25;
+
+        if (relativeTop <= 0.38)
+            score += 35;
+        else if (relativeTop <= 0.52)
+            score += 12;
+
+        if (candidate.Bounds.Width >= 120)
+            score += 10;
+
+        if (candidate.Text.Length is >= 6 and <= 180)
+            score += 12;
+
+        if (LooksLikeSenderText(candidate.Text, metadata))
+            score -= 90;
+
+        if (IsLikelyOutlookDateOrTime(candidate.Text))
+            score -= 80;
+
+        return score;
+    }
+
+    private static bool LooksLikeOutlookSenderCandidate(
+        OutlookUiCandidate candidate,
+        OutlookUiCandidate subject)
+    {
+        if (IsOutlookUiChromeText(candidate.Text) ||
+            candidate.Text.Equals(subject.Text, StringComparison.OrdinalIgnoreCase))
+            return false;
+
+        var metadata = $"{candidate.AutomationId} {candidate.ClassName}".ToLowerInvariant();
+
+        if (!LooksLikeSenderText(candidate.Text, metadata))
+            return false;
+
+        var verticalDistance = candidate.Bounds.Top - subject.Bounds.Bottom;
+        return verticalDistance >= -90 && verticalDistance <= 190;
+    }
+
+    private static int ScoreOutlookSenderCandidate(
+        OutlookUiCandidate candidate,
+        OutlookUiCandidate subject)
+    {
+        var score = 0;
+        var metadata = $"{candidate.AutomationId} {candidate.ClassName}".ToLowerInvariant();
+        var text = candidate.Text.Trim();
+
+        if (metadata.Contains("sender", StringComparison.Ordinal) ||
+            metadata.Contains("from", StringComparison.Ordinal))
+            score += 120;
+
+        if (text.StartsWith("From:", StringComparison.OrdinalIgnoreCase))
+            score += 100;
+
+        if (text.Contains("@", StringComparison.Ordinal))
+            score += 75;
+
+        if (candidate.ControlType.Contains("Button", StringComparison.OrdinalIgnoreCase) ||
+            candidate.ControlType.Contains("Hyperlink", StringComparison.OrdinalIgnoreCase) ||
+            candidate.ControlType.Contains("Text", StringComparison.OrdinalIgnoreCase))
+            score += 15;
+
+        var distance = Math.Abs(candidate.Bounds.Top - subject.Bounds.Bottom);
+        score += Math.Max(0, 45 - (int)Math.Min(45, distance / 2));
+
+        return score;
+    }
+
+    private static bool LooksLikeSenderText(string text, string metadata)
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            return false;
+
+        var value = text.Trim();
+        var lower = value.ToLowerInvariant();
+
+        if (metadata.Contains("sender", StringComparison.Ordinal) ||
+            metadata.Contains("from", StringComparison.Ordinal))
+            return true;
+
+        if (value.StartsWith("From:", StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        if (value.Contains("@", StringComparison.Ordinal) &&
+            !lower.StartsWith("to:", StringComparison.Ordinal) &&
+            !lower.StartsWith("cc:", StringComparison.Ordinal))
+            return true;
+
+        return false;
     }
 
     private static string? CleanUiAutomationSubject(string? value)
@@ -493,25 +685,107 @@ public sealed class CaptureService
         return subject.Length > 250 ? subject[..250] : subject;
     }
 
+    private static string? CleanOutlookSender(string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return null;
+
+        var sender = value.Replace("\r", " ").Replace("\n", " ").Trim();
+
+        if (sender.StartsWith("From:", StringComparison.OrdinalIgnoreCase))
+            sender = sender[5..].Trim();
+
+        while (sender.Contains("  ", StringComparison.Ordinal))
+            sender = sender.Replace("  ", " ");
+
+        return sender.Length > 180 ? sender[..180] : sender;
+    }
+
     private static bool LooksLikeOutlookMessageSubject(string? value)
     {
         if (string.IsNullOrWhiteSpace(value))
             return false;
 
         var text = value.Trim();
-        var lower = text.ToLowerInvariant();
 
-        if (lower is "inbox" or "drafts" or "sent items" or "deleted items" or "archive"
-            or "mail" or "calendar" or "people" or "tasks" or "outlook")
+        if (IsOutlookUiChromeText(text))
             return false;
 
         if (text.Length < 4 || text.Length > 250)
             return false;
 
-        if (text.Contains("@") && !text.Contains(" ", StringComparison.Ordinal))
+        if (text.Contains("@", StringComparison.Ordinal) &&
+            !text.Contains(" ", StringComparison.Ordinal))
             return false;
 
-        return true;
+        if (text.StartsWith("From:", StringComparison.OrdinalIgnoreCase) ||
+            text.StartsWith("To:", StringComparison.OrdinalIgnoreCase) ||
+            text.StartsWith("Cc:", StringComparison.OrdinalIgnoreCase))
+            return false;
+
+        return !IsLikelyOutlookDateOrTime(text);
+    }
+
+    private static bool IsOutlookUiChromeText(string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return true;
+
+        var lower = value.Trim().ToLowerInvariant();
+
+        if (lower is
+            "inbox" or "drafts" or "sent items" or "deleted items" or "archive" or
+            "mail" or "calendar" or "people" or "tasks" or "outlook" or
+            "focused" or "other" or "focused inbox" or "other inbox" or
+            "summary by copilot" or "copilot" or "summarize" or
+            "reply" or "reply all" or "forward" or "delete" or "move" or
+            "mark as read" or "mark as unread" or "categorize" or "flag" or
+            "new mail" or "search" or "filter" or "sort" or "select all")
+            return true;
+
+        if (lower.Contains("summary by copilot", StringComparison.Ordinal) ||
+            lower.Contains("focused inbox selected", StringComparison.Ordinal) ||
+            lower.Contains("focused inbox unselected", StringComparison.Ordinal) ||
+            lower.Contains("other inbox selected", StringComparison.Ordinal) ||
+            lower.Contains("other inbox unselected", StringComparison.Ordinal) ||
+            lower.Contains("reading pane", StringComparison.Ordinal) ||
+            lower.Contains("message list", StringComparison.Ordinal) ||
+            lower.Contains("navigation pane", StringComparison.Ordinal) ||
+            lower.Contains("draft with copilot", StringComparison.Ordinal) ||
+            lower.StartsWith("you don't often get email from", StringComparison.Ordinal) ||
+            lower.StartsWith("external sender", StringComparison.Ordinal))
+            return true;
+
+        if (lower.EndsWith(" selected", StringComparison.Ordinal) ||
+            lower.EndsWith(" unselected", StringComparison.Ordinal))
+            return true;
+
+        return false;
+    }
+
+    private static bool IsLikelyOutlookDateOrTime(string value)
+    {
+        var text = value.Trim().ToLowerInvariant();
+
+        if (text.Length > 80)
+            return false;
+
+        if (text.Contains(" am", StringComparison.Ordinal) ||
+            text.Contains(" pm", StringComparison.Ordinal) ||
+            text.EndsWith("am", StringComparison.Ordinal) ||
+            text.EndsWith("pm", StringComparison.Ordinal))
+            return true;
+
+        string[] dayPrefixes =
+        [
+            "monday", "tuesday", "wednesday", "thursday",
+            "friday", "saturday", "sunday", "today", "yesterday"
+        ];
+
+        return dayPrefixes.Any(day =>
+            text.Equals(day, StringComparison.Ordinal) ||
+            text.StartsWith(day + ",", StringComparison.Ordinal) ||
+            text.StartsWith(day + " ", StringComparison.Ordinal));
     }
 
     private static object? GetActiveComObject(string progId)
@@ -544,11 +818,17 @@ public sealed class CaptureService
         catch { }
     }
 
-    private static string DetailedBody(string title, string processName)
+    private static string DetailedBody(string title, string processName, string? outlookSender = null)
     {
         var p = processName.ToLowerInvariant();
 
-        if (p.Contains("outlook") || p == "olk") return "Outlook item viewed: " + title;
+        if (p.Contains("outlook") || p == "olk")
+        {
+            return string.IsNullOrWhiteSpace(outlookSender)
+                ? "Subject: " + title
+                : "From: " + outlookSender + Environment.NewLine + "Subject: " + title;
+        }
+
         if (p.Contains("teams")) return "Teams window viewed: " + title;
         if (p.Contains("chrome")) return "Chrome page viewed: " + title;
         if (p.Contains("msedge")) return "Edge page viewed: " + title;

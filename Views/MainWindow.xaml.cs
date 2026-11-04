@@ -949,6 +949,14 @@ public partial class MainWindow : Window
         // Detail pane is data-bound directly to TimelineList.SelectedItem.
     }
 
+    private void TimelineList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+        if (TimelineList.SelectedItem is not MemoryItem)
+            return;
+
+        ShowDetailsPane();
+    }
+
     private void RightSidebarToggle_Click(object sender, RoutedEventArgs e)
     {
         _rightSidebarVisible = !_rightSidebarVisible;

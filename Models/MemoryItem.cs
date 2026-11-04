@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.Json.Serialization;
 
 namespace MemoryLane.Windows;
 
@@ -28,6 +29,28 @@ public sealed class MemoryItem : INotifyPropertyChanged
     public string? SourceExecutable { get; set; }
     public SourceKind SourceKind { get; set; } = SourceKind.Note;
     public string? SourceUrl { get; set; }
+
+    [JsonIgnore]
+    public string TimelineSubtitle
+    {
+        get
+        {
+            if (!SourceApp.Contains("Outlook", StringComparison.OrdinalIgnoreCase) ||
+                string.IsNullOrWhiteSpace(Body))
+                return SourceApp;
+
+            var lineBreak = Body.IndexOfAny(new[] { '\r', '\n' });
+            var firstLine = (lineBreak >= 0 ? Body[..lineBreak] : Body).Trim();
+
+            if (!firstLine.StartsWith("From:", StringComparison.OrdinalIgnoreCase))
+                return SourceApp;
+
+            var sender = firstLine[5..].Trim();
+            return string.IsNullOrWhiteSpace(sender)
+                ? SourceApp
+                : sender + " · " + SourceApp;
+        }
+    }
 
     public bool IsFavorite
     {
