@@ -24,6 +24,8 @@ public partial class WhatsNewWindow : Window
         }
 
         VersionBadgeText.Text = AppVersion.FriendlyVersion.ToUpperInvariant();
+        ReleaseSubtitleText.Text = $"{AppVersion.FriendlyVersion} — latest release.";
+        ReleaseFooterText.Text = $"Memory Trail {AppVersion.FriendlyVersion}";
     }
 
     private void GotIt_Click(object sender, RoutedEventArgs e) => Close();

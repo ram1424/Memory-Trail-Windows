@@ -15,6 +15,10 @@ namespace MemoryLane.Windows;
 
 public partial class MainWindow : Window
 {
+    // Tutorial revision is intentionally independent from the app patch version.
+    // This prevents the six-page tutorial from replaying on every 1.0.x update.
+    private const string TutorialRevision = "official-v1";
+
     private readonly ICollectionView _view;
     private Forms.NotifyIcon? _trayIcon;
     private bool _quitting;
@@ -129,7 +133,7 @@ public partial class MainWindow : Window
             App.Preferences.HasCompletedOnboarding &&
             string.Equals(
                 App.Preferences.LastCompletedTutorialVersion,
-                AppVersion.ReleaseTag,
+                TutorialRevision,
                 StringComparison.OrdinalIgnoreCase);
 
         if (!tutorialIsCurrent)
@@ -1255,7 +1259,7 @@ public partial class MainWindow : Window
             return false;
 
         App.Preferences.HasCompletedOnboarding = true;
-        App.Preferences.LastCompletedTutorialVersion = AppVersion.ReleaseTag;
+        App.Preferences.LastCompletedTutorialVersion = TutorialRevision;
         App.Preferences.Save();
         return true;
     }

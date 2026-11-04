@@ -1,12 +1,6 @@
-# Memory Trail Version 1
+## Current release highlights
 
-## First Official Release
-
-Memory Trail Version 1 is the first official Windows release of Memory Trail — a privacy-first, local activity timeline designed to help you retrace your workday.
-
-## Highlights
-
-- Local-first activity capture and timeline storage
+- Privacy-first local activity capture and local timeline storage
 - Today timeline with Live Activity state
 - Ask Memory Trail local search
 - Browser, email, chat, file, document, app, and clipboard context when available
@@ -14,11 +8,14 @@ Memory Trail Version 1 is the first official Windows release of Memory Trail —
 - Privacy exclusions and independent capture controls
 - Two-second startup target with approved Memory Trail branding
 - Built-in Check for Updates and optional automatic daily checks
-- What's New experience for future releases
-- Redesigned privacy-focused Settings experience
-- Clear App Cache control that does not delete activity history
-- Restored six-page first-run tutorial for Version 1
+- What's New experience for each new app version
+- Six-page first-run tutorial for Version 1 users
 - White activity-count badges and summary cards for improved readability
+- Clear App Cache control that does not delete activity history
+
+## Versioning
+
+Production releases use semantic patch versioning beginning with **1.0.1**. Each push to `main` automatically advances the patch number.
 
 ## Privacy
 

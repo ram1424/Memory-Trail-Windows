@@ -1,8 +1,18 @@
 # Changelog
 
-## Version 1 — First Official Release
+## Version 1.0.1
 
-Memory Trail Version 1 is the first official Windows release.
+- Established semantic patch versioning for production releases.
+- Every future push to `main` automatically advances the patch version: `1.0.2`, `1.0.3`, and so on.
+- Restored the complete six-page first-run tutorial for users coming from development builds.
+- Kept tutorial completion independent from patch updates so the tutorial does not replay on every release.
+- Improved activity-count readability with white count badges, quick-filter pills, and summary cards.
+- Retained the organized repository layout and Version 1 update/check-for-updates experience.
+
+
+## Version 1.0.0 — First Official Release
+
+Memory Trail Version 1.0.0 was the first official Windows release.
 
 - Privacy-first, local activity capture and local timeline storage.
 - Today timeline with newest-first activity and Live Activity state.
@@ -21,4 +31,4 @@ Memory Trail Version 1 is the first official Windows release.
 
 ## Earlier development builds
 
-All earlier numbered builds were development iterations leading to **Version 1** and are superseded by the first official release.
+All earlier numbered builds were development iterations leading to **Version 1.0.0** and are superseded by the first official release.

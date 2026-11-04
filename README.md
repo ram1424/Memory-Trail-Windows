@@ -8,11 +8,11 @@
 
 Memory Trail is a privacy-first Windows activity timeline for retracing what you were doing across browsers, email, chat, files, documents, apps, and the clipboard. It turns useful local Windows app/window context into a searchable chronological history without requiring a cloud account or external data connector.
 
-**Current release: Memory Trail Version 1 — First Official Release**
+**Release line: Memory Trail 1.0.x** — semantic patch releases begin at **1.0.1**.
 
 ## Download
 
-[Download Memory Trail Version 1 for Windows](https://github.com/ram1424/Memory-Trail-Windows/releases/download/v1/Memory-Trail-Windows-Version-1-x64.zip)
+[Download the latest Memory Trail release](https://github.com/ram1424/Memory-Trail-Windows/releases/latest)
 
 Requires **Windows 10 or Windows 11 (x64)**. The release is self-contained and does not require a separate .NET installation.
 
@@ -167,13 +167,13 @@ dotnet publish .\MemoryTrail.Windows.csproj `
   -o .\publish
 ```
 
-**Version:** `1`
+**Source baseline:** `1.0.1`
 
 ## Release
 
 Only the current production release is retained on the GitHub Releases page.
 
-**Memory Trail Version 1** is the first official Windows release.
+**Memory Trail 1.0.1** begins the production semantic patch release line. Every push to `main` advances the patch version automatically.
 
 [macOS edition](https://github.com/ram1424/Memory-Trail)
 
