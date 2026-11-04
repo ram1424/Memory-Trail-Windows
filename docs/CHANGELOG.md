@@ -2,6 +2,22 @@
 
 A concise record of production changes. Each release is organized by area so updates are easy to scan.
 
+## Version 1.0.5
+
+### 🔒 Privacy
+- **Full in-app Privacy Policy** — added a dedicated, scrollable privacy-policy window accessible directly from Settings.
+- **Local-first disclosures** — documents what Memory Trail may capture, where data is stored, and what is never included in update-check requests.
+- **Update transparency** — explains GitHub release checks, ordinary network metadata, package downloads, digest verification, staging, installation, and relaunch behavior.
+- **User controls and retention** — documents pause/capture controls, exclusions, history deletion, Clear App Cache behavior, update preferences, and local data retention.
+- **Security boundaries** — clarifies that locally stored data is protected by the user's Windows account, device security, file permissions, backups, and disk encryption.
+- **Source transparency** — retains an explicit path to review Memory Trail's source implementation.
+
+### ✨ Experience
+- **Privacy actions grouped together** — Settings now presents **View Privacy Policy** and **Review Source Code** together inside the Privacy card.
+- **Readable policy layout** — added a polished Memory Trail-branded policy viewer with clear sections, effective date, and local-first summary.
+
+---
+
 ## Version 1.0.4
 
 ### 🔄 Updates

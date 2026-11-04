@@ -1,0 +1,160 @@
+<Window x:Class="MemoryLane.Windows.PrivacyPolicyWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Memory Trail — Privacy Policy"
+        Width="920" Height="760"
+        MinWidth="760" MinHeight="620"
+        WindowStartupLocation="CenterOwner"
+        Background="#E8EFF8"
+        FontFamily="Segoe UI Variable Text"
+        UseLayoutRounding="True"
+        SnapsToDevicePixels="True"
+        TextOptions.TextFormattingMode="Display"
+        TextOptions.TextRenderingMode="ClearType">
+  <Grid Margin="18">
+    <Border Background="#F8FAFD" BorderBrush="#CBD7E5" BorderThickness="1"
+            CornerRadius="24" Padding="0">
+      <Border.Effect>
+        <DropShadowEffect BlurRadius="28" ShadowDepth="7" Opacity="0.16" Color="#29415F"/>
+      </Border.Effect>
+
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Border Background="#EEF4FB" BorderBrush="#D8E2ED" BorderThickness="0,0,0,1"
+                CornerRadius="24,24,0,0" Padding="22,18">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Width="52" Height="52" CornerRadius="15" Background="#FFFFFF"
+                    BorderBrush="#D8E2EE" BorderThickness="1">
+              <Image x:Name="BrandLogo" Width="47" Height="47" Stretch="Uniform"/>
+            </Border>
+
+            <StackPanel Grid.Column="1" Margin="14,0,0,0" VerticalAlignment="Center">
+              <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Privacy Policy" FontSize="24" FontWeight="Bold" Foreground="#15213A"/>
+                <Border Background="#E2F2E8" BorderBrush="#C9E7D4" BorderThickness="1"
+                        CornerRadius="10" Padding="8,3" Margin="10,2,0,0">
+                  <TextBlock Text="LOCAL-FIRST" FontSize="9" FontWeight="Bold" Foreground="#2F7A52"/>
+                </Border>
+              </StackPanel>
+              <TextBlock Text="Effective November 3, 2026 • Last updated November 3, 2026"
+                         FontSize="11.5" Foreground="#66778F" Margin="0,4,0,0"/>
+            </StackPanel>
+
+            <Button Grid.Column="2" Content="Close" Width="82" Height="34"
+                    Click="Close_Click" VerticalAlignment="Center"/>
+          </Grid>
+        </Border>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="28,22">
+          <StackPanel MaxWidth="790">
+            <Border Background="#E8F3FF" BorderBrush="#C9DDF6" BorderThickness="1"
+                    CornerRadius="16" Padding="16" Margin="0,0,0,20">
+              <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="38"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" FontSize="20"
+                           Foreground="#176DFF" VerticalAlignment="Top"/>
+                <StackPanel Grid.Column="1">
+                  <TextBlock Text="Your captured activity belongs on your computer."
+                             FontSize="15" FontWeight="SemiBold" Foreground="#1A2A44"/>
+                  <TextBlock Text="Memory Trail processes and stores its core activity history locally and does not send that history to a Memory Trail cloud service."
+                             FontSize="12.5" Foreground="#40506A" TextWrapping="Wrap" Margin="0,4,0,0"/>
+                </StackPanel>
+              </Grid>
+            </Border>
+
+            <TextBlock Text="Memory Trail is designed as a privacy-first, locally run Windows application. Its core purpose is to help you review your recent computer activity without sending your captured activity history to a remote service."
+                       FontSize="13" Foreground="#40506A" TextWrapping="Wrap" LineHeight="20" Margin="0,0,0,20"/>
+
+            <TextBlock Text="1. What Memory Trail captures" Style="{StaticResource PolicyHeadingStyle}"/>
+            <TextBlock Text="Depending on the features you enable and the information Windows makes locally available, Memory Trail may capture applications and windows you use; window titles and app context; process names and executable paths; local file or document names and paths; email or conversation subject/title information visible locally in supported apps; clipboard text when clipboard capture is enabled; memories, favorites, notes, and other information you intentionally add; and local timestamps/categories used to organize the timeline."
+                       Style="{StaticResource PolicyBodyStyle}"/>
+            <TextBlock Text="Memory Trail does not intentionally capture passwords or credentials. Sensitive applications can be excluded from capture, and common credential-related processes are excluded by default."
+                       Style="{StaticResource PolicyBodyStyle}"/>
+
+            <TextBlock Text="2. Where captured data is processed and stored" Style="{StaticResource PolicyHeadingStyle}"/>
+            <TextBlock Text="Captured activity is processed on your Windows PC and stored locally on that computer. Memory Trail does not upload, sync, or transmit your captured timeline history, clipboard history, window titles, document paths, conversation titles, or manually added memories to Memory Trail servers. A Memory Trail cloud account is not required."
+                       Style="{StaticResource PolicyBodyStyle}"/>
+
+            <TextBlock Text="3. Cloud services, analytics, advertising, and external connectors" Style="{StaticResource PolicyHeadingStyle}"/>
+            <TextBlock Text="Memory Trail does not use cloud sync for captured activity, advertising SDKs, behavioral advertising, third-party analytics services, or external data connectors for its core capture and storage workflow. Memory Trail does not sell your captured activity data."
+                       Style="{StaticResource PolicyBodyStyle}"/>
+
+            <TextBlock Text="4. Update checks" Style="{StaticResource PolicyHeadingStyle}"/>
+            <TextBlock Text="If automatic update checks are enabled, Memory Trail contacts GitHub when the app launches to retrieve public release metadata. Manual checks are also available. GitHub may receive ordinary network information such as your IP address, standard connection metadata, and a Memory Trail user-agent/version string."
+                       Style="{StaticResource PolicyBodyStyle}"/>
+            <TextBlock Text="Update requests do not include your timeline entries, clipboard contents, window titles, document paths, conversation titles, or manually added memories. When you choose to update, Memory Trail may download the published Windows package from GitHub, verify its package digest when available, stage it locally, install it, and relaunch the app."
+                       Style="{StaticResource PolicyBodyStyle}"/>
+
+            <TextBlock Text="5. Your controls" Style="{StaticResource PolicyHeadingStyle}"/>
+            <TextBlock Text="You can pause all capture; enable or disable app/window activity capture; enable or disable clipboard capture; exclude Windows processes; clear activity history; clear the app cache and reset preferences without deleting activity history; enable or disable automatic update checks; and skip or postpone an available update."
+                       Style="{StaticResource PolicyBodyStyle}"/>
+
+            <TextBlock Text="6. Data retention" Style="{StaticResource PolicyHeadingStyle}"/>
+            <TextBlock Text="Memory Trail keeps locally captured activity until you remove it, clear activity history, remove the local application data, or uninstall/delete the application's local data. Clear App Cache resets cached capture state and preferences but does not delete activity history."
+                       Style="{StaticResource PolicyBodyStyle}"/>
+
+            <TextBlock Text="7. Security" Style="{StaticResource PolicyHeadingStyle}"/>
+            <TextBlock Text="Memory Trail is designed to keep captured activity local to your PC. Local data is protected by the security of your Windows account, device, file-system permissions, backups, disk encryption, and other software that can access your user profile. Anyone or any program with access to your Windows account or files may also be able to access Memory Trail data."
+                       Style="{StaticResource PolicyBodyStyle}"/>
+
+            <TextBlock Text="8. Windows, third-party apps, and external services" Style="{StaticResource PolicyHeadingStyle}"/>
+            <TextBlock Text="Memory Trail reads information made locally available by Windows and supported applications. It does not control the privacy practices of Windows, GitHub, Microsoft Outlook, Microsoft Teams, browsers, or other third-party products. Those products may independently collect or process information under their own policies."
+                       Style="{StaticResource PolicyBodyStyle}"/>
+
+            <TextBlock Text="9. Children's privacy" Style="{StaticResource PolicyHeadingStyle}"/>
+            <TextBlock Text="Memory Trail is a general-purpose productivity application and is not designed specifically for children. Memory Trail does not operate a remote account system that knowingly collects children's captured activity."
+                       Style="{StaticResource PolicyBodyStyle}"/>
+
+            <TextBlock Text="10. Changes to this policy" Style="{StaticResource PolicyHeadingStyle}"/>
+            <TextBlock Text="This policy may be updated when Memory Trail's features, storage behavior, update system, or privacy controls change. Material privacy-related changes will be described in the Memory Trail changelog and, when appropriate, surfaced in the app."
+                       Style="{StaticResource PolicyBodyStyle}"/>
+
+            <TextBlock Text="11. Source-code transparency" Style="{StaticResource PolicyHeadingStyle}"/>
+            <TextBlock Text="Memory Trail's source code is available for review so users and administrators can inspect how local capture, storage, privacy controls, and update checks are implemented."
+                       Style="{StaticResource PolicyBodyStyle}"/>
+
+            <TextBlock Text="12. Contact" Style="{StaticResource PolicyHeadingStyle}"/>
+            <TextBlock Text="For privacy questions, feedback, or requests related to Memory Trail, use the contact methods published with the Memory Trail project or its GitHub repository. Do not include passwords, credentials, private timeline content, clipboard contents, or other sensitive personal information in a public GitHub issue."
+                       Style="{StaticResource PolicyBodyStyle}" Margin="0,0,0,8"/>
+          </StackPanel>
+        </ScrollViewer>
+
+        <Border Grid.Row="2" Background="#F1F5FA" BorderBrush="#D8E2ED" BorderThickness="0,1,0,0"
+                CornerRadius="0,0,24,24" Padding="22,13">
+          <Grid>
+            <TextBlock Text="Privacy-first • Local capture • Local storage"
+                       FontSize="10.5" Foreground="#66778F" VerticalAlignment="Center"/>
+            <Button Content="Close" Width="92" Height="34" HorizontalAlignment="Right" Click="Close_Click"/>
+          </Grid>
+        </Border>
+      </Grid>
+    </Border>
+  </Grid>
+
+  <Window.Resources>
+    <Style x:Key="PolicyHeadingStyle" TargetType="TextBlock">
+      <Setter Property="FontSize" Value="16"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="Foreground" Value="#18263E"/>
+      <Setter Property="Margin" Value="0,10,0,7"/>
+    </Style>
+    <Style x:Key="PolicyBodyStyle" TargetType="TextBlock">
+      <Setter Property="FontSize" Value="12.5"/>
+      <Setter Property="Foreground" Value="#4D5E76"/>
+      <Setter Property="TextWrapping" Value="Wrap"/>
+      <Setter Property="LineHeight" Value="19"/>
+      <Setter Property="Margin" Value="0,0,0,10"/>
+    </Style>
+  </Window.Resources>
+</Window>

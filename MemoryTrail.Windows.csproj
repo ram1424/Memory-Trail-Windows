@@ -11,11 +11,11 @@
     <RootNamespace>MemoryLane.Windows</RootNamespace>
     <ApplicationManifest>Config\app.manifest</ApplicationManifest>
     <ApplicationIcon>Assets\MemoryTrailApp.ico</ApplicationIcon>
-    <Version>1.0.4</Version>
-    <AssemblyVersion>1.0.4.0</AssemblyVersion>
-    <FileVersion>1.0.4.0</FileVersion>
-    <InformationalVersion>1.0.4</InformationalVersion>
-    <DisplayVersion>1.0.4</DisplayVersion>
+    <Version>1.0.5</Version>
+    <AssemblyVersion>1.0.5.0</AssemblyVersion>
+    <FileVersion>1.0.5.0</FileVersion>
+    <InformationalVersion>1.0.5</InformationalVersion>
+    <DisplayVersion>1.0.5</DisplayVersion>
     <PublishSingleFile>true</PublishSingleFile>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
@@ -49,6 +49,14 @@
     </Page>
     <Compile Update="Views\ClearCacheWindow.xaml.cs">
       <DependentUpon>ClearCacheWindow.xaml</DependentUpon>
+    </Compile>
+
+    <Page Update="Views\PrivacyPolicyWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Update="Views\PrivacyPolicyWindow.xaml.cs">
+      <DependentUpon>PrivacyPolicyWindow.xaml</DependentUpon>
     </Compile>
 
     <Page Update="Views\MainWindow.xaml">

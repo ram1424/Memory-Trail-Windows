@@ -1136,6 +1136,12 @@ public partial class MainWindow : Window
         App.Preferences.Save();
     }
 
+    private void OpenPrivacyPolicy_Click(object sender, RoutedEventArgs e)
+    {
+        var policy = new PrivacyPolicyWindow { Owner = this };
+        policy.ShowDialog();
+    }
+
     private void OpenGitHub_Click(object sender, RoutedEventArgs e)
     {
         try

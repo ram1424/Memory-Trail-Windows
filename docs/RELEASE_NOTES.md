@@ -1,4 +1,12 @@
-## Version 1.0.4 highlights
+## Version 1.0.5 highlights
+
+- Full in-app Memory Trail Privacy Policy
+- Clear disclosure of locally captured data and local storage
+- GitHub update-check and network-metadata transparency
+- User controls, retention, security boundaries, and source-code transparency
+- Privacy Policy and Source Code actions grouped in Settings
+
+## Previous 1.0.4 highlights
 
 - Automatic app restart after an update finishes downloading
 - Silent staged installation followed by automatic relaunch
