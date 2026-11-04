@@ -7,6 +7,7 @@ on:
       - "Packaging/MSIX/**"
       - "Tools/Packaging/**"
       - "Services/AppVersion.cs"
+      - "Views/MainWindow.xaml"
       - "Views/MainWindow.xaml.cs"
       - "App.xaml.cs"
       - "Services/UpdateService.cs"
@@ -35,7 +36,10 @@ jobs:
         run: |
           [xml]$project = Get-Content "MemoryTrail.Windows.csproj"
           $displayVersion = [string]$project.Project.PropertyGroup.DisplayVersion
-          $msixVersion = "$displayVersion.0"
+          $parsedVersion = [version]$displayVersion
+          $buildPart = if ($parsedVersion.Build -ge 0) { $parsedVersion.Build } else { 0 }
+          $revisionPart = if ($parsedVersion.Revision -ge 0) { $parsedVersion.Revision } else { 0 }
+          $msixVersion = "$($parsedVersion.Major).$($parsedVersion.Minor).$buildPart.$revisionPart"
 
           $identity = Get-Content "Packaging/MSIX/StoreIdentity.json" -Raw | ConvertFrom-Json
           $packageName = [string]$identity.PackageIdentityName

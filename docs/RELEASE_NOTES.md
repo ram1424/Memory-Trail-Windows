@@ -1,3 +1,10 @@
+## Version 1.1 highlights
+
+- Fixed Insights Top Items clipping/overlap into Activity Patterns.
+- Rebuilt the summary-card layout with auto-sized rows and stable spacing.
+- Improved Insights behavior at higher Windows DPI and text scaling.
+- Release version remains 1.1.
+
 ## Version 1.0.5 highlights
 
 - Full in-app Memory Trail Privacy Policy

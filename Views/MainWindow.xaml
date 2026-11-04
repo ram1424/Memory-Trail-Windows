@@ -774,33 +774,73 @@
             <TextBlock Text="Insights" FontSize="28" FontWeight="Bold" Foreground="#1A2438"/>
             <TextBlock Text="A quick view of how your day is distributed." FontSize="13" Foreground="#66778F" Margin="0,6,0,0"/>
           </StackPanel>
-          <UniformGrid Columns="2" Margin="0,0,0,18">
-            <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="18" Padding="16" Margin="0,0,12,12">
-              <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="All" Width="42" Height="42"/>
-                <StackPanel Grid.Column="1" VerticalAlignment="Center"><TextBlock x:Name="InsightsTotalActivitiesText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Total Activities" Foreground="#66778F" FontSize="12"/></StackPanel>
+          <Grid Margin="0,0,0,24">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="12"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="12"/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Grid.Column="0"
+                    Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1"
+                    CornerRadius="18" Padding="16" MinHeight="78">
+              <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <local:CategoryIcon Category="All" Width="42" Height="42" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                  <TextBlock x:Name="InsightsTotalActivitiesText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#1A2438"/>
+                  <TextBlock Text="Total Activities" Foreground="#66778F" FontSize="12"/>
+                </StackPanel>
               </Grid>
             </Border>
-            <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="18" Padding="16" Margin="0,0,0,12">
-              <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="Productivity" Width="42" Height="42"/>
-                <StackPanel Grid.Column="1" VerticalAlignment="Center"><TextBlock x:Name="InsightsAppsUsedText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Apps Used" Foreground="#66778F" FontSize="12"/></StackPanel>
+
+            <Border Grid.Row="0" Grid.Column="2"
+                    Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1"
+                    CornerRadius="18" Padding="16" MinHeight="78">
+              <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <local:CategoryIcon Category="Productivity" Width="42" Height="42" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                  <TextBlock x:Name="InsightsAppsUsedText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#1A2438"/>
+                  <TextBlock Text="Apps Used" Foreground="#66778F" FontSize="12"/>
+                </StackPanel>
               </Grid>
             </Border>
-            <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="18" Padding="16" Margin="0,0,12,0">
-              <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="Favorites" Width="42" Height="42"/>
-                <StackPanel Grid.Column="1" VerticalAlignment="Center"><TextBlock x:Name="InsightsFavoritesText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Favorites" Foreground="#66778F" FontSize="12"/></StackPanel>
+
+            <Border Grid.Row="2" Grid.Column="0"
+                    Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1"
+                    CornerRadius="18" Padding="16" MinHeight="78">
+              <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <local:CategoryIcon Category="Favorites" Width="42" Height="42" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                  <TextBlock x:Name="InsightsFavoritesText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#1A2438"/>
+                  <TextBlock Text="Favorites" Foreground="#66778F" FontSize="12"/>
+                </StackPanel>
               </Grid>
             </Border>
-            <Border Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="18" Padding="16">
-              <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="Clipboard" Width="42" Height="42"/>
-                <StackPanel Grid.Column="1" VerticalAlignment="Center"><TextBlock x:Name="InsightsClipboardText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#1A2438"/><TextBlock Text="Clipboard Items" Foreground="#66778F" FontSize="12"/></StackPanel>
+
+            <Border Grid.Row="2" Grid.Column="2"
+                    Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1"
+                    CornerRadius="18" Padding="16" MinHeight="78">
+              <Grid>
+                <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                <local:CategoryIcon Category="Clipboard" Width="42" Height="42" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                  <TextBlock x:Name="InsightsClipboardText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#1A2438"/>
+                  <TextBlock Text="Clipboard Items" Foreground="#66778F" FontSize="12"/>
+                </StackPanel>
               </Grid>
             </Border>
-          </UniformGrid>
-          <Border Background="#E6EDF5" BorderBrush="#C5D3E1" BorderThickness="1" CornerRadius="16" Padding="18">
+          </Grid>
+
+          <Border Background="#E6EDF5" BorderBrush="#C5D3E1" BorderThickness="1"
+                  CornerRadius="16" Padding="18" Margin="0,0,0,4">
             <StackPanel>
               <TextBlock Text="Activity by Category" FontSize="16" FontWeight="SemiBold" Foreground="#1A2438" Margin="0,0,0,12"/>
               <TextBlock x:Name="InsightsCategoryText" Text="Open a few apps to build today's category distribution." Foreground="#40506A" TextWrapping="Wrap"/>

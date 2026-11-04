@@ -2,6 +2,18 @@
 
 A concise record of production changes. Each release is organized by area so updates are easy to scan.
 
+## Version 1.1
+
+### 🛠 Fixes
+- **Insights section overlap** — replaced the compressed Top Items summary layout with explicit auto-sized rows and columns so it cannot clip into the Activity Patterns area.
+- **High-DPI spacing** — added stable row gaps, minimum card heights, and extra vertical separation for Windows scaling and larger text metrics.
+
+### 🎨 Quality
+- **Cleaner Insights layout** — summary cards now preserve consistent spacing and alignment across window sizes and display scaling.
+
+---
+
+
 ## Version 1.0.5
 
 ### 📦 Distribution
