@@ -2,9 +2,19 @@ using System.Windows;
 
 namespace MemoryLane.Windows;
 
+public enum UpdatePromptChoice
+{
+    None,
+    Update,
+    RemindLater,
+    SkipVersion
+}
+
 public partial class UpdateAvailableWindow : Window
 {
     private readonly UpdateCheckResult _result;
+
+    public UpdatePromptChoice Choice { get; private set; }
 
     public UpdateAvailableWindow(UpdateCheckResult result)
     {
@@ -25,27 +35,31 @@ public partial class UpdateAvailableWindow : Window
             App.LogNonFatal("UpdateAvailableWindow branding", ex);
         }
 
-        ReleaseNameText.Text = result.ReleaseName;
+        ReleaseNameText.Text = result.IsSameVersionRefresh
+            ? $"{result.ReleaseName} has a newer build"
+            : result.ReleaseName;
+
         CurrentVersionText.Text = AppVersion.FriendlyVersion;
         LatestVersionText.Text = FriendlyReleaseName(result.ReleaseTag);
         ReleaseNotesText.Text = CleanReleaseNotes(result.ReleaseNotes);
     }
 
-    private void Later_Click(object sender, RoutedEventArgs e) => Close();
-
-    private void Download_Click(object sender, RoutedEventArgs e)
+    private void Update_Click(object sender, RoutedEventArgs e)
     {
-        try
-        {
-            UpdateService.OpenDownload(_result);
-            Close();
-        }
-        catch (Exception ex)
-        {
-            App.LogNonFatal("Open update download", ex);
-            MessageBox.Show("Windows could not open the update download in your browser.", "Memory Trail Update",
-                MessageBoxButton.OK, MessageBoxImage.Information);
-        }
+        Choice = UpdatePromptChoice.Update;
+        Close();
+    }
+
+    private void RemindLater_Click(object sender, RoutedEventArgs e)
+    {
+        Choice = UpdatePromptChoice.RemindLater;
+        Close();
+    }
+
+    private void Skip_Click(object sender, RoutedEventArgs e)
+    {
+        Choice = UpdatePromptChoice.SkipVersion;
+        Close();
     }
 
     private static string FriendlyReleaseName(string tag)

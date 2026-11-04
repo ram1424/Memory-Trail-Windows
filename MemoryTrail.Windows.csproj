@@ -29,6 +29,10 @@
     <Resource Include="Assets\OnboardingIcon.png" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(BuildCommit)' != ''">
+    <AssemblyMetadata Include="BuildCommit" Value="$(BuildCommit)" />
+  </ItemGroup>
+
   <!-- Keep WPF view/code-behind relationships explicit after organizing source into folders. -->
   <ItemGroup>
     <Page Update="Views\AddMemoryWindow.xaml">

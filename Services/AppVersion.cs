@@ -13,6 +13,7 @@ public static class AppVersion
     public static string NormalizedVersion { get; } = Normalize(InformationalVersion);
     public static string ReleaseTag => $"v{NormalizedVersion}";
     public static string FriendlyVersion { get; } = FormatFriendly(NormalizedVersion);
+    public static string BuildCommit { get; } = ResolveBuildCommit();
 
     public static int CompareReleaseTags(string left, string right)
     {
@@ -26,6 +27,17 @@ public static class AppVersion
         result = a.Patch.CompareTo(b.Patch);
         if (result != 0) return result;
         return a.Build.CompareTo(b.Build);
+    }
+
+    private static string ResolveBuildCommit()
+    {
+        var metadata = Assembly.GetEntryAssembly()?
+            .GetCustomAttributes<AssemblyMetadataAttribute>();
+
+        return metadata?
+            .FirstOrDefault(item =>
+                string.Equals(item.Key, "BuildCommit", StringComparison.OrdinalIgnoreCase))
+            ?.Value ?? "";
     }
 
     private static string ResolveInformationalVersion()

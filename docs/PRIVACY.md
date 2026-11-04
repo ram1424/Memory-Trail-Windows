@@ -203,6 +203,12 @@ Enter one Windows process name per line. Memory Trail checks the foreground proc
 
 Startup is optional and can be enabled or disabled in Settings.
 
+### Update decisions and staged packages
+
+When an update is available, Memory Trail lets the user **Update**, **Remind Me in 24 Hours**, or **Skip This Version**. These choices are stored only in the local preferences file.
+
+Choosing **Update** downloads the public GitHub release ZIP to `%LOCALAPPDATA%\Memory Trail\Updates`, verifies its SHA-256 digest when GitHub provides one, and stages the extracted files locally. Memory Trail remains usable during the download. The staged files are copied into the existing installation folder only after the running Memory Trail process exits.
+
 ### Automatic update checks
 
 **Settings → Updates → Check for updates on each launch** controls the automatic GitHub release check performed when Memory Trail starts. Manual checks are available from Settings and the Memory Trail system-tray menu.

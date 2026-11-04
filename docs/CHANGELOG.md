@@ -10,6 +10,9 @@
 - Retained the organized repository layout and Version 1 update/check-for-updates experience.
 - Checks for updates on each app launch when automatic update checks are enabled, replacing the previous 24-hour throttle.
 - Selected Today-view filter counts now switch to white for stronger contrast on the blue active tab.
+- Reworked launch-time updates with an **Update / Remind Me in 24 Hours / Skip This Version** prompt.
+- Added background ZIP download, GitHub SHA-256 verification, local staging, and silent install after Memory Trail exits.
+- Added internal build-commit identity so a refreshed 1.0.1 release can be detected even when the visible semantic version is unchanged.
 
 
 ## Version 1.0.0 — First Official Release

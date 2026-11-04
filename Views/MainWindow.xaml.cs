@@ -1163,8 +1163,6 @@ public partial class MainWindow : Window
         if (!App.Preferences.AutomaticUpdateChecks)
             return;
 
-        // Automatic update checks run once on every application launch.
-        // Manual checks remain available from Settings and the tray menu.
         await CheckForUpdatesAsync(manual: false);
     }
 
@@ -1213,9 +1211,60 @@ public partial class MainWindow : Window
                 return;
             }
 
+            if (!manual && ShouldDeferUpdatePrompt(result))
+                return;
+
+            if (IsPendingUpdate(result))
+            {
+                UpdateStatusText.Text =
+                    $"{result.ReleaseName} is downloaded and will install when Memory Trail exits.";
+
+                if (manual)
+                {
+                    MessageBox.Show(
+                        "This update is already downloaded. It will install silently after Memory Trail exits.",
+                        "Memory Trail Update Ready",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                }
+
+                return;
+            }
+
             UpdateStatusText.Text = $"{result.ReleaseName} is available.";
+
             var prompt = new UpdateAvailableWindow(result) { Owner = this };
             prompt.ShowDialog();
+
+            var choice = prompt.Choice == UpdatePromptChoice.None
+                ? UpdatePromptChoice.RemindLater
+                : prompt.Choice;
+
+            switch (choice)
+            {
+                case UpdatePromptChoice.Update:
+                    App.Preferences.UpdateReminderUntilUtc = null;
+                    App.Preferences.SkippedUpdateVersion = "";
+                    App.Preferences.Save();
+                    _ = StartBackgroundUpdateAsync(result);
+                    break;
+
+                case UpdatePromptChoice.SkipVersion:
+                    App.Preferences.SkippedUpdateVersion = result.ReleaseTag;
+                    App.Preferences.UpdateReminderUntilUtc = null;
+                    App.Preferences.Save();
+                    UpdateStatusText.Text =
+                        $"{result.ReleaseName} will be skipped on automatic checks.";
+                    break;
+
+                default:
+                    App.Preferences.UpdateReminderUntilUtc =
+                        DateTimeOffset.UtcNow.AddHours(24);
+                    App.Preferences.Save();
+                    UpdateStatusText.Text =
+                        "Update reminder postponed for 24 hours.";
+                    break;
+            }
         }
         catch (Exception ex)
         {
@@ -1227,6 +1276,104 @@ public partial class MainWindow : Window
                 MessageBox.Show(
                     "Memory Trail could not complete the update check. You can still open the Releases page from GitHub.",
                     "Memory Trail Updates",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+            }
+        }
+    }
+
+    private bool ShouldDeferUpdatePrompt(UpdateCheckResult result)
+    {
+        if (string.Equals(
+                App.Preferences.SkippedUpdateVersion,
+                result.ReleaseTag,
+                StringComparison.OrdinalIgnoreCase))
+        {
+            UpdateStatusText.Text =
+                $"{result.ReleaseName} is available but this version is skipped.";
+            return true;
+        }
+
+        if (App.Preferences.UpdateReminderUntilUtc is DateTimeOffset reminder &&
+            reminder > DateTimeOffset.UtcNow)
+        {
+            UpdateStatusText.Text =
+                $"Update reminder scheduled for {reminder.ToLocalTime():MMM d, h:mm tt}.";
+            return true;
+        }
+
+        if (App.Preferences.UpdateReminderUntilUtc is not null)
+        {
+            App.Preferences.UpdateReminderUntilUtc = null;
+            App.Preferences.Save();
+        }
+
+        return false;
+    }
+
+    private static bool IsPendingUpdate(UpdateCheckResult result)
+        => !string.IsNullOrWhiteSpace(App.Preferences.PendingUpdateDirectory) &&
+           Directory.Exists(App.Preferences.PendingUpdateDirectory) &&
+           string.Equals(
+               App.Preferences.PendingUpdateVersion,
+               result.ReleaseTag,
+               StringComparison.OrdinalIgnoreCase) &&
+           (
+               string.IsNullOrWhiteSpace(result.ReleaseCommitSha) ||
+               string.Equals(
+                   App.Preferences.PendingUpdateReleaseCommit,
+                   result.ReleaseCommitSha,
+                   StringComparison.OrdinalIgnoreCase)
+           );
+
+    private async Task StartBackgroundUpdateAsync(UpdateCheckResult result)
+    {
+        try
+        {
+            UpdateStatusText.Text =
+                $"Downloading {result.ReleaseName} in the background...";
+
+            _trayIcon?.ShowBalloonTip(
+                4000,
+                "Memory Trail Update",
+                "Downloading the update in the background. You can keep using Memory Trail.",
+                Forms.ToolTipIcon.Info);
+
+            var staged = await UpdateService.StageUpdateAsync(result);
+
+            App.Preferences.PendingUpdateVersion = staged.ReleaseTag;
+            App.Preferences.PendingUpdateReleaseCommit = staged.ReleaseCommitSha;
+            App.Preferences.PendingUpdateDirectory = staged.PayloadDirectory;
+            App.Preferences.Save();
+
+            UpdateStatusText.Text =
+                "Update ready. It will install silently when Memory Trail exits.";
+
+            _trayIcon?.ShowBalloonTip(
+                6000,
+                "Memory Trail Update Ready",
+                "The update is downloaded and verified. It will install silently after Memory Trail exits.",
+                Forms.ToolTipIcon.Info);
+        }
+        catch (Exception ex)
+        {
+            App.LogNonFatal("Background update", ex);
+            UpdateStatusText.Text =
+                "The update could not be staged automatically.";
+
+            if (_trayIcon is not null)
+            {
+                _trayIcon.ShowBalloonTip(
+                    7000,
+                    "Memory Trail Update",
+                    "The silent update could not be prepared. Use Check for Updates in Settings to try again.",
+                    Forms.ToolTipIcon.Warning);
+            }
+            else
+            {
+                MessageBox.Show(
+                    "The update could not be staged automatically. You can use Check for Updates in Settings to try again.",
+                    "Memory Trail Update",
                     MessageBoxButton.OK,
                     MessageBoxImage.Information);
             }

@@ -21,6 +21,11 @@ public sealed class PreferencesService
     public bool StartWithWindows { get; set; }
     public bool AutomaticUpdateChecks { get; set; } = true;
     public DateTimeOffset? LastUpdateCheckUtc { get; set; }
+    public DateTimeOffset? UpdateReminderUntilUtc { get; set; }
+    public string SkippedUpdateVersion { get; set; } = "";
+    public string PendingUpdateVersion { get; set; } = "";
+    public string PendingUpdateReleaseCommit { get; set; } = "";
+    public string PendingUpdateDirectory { get; set; } = "";
     public string LastSeenVersion { get; set; } = "";
 
     public HashSet<string> ExcludedProcesses { get; set; } = new(StringComparer.OrdinalIgnoreCase)
@@ -57,6 +62,11 @@ public sealed class PreferencesService
         CaptureAppActivity = true;
         CaptureClipboard = true;
         AutomaticUpdateChecks = true;
+        UpdateReminderUntilUtc = null;
+        SkippedUpdateVersion = "";
+        PendingUpdateVersion = "";
+        PendingUpdateReleaseCommit = "";
+        PendingUpdateDirectory = "";
         StartWithWindows = false;
         SetStartWithWindows(false);
         ExcludedProcesses = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
@@ -86,6 +96,11 @@ public sealed class PreferencesService
             StartWithWindows = loaded.StartWithWindows;
             AutomaticUpdateChecks = loaded.AutomaticUpdateChecks;
             LastUpdateCheckUtc = loaded.LastUpdateCheckUtc;
+            UpdateReminderUntilUtc = loaded.UpdateReminderUntilUtc;
+            SkippedUpdateVersion = loaded.SkippedUpdateVersion ?? "";
+            PendingUpdateVersion = loaded.PendingUpdateVersion ?? "";
+            PendingUpdateReleaseCommit = loaded.PendingUpdateReleaseCommit ?? "";
+            PendingUpdateDirectory = loaded.PendingUpdateDirectory ?? "";
             LastSeenVersion = loaded.LastSeenVersion ?? "";
             ExcludedProcesses = new HashSet<string>(
                 loaded.ExcludedProcesses ?? [],

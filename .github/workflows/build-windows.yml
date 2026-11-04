@@ -123,7 +123,8 @@ jobs:
             -p:Version=$env:DISPLAY_VERSION `
             -p:AssemblyVersion=$env:ASSEMBLY_VERSION `
             -p:FileVersion=$env:ASSEMBLY_VERSION `
-            -p:InformationalVersion=$env:DISPLAY_VERSION
+            -p:InformationalVersion=$env:DISPLAY_VERSION `
+            -p:BuildCommit=$env:GITHUB_SHA
 
       - name: Publish self-contained Windows x64 app
         shell: pwsh
@@ -137,6 +138,7 @@ jobs:
             -p:AssemblyVersion=$env:ASSEMBLY_VERSION `
             -p:FileVersion=$env:ASSEMBLY_VERSION `
             -p:InformationalVersion=$env:DISPLAY_VERSION `
+            -p:BuildCommit=$env:GITHUB_SHA `
             -p:PublishSingleFile=true `
             -p:IncludeNativeLibrariesForSelfExtract=true `
             -p:EnableCompressionInSingleFile=true `

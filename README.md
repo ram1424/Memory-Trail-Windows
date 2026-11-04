@@ -32,7 +32,8 @@ Requires **Windows 10 or Windows 11 (x64)**. The release is self-contained and d
 - **App/process exclusions** so selected software is not recorded
 - **Pause capture** and independent App Activity / Clipboard controls
 - **System tray operation** and optional **Start with Windows**
-- **Built-in update checks** with manual Check for Updates and automatic checks on each app launch
+- **Built-in update checks** on each launch with **Update / Remind Me in 24 Hours / Skip This Version**
+- **Background update staging** downloads and verifies the release while Memory Trail stays usable, then installs it silently after the app exits
 - **What's New** changelog shown after upgrading
 - **Local JSON storage** under the signed-in Windows user profile
 - **Privacy-focused onboarding and Settings controls**

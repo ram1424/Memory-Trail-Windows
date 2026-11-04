@@ -56,6 +56,8 @@ public partial class App : Application
             splash.SetStatus("Restoring your timeline…");
             await Task.Run(() => Store.Load());
 
+            UpdateService.ReconcilePendingUpdate(Preferences);
+
             splash.SetStatus("Preparing your workspace…");
             await Dispatcher.Yield(DispatcherPriority.Background);
 
@@ -125,6 +127,16 @@ public partial class App : Application
         Capture.Stop();
         Preferences.Save();
         Store.Save();
+
+        try
+        {
+            UpdateService.SchedulePendingInstall(Preferences);
+        }
+        catch (Exception ex)
+        {
+            LogNonFatal("Schedule pending update", ex);
+        }
+
         base.OnExit(e);
     }
 }
