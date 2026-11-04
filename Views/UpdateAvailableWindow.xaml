@@ -93,13 +93,27 @@
       </Border>
 
       <Border Grid.Row="3" Background="#E9F4FF" BorderBrush="#C8DDF5"
-              BorderThickness="1" CornerRadius="13" Padding="12" Margin="0,14,0,0">
-        <StackPanel Orientation="Horizontal">
-          <TextBlock Text="&#xE895;" FontFamily="Segoe MDL2 Assets" FontSize="15"
-                     Foreground="#176DFF" Margin="0,0,9,0" VerticalAlignment="Top"/>
-          <TextBlock Text="Update downloads quietly in the background. Memory Trail stays open and usable. The staged update installs silently after Memory Trail exits."
-                     Foreground="#40506A" FontSize="11.5" TextWrapping="Wrap"/>
-        </StackPanel>
+              BorderThickness="1" CornerRadius="13" Padding="12" Margin="0,14,0,0"
+              ClipToBounds="True">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="24"/>
+            <ColumnDefinition Width="*"/>
+          </Grid.ColumnDefinitions>
+
+          <TextBlock Grid.Column="0" Text="&#xE895;" FontFamily="Segoe MDL2 Assets" FontSize="15"
+                     Foreground="#176DFF" VerticalAlignment="Top" Margin="0,1,0,0"/>
+
+          <TextBlock Grid.Column="1"
+                     Text="Update downloads quietly in the background. Memory Trail stays open and usable. The staged update installs silently after Memory Trail exits."
+                     Foreground="#40506A"
+                     FontSize="11.5"
+                     TextWrapping="Wrap"
+                     TextTrimming="None"
+                     LineHeight="17"
+                     MaxWidth="600"
+                     HorizontalAlignment="Stretch"/>
+        </Grid>
       </Border>
 
       <Grid Grid.Row="4" Margin="0,18,0,0">

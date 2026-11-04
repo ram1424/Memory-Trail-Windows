@@ -2,6 +2,8 @@
 
 ## Version 1.0.2
 
+- Fixed update-dialog background-download text clipping at higher DPI/scaling by constraining the message to a dedicated wrapping grid column.
+
 - Fixed the Microsoft Outlook icon in **Today → Newest First** by bypassing unreliable package/executable icon extraction and using deterministic Outlook artwork.
 - Increased generated fallback app icons to a 4× render target for sharper timeline and tutorial presentation on high-DPI displays.
 - Enabled **Per-Monitor-V2 DPI awareness** for Windows scaling and monitor changes.
