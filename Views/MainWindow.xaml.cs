@@ -310,12 +310,12 @@ public partial class MainWindow : Window
 
         var quickButtons = new[]
         {
-            (Button: QuickAllFilter, Category: "All"),
-            (Button: QuickBrowserFilter, Category: "Browser"),
-            (Button: QuickEmailFilter, Category: "Email"),
-            (Button: QuickChatFilter, Category: "Chat"),
-            (Button: QuickFilesFilter, Category: "Files"),
-            (Button: QuickOfficeFilter, Category: "Office")
+            (Button: QuickAllFilter, Count: QuickAllCountText, Category: "All"),
+            (Button: QuickBrowserFilter, Count: QuickBrowserCountText, Category: "Browser"),
+            (Button: QuickEmailFilter, Count: QuickEmailCountText, Category: "Email"),
+            (Button: QuickChatFilter, Count: QuickChatCountText, Category: "Chat"),
+            (Button: QuickFilesFilter, Count: QuickFilesCountText, Category: "Files"),
+            (Button: QuickOfficeFilter, Count: QuickOfficeCountText, Category: "Office")
         };
 
         foreach (var entry in quickButtons)
@@ -327,7 +327,15 @@ public partial class MainWindow : Window
             entry.Button.BorderBrush = selected
                 ? new SolidColorBrush(Color.FromRgb(22, 128, 255))
                 : new SolidColorBrush(Color.FromRgb(216, 225, 236));
-            entry.Button.Foreground = selected ? Brushes.White : new SolidColorBrush(Color.FromRgb(26, 36, 56));
+            entry.Button.Foreground = selected
+                ? Brushes.White
+                : new SolidColorBrush(Color.FromRgb(26, 36, 56));
+
+            // Count text has its own foreground in XAML, so explicitly switch it
+            // to white when the quick filter is selected for strong contrast.
+            entry.Count.Foreground = selected
+                ? Brushes.White
+                : new SolidColorBrush(Color.FromRgb(102, 119, 143));
         }
     }
 
