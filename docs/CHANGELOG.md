@@ -2,6 +2,23 @@
 
 A concise record of production changes. Each release is organized by area so updates are easy to scan.
 
+## Version 1.0.4
+
+### 🔄 Updates
+- **Automatic refresh after update** — once an update finishes downloading and verification succeeds, Memory Trail now restarts itself automatically to apply the update.
+- **Hands-off relaunch** — the hidden updater waits for the running app to close, replaces the staged files, and launches the updated Memory Trail executable automatically.
+- **No manual reopening required** — users who choose **Update** no longer need to close or relaunch the app themselves.
+
+### ✨ Experience
+- **Clear update messaging** — the update dialog now explains that Memory Trail will briefly restart itself when the background download is ready.
+- **Staged update recovery** — if an update was already downloaded, a manual update check can immediately restart and apply it.
+
+### 🛡 Reliability
+- **Single installer scheduling** — prevents the app shutdown path from accidentally starting a second updater process after the automatic restart flow has already been scheduled.
+- **Existing safety retained** — downloaded update ZIPs continue to be SHA-256 verified before installation.
+
+---
+
 ## Version 1.0.3
 
 ### ✨ Experience

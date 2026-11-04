@@ -105,7 +105,7 @@
                      Foreground="#176DFF" VerticalAlignment="Top" Margin="0,1,0,0"/>
 
           <TextBlock Grid.Column="1"
-                     Text="Update downloads quietly in the background. Memory Trail stays open and usable. The staged update installs silently after Memory Trail exits."
+                     Text="Update downloads quietly in the background. When it is ready, Memory Trail briefly restarts itself, installs the update, and opens again automatically."
                      Foreground="#40506A"
                      FontSize="11.5"
                      TextWrapping="Wrap"

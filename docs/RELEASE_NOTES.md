@@ -1,4 +1,12 @@
-## Version 1.0.3 highlights
+## Version 1.0.4 highlights
+
+- Automatic app restart after an update finishes downloading
+- Silent staged installation followed by automatic relaunch
+- No manual close or reopen required after choosing Update
+- Clearer update-dialog explanation of the restart behavior
+- Existing SHA-256 package verification retained
+
+## Previous 1.0.3 highlights
 
 - Beautiful Clear Cache confirmation window
 - True vector Outlook icon in Today → Newest First
@@ -16,7 +24,7 @@
 - Two-second startup target with approved Memory Trail branding
 - Launch-time update checking with Update / Remind Me in 24 Hours / Skip This Version
 - Background update download and SHA-256 verification
-- Silent staged installation after Memory Trail exits
+- Silent staged installation with automatic Memory Trail relaunch
 - Polished up-to-date confirmation screen for manual checks
 - Per-Monitor-V2 DPI awareness and crisp ClearType rendering
 

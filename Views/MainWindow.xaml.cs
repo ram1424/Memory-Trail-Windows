@@ -1233,15 +1233,24 @@ public partial class MainWindow : Window
             if (IsPendingUpdate(result))
             {
                 UpdateStatusText.Text =
-                    $"{result.ReleaseName} is downloaded and will install when Memory Trail exits.";
+                    $"{result.ReleaseName} is downloaded and ready to install.";
 
                 if (manual)
                 {
-                    MessageBox.Show(
-                        "This update is already downloaded. It will install silently after Memory Trail exits.",
+                    var restartNow = MessageBox.Show(
+                        "This update is already downloaded and ready. Restart Memory Trail now to install it automatically?",
                         "Memory Trail Update Ready",
-                        MessageBoxButton.OK,
+                        MessageBoxButton.YesNo,
                         MessageBoxImage.Information);
+
+                    if (restartNow == MessageBoxResult.Yes &&
+                        UpdateService.SchedulePendingInstall(
+                            App.Preferences,
+                            relaunchAfterInstall: true))
+                    {
+                        await Task.Delay(350);
+                        QuitApplication();
+                    }
                 }
 
                 return;
@@ -1363,13 +1372,27 @@ public partial class MainWindow : Window
             App.Preferences.Save();
 
             UpdateStatusText.Text =
-                "Update ready. It will install silently when Memory Trail exits.";
+                "Update downloaded and verified. Restarting Memory Trail to finish installation...";
 
             _trayIcon?.ShowBalloonTip(
-                6000,
+                4500,
                 "Memory Trail Update Ready",
-                "The update is downloaded and verified. It will install silently after Memory Trail exits.",
+                "The update is ready. Memory Trail will restart automatically to finish installing it.",
                 Forms.ToolTipIcon.Info);
+
+            if (!UpdateService.SchedulePendingInstall(
+                    App.Preferences,
+                    relaunchAfterInstall: true))
+            {
+                throw new InvalidOperationException(
+                    "Memory Trail could not start the silent update installer.");
+            }
+
+            // Give the status text/notification a brief chance to render, then perform
+            // a real application quit. The updater waits for this process to exit,
+            // installs the files, and relaunches Memory Trail automatically.
+            await Task.Delay(700);
+            QuitApplication();
         }
         catch (Exception ex)
         {

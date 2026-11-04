@@ -46,6 +46,7 @@ public static class UpdateService
         "https://github.com/ram1424/Memory-Trail-Windows/releases";
 
     private static readonly HttpClient Client = CreateClient();
+    private static bool _installScheduled;
 
     private static string UpdateRoot => Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
@@ -225,14 +226,21 @@ public static class UpdateService
         }
     }
 
-    public static bool SchedulePendingInstall(PreferencesService preferences)
+    public static bool SchedulePendingInstall(
+        PreferencesService preferences,
+        bool relaunchAfterInstall = false)
     {
+        if (_installScheduled)
+            return true;
+
         if (string.IsNullOrWhiteSpace(preferences.PendingUpdateDirectory) ||
             !Directory.Exists(preferences.PendingUpdateDirectory))
             return false;
 
-        var installDirectory = Path.GetDirectoryName(Environment.ProcessPath ?? "");
-        if (string.IsNullOrWhiteSpace(installDirectory) ||
+        var processPath = Environment.ProcessPath ?? "";
+        var installDirectory = Path.GetDirectoryName(processPath);
+        if (string.IsNullOrWhiteSpace(processPath) ||
+            string.IsNullOrWhiteSpace(installDirectory) ||
             !CanWriteToDirectory(installDirectory))
             return false;
 
@@ -268,8 +276,11 @@ public static class UpdateService
         startInfo.ArgumentList.Add(installDirectory);
         startInfo.ArgumentList.Add("-LogPath");
         startInfo.ArgumentList.Add(logPath);
+        startInfo.ArgumentList.Add("-RelaunchExe");
+        startInfo.ArgumentList.Add(relaunchAfterInstall ? processPath : "");
 
         Process.Start(startInfo);
+        _installScheduled = true;
         return true;
     }
 
@@ -383,12 +394,13 @@ public static class UpdateService
                 "  [Parameter(Mandatory=$true)][int]$ProcessId,",
                 "  [Parameter(Mandatory=$true)][string]$Payload,",
                 "  [Parameter(Mandatory=$true)][string]$InstallDir,",
-                "  [Parameter(Mandatory=$true)][string]$LogPath",
+                "  [Parameter(Mandatory=$true)][string]$LogPath,",
+                "  [string]$RelaunchExe = ''",
                 ")",
                 "$ErrorActionPreference = 'Stop'",
                 "try {",
                 "  Wait-Process -Id $ProcessId -ErrorAction SilentlyContinue",
-                "  Start-Sleep -Milliseconds 800",
+                "  Start-Sleep -Milliseconds 650",
                 "  Get-ChildItem -LiteralPath $Payload -File -Recurse | ForEach-Object {",
                 "    $relative = $_.FullName.Substring($Payload.Length).TrimStart('\\')",
                 "    $destination = Join-Path $InstallDir $relative",
@@ -397,6 +409,11 @@ public static class UpdateService
                 "    Copy-Item -LiteralPath $_.FullName -Destination $destination -Force",
                 "  }",
                 "  Add-Content -LiteralPath $LogPath -Value (('[{0:o}] Update installed successfully.' -f [DateTimeOffset]::Now))",
+                "  if (-not [string]::IsNullOrWhiteSpace($RelaunchExe) -and (Test-Path -LiteralPath $RelaunchExe)) {",
+                "    Start-Sleep -Milliseconds 350",
+                "    Start-Process -FilePath $RelaunchExe -WorkingDirectory $InstallDir",
+                "    Add-Content -LiteralPath $LogPath -Value (('[{0:o}] Updated Memory Trail relaunched automatically.' -f [DateTimeOffset]::Now))",
+                "  }",
                 "}",
                 "catch {",
                 "  Add-Content -LiteralPath $LogPath -Value (('[{0:o}] Update install failed: {1}' -f [DateTimeOffset]::Now, $_.Exception.Message))",
