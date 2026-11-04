@@ -7,7 +7,7 @@
 - Favorites, Clipboard History, manual memories, Insights, and filters
 - Privacy exclusions and independent capture controls
 - Two-second startup target with approved Memory Trail branding
-- Built-in Check for Updates and optional automatic daily checks
+- Built-in Check for Updates and automatic checks on each app launch
 - What's New experience for each new app version
 - Six-page first-run tutorial for Version 1 users
 - White activity-count badges and summary cards for improved readability

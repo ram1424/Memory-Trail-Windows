@@ -1157,7 +1157,7 @@
                   <Border Height="1" Background="#D5DEE8" Margin="0,17,0,15"/>
 
                   <TextBlock Text="Updates" FontSize="12.5" FontWeight="SemiBold" Foreground="#1A2438" Margin="0,0,0,9"/>
-                  <CheckBox x:Name="AutomaticUpdateCheckBox" Content="Automatically check for updates"
+                  <CheckBox x:Name="AutomaticUpdateCheckBox" Content="Check for updates on each launch"
                             Checked="AutomaticUpdatesChanged" Unchecked="AutomaticUpdatesChanged" Margin="0,0,0,9"/>
                   <WrapPanel>
                     <Button Content="Check for Updates" Click="CheckForUpdates_Click" Margin="0,0,8,8"/>

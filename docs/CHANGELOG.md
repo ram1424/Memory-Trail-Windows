@@ -8,6 +8,7 @@
 - Kept tutorial completion independent from patch updates so the tutorial does not replay on every release.
 - Improved activity-count readability with white count badges, quick-filter pills, and summary cards.
 - Retained the organized repository layout and Version 1 update/check-for-updates experience.
+- Checks for updates on each app launch when automatic update checks are enabled, replacing the previous 24-hour throttle.
 
 
 ## Version 1.0.0 — First Official Release

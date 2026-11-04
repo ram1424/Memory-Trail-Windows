@@ -1155,10 +1155,8 @@ public partial class MainWindow : Window
         if (!App.Preferences.AutomaticUpdateChecks)
             return;
 
-        if (App.Preferences.LastUpdateCheckUtc is DateTimeOffset lastCheck &&
-            DateTimeOffset.UtcNow - lastCheck < TimeSpan.FromHours(24))
-            return;
-
+        // Automatic update checks run once on every application launch.
+        // Manual checks remain available from Settings and the tray menu.
         await CheckForUpdatesAsync(manual: false);
     }
 

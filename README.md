@@ -32,7 +32,7 @@ Requires **Windows 10 or Windows 11 (x64)**. The release is self-contained and d
 - **App/process exclusions** so selected software is not recorded
 - **Pause capture** and independent App Activity / Clipboard controls
 - **System tray operation** and optional **Start with Windows**
-- **Built-in update checks** with manual Check for Updates and optional automatic daily checks
+- **Built-in update checks** with manual Check for Updates and automatic checks on each app launch
 - **What's New** changelog shown after upgrading
 - **Local JSON storage** under the signed-in Windows user profile
 - **Privacy-focused onboarding and Settings controls**
@@ -87,7 +87,7 @@ Memory Trail currently relies on Windows account/file-system protections and any
 
 Opening the GitHub project from Settings is a user-initiated browser action and is separate from the local capture/storage workflow.
 
-When automatic update checks are enabled, Memory Trail makes a separate request to GitHub for release metadata. The request does **not** include captured timeline history, clipboard content, window titles, or file paths. Automatic update checks can be disabled in Settings.
+When automatic update checks are enabled, Memory Trail makes a separate request to GitHub for release metadata on each app launch. The request does **not** include captured timeline history, clipboard content, window titles, or file paths. Automatic update checks can be disabled in Settings.
 
 The current source repository is private, so anonymous GitHub release checks cannot read its releases. Authorized private-repository checks can use the `MEMORY_TRAIL_GITHUB_TOKEN` environment variable; otherwise the updater fails safely and offers the Releases page.
 

@@ -155,7 +155,7 @@ The app includes a **View Memory Trail on GitHub** action in Settings. Selecting
 
 Memory Trail Version 1 includes manual and optional automatic update checks. When enabled, the app requests release metadata from GitHub. Update checks are separate from the capture/storage/search pipeline and do **not** attach timeline entries, clipboard text, window titles, file paths, or other captured activity to the request.
 
-Automatic update checks are enabled by default and run no more than once every 24 hours. They can be disabled under **Settings → Updates**.
+Automatic update checks are enabled by default and run once on each Memory Trail launch. They can be disabled under **Settings → Updates**.
 
 The current Memory Trail GitHub repository is private. Anonymous GitHub API requests cannot read private release metadata. If the environment variable `MEMORY_TRAIL_GITHUB_TOKEN` contains an authorized GitHub token, Memory Trail can use it only for the release-metadata request. Memory Trail does not write that token into its preferences file.
 
@@ -205,7 +205,7 @@ Startup is optional and can be enabled or disabled in Settings.
 
 ### Automatic update checks
 
-**Settings → Updates → Automatically check for updates** controls the once-per-day GitHub release check. Manual checks are available from Settings and the Memory Trail system-tray menu.
+**Settings → Updates → Check for updates on each launch** controls the automatic GitHub release check performed when Memory Trail starts. Manual checks are available from Settings and the Memory Trail system-tray menu.
 
 ## Source-code verification
 
