@@ -1,32 +1,28 @@
-## Current release highlights
+## Version 1.0.3 highlights
 
-- Version 1.0.2 sharpens the full interface for high-DPI displays
-- Fixed Outlook artwork in Today → Newest First
-- Per-Monitor-V2 DPI awareness and ClearType/display text rendering
-- 4× high-resolution fallback app icons
+- Beautiful Clear Cache confirmation window
+- True vector Outlook icon in Today → Newest First
+- Outlook-family process normalization for classic and new Outlook
+- Categorized, scan-friendly changelog format
 
-- Privacy-first local activity capture and local timeline storage
+## Core Memory Trail experience
+
+- Privacy-first local activity capture and timeline storage
 - Today timeline with Live Activity state
 - Ask Memory Trail local search
 - Browser, email, chat, file, document, app, and clipboard context when available
 - Favorites, Clipboard History, manual memories, Insights, and filters
 - Privacy exclusions and independent capture controls
 - Two-second startup target with approved Memory Trail branding
-- Built-in Check for Updates and automatic checks on each app launch
-- Launch-time **Update / Remind Me in 24 Hours / Skip This Version** prompt
+- Launch-time update checking with Update / Remind Me in 24 Hours / Skip This Version
 - Background update download and SHA-256 verification
 - Silent staged installation after Memory Trail exits
 - Polished up-to-date confirmation screen for manual checks
-- Faster Today filter switching
-- Reliable Outlook icon in the tutorial
-- What's New experience for each new app version
-- Six-page first-run tutorial for Version 1 users
-- White activity-count badges and summary cards for improved readability
-- Clear App Cache control that does not delete activity history
+- Per-Monitor-V2 DPI awareness and crisp ClearType rendering
 
 ## Versioning
 
-Production releases use semantic patch versioning beginning with **1.0.1**. Each push to `main` automatically advances the patch number.
+Production releases use semantic patch versioning. Each normal push to `main` advances the patch number.
 
 ## Privacy
 

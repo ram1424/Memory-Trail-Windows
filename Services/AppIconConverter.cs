@@ -17,7 +17,7 @@ public sealed class AppIconConverter : IValueConverter
     public static ImageSource? ResolveAppIcon(string appName, string processName = "")
     {
         if (IsOutlook(appName, processName, ""))
-            return CreateBrandFallback("Microsoft Outlook") ?? LoadGenericIcon();
+            return CreateOutlookVectorIcon();
 
         var path = ResolveExecutable(processName, appName);
         return LoadExecutableIcon(path) ?? CreateBrandFallback(appName) ?? LoadGenericIcon();
@@ -26,7 +26,9 @@ public sealed class AppIconConverter : IValueConverter
     // Tutorial artwork should be stable across machines. New Outlook can expose
     // package-backed or generic executable icons, so use our deterministic brand fallback.
     public static ImageSource? ResolveTutorialBrandIcon(string appName)
-        => CreateBrandFallback(appName) ?? LoadGenericIcon();
+        => IsOutlook(appName, "", "")
+            ? CreateOutlookVectorIcon()
+            : CreateBrandFallback(appName) ?? LoadGenericIcon();
 
     public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
@@ -49,10 +51,9 @@ public sealed class AppIconConverter : IValueConverter
         }
         else if (outlook)
         {
-            // New Outlook can expose a package-backed executable whose associated icon
-            // is generic, blank, or low resolution. Always use the deterministic,
-            // vector-rendered Outlook artwork for timeline rows.
-            image = CreateBrandFallback("Microsoft Outlook");
+            // Outlook is rendered as a true WPF vector so Today/Newest First stays
+            // sharp and stable regardless of classic/new Outlook packaging or DPI.
+            image = CreateOutlookVectorIcon();
         }
         else
         {
@@ -199,6 +200,62 @@ public sealed class AppIconConverter : IValueConverter
         if (key.Contains("explorer")) yield return "explorer";
     }
 
+    private static ImageSource CreateOutlookVectorIcon()
+    {
+        var drawing = new DrawingGroup();
+
+        // Outer Outlook tile.
+        drawing.Children.Add(new GeometryDrawing(
+            new SolidColorBrush(Color.FromRgb(31, 111, 220)),
+            null,
+            new RectangleGeometry(new Rect(6, 6, 36, 36), 8, 8)));
+
+        // Mail panel.
+        drawing.Children.Add(new GeometryDrawing(
+            new SolidColorBrush(Color.FromRgb(45, 137, 239)),
+            null,
+            new RectangleGeometry(new Rect(18, 11, 25, 27), 5, 5)));
+
+        // Envelope face.
+        drawing.Children.Add(new GeometryDrawing(
+            new SolidColorBrush(Color.FromRgb(226, 241, 255)),
+            null,
+            new RectangleGeometry(new Rect(21, 15, 19, 15), 3, 3)));
+
+        var envelopePen = new Pen(new SolidColorBrush(Color.FromRgb(62, 129, 214)), 1.7);
+        drawing.Children.Add(new GeometryDrawing(
+            null,
+            envelopePen,
+            Geometry.Parse("M21,16 L30.5,24 L40,16 M21,30 L27.5,23.5 M40,30 L33.5,23.5")));
+
+        // Foreground Outlook 'O' tile.
+        drawing.Children.Add(new GeometryDrawing(
+            new SolidColorBrush(Color.FromRgb(7, 82, 174)),
+            null,
+            new RectangleGeometry(new Rect(5, 10, 22, 28), 5, 5)));
+
+        var glyph = new FormattedText(
+            "O",
+            CultureInfo.InvariantCulture,
+            FlowDirection.LeftToRight,
+            new Typeface(new FontFamily("Segoe UI Variable Display"), FontStyles.Normal, FontWeights.Bold, FontStretches.Normal),
+            18,
+            Brushes.White,
+            1.0);
+
+        var glyphGeometry = glyph.BuildGeometry(new Point(
+            16 - (glyph.Width / 2),
+            24 - (glyph.Height / 2)));
+
+        drawing.Children.Add(new GeometryDrawing(Brushes.White, null, glyphGeometry));
+
+        drawing.Freeze();
+
+        var image = new DrawingImage(drawing);
+        image.Freeze();
+        return image;
+    }
+
     private static ImageSource? CreateBrandFallback(string appName)
     {
         var key = (appName ?? "").ToLowerInvariant();
@@ -223,13 +280,8 @@ public sealed class AppIconConverter : IValueConverter
             }
             else if (key.Contains("outlook"))
             {
-                dc.DrawRoundedRectangle(new SolidColorBrush(Color.FromRgb(18, 122, 232)), null, new Rect(5, 7, 38, 34), 8, 8);
-                dc.DrawRectangle(new SolidColorBrush(Color.FromRgb(8, 83, 181)), null, new Rect(5, 10, 20, 28));
-                DrawLetter(dc, "O", 7, 10, 18, 28, 18);
-                var pen = new Pen(new SolidColorBrush(Color.FromRgb(220, 241, 255)), 2);
-                dc.DrawLine(pen, new Point(24, 15), new Point(42, 15));
-                dc.DrawLine(pen, new Point(24, 15), new Point(33, 24));
-                dc.DrawLine(pen, new Point(42, 15), new Point(33, 24));
+                dc.Pop();
+                return CreateOutlookVectorIcon();
             }
             else if (key.Contains("teams"))
             {

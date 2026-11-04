@@ -360,7 +360,7 @@ public sealed class CaptureService
     private static bool IsOutlookProcess(string processName)
     {
         var value = processName.Trim().ToLowerInvariant();
-        return value is "outlook" or "olk" or "hxoutlook";
+        return value == "olk" || value.Contains("outlook", StringComparison.OrdinalIgnoreCase);
     }
 
     private static string? TryGetClassicOutlookSelectedSubject()
@@ -557,15 +557,23 @@ public sealed class CaptureService
         return "Focused window in " + FriendlyAppName(processName) + ": " + title;
     }
 
-    private static string FriendlyAppName(string processName) => processName.ToLowerInvariant() switch
+    private static string FriendlyAppName(string processName)
     {
-        "msedge" => "Microsoft Edge",
-        "chrome" => "Google Chrome",
-        "outlook" or "olk" => "Microsoft Outlook",
-        "ms-teams" or "teams" => "Microsoft Teams",
-        "explorer" => "File Explorer",
-        _ => string.IsNullOrWhiteSpace(processName) ? "Application" : processName
-    };
+        var value = processName.Trim();
+        var key = value.ToLowerInvariant();
+
+        if (key == "olk" || key.Contains("outlook", StringComparison.OrdinalIgnoreCase))
+            return "Microsoft Outlook";
+
+        return key switch
+        {
+            "msedge" => "Microsoft Edge",
+            "chrome" => "Google Chrome",
+            "ms-teams" or "teams" => "Microsoft Teams",
+            "explorer" => "File Explorer",
+            _ => string.IsNullOrWhiteSpace(value) ? "Application" : value
+        };
+    }
 
     private const uint EventSystemForeground = 0x0003;
     private const uint WinEventOutOfContext = 0x0000;

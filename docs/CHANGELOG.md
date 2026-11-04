@@ -1,53 +1,83 @@
-# Changelog
+# Memory Trail Changelog
+
+A concise record of production changes. Each release is organized by area so updates are easy to scan.
+
+## Version 1.0.3
+
+### ✨ Experience
+- **Beautiful Clear Cache dialog** — replaced the plain confirmation message with a compact, polished Memory Trail modal inspired by the approved visual.
+- **Safer cache confirmation** — the dialog clearly explains that temporary cache/preferences are reset while activity history remains intact.
+
+### 🛠 Fixes
+- **Outlook timeline icon rebuilt** — Today → Newest First now uses a true WPF vector Outlook icon instead of bitmap/executable extraction.
+- **Outlook capture normalization** — classic Outlook, new Outlook (`olk`), and Outlook-family process names are normalized to **Microsoft Outlook** before timeline display.
+
+### 🎨 Quality
+- **Crisp vector artwork** — the Outlook icon remains sharp at all Windows scaling levels and monitor DPIs.
+- **Changelog layout refreshed** — release notes now use categorized, scan-friendly bullet points going forward.
+
+---
 
 ## Version 1.0.2
 
-- Fixed update-dialog background-download text clipping at higher DPI/scaling by constraining the message to a dedicated wrapping grid column.
+### 🛠 Fixes
+- **Update message clipping** — fixed the background-download explanation on the update dialog at higher DPI/scaling.
+- **Outlook icon handling** — bypassed unreliable packaged executable icon extraction for Outlook.
 
-- Fixed the Microsoft Outlook icon in **Today → Newest First** by bypassing unreliable package/executable icon extraction and using deterministic Outlook artwork.
-- Increased generated fallback app icons to a 4× render target for sharper timeline and tutorial presentation on high-DPI displays.
-- Enabled **Per-Monitor-V2 DPI awareness** for Windows scaling and monitor changes.
-- Applied app-wide ClearType/display text formatting, fixed text hinting, layout rounding, pixel snapping, and high-quality image scaling.
-- Polished visual rendering across the main window, onboarding, update dialogs, What's New, Settings, and supporting screens while retaining the existing UI design.
+### 🎨 Quality
+- **High-DPI rendering** — enabled Per-Monitor-V2 DPI awareness.
+- **Sharper typography** — applied ClearType/display text formatting, fixed hinting, layout rounding, and pixel snapping.
+- **Higher-resolution icons** — increased generated fallback artwork to a 4× render target.
+- **Image clarity** — enabled high-quality image scaling across the app.
 
+---
 
 ## Version 1.0.1
 
-- Established semantic patch versioning for production releases.
-- Every future push to `main` automatically advances the patch version: `1.0.2`, `1.0.3`, and so on.
-- Restored the complete six-page first-run tutorial for users coming from development builds.
-- Kept tutorial completion independent from patch updates so the tutorial does not replay on every release.
-- Improved activity-count readability with white count badges, quick-filter pills, and summary cards.
-- Retained the organized repository layout and Version 1 update/check-for-updates experience.
-- Checks for updates on each app launch when automatic update checks are enabled, replacing the previous 24-hour throttle.
-- Selected Today-view filter counts now switch to white for stronger contrast on the blue active tab.
-- Reworked launch-time updates with an **Update / Remind Me in 24 Hours / Skip This Version** prompt.
-- Added background ZIP download, GitHub SHA-256 verification, local staging, and silent install after Memory Trail exits.
-- Added internal build-commit identity so a refreshed 1.0.1 release can be detected even when the visible semantic version is unchanged.
-- Added a polished “You’re All Caught Up!” screen when a manual update check finds no newer release.
-- Reduced Today-filter work by avoiding unnecessary count/summary recomputation and full live-marker scans.
-- Replaced tutorial Outlook executable-icon lookup with a deterministic Outlook-branded fallback so the icon renders reliably.
+### ✨ Experience
+- **Full first-run tutorial restored** for users upgrading from development builds.
+- **Update experience** — added Update, Remind Me in 24 Hours, and Skip This Version.
+- **Up-to-date confirmation** — added the polished “You’re All Caught Up!” screen.
+- **Clear App Cache** — replaced the previous Reset Preferences terminology.
 
+### ⚡ Performance
+- **Faster Today filters** — removed unnecessary count/summary recomputation during filter switching.
+- **Lighter live activity refresh** — reduced full timeline scans.
+
+### 🛠 Fixes
+- **Selected filter contrast** — selected Today filter counts now render white on the active blue tab.
+- **Activity-count readability** — changed count badges, filter pills, and summary cards to white.
+- **Tutorial Outlook icon** — replaced executable lookup with deterministic Outlook artwork.
+
+### 🔄 Updates
+- **Semantic patch releases** begin at 1.0.1.
+- **Launch checks** — update checks run on each app launch when enabled.
+- **Background staging** — downloads, verifies, and stages updates while the app remains usable.
+- **Silent installation** — staged updates install after Memory Trail exits.
+- **Same-version build detection** — build commit identity distinguishes refreshed packages with the same visible version.
+
+---
 
 ## Version 1.0.0 — First Official Release
 
-Memory Trail Version 1.0.0 was the first official Windows release.
+### 🚀 Core
+- **Privacy-first local activity capture** with locally stored timeline history.
+- **Today timeline** with newest-first activity and Live Activity state.
+- **Ask Memory Trail** local search across websites, conversations, documents, files, apps, and time-aware activity.
+- **Favorites, Clipboard History, manual memories, Insights, filters, and activity details.**
 
-- Privacy-first, local activity capture and local timeline storage.
-- Today timeline with newest-first activity and Live Activity state.
-- Ask Memory Trail for searching locally stored websites, conversations, documents, files, apps, and time-aware activity.
-- Browser, Outlook, Teams/chat, file/document, application, and clipboard context when exposed by Windows.
-- Favorites, Clipboard History, manual memories, Insights, filters, and activity details.
-- App/process exclusions, pause/resume controls, independent App Activity and Clipboard capture controls.
-- Polished Memory Trail loading experience with a two-second startup target.
-- Built-in **Check for Updates** and optional automatic daily release checks.
-- Polished **What's New** experience presented on launch after a version change.
-- Redesigned Settings privacy presentation aligned with the Memory Trail macOS visual language.
-- **Clear App Cache** replaces the previous Reset Preferences wording while preserving activity history.
-- Restored the complete six-page first-run tutorial for Version 1, including users upgrading from development builds.
-- Improved activity-count readability with white count badges, quick-filter pills, and summary cards.
-- Source code and privacy documentation are available for review.
+### 🔒 Privacy
+- **Independent capture controls** for app activity and clipboard history.
+- **Process exclusions** and pause/resume capture.
+- **Local-first design** with source code and privacy documentation available for review.
+
+### 🎨 Experience
+- **Two-second startup target** with Memory Trail branding.
+- **Settings privacy presentation** aligned with the Memory Trail macOS visual language.
+- **First-run tutorial** and **What’s New** experience.
+
+---
 
 ## Earlier development builds
 
-All earlier numbered builds were development iterations leading to **Version 1.0.0** and are superseded by the first official release.
+Earlier numbered builds were development iterations leading to **Version 1.0.0** and are superseded by the production release line.
