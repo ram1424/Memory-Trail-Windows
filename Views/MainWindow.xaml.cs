@@ -1435,11 +1435,16 @@ public partial class MainWindow : Window
 
     private void ClearCache_Click(object sender, RoutedEventArgs e)
     {
+        var prompt = new ClearCacheWindow { Owner = this };
+        if (prompt.ShowDialog() != true || !prompt.ClearConfirmed)
+            return;
+
         App.Preferences.ResetToDefaults();
         App.Capture.ClearRuntimeCache();
         LoadSettingsIntoUi();
         UpdateCaptureState();
-        MessageBox.Show("App cache and Memory Trail preferences were cleared. Your activity history was not deleted.", "Memory Trail");
+
+        UpdateStatusText.Text = "App cache cleared. Activity history was preserved.";
     }
 
     protected override void OnClosed(EventArgs e)
