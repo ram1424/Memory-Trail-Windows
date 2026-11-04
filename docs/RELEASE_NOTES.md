@@ -17,6 +17,8 @@ Memory Trail Version 1 is the first official Windows release of Memory Trail —
 - What's New experience for future releases
 - Redesigned privacy-focused Settings experience
 - Clear App Cache control that does not delete activity history
+- Restored six-page first-run tutorial for Version 1
+- White activity-count badges and summary cards for improved readability
 
 ## Privacy
 

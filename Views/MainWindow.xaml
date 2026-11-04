@@ -14,7 +14,7 @@
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 
     <Style x:Key="MetricCardStyle" TargetType="Border">
-      <Setter Property="Background" Value="#E8EFF6"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
       <Setter Property="BorderBrush" Value="#C4D1E0"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="CornerRadius" Value="14"/>
@@ -121,8 +121,8 @@
       <Setter Property="Height" Value="36"/>
       <Setter Property="Padding" Value="11,0"/>
       <Setter Property="Margin" Value="0,0,8,0"/>
-      <Setter Property="Background" Value="#E4EBF3"/>
-      <Setter Property="BorderBrush" Value="#D8E1EC"/>
+      <Setter Property="Background" Value="#FFFFFF"/>
+      <Setter Property="BorderBrush" Value="#D3DCE8"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="Foreground" Value="#1A2438"/>
       <Setter Property="FontSize" Value="12.5"/>
@@ -137,7 +137,7 @@
             </Border>
             <ControlTemplate.Triggers>
               <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="QuickChrome" Property="Background" Value="#EDF3F8"/>
+                <Setter TargetName="QuickChrome" Property="Background" Value="#F8FAFC"/>
               </Trigger>
             </ControlTemplate.Triggers>
           </ControlTemplate>
@@ -245,62 +245,62 @@
               <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="42"/><ColumnDefinition Width="*"/><ColumnDefinition Width="50"/></Grid.ColumnDefinitions>
                 <local:CategoryIcon Category="All" Width="32" Height="32" VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="1" Text="All Apps" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
-                <Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#E8F1FF" BorderBrush="#D8E6FA" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="AllAppsCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#FFFFFF" BorderBrush="#D3DCE8" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="AllAppsCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
               </Grid>
             </Button>
             <Button x:Name="BrowserFilter" Tag="Browser" Click="Category_Click" Style="{StaticResource MacCategoryButtonStyle}">
               <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="42"/><ColumnDefinition Width="*"/><ColumnDefinition Width="50"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="Browser" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Web Browsers" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#EEF4FB" BorderBrush="#DDE6F0" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="BrowserCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <local:CategoryIcon Category="Browser" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Web Browsers" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#FFFFFF" BorderBrush="#D3DCE8" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="BrowserCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
               </Grid>
             </Button>
             <Button x:Name="EmailFilter" Tag="Email" Click="Category_Click" Style="{StaticResource MacCategoryButtonStyle}">
               <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="42"/><ColumnDefinition Width="*"/><ColumnDefinition Width="50"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="Email" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Email" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#EEF4FB" BorderBrush="#DDE6F0" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="EmailCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <local:CategoryIcon Category="Email" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Email" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#FFFFFF" BorderBrush="#D3DCE8" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="EmailCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
               </Grid>
             </Button>
             <Button x:Name="ChatFilter" Tag="Chat" Click="Category_Click" Style="{StaticResource MacCategoryButtonStyle}">
               <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="42"/><ColumnDefinition Width="*"/><ColumnDefinition Width="50"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="Chat" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Chat &amp; Meetings" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#EEF4FB" BorderBrush="#DDE6F0" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="ChatCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <local:CategoryIcon Category="Chat" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Chat &amp; Meetings" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#FFFFFF" BorderBrush="#D3DCE8" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="ChatCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
               </Grid>
             </Button>
             <Button x:Name="FilesFilter" Tag="Files" Click="Category_Click" Style="{StaticResource MacCategoryButtonStyle}">
               <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="42"/><ColumnDefinition Width="*"/><ColumnDefinition Width="50"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="Files" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Files &amp; Documents" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#EEF4FB" BorderBrush="#DDE6F0" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="FilesCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <local:CategoryIcon Category="Files" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Files &amp; Documents" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#FFFFFF" BorderBrush="#D3DCE8" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="FilesCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
               </Grid>
             </Button>
             <Button x:Name="OfficeFilter" Tag="Office" Click="Category_Click" Style="{StaticResource MacCategoryButtonStyle}">
               <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="42"/><ColumnDefinition Width="*"/><ColumnDefinition Width="50"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="Productivity" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Productivity" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#EEF4FB" BorderBrush="#DDE6F0" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="OfficeCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <local:CategoryIcon Category="Productivity" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Productivity" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#FFFFFF" BorderBrush="#D3DCE8" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="OfficeCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
               </Grid>
             </Button>
             <Button x:Name="DevelopmentFilter" Tag="Development" Click="Category_Click" Style="{StaticResource MacCategoryButtonStyle}">
               <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="42"/><ColumnDefinition Width="*"/><ColumnDefinition Width="50"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="Development" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Development" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#EEF4FB" BorderBrush="#DDE6F0" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="DevelopmentCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <local:CategoryIcon Category="Development" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Development" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#FFFFFF" BorderBrush="#D3DCE8" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="DevelopmentCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
               </Grid>
             </Button>
             <Button x:Name="MediaFilter" Tag="Media" Click="Category_Click" Style="{StaticResource MacCategoryButtonStyle}">
               <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="42"/><ColumnDefinition Width="*"/><ColumnDefinition Width="50"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="Media" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Media" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#EEF4FB" BorderBrush="#DDE6F0" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="MediaCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <local:CategoryIcon Category="Media" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Media" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#FFFFFF" BorderBrush="#D3DCE8" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="MediaCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
               </Grid>
             </Button>
             <Button x:Name="DesignFilter" Tag="Design" Click="Category_Click" Style="{StaticResource MacCategoryButtonStyle}">
               <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="42"/><ColumnDefinition Width="*"/><ColumnDefinition Width="50"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="Design" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Design" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#EEF4FB" BorderBrush="#DDE6F0" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="DesignCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <local:CategoryIcon Category="Design" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Design" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#FFFFFF" BorderBrush="#D3DCE8" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="DesignCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
               </Grid>
             </Button>
             <Button x:Name="RemoteFilter" Tag="Remote" Click="Category_Click" Style="{StaticResource MacCategoryButtonStyle}">
               <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="42"/><ColumnDefinition Width="*"/><ColumnDefinition Width="50"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="Remote" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Remote Access" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#EEF4FB" BorderBrush="#DDE6F0" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="RemoteCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <local:CategoryIcon Category="Remote" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Remote Access" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#FFFFFF" BorderBrush="#D3DCE8" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="RemoteCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
               </Grid>
             </Button>
             <Button x:Name="SystemFilter" Tag="System" Click="Category_Click" Style="{StaticResource MacCategoryButtonStyle}">
               <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="42"/><ColumnDefinition Width="*"/><ColumnDefinition Width="50"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="System" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="System" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#EEF4FB" BorderBrush="#DDE6F0" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="SystemCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <local:CategoryIcon Category="System" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="System" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#FFFFFF" BorderBrush="#D3DCE8" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="SystemCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
               </Grid>
             </Button>
             <Button x:Name="OtherFilter" Tag="Other" Click="Category_Click" Style="{StaticResource MacCategoryButtonStyle}">
               <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="42"/><ColumnDefinition Width="*"/><ColumnDefinition Width="50"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="Other" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Other" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#EEF4FB" BorderBrush="#DDE6F0" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="OtherCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                <local:CategoryIcon Category="Other" Width="32" Height="32" VerticalAlignment="Center"/><TextBlock Grid.Column="1" Text="Other" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/><Border Grid.Column="2" Width="42" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#FFFFFF" BorderBrush="#D3DCE8" BorderThickness="1" CornerRadius="13" Margin="6,0,0,0"><TextBlock x:Name="OtherCountText" Text="0" FontSize="10" FontWeight="SemiBold" Foreground="#66778F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
               </Grid>
             </Button>
           </StackPanel>
@@ -637,7 +637,7 @@
                   </Grid>
 
                   <UniformGrid Columns="2">
-                    <Border Style="{StaticResource MetricCardStyle}" Background="#F0F7FF" BorderBrush="#DAE9FA">
+                    <Border Style="{StaticResource MetricCardStyle}" Background="#FFFFFF" BorderBrush="#D7E0EA">
                       <Grid>
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                         <local:CategoryIcon Category="Productivity" Width="34" Height="34" Margin="0,0,9,0"/>
@@ -648,7 +648,7 @@
                       </Grid>
                     </Border>
 
-                    <Border Style="{StaticResource MetricCardStyle}" Background="#EEF5FF" BorderBrush="#D9E6F8">
+                    <Border Style="{StaticResource MetricCardStyle}" Background="#FFFFFF" BorderBrush="#D7E0EA">
                       <Grid>
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                         <local:CategoryIcon Category="All" Width="34" Height="34" Margin="0,0,9,0"/>
@@ -659,7 +659,7 @@
                       </Grid>
                     </Border>
 
-                    <Border Style="{StaticResource MetricCardStyle}" Background="#EFF9FC" BorderBrush="#D9EEF3">
+                    <Border Style="{StaticResource MetricCardStyle}" Background="#FFFFFF" BorderBrush="#D7E0EA">
                       <Grid>
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                         <Border Style="{StaticResource MetricIconTileStyle}" Background="#DDF6F2">
@@ -674,7 +674,7 @@
                       </Grid>
                     </Border>
 
-                    <Border Style="{StaticResource MetricCardStyle}" Background="#F2F7FF" BorderBrush="#DFE9F7">
+                    <Border Style="{StaticResource MetricCardStyle}" Background="#FFFFFF" BorderBrush="#D7E0EA">
                       <Grid>
                         <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                         <local:CategoryIcon Category="Clipboard" Width="34" Height="34" Margin="0,0,9,0"/>
@@ -1161,6 +1161,7 @@
                             Checked="AutomaticUpdatesChanged" Unchecked="AutomaticUpdatesChanged" Margin="0,0,0,9"/>
                   <WrapPanel>
                     <Button Content="Check for Updates" Click="CheckForUpdates_Click" Margin="0,0,8,8"/>
+                    <Button Content="Replay Tutorial" Click="ShowTutorial_Click" Margin="0,0,8,8"/>
                     <Button Content="What's New" Click="ShowWhatsNew_Click" Margin="0,0,8,8"/>
                   </WrapPanel>
                   <TextBlock x:Name="UpdateStatusText" Text="Updates have not been checked yet."

@@ -15,6 +15,8 @@ Memory Trail Version 1 is the first official Windows release.
 - Polished **What's New** experience presented on launch after a version change.
 - Redesigned Settings privacy presentation aligned with the Memory Trail macOS visual language.
 - **Clear App Cache** replaces the previous Reset Preferences wording while preserving activity history.
+- Restored the complete six-page first-run tutorial for Version 1, including users upgrading from development builds.
+- Improved activity-count readability with white count badges, quick-filter pills, and summary cards.
 - Source code and privacy documentation are available for review.
 
 ## Earlier development builds

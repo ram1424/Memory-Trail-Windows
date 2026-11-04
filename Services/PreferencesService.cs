@@ -17,6 +17,7 @@ public sealed class PreferencesService
     public bool CaptureAppActivity { get; set; } = true;
     public bool CaptureClipboard { get; set; } = true;
     public bool HasCompletedOnboarding { get; set; }
+    public string LastCompletedTutorialVersion { get; set; } = "";
     public bool StartWithWindows { get; set; }
     public bool AutomaticUpdateChecks { get; set; } = true;
     public DateTimeOffset? LastUpdateCheckUtc { get; set; }
@@ -81,6 +82,7 @@ public sealed class PreferencesService
             CaptureAppActivity = loaded.CaptureAppActivity;
             CaptureClipboard = loaded.CaptureClipboard;
             HasCompletedOnboarding = loaded.HasCompletedOnboarding;
+            LastCompletedTutorialVersion = loaded.LastCompletedTutorialVersion ?? "";
             StartWithWindows = loaded.StartWithWindows;
             AutomaticUpdateChecks = loaded.AutomaticUpdateChecks;
             LastUpdateCheckUtc = loaded.LastUpdateCheckUtc;

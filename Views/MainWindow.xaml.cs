@@ -125,23 +125,32 @@ public partial class MainWindow : Window
     {
         Loaded -= MainWindow_Loaded;
 
-        var returningUser = App.Preferences.HasCompletedOnboarding;
+        var tutorialIsCurrent =
+            App.Preferences.HasCompletedOnboarding &&
+            string.Equals(
+                App.Preferences.LastCompletedTutorialVersion,
+                AppVersion.ReleaseTag,
+                StringComparison.OrdinalIgnoreCase);
 
-        if (!returningUser)
+        if (!tutorialIsCurrent)
         {
-            try { ShowOnboarding(); }
+            try
+            {
+                // Version 1 is the first official release. Development builds may have
+                // already set HasCompletedOnboarding, so use a version marker to ensure
+                // the complete six-page tutorial is shown once for the official release.
+                if (ShowOnboarding())
+                    ShowWhatsNewIfNeeded();
+            }
             catch (Exception ex)
             {
                 App.LogNonFatal("Onboarding", ex);
                 MessageBox.Show(
-                    "Memory Trail started successfully, but the welcome tutorial could not be opened. You can retry it later from Settings.",
+                    "Memory Trail started successfully, but the welcome tutorial could not be opened. You can replay it later from Settings.",
                     "Memory Trail",
                     MessageBoxButton.OK,
                     MessageBoxImage.Information);
             }
-
-            App.Preferences.LastSeenVersion = AppVersion.ReleaseTag;
-            App.Preferences.Save();
         }
         else
         {
@@ -1239,14 +1248,16 @@ public partial class MainWindow : Window
 
     private void ShowTutorial_Click(object sender, RoutedEventArgs e) => ShowOnboarding();
 
-    private void ShowOnboarding()
+    private bool ShowOnboarding()
     {
         var welcome = new OnboardingWindow { Owner = this };
-        if (welcome.ShowDialog() == true)
-        {
-            App.Preferences.HasCompletedOnboarding = true;
-            App.Preferences.Save();
-        }
+        if (welcome.ShowDialog() != true)
+            return false;
+
+        App.Preferences.HasCompletedOnboarding = true;
+        App.Preferences.LastCompletedTutorialVersion = AppVersion.ReleaseTag;
+        App.Preferences.Save();
+        return true;
     }
 
     private void ClearCache_Click(object sender, RoutedEventArgs e)
