@@ -80,13 +80,25 @@ jobs:
 
       - name: Build
         shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
+          $logPath = "build-error.log"
           dotnet build MemoryTrail.Windows.csproj -c Release -r win-x64 --no-restore `
             -p:Version=$env:PACKAGE_VERSION `
             -p:AssemblyVersion=$env:ASSEMBLY_VERSION `
             -p:FileVersion=$env:ASSEMBLY_VERSION `
             -p:InformationalVersion=$env:INFORMATIONAL_VERSION `
-            -p:BuildCommit=$env:GITHUB_SHA
+            -p:BuildCommit=$env:GITHUB_SHA 2>&1 | Tee-Object -FilePath $logPath
+          $exitCode = $LASTEXITCODE
+
+          if ($exitCode -ne 0) {
+            $bytes = [System.Text.Encoding]::UTF8.GetBytes((Get-Content $logPath -Raw))
+            $content = [Convert]::ToBase64String($bytes)
+            $body = @{ message = "[skip ci] capture build error"; content = $content; branch = "main" } | ConvertTo-Json
+            gh api --method PUT "repos/$env:GITHUB_REPOSITORY/contents/BUILD_ERROR.txt" --input - <<< $body
+            exit $exitCode
+          }
 
       - name: Publish self-contained Windows x64 app
         shell: pwsh
