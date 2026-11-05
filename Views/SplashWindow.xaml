@@ -117,7 +117,7 @@
 
           <TextBlock Text="Your workday, remembered locally."
                      FontSize="12.5"
-                     Foreground="#52637A"
+                     Foreground="#44566F"
                      HorizontalAlignment="Center"
                      Margin="0,6,0,0"/>
 
@@ -143,7 +143,7 @@
                      Text="Starting Memory Trail…"
                      FontSize="11"
                      FontWeight="SemiBold"
-                     Foreground="#31445F"
+                     Foreground="#263A56"
                      HorizontalAlignment="Center"
                      Margin="0,0,0,10"/>
 
