@@ -7,7 +7,7 @@
         Width="1560" Height="860"
         MinWidth="1240" MinHeight="720"
         WindowStartupLocation="CenterScreen"
-        FontFamily="Segoe UI"
+        FontFamily="Segoe UI Variable Text, Segoe UI"
         TextOptions.TextFormattingMode="Display"
         TextOptions.TextRenderingMode="ClearType"
         TextOptions.TextHintingMode="Fixed"
