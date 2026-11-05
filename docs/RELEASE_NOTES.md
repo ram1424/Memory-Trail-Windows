@@ -1,9 +1,11 @@
-## Version 1.1 highlights
+## Version 1.2 highlights
 
-- Fixed Insights Top Items clipping/overlap into Activity Patterns.
-- Rebuilt the summary-card layout with auto-sized rows and stable spacing.
-- Improved Insights behavior at higher Windows DPI and text scaling.
-- Release version remains 1.1.
+- Fixed New Outlook capture so the timeline uses the active reading-pane subject instead of Copilot/UI chrome labels.
+- Captures sender information from the same message shown in the reading pane.
+- Prevents New Outlook from inheriting stale Classic Outlook COM selections.
+- Restored Outlook sender/subject details in Activity Details and double-click details behavior.
+- Retains the Insights overlap/high-DPI layout fix.
+- Release version corrected to 1.2.
 
 ## Version 1.0.5 highlights
 

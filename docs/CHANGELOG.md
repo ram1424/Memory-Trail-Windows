@@ -2,14 +2,16 @@
 
 A concise record of production changes. Each release is organized by area so updates are easy to scan.
 
-## Version 1.1
+## Version 1.2
 
 ### 🛠 Fixes
-- **Insights section overlap** — replaced the compressed Top Items summary layout with explicit auto-sized rows and columns so it cannot clip into the Activity Patterns area.
-- **High-DPI spacing** — added stable row gaps, minimum card heights, and extra vertical separation for Windows scaling and larger text metrics.
+- **New Outlook subject capture** — captures the subject from the active message reading pane instead of Copilot, Focused Inbox, navigation, or message-list labels.
+- **Correct sender matching** — captures sender metadata from the same active reading pane and avoids stale Classic Outlook COM selections.
+- **Activity Details restored** — sender/subject details are visible again in the right-side details pane, and double-click reopens that pane.
+- **Insights layout** — retains the spacing fix that prevents Top Items from clipping into Activity Patterns.
 
-### 🎨 Quality
-- **Cleaner Insights layout** — summary cards now preserve consistent spacing and alignment across window sizes and display scaling.
+### 📦 Release
+- **Version restored to 1.2** — release metadata, About display, ZIP build, and Store MSIX now use the 1.2 release line.
 
 ---
 
