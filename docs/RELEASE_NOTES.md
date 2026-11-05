@@ -1,76 +1,26 @@
-## Version 1.1 highlights
+## Version 1.2 highlights
 
-- Rebuilt Insights to match the polished dashboard reference with real local activity metrics.
-- Added activity patterns, peak time, focus streaks, Top Items, category distribution, and Quick Summary.
-- Sharpened Windows typography and text contrast throughout the app.
-- Added local data location, Open Data Folder, and JSON activity export in Settings.
-- Added clear-last-week, clear-last-month, and clear-all history flows with playful graphics and success messages.
-- Restored Start Memory Trail when I sign in to Windows for Microsoft Store and direct-download builds.
-- Added clever, friendly update/up-to-date/What's New messaging.
-- Microsoft Store continues to manage updates for Store-installed copies.
+- Redesigned Today to match the approved dashboard reference, including Today at a Glance, timeline, Top Apps Today, Key Takeaways, and Recent Files & Documents.
+- Redesigned Ask Memory Trail with a wide local-search field, six useful prompt suggestions, and clear local/privacy guidance.
+- Redesigned Insights around Activity by App, Time Distribution, Activity Patterns, and Key Takeaways.
+- Sharpened the Windows UI with Segoe UI Variable Text, denser typography, stronger contrast, ClearType, pixel snapping, and Per-Monitor-V2 high-DPI support.
+- Added clear-history options for the last week, last month, or all history, with playful confirmation and success graphics.
+- Fixed Start Memory Trail when I sign in to Windows and added packaged startup-task registration for Microsoft Store installs.
+- Added a polished, witty up-to-date experience when no update is available.
+- Microsoft Store builds continue to rely on Microsoft Store for update delivery.
 
-## Version 1.2 Build 7 highlights
+## Microsoft Store submission
 
-- Sharper, crisper typography throughout the Windows UI.
-- Switched WPF text rendering to standard Segoe UI for stronger Windows font hinting.
-- Increased text contrast slightly to reduce washed-out lettering.
-- Reinforced ClearType, display text formatting, fixed hinting, layout rounding, and pixel snapping.
-- Removed text-softening container shadows from key panels and dialogs.
-- Retains Per-Monitor-V2 high-DPI support and the existing Memory Trail design.
-
-## Version 1.2 Build 6 highlights
-
-- Fixed New Outlook capture so the timeline uses the active reading-pane subject instead of Copilot/UI chrome labels.
-- Captures sender information from the same message shown in the reading pane.
-- Prevents New Outlook from inheriting stale Classic Outlook COM selections.
-- Restored Outlook sender/subject details in Activity Details and double-click details behavior.
-- Retains the Insights overlap/high-DPI layout fix.
-- Release identity corrected to Version 1.2 Build 6 across About, updater, ZIP, and MSIX.
-
-## Version 1.0.5 highlights
-
-- Full in-app Memory Trail Privacy Policy
-- Clear disclosure of locally captured data and local storage
-- GitHub update-check and network-metadata transparency
-- User controls, retention, security boundaries, and source-code transparency
-- Privacy Policy and Source Code actions grouped in Settings
-
-## Previous 1.0.4 highlights
-
-- Automatic app restart after an update finishes downloading
-- Silent staged installation followed by automatic relaunch
-- No manual close or reopen required after choosing Update
-- Clearer update-dialog explanation of the restart behavior
-- Existing SHA-256 package verification retained
-
-## Previous 1.0.3 highlights
-
-- Beautiful Clear Cache confirmation window
-- True vector Outlook icon in Today → Newest First
-- Outlook-family process normalization for classic and new Outlook
-- Categorized, scan-friendly changelog format
-
-## Core Memory Trail experience
-
-- Privacy-first local activity capture and timeline storage
-- Today timeline with Live Activity state
-- Ask Memory Trail local search
-- Browser, email, chat, file, document, app, and clipboard context when available
-- Favorites, Clipboard History, manual memories, Insights, and filters
-- Privacy exclusions and independent capture controls
-- Two-second startup target with approved Memory Trail branding
-- Launch-time update checking with Update / Remind Me in 24 Hours / Skip This Version
-- Background update download and SHA-256 verification
-- Silent staged installation with automatic Memory Trail relaunch
-- Polished up-to-date confirmation screen for manual checks
-- Per-Monitor-V2 DPI awareness and crisp ClearType rendering
-
-## Versioning
-
-Production releases use semantic patch versioning. Each normal push to `main` advances the patch number.
+- Product: existing **Memory Trail** Store listing
+- Display version: **1.2**
+- MSIX package version: **1.2.0.0**
+- Architecture: **x64**
+- Package identity: **RomanZakharov.MemoryTrail**
+- Publisher identity remains unchanged
+- Upload the newly generated Store MSIX to a new update submission in Partner Center
 
 ## Privacy
 
-Captured timeline history remains local to the PC. Update checks are a separate request for GitHub release metadata and do not include timeline entries, clipboard content, window titles, or file paths.
+Captured timeline history remains local to the PC. Store/update requests do not include timeline entries, clipboard content, window titles, or file paths.
 
 See `docs/PRIVACY.md` for the complete privacy and data-handling description.

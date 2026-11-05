@@ -2,6 +2,35 @@
 
 A concise record of production changes. Each release is organized by area so updates are easy to scan.
 
+## Version 1.2
+
+### 🎨 Today, Ask Memory Trail & Insights
+- **Today dashboard redesign** — rebuilt Today to match the approved reference with a glance summary, chronological activity timeline, Top Apps Today, Key Takeaways, and Recent Files & Documents.
+- **Ask Memory Trail redesign** — added the wide local-search experience, prompt suggestions, and three explanatory cards for search, privacy, and opening captured activity.
+- **Insights redesign** — reorganized Insights around Today at a Glance, Activity by App, Time Distribution, Activity Patterns, and Key Takeaways while retaining real local timeline calculations.
+
+### ✨ Visual Quality
+- **Crisper typography** — uses Segoe UI Variable Text with stronger weight and darker text tones for a denser, sharper Windows appearance.
+- **High-DPI rendering** — reinforces ClearType, display text formatting, fixed hinting, layout rounding, pixel snapping, and Per-Monitor-V2 DPI awareness.
+- **Sharper panels and controls** — keeps text-heavy surfaces clean and avoids unnecessary effects that soften WPF text.
+
+### 🗂 Data & History
+- **Flexible history clearing** — clear the last week, last month, or all locally stored history.
+- **Playful confirmations** — each history range uses a witty confirmation and success state.
+- **Local data controls** — retain Open Data Folder and JSON activity export.
+
+### 🪟 Windows & Microsoft Store
+- **Start with Windows fixed** — restores the interactive startup option and registers a packaged startup task for Microsoft Store installations.
+- **Stable Store startup path** — packaged builds launch through the app package identity so Store updates do not invalidate the startup target.
+- **Store-managed updates** — Microsoft Store builds continue to hand update delivery to Microsoft Store.
+- **Playful up-to-date screen** — manual update checks show a polished, witty success graphic when no update is available.
+
+### 📦 Release
+- **Version 1.2** — application, About/version metadata, GitHub release, and Store package metadata are aligned.
+- **MSIX version 1.2.0.0** — suitable for submission as an update to the existing Memory Trail Store listing.
+
+---
+
 ## Version 1.1
 
 ### ✨ Insights
@@ -25,33 +54,6 @@ A concise record of production changes. Each release is organized by area so upd
 ### 🪟 Windows
 - **Start with Windows restored** — the setting is interactive again for both direct-download and Microsoft Store builds.
 - **Version 1.1** — About, GitHub release, ZIP, update metadata, and Store MSIX use the 1.1 release identity.
-
----
-
-## Version 1.2 Build 7
-
-### 🎨 Visual Quality
-- **Crisper Windows typography** — switched the WPF text stack to standard Segoe UI for stronger Windows hinting and sharper glyph edges.
-- **Higher text contrast** — darkened primary, secondary, and tertiary text tones slightly to reduce the washed-out appearance without changing the overall UI palette.
-- **ClearType reinforcement** — enabled ClearType hints, fixed text hinting, display-mode formatting, pixel snapping, and layout rounding across shared text controls.
-- **Sharper layered panels** — removed container-level drop shadows that caused WPF to rasterize text-heavy panels and soften lettering.
-
-### 🖥 Display Scaling
-- **High-DPI consistency** — retains Per-Monitor-V2 DPI awareness and strengthens rendering behavior for common 100%, 125%, 150%, and 200% Windows scaling levels.
-- **UI design preserved** — spacing, structure, branding, and approved app icon remain unchanged.
-
----
-
-## Version 1.2 Build 6
-
-### 🛠 Fixes
-- **New Outlook subject capture** — captures the subject from the active message reading pane instead of Copilot, Focused Inbox, navigation, or message-list labels.
-- **Correct sender matching** — captures sender metadata from the same active reading pane and avoids stale Classic Outlook COM selections.
-- **Activity Details restored** — sender/subject details are visible again in the right-side details pane, and double-click reopens that pane.
-- **Insights layout** — retains the spacing fix that prevents Top Items from clipping into Activity Patterns.
-
-### 📦 Release
-- **Version 1.2 Build 6** — About, ZIP release, update metadata, and Store MSIX all use the same explicit build number.
 
 ---
 
