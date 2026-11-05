@@ -15,6 +15,9 @@ public sealed class TimelineStore
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
         "Memory Lane");
     private string FilePath => Path.Combine(_folder, "timeline.json");
+
+    public string DataFolder => _folder;
+    public string DataFilePath => FilePath;
     private CancellationTokenSource? _saveCts;
 
     public ObservableCollection<MemoryItem> Items { get; } = [];
@@ -35,6 +38,53 @@ public sealed class TimelineStore
     {
         App.Current.Dispatcher.Invoke(() => Items.Clear());
         ScheduleSave();
+    }
+
+    public int CountSince(DateTime cutoff)
+        => App.Current.Dispatcher.Invoke(() => Items.Count(x => x.CreatedAt >= cutoff));
+
+    public int ClearSince(DateTime cutoff)
+    {
+        var removed = 0;
+        App.Current.Dispatcher.Invoke(() =>
+        {
+            var matches = Items.Where(x => x.CreatedAt >= cutoff).ToList();
+            removed = matches.Count;
+            foreach (var item in matches)
+                Items.Remove(item);
+        });
+
+        if (removed > 0)
+            Save();
+
+        return removed;
+    }
+
+    public int ClearAllAndCount()
+    {
+        var removed = App.Current.Dispatcher.Invoke(() => Items.Count);
+        if (removed == 0)
+            return 0;
+
+        App.Current.Dispatcher.Invoke(() => Items.Clear());
+        Save();
+        return removed;
+    }
+
+    public void ExportJson(string destinationPath)
+    {
+        lock (_gate)
+        {
+            var snapshot = App.Current.Dispatcher.Invoke(() => Items
+                .OrderByDescending(x => x.CreatedAt)
+                .ToList());
+
+            File.WriteAllText(
+                destinationPath,
+                JsonSerializer.Serialize(
+                    snapshot,
+                    new JsonSerializerOptions { WriteIndented = true }));
+        }
     }
 
     public void ToggleFavorite(MemoryItem item)

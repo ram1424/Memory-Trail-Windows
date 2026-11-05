@@ -1,4 +1,6 @@
 using Microsoft.Win32;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Text.Json;
 
 namespace MemoryLane.Windows;
@@ -12,6 +14,9 @@ public sealed class PreferencesService
         Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
         "Memory Lane");
     private string FilePath => Path.Combine(_folder, "preferences.json");
+    private string StoreStartupScriptPath => Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.Startup),
+        "Memory Trail.vbs");
 
     public bool CapturePaused { get; set; }
     public bool CaptureAppActivity { get; set; } = true;
@@ -38,23 +43,80 @@ public sealed class PreferencesService
     public bool IsExcluded(string processName) =>
         string.IsNullOrWhiteSpace(processName) || ExcludedProcesses.Contains(processName);
 
-    public void SetStartWithWindows(bool enabled)
+    public bool SetStartWithWindows(bool enabled)
     {
-        StartWithWindows = enabled;
         try
         {
-            using var key = Registry.CurrentUser.OpenSubKey(
-                @"Software\Microsoft\Windows\CurrentVersion\Run", writable: true);
-            if (key is null) return;
-
-            key.DeleteValue("Memory Lane", false);
-            if (enabled)
-                key.SetValue("Memory Trail", $"\"{Environment.ProcessPath}\"");
+            if (AppVersion.IsMicrosoftStoreBuild)
+                SetStoreStartup(enabled);
             else
-                key.DeleteValue("Memory Trail", false);
+                SetRegistryStartup(enabled);
+
+            StartWithWindows = enabled;
+            return true;
         }
-        catch { }
+        catch (Exception ex)
+        {
+            StartWithWindows = false;
+            App.LogNonFatal("Start with Windows", ex);
+            return false;
+        }
     }
+
+    private void SetRegistryStartup(bool enabled)
+    {
+        using var key = Registry.CurrentUser.OpenSubKey(
+            @"Software\Microsoft\Windows\CurrentVersion\Run", writable: true);
+        if (key is null)
+            throw new InvalidOperationException("Windows startup registry key is unavailable.");
+
+        key.DeleteValue("Memory Lane", false);
+        if (enabled)
+            key.SetValue("Memory Trail", "\"" + Environment.ProcessPath + "\"");
+        else
+            key.DeleteValue("Memory Trail", false);
+    }
+
+    private void SetStoreStartup(bool enabled)
+    {
+        var startupFolder = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
+        Directory.CreateDirectory(startupFolder);
+
+        if (!enabled)
+        {
+            if (File.Exists(StoreStartupScriptPath))
+                File.Delete(StoreStartupScriptPath);
+            return;
+        }
+
+        var familyName = TryGetCurrentPackageFamilyName();
+        if (string.IsNullOrWhiteSpace(familyName))
+            throw new InvalidOperationException("The Microsoft Store package identity could not be resolved.");
+
+        var appId = familyName + "!MemoryTrail";
+        var script =
+            "Set shell = CreateObject(\"WScript.Shell\")\r\n" +
+            "shell.Run \"explorer.exe \"\"shell:AppsFolder\\" + appId + "\"\"\", 0, False\r\n";
+
+        File.WriteAllText(StoreStartupScriptPath, script, Encoding.Unicode);
+    }
+
+    private static string? TryGetCurrentPackageFamilyName()
+    {
+        uint length = 0;
+        var result = GetCurrentPackageFamilyName(ref length, null);
+        if (result != 122 || length == 0)
+            return null;
+
+        var buffer = new StringBuilder((int)length);
+        result = GetCurrentPackageFamilyName(ref length, buffer);
+        return result == 0 ? buffer.ToString() : null;
+    }
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+    private static extern int GetCurrentPackageFamilyName(
+        ref uint packageFamilyNameLength,
+        StringBuilder? packageFamilyName);
 
     public void ResetToDefaults()
     {
