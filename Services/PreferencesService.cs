@@ -79,26 +79,29 @@ public sealed class PreferencesService
 
     private void SetStoreStartup(bool enabled)
     {
-        var startupFolder = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
-        Directory.CreateDirectory(startupFolder);
-
-        if (!enabled)
-        {
-            if (File.Exists(StoreStartupScriptPath))
-                File.Delete(StoreStartupScriptPath);
-            return;
-        }
-
         var familyName = TryGetCurrentPackageFamilyName();
         if (string.IsNullOrWhiteSpace(familyName))
             throw new InvalidOperationException("The Microsoft Store package identity could not be resolved.");
 
         var appId = familyName + "!MemoryTrail";
-        var script =
-            "Set shell = CreateObject(\"WScript.Shell\")\r\n" +
-            "shell.Run \"explorer.exe \"\"shell:AppsFolder\\" + appId + "\"\"\", 0, False\r\n";
+        using var key = Registry.CurrentUser.OpenSubKey(
+            @"Software\Microsoft\Windows\CurrentVersion\Run", writable: true)
+            ?? throw new InvalidOperationException("Windows startup registry key is unavailable.");
 
-        File.WriteAllText(StoreStartupScriptPath, script, Encoding.Unicode);
+        // Remove every legacy startup path first so the setting has one source of truth.
+        key.DeleteValue("Memory Lane", false);
+        key.DeleteValue("Memory Trail", false);
+        if (File.Exists(StoreStartupScriptPath))
+            File.Delete(StoreStartupScriptPath);
+
+        if (!enabled)
+            return;
+
+        // Packaged desktop apps are launched through AppsFolder instead of their
+        // versioned install path, which keeps startup valid after Store updates.
+        key.SetValue(
+            "Memory Trail",
+            "explorer.exe \"shell:AppsFolder\\" + appId + "\"");
     }
 
     private static string? TryGetCurrentPackageFamilyName()

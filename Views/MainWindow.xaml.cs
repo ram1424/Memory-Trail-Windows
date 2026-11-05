@@ -882,11 +882,100 @@ public partial class MainWindow : Window
             .ToString();
 
         ClipboardItemsText.Text = today.Count(x => x.SourceKind == SourceKind.Clipboard).ToString();
+        FilesTodayText.Text = today.Count(x => MatchesCategory(x, "Files")).ToString();
 
         var activeTime = CalculateActiveTime(today);
         ActiveTimeText.Text = FormatDuration(activeTime);
 
+        UpdateTodayDashboard(today);
         UpdateInsights();
+    }
+
+    private void UpdateTodayDashboard(IReadOnlyList<MemoryItem> today)
+    {
+        TodayTopAppsPanel.Children.Clear();
+        var topApps = today
+            .Where(x => !string.IsNullOrWhiteSpace(x.SourceApp))
+            .GroupBy(x => x.SourceApp, StringComparer.OrdinalIgnoreCase)
+            .Select(g => new { Name = g.Key.Trim(), Count = g.Count() })
+            .OrderByDescending(x => x.Count)
+            .ThenBy(x => x.Name)
+            .Take(6)
+            .ToList();
+
+        foreach (var app in topApps)
+        {
+            var row = new Grid { Margin = new Thickness(0, 0, 0, 8) };
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+
+            row.Children.Add(new TextBlock
+            {
+                Text = app.Name,
+                FontSize = 10.5,
+                FontWeight = FontWeights.SemiBold,
+                Foreground = new SolidColorBrush(Color.FromRgb(20, 29, 43)),
+                TextTrimming = TextTrimming.CharacterEllipsis
+            });
+
+            var count = new TextBlock
+            {
+                Text = app.Count + (app.Count == 1 ? " activity" : " activities"),
+                FontSize = 9.5,
+                Foreground = new SolidColorBrush(Color.FromRgb(96, 112, 135))
+            };
+            Grid.SetColumn(count, 1);
+            row.Children.Add(count);
+            TodayTopAppsPanel.Children.Add(row);
+        }
+
+        if (topApps.Count == 0)
+            TodayTopAppsPanel.Children.Add(new TextBlock { Text = "No app activity yet.", FontSize = 10, Foreground = new SolidColorBrush(Color.FromRgb(96, 112, 135)) });
+
+        var hourly = Enumerable.Range(0, 24).Select(h => today.Count(x => x.CreatedAt.Hour == h)).ToArray();
+        var max = hourly.Length == 0 ? 0 : hourly.Max();
+        var peak = max == 0 ? -1 : Array.IndexOf(hourly, max);
+        TodayPeakFocusText.Text = peak < 0
+            ? "No focus window yet"
+            : DateTime.Today.AddHours(peak).ToString("h:mm tt") + " – " + DateTime.Today.AddHours((peak + 1) % 24).ToString("h:mm tt");
+
+        var topType = today
+            .GroupBy(x => x.CategoryLabel)
+            .OrderByDescending(g => g.Count())
+            .Select(g => g.Key)
+            .FirstOrDefault();
+        TodayTopWorkTypeText.Text = string.IsNullOrWhiteSpace(topType) ? "No work type yet" : topType;
+        TodaySwitchingText.Text = topApps.Count == 0 ? "No apps used in this period." : $"You moved across {topApps.Count} app{(topApps.Count == 1 ? "" : "s")} in this period.";
+
+        TodayRecentFilesPanel.Children.Clear();
+        var recentFiles = today
+            .Where(x => MatchesCategory(x, "Files"))
+            .OrderByDescending(x => x.CreatedAt)
+            .Take(4)
+            .ToList();
+
+        foreach (var item in recentFiles)
+        {
+            var row = new StackPanel { Margin = new Thickness(0, 0, 0, 8) };
+            row.Children.Add(new TextBlock
+            {
+                Text = item.Title,
+                FontSize = 10.5,
+                FontWeight = FontWeights.SemiBold,
+                Foreground = new SolidColorBrush(Color.FromRgb(20, 29, 43)),
+                TextTrimming = TextTrimming.CharacterEllipsis
+            });
+            row.Children.Add(new TextBlock
+            {
+                Text = item.CreatedAt.ToString("h:mm tt"),
+                FontSize = 9,
+                Foreground = new SolidColorBrush(Color.FromRgb(96, 112, 135))
+            });
+            TodayRecentFilesPanel.Children.Add(row);
+        }
+
+        if (recentFiles.Count == 0)
+            TodayRecentFilesPanel.Children.Add(new TextBlock { Text = "No recent files or documents.", FontSize = 10, Foreground = new SolidColorBrush(Color.FromRgb(96, 112, 135)) });
     }
 
     private void UpdateInsights()
@@ -904,7 +993,7 @@ public partial class MainWindow : Window
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .Count()
             .ToString();
-        InsightsFavoritesText.Text = items.Count(x => x.IsFavorite).ToString();
+        InsightsFavoritesText.Text = items.Count(x => MatchesCategory(x, "Files")).ToString();
 
         var activeTime = CalculateActiveTime(items);
         var longestSession = CalculateLongestSession(items);
