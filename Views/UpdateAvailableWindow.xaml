@@ -6,7 +6,7 @@
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
         Background="#DCE6F2"
-        FontFamily="Segoe UI">
+        FontFamily="Segoe UI Variable Text, Segoe UI">
   <Border Margin="18" Background="#EEF3F8" BorderBrush="#C6D3E1" BorderThickness="1"
           CornerRadius="24" Padding="24">
     <Border.Effect>

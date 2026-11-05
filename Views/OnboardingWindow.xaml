@@ -7,7 +7,7 @@
         MinWidth="860" MinHeight="620"
         WindowStartupLocation="CenterOwner"
         ResizeMode="CanResize"
-        FontFamily="Segoe UI"
+        FontFamily="Segoe UI Variable Text, Segoe UI"
         Background="#C0CEE1">
   <Window.Resources>
     <Style x:Key="TourCard" TargetType="Border">

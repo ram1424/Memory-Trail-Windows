@@ -7,7 +7,7 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         Background="#F7FAFF"
-        FontFamily="Segoe UI"
+        FontFamily="Segoe UI Variable Text, Segoe UI"
         UseLayoutRounding="True"
         SnapsToDevicePixels="True"
         TextOptions.TextFormattingMode="Display"
