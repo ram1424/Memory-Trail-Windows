@@ -27,67 +27,29 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Resolve semantic patch version
+      - name: Resolve release version
         shell: pwsh
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
           [xml]$project = Get-Content "MemoryTrail.Windows.csproj"
-          $sourceVersion = [string]$project.Project.PropertyGroup.DisplayVersion
-          $commitTitle = git log -1 --pretty=%s
-          $keepCurrentVersion = $commitTitle -match '\[keep-version\]'
+          $displayVersion = [string]$project.Project.PropertyGroup.DisplayVersion
+          $buildNumber = [string]$project.Project.PropertyGroup.BuildNumber
 
-          if ($keepCurrentVersion) {
-            $displayVersion = $sourceVersion
-            Write-Host "Keeping current release version $displayVersion for this push."
-          }
-          elseif ("$env:GITHUB_EVENT_NAME" -eq "push") {
-            $highestPatch = -1
-
-            try {
-              $releasesJson = gh api "repos/$env:GITHUB_REPOSITORY/releases?per_page=100"
-              $releases = $releasesJson | ConvertFrom-Json
-
-              foreach ($release in $releases) {
-                $tag = [string]$release.tag_name
-
-                if ($tag -match '^v?1\.0\.(\d+)$') {
-                  $patch = [int]$Matches[1]
-                  if ($patch -gt $highestPatch) { $highestPatch = $patch }
-                  continue
-                }
-
-                if ($tag -match '^v?1(?:\.0(?:\.0)?)?$') {
-                  if (0 -gt $highestPatch) { $highestPatch = 0 }
-                }
-              }
-            }
-            catch {
-              Write-Host "Could not read existing releases; using source baseline."
-            }
-
-            if ($highestPatch -lt 0) {
-              $displayVersion = $sourceVersion
-            }
-            else {
-              $displayVersion = "1.0.$($highestPatch + 1)"
-            }
-
-            if ([version]$displayVersion -lt [version]"1.0.1") {
-              $displayVersion = "1.0.1"
-            }
-          }
-          else {
-            $displayVersion = $sourceVersion
+          if ([string]::IsNullOrWhiteSpace($displayVersion) -or [string]::IsNullOrWhiteSpace($buildNumber)) {
+            throw "DisplayVersion and BuildNumber must both be defined."
           }
 
-          $assemblyVersion = "$displayVersion.0"
-          $releaseTag = "v$displayVersion"
-          $releaseName = "Memory Trail Version $displayVersion"
-          $artifactName = "Memory-Trail-Windows-$displayVersion-x64.zip"
+          $packageVersion = "$displayVersion.$buildNumber"
+          $assemblyVersion = "$displayVersion.$buildNumber.0"
+          $informationalVersion = "$displayVersion-build.$buildNumber"
+          $releaseTag = "v$displayVersion-build.$buildNumber"
+          $releaseName = "Memory Trail Version $displayVersion Build $buildNumber"
+          $artifactName = "Memory-Trail-Windows-$displayVersion-build-$buildNumber-x64.zip"
 
           "DISPLAY_VERSION=$displayVersion" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "BUILD_NUMBER=$buildNumber" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "PACKAGE_VERSION=$packageVersion" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           "ASSEMBLY_VERSION=$assemblyVersion" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "INFORMATIONAL_VERSION=$informationalVersion" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           "RELEASE_TAG=$releaseTag" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           "RELEASE_NAME=$releaseName" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
           "ARTIFACT_NAME=$artifactName" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
@@ -120,10 +82,10 @@ jobs:
         shell: pwsh
         run: |
           dotnet build MemoryTrail.Windows.csproj -c Release -r win-x64 --no-restore `
-            -p:Version=$env:DISPLAY_VERSION `
+            -p:Version=$env:PACKAGE_VERSION `
             -p:AssemblyVersion=$env:ASSEMBLY_VERSION `
             -p:FileVersion=$env:ASSEMBLY_VERSION `
-            -p:InformationalVersion=$env:DISPLAY_VERSION `
+            -p:InformationalVersion=$env:INFORMATIONAL_VERSION `
             -p:BuildCommit=$env:GITHUB_SHA
 
       - name: Publish self-contained Windows x64 app
@@ -171,7 +133,7 @@ jobs:
           $generated = "artifacts/RELEASE_NOTES.generated.md"
 
           @(
-            "# Memory Trail Version $env:DISPLAY_VERSION"
+            "# Memory Trail Version $env:DISPLAY_VERSION Build $env:BUILD_NUMBER"
             ""
             "## Changes in this release"
             ""

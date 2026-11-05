@@ -8,7 +8,7 @@
 
 Memory Trail is a privacy-first Windows activity timeline for retracing what you were doing across browsers, email, chat, files, documents, apps, and the clipboard. It turns useful local Windows app/window context into a searchable chronological history without requiring a cloud account or external data connector.
 
-**Release line: Memory Trail 1.2** — current production release is **1.2**.
+**Release line: Memory Trail 1.2** — current production build is **Version 1.2 Build 6**.
 
 ## Download
 
@@ -168,7 +168,7 @@ dotnet publish .\MemoryTrail.Windows.csproj `
   -o .\publish
 ```
 
-**Source baseline:** `1.2`
+**Source baseline:** `1.2 Build 6`
 
 ## Release
 

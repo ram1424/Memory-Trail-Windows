@@ -1,11 +1,11 @@
-## Version 1.2 highlights
+## Version 1.2 Build 6 highlights
 
 - Fixed New Outlook capture so the timeline uses the active reading-pane subject instead of Copilot/UI chrome labels.
 - Captures sender information from the same message shown in the reading pane.
 - Prevents New Outlook from inheriting stale Classic Outlook COM selections.
 - Restored Outlook sender/subject details in Activity Details and double-click details behavior.
 - Retains the Insights overlap/high-DPI layout fix.
-- Release version corrected to 1.2.
+- Release identity corrected to Version 1.2 Build 6 across About, updater, ZIP, and MSIX.
 
 ## Version 1.0.5 highlights
 

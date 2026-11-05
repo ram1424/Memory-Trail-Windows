@@ -59,17 +59,36 @@ public static class AppVersion
     private static string Normalize(string value)
     {
         var parsed = Parse(value);
-        if (parsed.Minor == 0 && parsed.Patch == 0 && parsed.Build == 0)
-            return $"{parsed.Major}";
 
-        if (parsed.Patch == 0 && parsed.Build == 0)
-            return $"{parsed.Major}.{parsed.Minor}";
+        string baseVersion;
+        if (parsed.Minor == 0 && parsed.Patch == 0)
+            baseVersion = $"{parsed.Major}";
+        else if (parsed.Patch == 0)
+            baseVersion = $"{parsed.Major}.{parsed.Minor}";
+        else
+            baseVersion = $"{parsed.Major}.{parsed.Minor}.{parsed.Patch}";
 
-        return $"{parsed.Major}.{parsed.Minor}.{parsed.Patch}";
+        return parsed.Build > 0
+            ? $"{baseVersion}-build.{parsed.Build}"
+            : baseVersion;
     }
 
     private static string FormatFriendly(string value)
-        => $"Version {value}";
+    {
+        var parsed = Parse(value);
+
+        string baseVersion;
+        if (parsed.Minor == 0 && parsed.Patch == 0)
+            baseVersion = $"{parsed.Major}";
+        else if (parsed.Patch == 0)
+            baseVersion = $"{parsed.Major}.{parsed.Minor}";
+        else
+            baseVersion = $"{parsed.Major}.{parsed.Minor}.{parsed.Patch}";
+
+        return parsed.Build > 0
+            ? $"Version {baseVersion} Build {parsed.Build}"
+            : $"Version {baseVersion}";
+    }
 
     private static (int Major, int Minor, int Patch, int Build) Parse(string value)
     {
