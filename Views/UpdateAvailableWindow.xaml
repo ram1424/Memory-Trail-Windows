@@ -37,12 +37,12 @@
         <StackPanel Grid.Column="1" VerticalAlignment="Center">
           <Border Background="#DDEBFF" BorderBrush="#BCD5F5" BorderThickness="1"
                   CornerRadius="10" Padding="9,4" HorizontalAlignment="Left">
-            <TextBlock Text="UPDATE AVAILABLE" FontSize="9.5" FontWeight="Bold" Foreground="#176DFF"/>
+            <TextBlock Text="FRESH TRACKS FOUND" FontSize="9.5" FontWeight="Bold" Foreground="#176DFF"/>
           </Border>
           <TextBlock x:Name="ReleaseNameText"
                      Text="A new Memory Trail update is available"
                      FontSize="22" FontWeight="Bold" Foreground="#121A2B" Margin="0,8,0,0"/>
-          <TextBlock Text="Choose when you want Memory Trail to handle this release."
+          <TextBlock Text="Something shiny wandered onto the release trail. Good news: it’s an update, not a raccoon."
                      Foreground="#52637A" FontSize="11.5" Margin="0,4,0,0"/>
         </StackPanel>
       </Grid>
@@ -83,7 +83,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
           </Grid.RowDefinitions>
-          <TextBlock Text="What’s new" FontSize="13.5" FontWeight="SemiBold"
+          <TextBlock Text="What came along for the hike" FontSize="13.5" FontWeight="SemiBold"
                      Foreground="#121A2B" Margin="0,0,0,10"/>
           <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <TextBlock x:Name="ReleaseNotesText" Foreground="#52647D" FontSize="12.2"
@@ -127,7 +127,7 @@
         <Button Grid.Column="0" Content="Skip This Version"
                 Click="Skip_Click" Margin="0,0,9,0"/>
         <TextBlock Grid.Column="1"
-                   Text="You can always check again from Settings."
+                   Text="No pressure. The update is patient. Suspiciously patient."
                    Foreground="#7A8798" FontSize="10.5"
                    VerticalAlignment="Center" Margin="4,0,12,0"/>
         <Button Grid.Column="2" Content="Remind Me in 24 Hours"

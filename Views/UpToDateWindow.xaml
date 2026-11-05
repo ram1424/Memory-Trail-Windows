@@ -97,9 +97,9 @@
                        HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-5,0,0"/>
           </Border>
 
-          <TextBlock Text="You’re All Caught Up!" FontSize="31" FontWeight="Bold"
+          <TextBlock x:Name="HeadlineText" Text="No updates hiding under the couch." FontSize="31" FontWeight="Bold"
                      Foreground="#0F1930" Margin="0,16,0,0" HorizontalAlignment="Center"/>
-          <TextBlock Text="You’re running the latest version of Memory Trail."
+          <TextBlock x:Name="SubtitleText" Text="You’re running the freshest Memory Trail. The update gremlins found nothing."
                      FontSize="15.5" Foreground="#31445F" Margin="0,6,0,18"
                      HorizontalAlignment="Center"/>
 
@@ -127,7 +127,7 @@
                 <StackPanel Orientation="Horizontal">
                   <TextBlock Text="✓" Foreground="#128128" FontSize="15" FontWeight="Bold"
                              Margin="0,0,6,0"/>
-                  <TextBlock Text="Up to Date" Foreground="#176C24" FontSize="12.5"
+                  <TextBlock x:Name="StatusBadgeText" Text="Up to Date" Foreground="#176C24" FontSize="12.5"
                              FontWeight="SemiBold"/>
                 </StackPanel>
               </Border>
@@ -137,12 +137,12 @@
           <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,17,0,0">
             <TextBlock Text="✦" Foreground="#176DFF" FontSize="22" FontWeight="Bold"
                        Margin="0,0,9,0" VerticalAlignment="Top"/>
-            <TextBlock Text="Everything is current and running smoothly.&#x0a;Keep exploring your day’s trail!"
+            <TextBlock x:Name="PunchlineText" Text="Everything is current. Your trail is fresh, your pixels are hydrated,&#x0a;and there is absolutely nothing to install."
                        FontSize="13.5" Foreground="#30415F" LineHeight="19"/>
           </StackPanel>
         </StackPanel>
 
-        <Button Content="Close" Width="180" Height="46"
+        <Button x:Name="PrimaryActionButton" Content="Close" Width="180" Height="46"
                 HorizontalAlignment="Center" VerticalAlignment="Bottom"
                 Margin="0,0,0,22"
                 Style="{StaticResource PrimaryButtonStyle}"
