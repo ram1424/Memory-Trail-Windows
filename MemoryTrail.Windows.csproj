@@ -72,6 +72,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
 
+    <Page Update="Views\HistoryClearWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Update="Views\HistoryClearWindow.xaml.cs">
+      <DependentUpon>HistoryClearWindow.xaml</DependentUpon>
+    </Compile>
+
     <Page Update="Views\MemoryDetailWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
