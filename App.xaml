@@ -10,9 +10,9 @@
     <SolidColorBrush x:Key="PanelBrush" Color="#E2EAF4"/>
     <SolidColorBrush x:Key="PanelAltBrush" Color="#EAF0F6"/>
     <SolidColorBrush x:Key="ElevatedStrongBrush" Color="#F0F4F8"/>
-    <SolidColorBrush x:Key="PrimaryTextBrush" Color="#1A2438"/>
-    <SolidColorBrush x:Key="SecondaryTextBrush" Color="#40506A"/>
-    <SolidColorBrush x:Key="TertiaryTextBrush" Color="#66778F"/>
+    <SolidColorBrush x:Key="PrimaryTextBrush" Color="#121A2B"/>
+    <SolidColorBrush x:Key="SecondaryTextBrush" Color="#31445F"/>
+    <SolidColorBrush x:Key="TertiaryTextBrush" Color="#52637A"/>
     <SolidColorBrush x:Key="AccentBrush" Color="#1677FF"/>
     <SolidColorBrush x:Key="AccentSoftBrush" Color="#D9E9FF"/>
     <SolidColorBrush x:Key="BorderBrush" Color="#C4D1E0"/>
@@ -120,7 +120,7 @@
       <Setter Property="Background" Value="Transparent"/>
       <Setter Property="BorderBrush" Value="Transparent"/>
       <Setter Property="BorderThickness" Value="0"/>
-      <Setter Property="Foreground" Value="#1A2438"/>
+      <Setter Property="Foreground" Value="#121A2B"/>
       <Setter Property="Padding" Value="13,0"/>
       <Setter Property="Height" Value="40"/>
       <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -150,7 +150,7 @@
       <Setter Property="FontSize" Value="12"/>
       <Setter Property="Background" Value="#E6EDF5"/>
       <Setter Property="BorderBrush" Value="#C4D1E0"/>
-      <Setter Property="Foreground" Value="#40506A"/>
+      <Setter Property="Foreground" Value="#31445F"/>
     </Style>
 
     <Style x:Key="IconButtonStyle" TargetType="Button" BasedOn="{StaticResource ModernButtonStyle}">
@@ -158,18 +158,19 @@
       <Setter Property="MinWidth" Value="28"/>
       <Setter Property="Background" Value="Transparent"/>
       <Setter Property="BorderBrush" Value="Transparent"/>
-      <Setter Property="Foreground" Value="#66778F"/>
+      <Setter Property="Foreground" Value="#52637A"/>
     </Style>
 
 
     <!-- High-definition rendering defaults for all Memory Trail windows. -->
     <Style TargetType="{x:Type Window}">
-      <Setter Property="FontFamily" Value="Segoe UI Variable Text"/>
+      <Setter Property="FontFamily" Value="Segoe UI"/>
       <Setter Property="UseLayoutRounding" Value="True"/>
       <Setter Property="SnapsToDevicePixels" Value="True"/>
       <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
       <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
       <Setter Property="TextOptions.TextHintingMode" Value="Fixed"/>
+      <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
     </Style>
 
     <Style TargetType="{x:Type TextBlock}">
@@ -177,6 +178,7 @@
       <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
       <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
       <Setter Property="TextOptions.TextHintingMode" Value="Fixed"/>
+      <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
     </Style>
 
     <Style TargetType="{x:Type Image}">
@@ -189,25 +191,40 @@
 
     <Style TargetType="TextBox">
       <Setter Property="Background" Value="#EEF3F8"/>
-      <Setter Property="Foreground" Value="#1A2438"/>
+      <Setter Property="Foreground" Value="#121A2B"/>
       <Setter Property="BorderBrush" Value="#C4D1E0"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="Padding" Value="12,9"/>
       <Setter Property="FontSize" Value="14"/>
       <Setter Property="CaretBrush" Value="#1677FF"/>
+      <Setter Property="FontFamily" Value="Segoe UI"/>
+      <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+      <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+      <Setter Property="TextOptions.TextHintingMode" Value="Fixed"/>
+      <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
     </Style>
 
     <Style TargetType="ComboBox">
       <Setter Property="Background" Value="#EAF0F6"/>
-      <Setter Property="Foreground" Value="#1A2438"/>
+      <Setter Property="Foreground" Value="#121A2B"/>
       <Setter Property="BorderBrush" Value="#C4D1E0"/>
       <Setter Property="Padding" Value="8"/>
       <Setter Property="MinHeight" Value="36"/>
+      <Setter Property="FontFamily" Value="Segoe UI"/>
+      <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+      <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+      <Setter Property="TextOptions.TextHintingMode" Value="Fixed"/>
+      <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
     </Style>
 
     <Style TargetType="CheckBox">
-      <Setter Property="Foreground" Value="#40506A"/>
+      <Setter Property="Foreground" Value="#31445F"/>
       <Setter Property="FontSize" Value="14"/>
+      <Setter Property="FontFamily" Value="Segoe UI"/>
+      <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
+      <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
+      <Setter Property="TextOptions.TextHintingMode" Value="Fixed"/>
+      <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
     </Style>
   </Application.Resources>
 </Application>

@@ -1,3 +1,12 @@
+## Version 1.2 Build 7 highlights
+
+- Sharper, crisper typography throughout the Windows UI.
+- Switched WPF text rendering to standard Segoe UI for stronger Windows font hinting.
+- Increased text contrast slightly to reduce washed-out lettering.
+- Reinforced ClearType, display text formatting, fixed hinting, layout rounding, and pixel snapping.
+- Removed text-softening container shadows from key panels and dialogs.
+- Retains Per-Monitor-V2 high-DPI support and the existing Memory Trail design.
+
 ## Version 1.2 Build 6 highlights
 
 - Fixed New Outlook capture so the timeline uses the active reading-pane subject instead of Copilot/UI chrome labels.

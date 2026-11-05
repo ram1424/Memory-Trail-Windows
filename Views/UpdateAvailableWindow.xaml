@@ -6,14 +6,9 @@
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
         Background="#DCE6F2"
-        FontFamily="Segoe UI Variable Text">
+        FontFamily="Segoe UI">
   <Border Margin="18" Background="#EEF3F8" BorderBrush="#C6D3E1" BorderThickness="1"
-          CornerRadius="24" Padding="24">
-    <Border.Effect>
-      <DropShadowEffect BlurRadius="26" ShadowDepth="6" Opacity="0.15" Color="#30445F"/>
-    </Border.Effect>
-
-    <Grid>
+          CornerRadius="24" Padding="24"><Grid>
       <Grid.RowDefinitions>
         <RowDefinition Height="Auto"/>
         <RowDefinition Height="Auto"/>
@@ -41,9 +36,9 @@
           </Border>
           <TextBlock x:Name="ReleaseNameText"
                      Text="A new Memory Trail update is available"
-                     FontSize="22" FontWeight="Bold" Foreground="#1A2438" Margin="0,8,0,0"/>
+                     FontSize="22" FontWeight="Bold" Foreground="#121A2B" Margin="0,8,0,0"/>
           <TextBlock Text="Choose when you want Memory Trail to handle this release."
-                     Foreground="#66778F" FontSize="11.5" Margin="0,4,0,0"/>
+                     Foreground="#52637A" FontSize="11.5" Margin="0,4,0,0"/>
         </StackPanel>
       </Grid>
 
@@ -57,13 +52,13 @@
         <Border Background="#E6EDF5" BorderBrush="#D1DDE9" BorderThickness="1"
                 CornerRadius="14" Padding="14">
           <StackPanel>
-            <TextBlock Text="Current version" FontSize="10.5" Foreground="#66778F"/>
+            <TextBlock Text="Current version" FontSize="10.5" Foreground="#52637A"/>
             <TextBlock x:Name="CurrentVersionText" FontSize="16" FontWeight="SemiBold"
-                       Foreground="#1A2438" Margin="0,3,0,0"/>
+                       Foreground="#121A2B" Margin="0,3,0,0"/>
           </StackPanel>
         </Border>
 
-        <TextBlock Grid.Column="1" Text="→" FontSize="19" Foreground="#66778F"
+        <TextBlock Grid.Column="1" Text="→" FontSize="19" Foreground="#52637A"
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <Border Grid.Column="2" Background="#E1EEFF" BorderBrush="#BDD5F6"
@@ -84,7 +79,7 @@
             <RowDefinition Height="*"/>
           </Grid.RowDefinitions>
           <TextBlock Text="What’s new" FontSize="13.5" FontWeight="SemiBold"
-                     Foreground="#1A2438" Margin="0,0,0,10"/>
+                     Foreground="#121A2B" Margin="0,0,0,10"/>
           <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <TextBlock x:Name="ReleaseNotesText" Foreground="#52647D" FontSize="12.2"
                        TextWrapping="Wrap" LineHeight="19"/>
@@ -106,7 +101,7 @@
 
           <TextBlock Grid.Column="1"
                      Text="Update downloads quietly in the background. When it is ready, Memory Trail briefly restarts itself, installs the update, and opens again automatically."
-                     Foreground="#40506A"
+                     Foreground="#31445F"
                      FontSize="11.5"
                      TextWrapping="Wrap"
                      TextTrimming="None"

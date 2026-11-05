@@ -6,19 +6,14 @@
         MinWidth="760" MinHeight="620"
         WindowStartupLocation="CenterOwner"
         Background="#E8EFF8"
-        FontFamily="Segoe UI Variable Text"
+        FontFamily="Segoe UI"
         UseLayoutRounding="True"
         SnapsToDevicePixels="True"
         TextOptions.TextFormattingMode="Display"
         TextOptions.TextRenderingMode="ClearType">
   <Grid Margin="18">
     <Border Background="#F8FAFD" BorderBrush="#CBD7E5" BorderThickness="1"
-            CornerRadius="24" Padding="0">
-      <Border.Effect>
-        <DropShadowEffect BlurRadius="28" ShadowDepth="7" Opacity="0.16" Color="#29415F"/>
-      </Border.Effect>
-
-      <Grid>
+            CornerRadius="24" Padding="0"><Grid>
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="*"/>
@@ -48,7 +43,7 @@
                 </Border>
               </StackPanel>
               <TextBlock Text="Effective November 3, 2026 • Last updated November 3, 2026"
-                         FontSize="11.5" Foreground="#66778F" Margin="0,4,0,0"/>
+                         FontSize="11.5" Foreground="#52637A" Margin="0,4,0,0"/>
             </StackPanel>
 
             <Button Grid.Column="2" Content="Close" Width="82" Height="34"
@@ -68,13 +63,13 @@
                   <TextBlock Text="Your captured activity belongs on your computer."
                              FontSize="15" FontWeight="SemiBold" Foreground="#1A2A44"/>
                   <TextBlock Text="Memory Trail processes and stores its core activity history locally and does not send that history to a Memory Trail cloud service."
-                             FontSize="12.5" Foreground="#40506A" TextWrapping="Wrap" Margin="0,4,0,0"/>
+                             FontSize="12.5" Foreground="#31445F" TextWrapping="Wrap" Margin="0,4,0,0"/>
                 </StackPanel>
               </Grid>
             </Border>
 
             <TextBlock Text="Memory Trail is designed as a privacy-first, locally run Windows application. Its core purpose is to help you review your recent computer activity without sending your captured activity history to a remote service."
-                       FontSize="13" Foreground="#40506A" TextWrapping="Wrap" LineHeight="20" Margin="0,0,0,20"/>
+                       FontSize="13" Foreground="#31445F" TextWrapping="Wrap" LineHeight="20" Margin="0,0,0,20"/>
 
             <TextBlock Text="1. What Memory Trail captures" Style="{StaticResource PolicyHeadingStyle}"/>
             <TextBlock Text="Depending on the features you enable and the information Windows makes locally available, Memory Trail may capture applications and windows you use; window titles and app context; process names and executable paths; local file or document names and paths; email or conversation subject/title information visible locally in supported apps; clipboard text when clipboard capture is enabled; memories, favorites, notes, and other information you intentionally add; and local timestamps/categories used to organize the timeline."
@@ -134,7 +129,7 @@
                 CornerRadius="0,0,24,24" Padding="22,13">
           <Grid>
             <TextBlock Text="Privacy-first • Local capture • Local storage"
-                       FontSize="10.5" Foreground="#66778F" VerticalAlignment="Center"/>
+                       FontSize="10.5" Foreground="#52637A" VerticalAlignment="Center"/>
             <Button Content="Close" Width="92" Height="34" HorizontalAlignment="Right" Click="Close_Click"/>
           </Grid>
         </Border>

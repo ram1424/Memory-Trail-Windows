@@ -7,7 +7,7 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         Background="#F7FAFF"
-        FontFamily="Segoe UI Variable Text"
+        FontFamily="Segoe UI"
         UseLayoutRounding="True"
         SnapsToDevicePixels="True"
         TextOptions.TextFormattingMode="Display"
@@ -16,12 +16,7 @@
   <Border CornerRadius="24"
           Background="#F8FAFF"
           BorderBrush="#C9D6E8"
-          BorderThickness="1">
-    <Border.Effect>
-      <DropShadowEffect BlurRadius="30" ShadowDepth="8" Opacity="0.20" Color="#28446B"/>
-    </Border.Effect>
-
-    <Grid>
+          BorderThickness="1"><Grid>
       <Grid.RowDefinitions>
         <RowDefinition Height="72"/>
         <RowDefinition Height="*"/>
@@ -99,7 +94,7 @@
           <TextBlock Margin="0,9,0,0"
                      Text="This clears temporary Memory Trail cache and resets local app preferences to their defaults, helping keep the app running smoothly."
                      TextWrapping="Wrap" FontSize="14.5" LineHeight="21"
-                     Foreground="#40506A"/>
+                     Foreground="#31445F"/>
 
           <Border Margin="0,18,0,0" Background="#E7F1FF" BorderBrush="#C9DDF7"
                   BorderThickness="1" CornerRadius="14" Padding="13,11">

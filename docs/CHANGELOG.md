@@ -2,6 +2,20 @@
 
 A concise record of production changes. Each release is organized by area so updates are easy to scan.
 
+## Version 1.2 Build 7
+
+### 🎨 Visual Quality
+- **Crisper Windows typography** — switched the WPF text stack to standard Segoe UI for stronger Windows hinting and sharper glyph edges.
+- **Higher text contrast** — darkened primary, secondary, and tertiary text tones slightly to reduce the washed-out appearance without changing the overall UI palette.
+- **ClearType reinforcement** — enabled ClearType hints, fixed text hinting, display-mode formatting, pixel snapping, and layout rounding across shared text controls.
+- **Sharper layered panels** — removed container-level drop shadows that caused WPF to rasterize text-heavy panels and soften lettering.
+
+### 🖥 Display Scaling
+- **High-DPI consistency** — retains Per-Monitor-V2 DPI awareness and strengthens rendering behavior for common 100%, 125%, 150%, and 200% Windows scaling levels.
+- **UI design preserved** — spacing, structure, branding, and approved app icon remain unchanged.
+
+---
+
 ## Version 1.2 Build 6
 
 ### 🛠 Fixes

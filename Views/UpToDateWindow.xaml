@@ -12,14 +12,9 @@
         TextOptions.TextRenderingMode="ClearType"
         AllowsTransparency="False"
         Background="#F5F8FE"
-        FontFamily="Segoe UI Variable Text">
+        FontFamily="Segoe UI">
   <Border CornerRadius="24" BorderBrush="#C9D7EA" BorderThickness="1"
-          Background="#F5F8FE" ClipToBounds="True">
-    <Border.Effect>
-      <DropShadowEffect BlurRadius="34" ShadowDepth="10" Opacity="0.24" Color="#203A66"/>
-    </Border.Effect>
-
-    <Grid>
+          Background="#F5F8FE" ClipToBounds="True"><Grid>
       <Grid.RowDefinitions>
         <RowDefinition Height="72"/>
         <RowDefinition Height="*"/>
@@ -46,7 +41,7 @@
           <Border Grid.Column="2" Width="1" Height="30" Background="#BFCDE0"
                   Margin="18,0" VerticalAlignment="Center"/>
           <TextBlock Grid.Column="3" Text="Check for Updates" FontSize="17"
-                     Foreground="#40506A" VerticalAlignment="Center"/>
+                     Foreground="#31445F" VerticalAlignment="Center"/>
           <Button Grid.Column="4" Width="38" Height="38" Background="Transparent"
                   BorderThickness="0" Click="Close_Click" Cursor="Hand">
             <TextBlock Text="×" FontSize="30" Foreground="#26354D"
@@ -100,7 +95,7 @@
           <TextBlock Text="You’re All Caught Up!" FontSize="31" FontWeight="Bold"
                      Foreground="#0F1930" Margin="0,16,0,0" HorizontalAlignment="Center"/>
           <TextBlock Text="You’re running the latest version of Memory Trail."
-                     FontSize="15.5" Foreground="#40506A" Margin="0,6,0,18"
+                     FontSize="15.5" Foreground="#31445F" Margin="0,6,0,18"
                      HorizontalAlignment="Center"/>
 
           <Border Width="430" Background="#EFFFFFFF" BorderBrush="#FFFFFF"
@@ -120,7 +115,7 @@
               <StackPanel Grid.Column="2" Margin="18,0,14,0" VerticalAlignment="Center">
                 <TextBlock Text="Memory Trail" FontSize="17" FontWeight="Bold" Foreground="#172238"/>
                 <TextBlock x:Name="VersionText" Text="Version 1.0.1" FontSize="13.5"
-                           Foreground="#40506A" Margin="0,2,0,0"/>
+                           Foreground="#31445F" Margin="0,2,0,0"/>
               </StackPanel>
               <Border Grid.Column="3" Background="#DFF8CD" CornerRadius="16"
                       Padding="14,7" VerticalAlignment="Center">

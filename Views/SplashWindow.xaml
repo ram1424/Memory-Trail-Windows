@@ -11,7 +11,7 @@
         ShowInTaskbar="False"
         ShowActivated="False"
         Topmost="False"
-        FontFamily="Segoe UI Variable Text">
+        FontFamily="Segoe UI">
   <Window.Resources>
     <Storyboard x:Key="EntranceStoryboard">
       <DoubleAnimation Storyboard.TargetName="Shell"
@@ -111,13 +111,13 @@
           <TextBlock Text="Memory Trail"
                      FontSize="29"
                      FontWeight="Bold"
-                     Foreground="#1A2438"
+                     Foreground="#121A2B"
                      HorizontalAlignment="Center"
                      Margin="0,20,0,0"/>
 
           <TextBlock Text="Your workday, remembered locally."
                      FontSize="12.5"
-                     Foreground="#66778F"
+                     Foreground="#52637A"
                      HorizontalAlignment="Center"
                      Margin="0,6,0,0"/>
 
@@ -143,7 +143,7 @@
                      Text="Starting Memory Trail…"
                      FontSize="11"
                      FontWeight="SemiBold"
-                     Foreground="#40506A"
+                     Foreground="#31445F"
                      HorizontalAlignment="Center"
                      Margin="0,0,0,10"/>
 
