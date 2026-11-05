@@ -170,7 +170,6 @@
       <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
       <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
       <Setter Property="TextOptions.TextHintingMode" Value="Fixed"/>
-      <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
     </Style>
 
     <Style TargetType="{x:Type TextBlock}">
@@ -178,7 +177,6 @@
       <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
       <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
       <Setter Property="TextOptions.TextHintingMode" Value="Fixed"/>
-      <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
     </Style>
 
     <Style TargetType="{x:Type Image}">
@@ -201,7 +199,6 @@
       <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
       <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
       <Setter Property="TextOptions.TextHintingMode" Value="Fixed"/>
-      <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
     </Style>
 
     <Style TargetType="ComboBox">
@@ -214,7 +211,6 @@
       <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
       <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
       <Setter Property="TextOptions.TextHintingMode" Value="Fixed"/>
-      <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
     </Style>
 
     <Style TargetType="CheckBox">
@@ -224,7 +220,6 @@
       <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
       <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
       <Setter Property="TextOptions.TextHintingMode" Value="Fixed"/>
-      <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
     </Style>
   </Application.Resources>
 </Application>
