@@ -7,6 +7,8 @@ on:
       - "Packaging/MSIX/**"
       - "Tools/Packaging/**"
       - "Services/AppVersion.cs"
+      - "Services/CaptureService.cs"
+      - "Models/**"
       - "Views/MainWindow.xaml"
       - "Views/WhatsNewWindow.xaml"
       - "Views/UpdateAvailableWindow.xaml"
