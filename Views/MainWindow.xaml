@@ -784,14 +784,50 @@
               </Button>
             </Grid>
             <ListView x:Name="AskResultsList" Grid.Row="1" Background="Transparent" BorderThickness="0"
-                      ScrollViewer.CanContentScroll="True" VirtualizingPanel.IsVirtualizing="True" VirtualizingPanel.VirtualizationMode="Recycling">
+                      ScrollViewer.CanContentScroll="True"
+                      VirtualizingPanel.IsVirtualizing="True"
+                      VirtualizingPanel.VirtualizationMode="Recycling">
+              <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                  <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                  <Setter Property="Padding" Value="0"/>
+                  <Setter Property="Margin" Value="0"/>
+                  <Setter Property="Background" Value="Transparent"/>
+                  <Setter Property="BorderThickness" Value="0"/>
+                </Style>
+              </ListView.ItemContainerStyle>
               <ListView.ItemTemplate>
                 <DataTemplate>
-                  <Border Background="#FFFFFF" BorderBrush="#D1DBE7" BorderThickness="1" CornerRadius="11" Padding="11" Margin="0,0,0,6">
+                  <Border Height="66" Background="#FFFFFF" BorderBrush="#D1DBE7" BorderThickness="1"
+                          CornerRadius="11" Padding="10" Margin="0,0,0,6">
                     <Grid>
-                      <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                      <StackPanel><TextBlock Text="{Binding SourceApp}" FontSize="13" FontWeight="SemiBold" Foreground="#101827"/><TextBlock Text="{Binding Title}" FontSize="12" Foreground="#405169" TextTrimming="CharacterEllipsis" Margin="0,2,0,0"/></StackPanel>
-                      <TextBlock Grid.Column="1" Text="{Binding CreatedAt, StringFormat={}{0:MMM d · h:mm tt}}" FontSize="11.5" Foreground="#46566B" VerticalAlignment="Center" Margin="12,0,0,0"/>
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="42"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="150"/>
+                      </Grid.ColumnDefinitions>
+
+                      <Border Grid.Column="0" Width="34" Height="34" CornerRadius="9"
+                              Background="#F6F9FC" BorderBrush="#D7E1EB" BorderThickness="1"
+                              VerticalAlignment="Center" HorizontalAlignment="Left">
+                        <Image Source="{Binding Converter={StaticResource AppIconConverter}}"
+                               Width="26" Height="26" Stretch="Uniform"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               SnapsToDevicePixels="True"/>
+                      </Border>
+
+                      <StackPanel Grid.Column="1" Margin="10,0,12,0" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding SourceApp}" FontSize="13" FontWeight="SemiBold"
+                                   Foreground="#101827" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
+                        <TextBlock Text="{Binding Title}" FontSize="12" Foreground="#405169"
+                                   TextTrimming="CharacterEllipsis" TextWrapping="NoWrap" Margin="0,3,0,0"/>
+                      </StackPanel>
+
+                      <TextBlock Grid.Column="2"
+                                 Text="{Binding CreatedAt, StringFormat={}{0:MMM d · h:mm tt}}"
+                                 FontSize="11.5" Foreground="#46566B"
+                                 VerticalAlignment="Center" HorizontalAlignment="Right"
+                                 TextAlignment="Right" TextWrapping="NoWrap"/>
                     </Grid>
                   </Border>
                 </DataTemplate>
