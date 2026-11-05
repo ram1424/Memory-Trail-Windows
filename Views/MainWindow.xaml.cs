@@ -521,6 +521,25 @@ public partial class MainWindow : Window
         menu.IsOpen = true;
     }
 
+    private void TimelineBackToTop_Click(object sender, RoutedEventArgs e)
+    {
+        if (_view.Cast<object>().FirstOrDefault() is not MemoryItem first)
+            return;
+
+        TimelineList.ScrollIntoView(first);
+        TimelineList.SelectedItem = first;
+        TimelineList.UpdateLayout();
+    }
+
+    private void AskBackToTop_Click(object sender, RoutedEventArgs e)
+    {
+        if (AskResultsList.Items.Count == 0)
+            return;
+
+        AskResultsList.ScrollIntoView(AskResultsList.Items[0]);
+        AskResultsList.UpdateLayout();
+    }
+
     private void AskSuggestion_Click(object sender, RoutedEventArgs e)
     {
         if (sender is not Button { Tag: string prompt })
@@ -585,7 +604,6 @@ public partial class MainWindow : Window
                             (x.SourceKind == SourceKind.File ||
                              (x.SourceApp ?? "").Contains("Explorer", StringComparison.OrdinalIgnoreCase) ||
                              !string.IsNullOrWhiteSpace(x.SourceExecutable)))
-                .Take(20)
                 .ToList();
             answer = results.Count == 0
                 ? "I couldn't find a captured file activity from yesterday."
@@ -596,7 +614,6 @@ public partial class MainWindow : Window
             results = ordered
                 .Where(x => (x.SourceApp ?? "").Contains("Outlook", StringComparison.OrdinalIgnoreCase) ||
                             (x.SourceApp ?? "").Contains("Mail", StringComparison.OrdinalIgnoreCase))
-                .Take(25)
                 .ToList();
             answer = results.Count == 0
                 ? "I couldn't find recent captured email activity."
@@ -608,7 +625,6 @@ public partial class MainWindow : Window
                 .Where(x => (x.SourceApp ?? "").Contains("Teams", StringComparison.OrdinalIgnoreCase) ||
                             (x.SourceApp ?? "").Contains("Slack", StringComparison.OrdinalIgnoreCase) ||
                             (x.SourceApp ?? "").Contains("Chat", StringComparison.OrdinalIgnoreCase))
-                .Take(25)
                 .ToList();
             answer = results.Count == 0
                 ? "I couldn't find recent captured conversation activity."
@@ -621,7 +637,6 @@ public partial class MainWindow : Window
                             (x.SourceApp ?? "").Contains("Edge", StringComparison.OrdinalIgnoreCase) ||
                             (x.SourceApp ?? "").Contains("Chrome", StringComparison.OrdinalIgnoreCase) ||
                             (x.SourceApp ?? "").Contains("Firefox", StringComparison.OrdinalIgnoreCase))
-                .Take(25)
                 .ToList();
             answer = results.Count == 0
                 ? "I couldn't find recent captured website activity."
@@ -632,7 +647,6 @@ public partial class MainWindow : Window
             results = ordered
                 .Where(x => x.SourceKind == SourceKind.File ||
                             (x.SourceApp ?? "").Contains("Explorer", StringComparison.OrdinalIgnoreCase))
-                .Take(25)
                 .ToList();
             answer = results.Count == 0
                 ? "I couldn't find recent captured file activity."
@@ -643,7 +657,6 @@ public partial class MainWindow : Window
             var start = DateTime.Today.AddDays(-6);
             results = ordered
                 .Where(x => x.CreatedAt.Date >= start)
-                .Take(40)
                 .ToList();
             answer = results.Count == 0
                 ? "I couldn't find captured activity from this week."
@@ -660,7 +673,6 @@ public partial class MainWindow : Window
         {
             results = ordered
                 .Where(x => x.CreatedAt.Date == DateTime.Today)
-                .Take(30)
                 .ToList();
             answer = results.Count == 0
                 ? "No activity has been captured today yet."
@@ -672,7 +684,6 @@ public partial class MainWindow : Window
             results = ordered
                 .Where(x => x.CreatedAt.Date == DateTime.Today)
                 .OrderBy(x => Math.Abs((x.CreatedAt - target).TotalMinutes))
-                .Take(8)
                 .OrderByDescending(x => x.CreatedAt)
                 .ToList();
 
@@ -691,7 +702,6 @@ public partial class MainWindow : Window
 
             results = ordered
                 .Where(item => terms.Count == 0 || terms.Any(term => item.SearchableText.Contains(term)))
-                .Take(30)
                 .ToList();
 
             answer = results.Count == 0

@@ -10,9 +10,9 @@
     <SolidColorBrush x:Key="PanelBrush" Color="#E2EAF4"/>
     <SolidColorBrush x:Key="PanelAltBrush" Color="#EAF0F6"/>
     <SolidColorBrush x:Key="ElevatedStrongBrush" Color="#F0F4F8"/>
-    <SolidColorBrush x:Key="PrimaryTextBrush" Color="#0C1422"/>
-    <SolidColorBrush x:Key="SecondaryTextBrush" Color="#1F314A"/>
-    <SolidColorBrush x:Key="TertiaryTextBrush" Color="#354861"/>
+    <SolidColorBrush x:Key="PrimaryTextBrush" Color="#080D15"/>
+    <SolidColorBrush x:Key="SecondaryTextBrush" Color="#17263A"/>
+    <SolidColorBrush x:Key="TertiaryTextBrush" Color="#293A50"/>
     <SolidColorBrush x:Key="AccentBrush" Color="#1677FF"/>
     <SolidColorBrush x:Key="AccentSoftBrush" Color="#D9E9FF"/>
     <SolidColorBrush x:Key="BorderBrush" Color="#C4D1E0"/>
@@ -66,8 +66,7 @@
               <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="Chrome" Property="Background" Value="#F0F4F8"/>
                 <Setter TargetName="Chrome" Property="BorderBrush" Value="#C9D8EB"/>
-                <Setter TargetName="Chrome" Property="Effect" Value="{StaticResource SoftShadow}"/>
-              </Trigger>
+                              </Trigger>
               <Trigger Property="IsPressed" Value="True">
                 <Setter TargetName="Chrome" Property="Background" Value="#D8E2EC"/>
               </Trigger>
@@ -101,8 +100,7 @@
               <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="PrimaryChrome" Property="Background" Value="#1A7FFF"/>
                 <Setter TargetName="PrimaryChrome" Property="BorderBrush" Value="#0F68F2"/>
-                <Setter TargetName="PrimaryChrome" Property="Effect" Value="{StaticResource SoftShadow}"/>
-              </Trigger>
+                              </Trigger>
               <Trigger Property="IsPressed" Value="True">
                 <Setter TargetName="PrimaryChrome" Property="Background" Value="#0D63E8"/>
                 <Setter TargetName="PrimaryChrome" Property="BorderBrush" Value="#0B59D4"/>
@@ -137,8 +135,7 @@
             <ControlTemplate.Triggers>
               <Trigger Property="IsMouseOver" Value="True">
                 <Setter TargetName="Chrome" Property="Background" Value="#EAF2FC"/>
-                <Setter TargetName="Chrome" Property="Effect" Value="{StaticResource SoftShadow}"/>
-              </Trigger>
+                              </Trigger>
             </ControlTemplate.Triggers>
           </ControlTemplate>
         </Setter.Value>
@@ -164,7 +161,7 @@
 
     <!-- High-definition rendering defaults for all Memory Trail windows. -->
     <Style TargetType="{x:Type Window}">
-      <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
+      <Setter Property="FontFamily" Value="Segoe UI"/>
       <Setter Property="UseLayoutRounding" Value="True"/>
       <Setter Property="SnapsToDevicePixels" Value="True"/>
       <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
@@ -175,9 +172,9 @@
     <!-- Crisp typography defaults: align glyphs to device pixels and keep ClearType
          enabled throughout nested controls, popups, lists and scroll surfaces. -->
     <Style TargetType="{x:Type TextBlock}">
-      <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
-      <Setter Property="FontWeight" Value="Medium"/>
-      <Setter Property="Foreground" Value="#101827"/>
+      <Setter Property="FontFamily" Value="Segoe UI"/>
+      <Setter Property="FontWeight" Value="Normal"/>
+      <Setter Property="Foreground" Value="#0A0F18"/>
       <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
       <Setter Property="SnapsToDevicePixels" Value="True"/>
       <Setter Property="UseLayoutRounding" Value="True"/>
@@ -187,7 +184,7 @@
     </Style>
 
     <Style TargetType="{x:Type Label}">
-      <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
+      <Setter Property="FontFamily" Value="Segoe UI"/>
       <Setter Property="FontWeight" Value="Medium"/>
       <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
       <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -222,7 +219,7 @@
     <Style TargetType="Button" BasedOn="{StaticResource ModernButtonStyle}"/>
 
     <Style TargetType="TextBox">
-      <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
+      <Setter Property="FontFamily" Value="Segoe UI"/>
       <Setter Property="FontWeight" Value="Medium"/>
       <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
       <Setter Property="Background" Value="#EEF3F8"/>
@@ -253,7 +250,7 @@
     </Style>
 
     <Style TargetType="CheckBox">
-      <Setter Property="FontFamily" Value="Segoe UI Variable Text, Segoe UI"/>
+      <Setter Property="FontFamily" Value="Segoe UI"/>
       <Setter Property="FontWeight" Value="Medium"/>
       <Setter Property="RenderOptions.ClearTypeHint" Value="Enabled"/>
       <Setter Property="Foreground" Value="#1F314A"/>
