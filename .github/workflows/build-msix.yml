@@ -19,6 +19,12 @@ on:
       - "Views/AddMemoryWindow.xaml"
       - "App.xaml"
       - "Views/MainWindow.xaml.cs"
+      - "Views/WhatsNewWindow.xaml.cs"
+      - "Views/UpToDateWindow.xaml.cs"
+      - "Services/PreferencesService.cs"
+      - "Services/TimelineStore.cs"
+      - "Views/HistoryClearWindow.xaml.cs"
+      - "Views/HistoryClearWindow.xaml"
       - "App.xaml.cs"
       - "Services/UpdateService.cs"
       - "MemoryTrail.Windows.csproj"
@@ -46,16 +52,17 @@ jobs:
         run: |
           [xml]$project = Get-Content "MemoryTrail.Windows.csproj"
           $displayVersion = [string]$project.Project.PropertyGroup.DisplayVersion
-          $buildNumber = [string]$project.Project.PropertyGroup.BuildNumber
 
-          if ([string]::IsNullOrWhiteSpace($displayVersion) -or [string]::IsNullOrWhiteSpace($buildNumber)) {
-            throw "DisplayVersion and BuildNumber must both be defined."
+          if ([string]::IsNullOrWhiteSpace($displayVersion)) {
+            throw "DisplayVersion must be defined."
           }
 
-          $packageVersion = "$displayVersion.$buildNumber"
-          $msixVersion = "$displayVersion.$buildNumber.0"
-          $informationalVersion = "$displayVersion-build.$buildNumber"
-          $releaseTag = "v$displayVersion-build.$buildNumber"
+          $parsed = [version]$displayVersion
+          $patch = if ($parsed.Build -ge 0) { $parsed.Build } else { 0 }
+          $packageVersion = "$($parsed.Major).$($parsed.Minor).$patch"
+          $msixVersion = "$($parsed.Major).$($parsed.Minor).$patch.0"
+          $informationalVersion = $displayVersion
+          $releaseTag = "v$displayVersion"
 
           $identity = Get-Content "Packaging/MSIX/StoreIdentity.json" -Raw | ConvertFrom-Json
           $packageName = [string]$identity.PackageIdentityName
@@ -69,7 +76,6 @@ jobs:
           }
 
           "DISPLAY_VERSION=$displayVersion" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
-          "BUILD_NUMBER=$buildNumber" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
           "PACKAGE_VERSION=$packageVersion" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
           "INFORMATIONAL_VERSION=$informationalVersion" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
           "RELEASE_TAG=$releaseTag" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
@@ -77,7 +83,7 @@ jobs:
           "PACKAGE_NAME=$packageName" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
           "PUBLISHER=$publisher" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
           "PUBLISHER_DISPLAY_NAME=$publisherDisplayName" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
-          "MSIX_NAME=Memory-Trail-$displayVersion-build-$buildNumber-x64.msix" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
+          "MSIX_NAME=Memory-Trail-$displayVersion-x64.msix" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Restore
         run: dotnet restore MemoryTrail.Windows.csproj -r win-x64
       - name: Publish Microsoft Store build

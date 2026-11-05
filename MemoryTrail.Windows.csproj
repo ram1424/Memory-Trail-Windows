@@ -11,12 +11,11 @@
     <RootNamespace>MemoryLane.Windows</RootNamespace>
     <ApplicationManifest>Config\app.manifest</ApplicationManifest>
     <ApplicationIcon>Assets\MemoryTrailApp.ico</ApplicationIcon>
-    <Version>1.2.7</Version>
-    <AssemblyVersion>1.2.7.0</AssemblyVersion>
-    <FileVersion>1.2.7.0</FileVersion>
-    <InformationalVersion>1.2-build.7</InformationalVersion>
-    <DisplayVersion>1.2</DisplayVersion>
-    <BuildNumber>7</BuildNumber>
+    <Version>1.1</Version>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+    <InformationalVersion>1.1</InformationalVersion>
+    <DisplayVersion>1.1</DisplayVersion>
     <PublishSingleFile>true</PublishSingleFile>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
     <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>

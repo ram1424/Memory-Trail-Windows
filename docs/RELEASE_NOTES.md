@@ -1,3 +1,14 @@
+## Version 1.1 highlights
+
+- Rebuilt Insights to match the polished dashboard reference with real local activity metrics.
+- Added activity patterns, peak time, focus streaks, Top Items, category distribution, and Quick Summary.
+- Sharpened Windows typography and text contrast throughout the app.
+- Added local data location, Open Data Folder, and JSON activity export in Settings.
+- Added clear-last-week, clear-last-month, and clear-all history flows with playful graphics and success messages.
+- Restored Start Memory Trail when I sign in to Windows for Microsoft Store and direct-download builds.
+- Added clever, friendly update/up-to-date/What's New messaging.
+- Microsoft Store continues to manage updates for Store-installed copies.
+
 ## Version 1.2 Build 7 highlights
 
 - Sharper, crisper typography throughout the Windows UI.

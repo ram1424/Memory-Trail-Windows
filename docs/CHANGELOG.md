@@ -2,6 +2,32 @@
 
 A concise record of production changes. Each release is organized by area so updates are easy to scan.
 
+## Version 1.1
+
+### ✨ Insights
+- **Reference-style dashboard** — rebuilt Insights with four summary cards, an hourly activity pattern chart, peak-time and focus-streak metrics, Top Items, category distribution, and a Quick Summary panel.
+- **Real local data** — Insights is calculated from the user's local Memory Trail timeline rather than demo values.
+
+### 🎨 Visual Quality
+- **Crisper Windows typography** — uses standard Segoe UI, stronger text contrast, ClearType/display formatting, layout rounding, and pixel snapping for sharper WPF lettering.
+- **Less text softening** — key text-container shadows were removed where they caused WPF to rasterize lettering.
+
+### 🗂 Data & History
+- **Storage location** — Settings now shows where Memory Trail's capture data is stored locally.
+- **Open and export** — users can open the local data folder or export activity to a readable JSON file.
+- **Flexible history clearing** — clear the last 7 days, last 30 days, or all history.
+- **Playful confirmation graphics** — each history range has its own witty confirmation and success state.
+
+### 🔄 Updates
+- **Friendlier update experience** — up-to-date, update-available, and post-update/changelog screens now use polished, witty Memory Trail messaging.
+- **Microsoft Store handoff** — Store builds clearly hand manual update checks to Microsoft Store without pretending to perform a separate GitHub check.
+
+### 🪟 Windows
+- **Start with Windows restored** — the setting is interactive again for both direct-download and Microsoft Store builds.
+- **Version 1.1** — About, GitHub release, ZIP, update metadata, and Store MSIX use the 1.1 release identity.
+
+---
+
 ## Version 1.2 Build 7
 
 ### 🎨 Visual Quality
