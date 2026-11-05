@@ -773,85 +773,186 @@
       </Grid>
 
       <!-- PRIVACY -->
-            <ScrollViewer x:Name="InsightsPanel" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Margin="24">
-        <StackPanel Margin="4,4,20,30">
-          <StackPanel Margin="0,0,0,20">
-            <TextBlock Text="Insights" FontSize="28" FontWeight="Bold" Foreground="#121A2B"/>
-            <TextBlock Text="A quick view of how your day is distributed." FontSize="13" Foreground="#52637A" Margin="0,6,0,0"/>
+            <ScrollViewer x:Name="InsightsPanel" Visibility="Collapsed"
+                    VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                    Margin="22">
+        <Grid Margin="2,2,18,30">
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="16"/>
+            <ColumnDefinition Width="330"/>
+          </Grid.ColumnDefinitions>
+
+          <StackPanel Grid.Column="0">
+            <Grid Margin="0,0,0,18">
+              <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+              <StackPanel>
+                <TextBlock Text="Insights" FontSize="29" FontWeight="Bold" Foreground="#121A2B"/>
+                <TextBlock Text="A focused look at how your day actually unfolded." FontSize="12.5"
+                           Foreground="#52637A" Margin="0,4,0,0"/>
+              </StackPanel>
+              <TextBlock x:Name="InsightsDateText" Grid.Column="1" Text="Today"
+                         Foreground="#52637A" FontSize="11.5" FontWeight="SemiBold"
+                         VerticalAlignment="Bottom" Margin="0,0,2,3"/>
+            </Grid>
+
+            <UniformGrid Columns="4" Margin="0,0,0,14">
+              <Border Background="#FFFFFF" BorderBrush="#D6DEE9" BorderThickness="1"
+                      CornerRadius="15" Padding="13" Margin="0,0,9,0">
+                <Grid>
+                  <Grid.ColumnDefinitions><ColumnDefinition Width="39"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                  <Border Width="31" Height="31" CornerRadius="9" Background="#E4EDFF">
+                    <TextBlock Text="&#xE8B7;" FontFamily="Segoe MDL2 Assets" FontSize="14"
+                               Foreground="#5573ED" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                  </Border>
+                  <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock x:Name="InsightsTotalActivitiesText" Text="0" FontSize="21" FontWeight="Bold" Foreground="#121A2B"/>
+                    <TextBlock Text="Total Activities" FontSize="9.5" Foreground="#52637A"/>
+                  </StackPanel>
+                </Grid>
+              </Border>
+
+              <Border Background="#FFFFFF" BorderBrush="#D6DEE9" BorderThickness="1"
+                      CornerRadius="15" Padding="13" Margin="0,0,9,0">
+                <Grid>
+                  <Grid.ColumnDefinitions><ColumnDefinition Width="39"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                  <Border Width="31" Height="31" CornerRadius="9" Background="#DFF6EF">
+                    <TextBlock Text="&#xE823;" FontFamily="Segoe MDL2 Assets" FontSize="14"
+                               Foreground="#1C9B78" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                  </Border>
+                  <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock x:Name="InsightsActiveTimeText" Text="0m" FontSize="21" FontWeight="Bold" Foreground="#121A2B"/>
+                    <TextBlock Text="Active Time" FontSize="9.5" Foreground="#52637A"/>
+                  </StackPanel>
+                </Grid>
+              </Border>
+
+              <Border Background="#FFFFFF" BorderBrush="#D6DEE9" BorderThickness="1"
+                      CornerRadius="15" Padding="13" Margin="0,0,9,0">
+                <Grid>
+                  <Grid.ColumnDefinitions><ColumnDefinition Width="39"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                  <Border Width="31" Height="31" CornerRadius="9" Background="#E8E4FF">
+                    <TextBlock Text="&#xE71D;" FontFamily="Segoe MDL2 Assets" FontSize="14"
+                               Foreground="#7B61D9" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                  </Border>
+                  <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock x:Name="InsightsAppsUsedText" Text="0" FontSize="21" FontWeight="Bold" Foreground="#121A2B"/>
+                    <TextBlock Text="Apps Used" FontSize="9.5" Foreground="#52637A"/>
+                  </StackPanel>
+                </Grid>
+              </Border>
+
+              <Border Background="#FFFFFF" BorderBrush="#D6DEE9" BorderThickness="1"
+                      CornerRadius="15" Padding="13">
+                <Grid>
+                  <Grid.ColumnDefinitions><ColumnDefinition Width="39"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                  <Border Width="31" Height="31" CornerRadius="9" Background="#FFE9E0">
+                    <TextBlock Text="&#xE735;" FontFamily="Segoe MDL2 Assets" FontSize="14"
+                               Foreground="#E57853" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                  </Border>
+                  <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock x:Name="InsightsFavoritesText" Text="0" FontSize="21" FontWeight="Bold" Foreground="#121A2B"/>
+                    <TextBlock Text="Favorites" FontSize="9.5" Foreground="#52637A"/>
+                  </StackPanel>
+                </Grid>
+              </Border>
+            </UniformGrid>
+
+            <Border Background="#FFFFFF" BorderBrush="#D6DEE9" BorderThickness="1"
+                    CornerRadius="16" Padding="16" Margin="0,0,0,14">
+              <StackPanel>
+                <Grid Margin="0,0,0,12">
+                  <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                  <TextBlock Text="Activity Patterns" FontSize="14.5" FontWeight="SemiBold" Foreground="#121A2B"/>
+                  <TextBlock Grid.Column="1" Text="Hourly rhythm" FontSize="10.5" Foreground="#708096"/>
+                </Grid>
+                <Grid Height="124" Margin="2,0,2,6">
+                  <Grid.RowDefinitions><RowDefinition Height="*"/><RowDefinition Height="19"/></Grid.RowDefinitions>
+                  <UniformGrid x:Name="InsightsActivityChartPanel" Grid.Row="0" Columns="24" Margin="0,2,0,5"/>
+                  <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/>
+                      <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="12 AM" FontSize="9" Foreground="#8390A3"/>
+                    <TextBlock Grid.Column="1" Text="4 AM" FontSize="9" Foreground="#8390A3" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Text="8 AM" FontSize="9" Foreground="#8390A3" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Text="12 PM" FontSize="9" Foreground="#8390A3" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Text="4 PM" FontSize="9" Foreground="#8390A3" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="5" Text="8 PM" FontSize="9" Foreground="#8390A3" HorizontalAlignment="Center"/>
+                    <TextBlock Grid.Column="6" Text="11 PM" FontSize="9" Foreground="#8390A3" HorizontalAlignment="Right"/>
+                  </Grid>
+                </Grid>
+                <Grid Margin="0,4,0,0">
+                  <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="1"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                  <StackPanel Margin="2,0,14,0">
+                    <TextBlock Text="Peak Time" FontSize="9.5" Foreground="#708096"/>
+                    <TextBlock x:Name="InsightsPeakTimeText" Text="—" FontSize="15" FontWeight="SemiBold" Foreground="#121A2B" Margin="0,2,0,0"/>
+                  </StackPanel>
+                  <Border Grid.Column="1" Background="#E2E7EE"/>
+                  <StackPanel Grid.Column="2" Margin="16,0,0,0">
+                    <TextBlock Text="Focus Streak" FontSize="9.5" Foreground="#708096"/>
+                    <TextBlock x:Name="InsightsFocusStreakText" Text="0m" FontSize="15" FontWeight="SemiBold" Foreground="#121A2B" Margin="0,2,0,0"/>
+                  </StackPanel>
+                </Grid>
+              </StackPanel>
+            </Border>
+
+            <Border Background="#FFFFFF" BorderBrush="#D6DEE9" BorderThickness="1"
+                    CornerRadius="16" Padding="16" Margin="0,0,0,14">
+              <StackPanel>
+                <TextBlock Text="Top Items" FontSize="14.5" FontWeight="SemiBold" Foreground="#121A2B"/>
+                <TextBlock Text="By most activity" FontSize="9.5" Foreground="#708096" Margin="0,2,0,10"/>
+                <StackPanel x:Name="InsightsTopItemsPanel"/>
+              </StackPanel>
+            </Border>
+
+            <Border Background="#FFFFFF" BorderBrush="#D6DEE9" BorderThickness="1"
+                    CornerRadius="16" Padding="16">
+              <StackPanel>
+                <TextBlock Text="Time Distribution by Category" FontSize="14.5" FontWeight="SemiBold" Foreground="#121A2B" Margin="0,0,0,11"/>
+                <StackPanel x:Name="InsightsDistributionPanel"/>
+              </StackPanel>
+            </Border>
           </StackPanel>
-          <Grid Margin="0,0,0,24">
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="*"/>
-              <ColumnDefinition Width="12"/>
-              <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-              <RowDefinition Height="Auto"/>
-              <RowDefinition Height="12"/>
-              <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
 
-            <Border Grid.Row="0" Grid.Column="0"
-                    Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1"
-                    CornerRadius="18" Padding="16" MinHeight="78">
-              <Grid>
-                <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="All" Width="42" Height="42" VerticalAlignment="Center"/>
-                <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                  <TextBlock x:Name="InsightsTotalActivitiesText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#121A2B"/>
-                  <TextBlock Text="Total Activities" Foreground="#52637A" FontSize="12"/>
-                </StackPanel>
-              </Grid>
+          <StackPanel Grid.Column="2">
+            <Border Background="#FFFFFF" BorderBrush="#D6DEE9" BorderThickness="1"
+                    CornerRadius="16" Padding="18">
+              <StackPanel>
+                <TextBlock Text="Quick Summary" FontSize="16" FontWeight="Bold" Foreground="#121A2B"/>
+                <TextBlock Text="Your day at a glance" FontSize="10.5" Foreground="#708096" Margin="0,2,0,17"/>
+                <TextBlock Text="Most Active App" FontSize="9.5" Foreground="#708096"/>
+                <TextBlock x:Name="InsightsMostActiveAppText" Text="—" FontSize="14.5" FontWeight="SemiBold" Foreground="#121A2B" Margin="0,2,0,0"/>
+                <TextBlock x:Name="InsightsMostActiveAppSubtext" Text="No activity yet" FontSize="9.5" Foreground="#708096" Margin="0,2,0,13"/>
+                <TextBlock Text="Top Website" FontSize="9.5" Foreground="#708096"/>
+                <TextBlock x:Name="InsightsTopWebsiteText" Text="—" FontSize="14.5" FontWeight="SemiBold" Foreground="#121A2B" Margin="0,2,0,0"/>
+                <TextBlock x:Name="InsightsTopWebsiteSubtext" Text="No web activity yet" FontSize="9.5" Foreground="#708096" Margin="0,2,0,13"/>
+                <TextBlock Text="Focus Time" FontSize="9.5" Foreground="#708096"/>
+                <TextBlock x:Name="InsightsFocusTimeText" Text="0m" FontSize="14.5" FontWeight="SemiBold" Foreground="#121A2B" Margin="0,2,0,13"/>
+                <TextBlock Text="Longest Session" FontSize="9.5" Foreground="#708096"/>
+                <TextBlock x:Name="InsightsLongestSessionText" Text="0m" FontSize="14.5" FontWeight="SemiBold" Foreground="#121A2B" Margin="0,2,0,15"/>
+                <Border Height="1" Background="#E2E7EE" Margin="0,0,0,14"/>
+                <TextBlock Text="Activity Distribution" FontSize="10.5" FontWeight="SemiBold" Foreground="#121A2B"/>
+                <TextBlock x:Name="InsightsDistributionSummaryText" Text="Start using Memory Trail to build a distribution."
+                           FontSize="10" Foreground="#52637A" TextWrapping="Wrap" LineHeight="15" Margin="0,6,0,14"/>
+                <Border Background="#EEF5FF" BorderBrush="#D5E4F8" BorderThickness="1"
+                        CornerRadius="12" Padding="12">
+                  <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                      <TextBlock Text="&#xE946;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#176DFF" Margin="0,0,7,0"/>
+                      <TextBlock Text="Insight" FontSize="11" FontWeight="SemiBold" Foreground="#176DFF"/>
+                    </StackPanel>
+                    <TextBlock x:Name="InsightsInsightText"
+                               Text="Your activity story will get smarter as the day fills in."
+                               FontSize="10.5" Foreground="#31445F" TextWrapping="Wrap" LineHeight="16" Margin="0,7,0,0"/>
+                  </StackPanel>
+                </Border>
+              </StackPanel>
             </Border>
-
-            <Border Grid.Row="0" Grid.Column="2"
-                    Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1"
-                    CornerRadius="18" Padding="16" MinHeight="78">
-              <Grid>
-                <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="Productivity" Width="42" Height="42" VerticalAlignment="Center"/>
-                <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                  <TextBlock x:Name="InsightsAppsUsedText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#121A2B"/>
-                  <TextBlock Text="Apps Used" Foreground="#52637A" FontSize="12"/>
-                </StackPanel>
-              </Grid>
-            </Border>
-
-            <Border Grid.Row="2" Grid.Column="0"
-                    Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1"
-                    CornerRadius="18" Padding="16" MinHeight="78">
-              <Grid>
-                <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="Favorites" Width="42" Height="42" VerticalAlignment="Center"/>
-                <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                  <TextBlock x:Name="InsightsFavoritesText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#121A2B"/>
-                  <TextBlock Text="Favorites" Foreground="#52637A" FontSize="12"/>
-                </StackPanel>
-              </Grid>
-            </Border>
-
-            <Border Grid.Row="2" Grid.Column="2"
-                    Background="#EDF3F8" BorderBrush="#C5D3E1" BorderThickness="1"
-                    CornerRadius="18" Padding="16" MinHeight="78">
-              <Grid>
-                <Grid.ColumnDefinitions><ColumnDefinition Width="48"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                <local:CategoryIcon Category="Clipboard" Width="42" Height="42" VerticalAlignment="Center"/>
-                <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                  <TextBlock x:Name="InsightsClipboardText" Text="0" FontSize="26" FontWeight="Bold" Foreground="#121A2B"/>
-                  <TextBlock Text="Clipboard Items" Foreground="#52637A" FontSize="12"/>
-                </StackPanel>
-              </Grid>
-            </Border>
-          </Grid>
-
-          <Border Background="#E6EDF5" BorderBrush="#C5D3E1" BorderThickness="1"
-                  CornerRadius="16" Padding="18" Margin="0,0,0,4">
-            <StackPanel>
-              <TextBlock Text="Activity by Category" FontSize="16" FontWeight="SemiBold" Foreground="#121A2B" Margin="0,0,0,12"/>
-              <TextBlock x:Name="InsightsCategoryText" Text="Open a few apps to build today's category distribution." Foreground="#31445F" TextWrapping="Wrap"/>
-            </StackPanel>
-          </Border>
-        </StackPanel>
+          </StackPanel>
+        </Grid>
       </ScrollViewer>
 
 <ScrollViewer x:Name="PrivacyPanel" Visibility="Collapsed" VerticalScrollBarVisibility="Auto" Margin="24">
@@ -1222,10 +1323,86 @@
 
                   <Border Height="1" Background="#D5DEE8" Margin="0,17,0,15"/>
 
-                  <TextBlock Text="History" FontSize="12.5" FontWeight="SemiBold" Foreground="#121A2B" Margin="0,0,0,9"/>
-                  <Button x:Name="ClearTimelineButton" Content="Clear history" Click="ClearTimeline_Click" HorizontalAlignment="Left"/>
+                  <TextBlock Text="History &amp; data" FontSize="12.5" FontWeight="SemiBold" Foreground="#121A2B" Margin="0,0,0,5"/>
+                  <TextBlock Text="Manage your local timeline in the Data &amp; History section below."
+                             FontSize="10.8" Foreground="#52637A" TextWrapping="Wrap"/>
                 </StackPanel>
               </Grid>
+            </StackPanel>
+          </Border>
+
+          <Border Background="#F2F6FB" BorderBrush="#CBD7E4" BorderThickness="1"
+                  CornerRadius="24" Padding="22" Margin="0,0,0,16">
+            <StackPanel>
+              <StackPanel Orientation="Horizontal" Margin="0,0,0,13">
+                <Border Width="30" Height="30" CornerRadius="9" Background="#E4EEFF" Margin="0,0,9,0">
+                  <TextBlock Text="&#xE8B7;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#176DFF"
+                             HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+                <StackPanel VerticalAlignment="Center">
+                  <TextBlock Text="Data &amp; History" FontSize="15.5" FontWeight="Bold" Foreground="#121A2B"/>
+                  <TextBlock Text="Your trail lives here. You decide when it travels or disappears."
+                             FontSize="10.5" Foreground="#52637A"/>
+                </StackPanel>
+              </StackPanel>
+
+              <TextBlock Text="Capture data location" FontSize="11.5" FontWeight="SemiBold" Foreground="#121A2B"/>
+              <Border Background="#E9EFF6" BorderBrush="#D4DDE8" BorderThickness="1"
+                      CornerRadius="11" Padding="11,9" Margin="0,6,0,9">
+                <TextBlock x:Name="StoragePathText" Text="%LOCALAPPDATA%\Memory Trail"
+                           FontFamily="Consolas" FontSize="10.5" Foreground="#31445F" TextWrapping="Wrap"/>
+              </Border>
+              <WrapPanel Margin="0,0,0,14">
+                <Button Content="Open Data Folder" Click="OpenDataFolder_Click" Margin="0,0,8,8"/>
+                <Button Content="Export Activity (.json)" Click="ExportActivity_Click" Margin="0,0,8,8"/>
+              </WrapPanel>
+
+              <Border Height="1" Background="#D5DEE8" Margin="0,0,0,14"/>
+              <TextBlock Text="Clear history" FontSize="11.5" FontWeight="SemiBold" Foreground="#121A2B"/>
+              <TextBlock Text="Choose how much of the trail to sweep away. You will see exactly what is being removed before anything is deleted."
+                         FontSize="10.5" Foreground="#52637A" TextWrapping="Wrap" Margin="0,3,0,10"/>
+
+              <UniformGrid Columns="3">
+                <Button Click="ClearLastWeek_Click" Margin="0,0,8,0" Padding="13,12" HorizontalContentAlignment="Stretch">
+                  <Grid>
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="36"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                    <Border Width="30" Height="30" CornerRadius="10" Background="#E2EEFF">
+                      <TextBlock Text="7" FontSize="12" FontWeight="Bold" Foreground="#176DFF"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="8,0,0,0">
+                      <TextBlock Text="Last week" FontSize="11.5" FontWeight="SemiBold"/>
+                      <TextBlock Text="Sweep 7 days" FontSize="9.5" Foreground="#52637A"/>
+                    </StackPanel>
+                  </Grid>
+                </Button>
+                <Button Click="ClearLastMonth_Click" Margin="0,0,8,0" Padding="13,12" HorizontalContentAlignment="Stretch">
+                  <Grid>
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="36"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                    <Border Width="30" Height="30" CornerRadius="10" Background="#F2E8FF">
+                      <TextBlock Text="30" FontSize="11" FontWeight="Bold" Foreground="#8057C7"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="8,0,0,0">
+                      <TextBlock Text="Last month" FontSize="11.5" FontWeight="SemiBold"/>
+                      <TextBlock Text="Sweep 30 days" FontSize="9.5" Foreground="#52637A"/>
+                    </StackPanel>
+                  </Grid>
+                </Button>
+                <Button Click="ClearAllHistory_Click" Padding="13,12" HorizontalContentAlignment="Stretch">
+                  <Grid>
+                    <Grid.ColumnDefinitions><ColumnDefinition Width="36"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                    <Border Width="30" Height="30" CornerRadius="10" Background="#FFE7E5">
+                      <TextBlock Text="&#xE74D;" FontFamily="Segoe MDL2 Assets" FontSize="13" Foreground="#D45555"
+                                 HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="8,0,0,0">
+                      <TextBlock Text="All history" FontSize="11.5" FontWeight="SemiBold"/>
+                      <TextBlock Text="The big broom" FontSize="9.5" Foreground="#52637A"/>
+                    </StackPanel>
+                  </Grid>
+                </Button>
+              </UniformGrid>
             </StackPanel>
           </Border>
 
