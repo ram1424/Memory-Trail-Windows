@@ -175,14 +175,14 @@ public partial class MainWindow : Window
         StartWithWindowsCheckBox.IsChecked = App.Preferences.StartWithWindows;
         AutomaticUpdateCheckBox.IsChecked = App.Preferences.AutomaticUpdateChecks;
         AboutVersionText.Text = AppVersion.FriendlyVersion;
+        StoragePathText.Text = App.Store.DataFolder;
+        StartWithWindowsCheckBox.IsEnabled = true;
 
         if (AppVersion.IsMicrosoftStoreBuild)
         {
-            StartWithWindowsCheckBox.IsChecked = false;
-            StartWithWindowsCheckBox.IsEnabled = false;
             AutomaticUpdateCheckBox.IsChecked = false;
             AutomaticUpdateCheckBox.IsEnabled = false;
-            UpdateStatusText.Text = "Updates for this installation are managed by Microsoft Store.";
+            UpdateStatusText.Text = "Microsoft Store keeps this copy updated — no wrench required.";
         }
         else
         {
@@ -870,6 +870,7 @@ public partial class MainWindow : Window
     {
         var today = App.Store.Items
             .Where(x => x.CreatedAt.Date == SelectedDay.Date)
+            .OrderBy(x => x.CreatedAt)
             .ToList();
 
         TotalActivitiesText.Text = today.Count.ToString();
@@ -882,54 +883,313 @@ public partial class MainWindow : Window
 
         ClipboardItemsText.Text = today.Count(x => x.SourceKind == SourceKind.Clipboard).ToString();
 
-        InsightsTotalActivitiesText.Text = App.Store.Items.Count(x => x.CreatedAt.Date == DateTime.Today).ToString();
-        InsightsAppsUsedText.Text = App.Store.Items
+        var activeTime = CalculateActiveTime(today);
+        ActiveTimeText.Text = FormatDuration(activeTime);
+
+        UpdateInsights();
+    }
+
+    private void UpdateInsights()
+    {
+        var items = App.Store.Items
             .Where(x => x.CreatedAt.Date == DateTime.Today)
+            .OrderBy(x => x.CreatedAt)
+            .ToList();
+
+        InsightsDateText.Text = DateTime.Today.ToString("dddd, MMMM d");
+        InsightsTotalActivitiesText.Text = items.Count.ToString();
+        InsightsAppsUsedText.Text = items
             .Select(x => x.SourceApp)
             .Where(x => !string.IsNullOrWhiteSpace(x))
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .Count()
             .ToString();
-        InsightsFavoritesText.Text = App.Store.Items.Count(x => x.CreatedAt.Date == DateTime.Today && x.IsFavorite).ToString();
-        InsightsClipboardText.Text = App.Store.Items.Count(x => x.CreatedAt.Date == DateTime.Today && x.SourceKind == SourceKind.Clipboard).ToString();
+        InsightsFavoritesText.Text = items.Count(x => x.IsFavorite).ToString();
 
-        var categorySummary = App.Store.Items
-            .Where(x => x.CreatedAt.Date == DateTime.Today)
-            .GroupBy(x => x.CategoryLabel)
-            .OrderByDescending(g => g.Count())
-            .Select(g => $"{g.Key}: {g.Count()}");
-        InsightsCategoryText.Text = string.Join("   •   ", categorySummary);
+        var activeTime = CalculateActiveTime(items);
+        var longestSession = CalculateLongestSession(items);
+        InsightsActiveTimeText.Text = FormatDuration(activeTime);
+        InsightsFocusTimeText.Text = FormatDuration(activeTime);
+        InsightsFocusStreakText.Text = FormatDuration(longestSession);
+        InsightsLongestSessionText.Text = FormatDuration(longestSession);
 
-        if (today.Count > 1)
+        var hourly = Enumerable.Range(0, 24)
+            .Select(hour => items.Count(x => x.CreatedAt.Hour == hour))
+            .ToArray();
+
+        var maxHourValue = hourly.Length == 0 ? 0 : hourly.Max();
+        var peakHour = maxHourValue == 0 ? -1 : Array.IndexOf(hourly, maxHourValue);
+        InsightsPeakTimeText.Text = peakHour < 0
+            ? "—"
+            : DateTime.Today.AddHours(peakHour).ToString("h tt") + "–" +
+              DateTime.Today.AddHours((peakHour + 1) % 24).ToString("h tt");
+
+        InsightsActivityChartPanel.Children.Clear();
+        for (var hour = 0; hour < 24; hour++)
         {
-            var ascending = today.OrderBy(x => x.CreatedAt).ToList();
-            var activeSeconds = 0d;
-            var inactivityThreshold = TimeSpan.FromMinutes(5);
+            var cell = new Grid { Margin = new Thickness(2, 0, 2, 0) };
+            var height = maxHourValue == 0
+                ? 4
+                : Math.Max(4, 92d * hourly[hour] / maxHourValue);
 
-            for (var i = 0; i < ascending.Count - 1; i++)
+            cell.Children.Add(new Border
             {
-                var gap = ascending[i + 1].CreatedAt - ascending[i].CreatedAt;
-                if (gap > TimeSpan.Zero && gap <= inactivityThreshold)
-                    activeSeconds += gap.TotalSeconds;
-            }
+                Height = height,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                CornerRadius = new CornerRadius(3),
+                Background = new SolidColorBrush(
+                    hour == peakHour
+                        ? Color.FromRgb(22, 119, 255)
+                        : Color.FromRgb(185, 198, 216))
+            });
 
-            var totalSeconds = Math.Max(0, (int)activeSeconds);
-            if (totalSeconds == 0)
-                ActiveTimeText.Text = "0m";
-            else if (totalSeconds < 60)
-                ActiveTimeText.Text = "<1m";
-            else
+            InsightsActivityChartPanel.Children.Add(cell);
+        }
+
+        var topApps = items
+            .Where(x => !string.IsNullOrWhiteSpace(x.SourceApp))
+            .GroupBy(x => x.SourceApp, StringComparer.OrdinalIgnoreCase)
+            .Select(g => new { Name = g.Key.Trim(), Count = g.Count(), Sample = g.First() })
+            .OrderByDescending(x => x.Count)
+            .ThenBy(x => x.Name)
+            .Take(4)
+            .ToList();
+
+        InsightsTopItemsPanel.Children.Clear();
+        if (topApps.Count == 0)
+        {
+            InsightsTopItemsPanel.Children.Add(new TextBlock
             {
-                var hours = totalSeconds / 3600;
-                var minutes = (totalSeconds % 3600) / 60;
-                ActiveTimeText.Text = hours > 0 ? $"{hours}h {minutes}m" : $"{minutes}m";
-            }
+                Text = "No top items yet — your trail is still warming up.",
+                Foreground = new SolidColorBrush(Color.FromRgb(82, 99, 122)),
+                FontSize = 11
+            });
         }
         else
         {
-            ActiveTimeText.Text = "0m";
+            var accents = new[]
+            {
+                Color.FromRgb(80, 132, 242),
+                Color.FromRgb(47, 173, 145),
+                Color.FromRgb(128, 91, 206),
+                Color.FromRgb(232, 139, 79)
+            };
+
+            for (var index = 0; index < topApps.Count; index++)
+            {
+                var top = topApps[index];
+                var row = new Grid { Margin = new Thickness(0, 4, 0, 5) };
+                row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(36) });
+                row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+
+                var icon = new Border
+                {
+                    Width = 28,
+                    Height = 28,
+                    CornerRadius = new CornerRadius(8),
+                    Background = new SolidColorBrush(Color.FromArgb(32, accents[index].R, accents[index].G, accents[index].B)),
+                    VerticalAlignment = VerticalAlignment.Center
+                };
+                icon.Child = new TextBlock
+                {
+                    Text = string.IsNullOrWhiteSpace(top.Name) ? "?" : top.Name[..1].ToUpperInvariant(),
+                    Foreground = new SolidColorBrush(accents[index]),
+                    FontWeight = FontWeights.Bold,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center
+                };
+                row.Children.Add(icon);
+
+                var labels = new StackPanel { VerticalAlignment = VerticalAlignment.Center };
+                labels.Children.Add(new TextBlock
+                {
+                    Text = top.Name,
+                    Foreground = new SolidColorBrush(Color.FromRgb(18, 26, 43)),
+                    FontSize = 11.5,
+                    FontWeight = FontWeights.SemiBold,
+                    TextTrimming = TextTrimming.CharacterEllipsis
+                });
+                labels.Children.Add(new TextBlock
+                {
+                    Text = top.Sample.CategoryLabel,
+                    Foreground = new SolidColorBrush(Color.FromRgb(112, 128, 150)),
+                    FontSize = 9.5
+                });
+                Grid.SetColumn(labels, 1);
+                row.Children.Add(labels);
+
+                var count = new TextBlock
+                {
+                    Text = top.Count.ToString() + " activities",
+                    Foreground = new SolidColorBrush(Color.FromRgb(82, 99, 122)),
+                    FontSize = 10,
+                    VerticalAlignment = VerticalAlignment.Center
+                };
+                Grid.SetColumn(count, 2);
+                row.Children.Add(count);
+
+                InsightsTopItemsPanel.Children.Add(row);
+            }
         }
 
+        var categories = items
+            .GroupBy(x => x.CategoryLabel)
+            .Select(g => new { Name = g.Key, Count = g.Count() })
+            .OrderByDescending(x => x.Count)
+            .Take(5)
+            .ToList();
+
+        InsightsDistributionPanel.Children.Clear();
+        var categoryColors = new[]
+        {
+            Color.FromRgb(71, 126, 237),
+            Color.FromRgb(43, 166, 139),
+            Color.FromRgb(135, 97, 204),
+            Color.FromRgb(230, 139, 80),
+            Color.FromRgb(111, 127, 150)
+        };
+
+        for (var index = 0; index < categories.Count; index++)
+        {
+            var category = categories[index];
+            var percent = items.Count == 0 ? 0 : 100d * category.Count / items.Count;
+            var panel = new StackPanel { Margin = new Thickness(0, 0, 0, 9) };
+
+            var header = new Grid();
+            header.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            header.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+
+            header.Children.Add(new TextBlock
+            {
+                Text = category.Name,
+                Foreground = new SolidColorBrush(Color.FromRgb(49, 68, 95)),
+                FontSize = 10.5
+            });
+
+            var percentText = new TextBlock
+            {
+                Text = Math.Round(percent).ToString("0") + "%",
+                Foreground = new SolidColorBrush(Color.FromRgb(82, 99, 122)),
+                FontSize = 9.5
+            };
+            Grid.SetColumn(percentText, 1);
+            header.Children.Add(percentText);
+            panel.Children.Add(header);
+
+            panel.Children.Add(new ProgressBar
+            {
+                Height = 7,
+                Maximum = 100,
+                Value = percent,
+                Foreground = new SolidColorBrush(categoryColors[index]),
+                Background = new SolidColorBrush(Color.FromRgb(232, 237, 244)),
+                BorderThickness = new Thickness(0),
+                Margin = new Thickness(0, 4, 0, 0)
+            });
+
+            InsightsDistributionPanel.Children.Add(panel);
+        }
+
+        var mostActive = topApps.FirstOrDefault();
+        InsightsMostActiveAppText.Text = mostActive?.Name ?? "—";
+        InsightsMostActiveAppSubtext.Text = mostActive is null
+            ? "No activity yet"
+            : mostActive.Count.ToString() + " activities today";
+
+        var topSite = items
+            .Where(x => !string.IsNullOrWhiteSpace(x.SourceUrl))
+            .Select(x => TryGetHost(x.SourceUrl!))
+            .Where(x => !string.IsNullOrWhiteSpace(x))
+            .GroupBy(x => x, StringComparer.OrdinalIgnoreCase)
+            .Select(g => new { Host = g.Key, Count = g.Count() })
+            .OrderByDescending(x => x.Count)
+            .FirstOrDefault();
+
+        InsightsTopWebsiteText.Text = topSite?.Host ?? "—";
+        InsightsTopWebsiteSubtext.Text = topSite is null
+            ? "No web activity yet"
+            : topSite.Count.ToString() + " visits/activity entries";
+
+        InsightsDistributionSummaryText.Text = categories.Count == 0
+            ? "No distribution yet — give the day a little more runway."
+            : string.Join("  •  ", categories.Take(3).Select(x =>
+            {
+                var pct = items.Count == 0 ? 0 : (int)Math.Round(100d * x.Count / items.Count);
+                return x.Name + " " + pct + "%";
+            }));
+
+        InsightsInsightText.Text = peakHour < 0
+            ? "Your activity story will get smarter as the day fills in."
+            : "Your busiest stretch is around " + DateTime.Today.AddHours(peakHour).ToString("h tt") +
+              ". Protect that window when you need uninterrupted focus.";
+    }
+
+    private static TimeSpan CalculateActiveTime(IReadOnlyList<MemoryItem> items)
+    {
+        if (items.Count < 2)
+            return TimeSpan.Zero;
+
+        var total = TimeSpan.Zero;
+        for (var i = 0; i < items.Count - 1; i++)
+        {
+            var gap = items[i + 1].CreatedAt - items[i].CreatedAt;
+            if (gap > TimeSpan.Zero && gap <= TimeSpan.FromMinutes(5))
+                total += gap;
+        }
+
+        return total;
+    }
+
+    private static TimeSpan CalculateLongestSession(IReadOnlyList<MemoryItem> items)
+    {
+        if (items.Count < 2)
+            return TimeSpan.Zero;
+
+        var longest = TimeSpan.Zero;
+        var current = TimeSpan.Zero;
+
+        for (var i = 0; i < items.Count - 1; i++)
+        {
+            var gap = items[i + 1].CreatedAt - items[i].CreatedAt;
+            if (gap > TimeSpan.Zero && gap <= TimeSpan.FromMinutes(5))
+            {
+                current += gap;
+                if (current > longest)
+                    longest = current;
+            }
+            else
+            {
+                current = TimeSpan.Zero;
+            }
+        }
+
+        return longest;
+    }
+
+    private static string FormatDuration(TimeSpan duration)
+    {
+        if (duration <= TimeSpan.Zero)
+            return "0m";
+        if (duration.TotalMinutes < 1)
+            return "<1m";
+        if (duration.TotalHours >= 1)
+            return ((int)duration.TotalHours).ToString() + "h " + duration.Minutes.ToString() + "m";
+
+        return Math.Max(1, (int)Math.Round(duration.TotalMinutes)).ToString() + "m";
+    }
+
+    private static string TryGetHost(string value)
+    {
+        try
+        {
+            var uri = new Uri(value);
+            return uri.Host.Replace("www.", "", StringComparison.OrdinalIgnoreCase);
+        }
+        catch
+        {
+            return "";
+        }
     }
 
     private void AddMemory_Click(object sender, RoutedEventArgs e)
@@ -1063,15 +1323,88 @@ public partial class MainWindow : Window
     }
 
     private void ClearTimeline_Click(object sender, RoutedEventArgs e)
-    {
-        var result = MessageBox.Show(
-            $"This permanently deletes all {App.Store.Items.Count} timeline items. This action cannot be undone.",
-            "Clear Timeline?",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Warning);
+        => ShowHistoryClearDialog(HistoryClearRange.All);
 
-        if (result == MessageBoxResult.Yes)
-            App.Store.Clear();
+    private void ClearLastWeek_Click(object sender, RoutedEventArgs e)
+        => ShowHistoryClearDialog(HistoryClearRange.LastWeek);
+
+    private void ClearLastMonth_Click(object sender, RoutedEventArgs e)
+        => ShowHistoryClearDialog(HistoryClearRange.LastMonth);
+
+    private void ClearAllHistory_Click(object sender, RoutedEventArgs e)
+        => ShowHistoryClearDialog(HistoryClearRange.All);
+
+    private void ShowHistoryClearDialog(HistoryClearRange range)
+    {
+        var dialog = new HistoryClearWindow(range) { Owner = this };
+        dialog.ShowDialog();
+
+        if (!dialog.HistoryChanged)
+            return;
+
+        _view.Refresh();
+        UpdateLiveActivity();
+        UpdateTodaySummary();
+        UpdateCountsAndChrome();
+
+        if (TimelineList.SelectedItem is null && _view.Cast<object>().FirstOrDefault() is MemoryItem latest)
+            TimelineList.SelectedItem = latest;
+    }
+
+    private void OpenDataFolder_Click(object sender, RoutedEventArgs e)
+    {
+        try
+        {
+            Directory.CreateDirectory(App.Store.DataFolder);
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = App.Store.DataFolder,
+                UseShellExecute = true
+            });
+        }
+        catch (Exception ex)
+        {
+            App.LogNonFatal("Open data folder", ex);
+            MessageBox.Show(
+                "Windows could not open the Memory Trail data folder.",
+                "Memory Trail",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
+        }
+    }
+
+    private void ExportActivity_Click(object sender, RoutedEventArgs e)
+    {
+        var dialog = new Microsoft.Win32.SaveFileDialog
+        {
+            Title = "Export Memory Trail Activity",
+            Filter = "JSON files (*.json)|*.json",
+            DefaultExt = ".json",
+            AddExtension = true,
+            FileName = "Memory-Trail-Activity-" + DateTime.Now.ToString("yyyy-MM-dd") + ".json"
+        };
+
+        if (dialog.ShowDialog(this) != true)
+            return;
+
+        try
+        {
+            App.Store.ExportJson(dialog.FileName);
+            MessageBox.Show(
+                "Trail packed. Your activity export is ready to travel — unlike the original, which is still staying local.",
+                "Activity Exported",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
+        }
+        catch (Exception ex)
+        {
+            App.LogNonFatal("Export activity", ex);
+            MessageBox.Show(
+                "Memory Trail could not export the activity file.",
+                "Export Activity",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
     }
 
     private void PauseButton_Click(object sender, RoutedEventArgs e) => ToggleCapture();
@@ -1153,8 +1486,22 @@ public partial class MainWindow : Window
 
     private void StartWithWindowsChanged(object sender, RoutedEventArgs e)
     {
-        if (_initializingSettings || AppVersion.IsMicrosoftStoreBuild) return;
-        App.Preferences.SetStartWithWindows(StartWithWindowsCheckBox.IsChecked == true);
+        if (_initializingSettings) return;
+
+        var requested = StartWithWindowsCheckBox.IsChecked == true;
+        if (!App.Preferences.SetStartWithWindows(requested))
+        {
+            _initializingSettings = true;
+            StartWithWindowsCheckBox.IsChecked = App.Preferences.StartWithWindows;
+            _initializingSettings = false;
+
+            MessageBox.Show(
+                "Windows would not let Memory Trail add itself to startup. The checkbox has been returned to its previous state.",
+                "Start with Windows",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
+        }
+
         App.Preferences.Save();
     }
 
@@ -1217,15 +1564,12 @@ public partial class MainWindow : Window
     {
         if (AppVersion.IsMicrosoftStoreBuild)
         {
-            UpdateStatusText.Text = "Updates for this installation are managed by Microsoft Store.";
+            UpdateStatusText.Text = "Microsoft Store is on update duty — it has the clipboard and everything.";
 
             if (manual)
             {
-                MessageBox.Show(
-                    "This copy of Memory Trail is installed from Microsoft Store. Windows and Microsoft Store manage its updates automatically.",
-                    "Memory Trail Updates",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information);
+                var storeStatus = new UpToDateWindow(storeManaged: true) { Owner = this };
+                storeStatus.ShowDialog();
             }
 
             return;
