@@ -195,10 +195,6 @@
       <Setter Property="Padding" Value="12,9"/>
       <Setter Property="FontSize" Value="14"/>
       <Setter Property="CaretBrush" Value="#1677FF"/>
-      <Setter Property="FontFamily" Value="Segoe UI"/>
-      <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
-      <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
-      <Setter Property="TextOptions.TextHintingMode" Value="Fixed"/>
     </Style>
 
     <Style TargetType="ComboBox">
@@ -207,19 +203,11 @@
       <Setter Property="BorderBrush" Value="#C4D1E0"/>
       <Setter Property="Padding" Value="8"/>
       <Setter Property="MinHeight" Value="36"/>
-      <Setter Property="FontFamily" Value="Segoe UI"/>
-      <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
-      <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
-      <Setter Property="TextOptions.TextHintingMode" Value="Fixed"/>
     </Style>
 
     <Style TargetType="CheckBox">
       <Setter Property="Foreground" Value="#31445F"/>
       <Setter Property="FontSize" Value="14"/>
-      <Setter Property="FontFamily" Value="Segoe UI"/>
-      <Setter Property="TextOptions.TextFormattingMode" Value="Display"/>
-      <Setter Property="TextOptions.TextRenderingMode" Value="ClearType"/>
-      <Setter Property="TextOptions.TextHintingMode" Value="Fixed"/>
     </Style>
   </Application.Resources>
 </Application>

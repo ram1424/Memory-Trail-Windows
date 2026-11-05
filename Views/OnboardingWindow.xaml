@@ -16,21 +16,30 @@
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="CornerRadius" Value="20"/>
       <Setter Property="Padding" Value="18"/>
-</Style>
+      <Setter Property="Effect">
+        <Setter.Value><DropShadowEffect BlurRadius="14" ShadowDepth="2" Opacity="0.08" Color="#3C5E87"/></Setter.Value>
+      </Setter>
+    </Style>
     <Style x:Key="FeatureCard" TargetType="Border">
       <Setter Property="Background" Value="#E1E9F3"/>
       <Setter Property="BorderBrush" Value="#B9C8D9"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="CornerRadius" Value="18"/>
       <Setter Property="Padding" Value="16"/>
-</Style>
+      <Setter Property="Effect">
+        <Setter.Value><DropShadowEffect BlurRadius="12" ShadowDepth="2" Opacity="0.08" Color="#3C5E87"/></Setter.Value>
+      </Setter>
+    </Style>
     <Style x:Key="FeatureIconTile" TargetType="Border">
       <Setter Property="Width" Value="42"/>
       <Setter Property="Height" Value="42"/>
       <Setter Property="CornerRadius" Value="13"/>
       <Setter Property="VerticalAlignment" Value="Center"/>
       <Setter Property="Margin" Value="0,0,10,0"/>
-</Style>
+      <Setter Property="Effect">
+        <Setter.Value><DropShadowEffect BlurRadius="12" ShadowDepth="2" Opacity="0.12" Color="#36516F"/></Setter.Value>
+      </Setter>
+    </Style>
     <Style x:Key="TourButton" TargetType="Button" BasedOn="{StaticResource ModernButtonStyle}">
       <Setter Property="MinWidth" Value="112"/>
       <Setter Property="Height" Value="40"/>

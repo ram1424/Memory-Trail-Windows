@@ -14,7 +14,10 @@
         <GradientStop Color="#E8EFF7" Offset="0.6"/>
         <GradientStop Color="#DCE7F4" Offset="1"/>
       </LinearGradientBrush>
-    </Border.Background><Grid>
+    </Border.Background>
+    <Border.Effect><DropShadowEffect BlurRadius="28" ShadowDepth="7" Opacity="0.16" Color="#30445F"/></Border.Effect>
+
+    <Grid>
       <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
 
       <Grid Margin="0,0,0,18">

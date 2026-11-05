@@ -13,7 +13,12 @@
         TextOptions.TextRenderingMode="ClearType">
   <Grid Margin="18">
     <Border Background="#F8FAFD" BorderBrush="#CBD7E5" BorderThickness="1"
-            CornerRadius="24" Padding="0"><Grid>
+            CornerRadius="24" Padding="0">
+      <Border.Effect>
+        <DropShadowEffect BlurRadius="28" ShadowDepth="7" Opacity="0.16" Color="#29415F"/>
+      </Border.Effect>
+
+      <Grid>
         <Grid.RowDefinitions>
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="*"/>

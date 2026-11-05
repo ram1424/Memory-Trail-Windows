@@ -16,7 +16,12 @@
   <Border CornerRadius="24"
           Background="#F8FAFF"
           BorderBrush="#C9D6E8"
-          BorderThickness="1"><Grid>
+          BorderThickness="1">
+    <Border.Effect>
+      <DropShadowEffect BlurRadius="30" ShadowDepth="8" Opacity="0.20" Color="#28446B"/>
+    </Border.Effect>
+
+    <Grid>
       <Grid.RowDefinitions>
         <RowDefinition Height="72"/>
         <RowDefinition Height="*"/>

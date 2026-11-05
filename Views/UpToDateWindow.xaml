@@ -14,7 +14,12 @@
         Background="#F5F8FE"
         FontFamily="Segoe UI">
   <Border CornerRadius="24" BorderBrush="#C9D7EA" BorderThickness="1"
-          Background="#F5F8FE" ClipToBounds="True"><Grid>
+          Background="#F5F8FE" ClipToBounds="True">
+    <Border.Effect>
+      <DropShadowEffect BlurRadius="34" ShadowDepth="10" Opacity="0.24" Color="#203A66"/>
+    </Border.Effect>
+
+    <Grid>
       <Grid.RowDefinitions>
         <RowDefinition Height="72"/>
         <RowDefinition Height="*"/>
