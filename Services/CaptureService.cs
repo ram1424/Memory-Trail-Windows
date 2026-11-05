@@ -470,7 +470,7 @@ public sealed class CaptureService
             if (rootBounds.IsEmpty || rootBounds.Width <= 0 || rootBounds.Height <= 0)
                 return null;
 
-            var all = root.FindAll(TreeScope.Descendants, Condition.TrueCondition);
+            var all = root.FindAll(TreeScope.Descendants, System.Windows.Automation.Condition.TrueCondition);
             var candidates = new List<OutlookUiCandidate>();
 
             foreach (AutomationElement element in all)
