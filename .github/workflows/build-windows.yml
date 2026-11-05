@@ -96,7 +96,8 @@ jobs:
             $bytes = [System.Text.Encoding]::UTF8.GetBytes((Get-Content $logPath -Raw))
             $content = [Convert]::ToBase64String($bytes)
             $body = @{ message = "[skip ci] capture build error"; content = $content; branch = "main" } | ConvertTo-Json
-            gh api --method PUT "repos/$env:GITHUB_REPOSITORY/contents/BUILD_ERROR.txt" --input - <<< $body
+            $body | Set-Content -Path "build-error-request.json" -Encoding utf8
+            gh api --method PUT "repos/$env:GITHUB_REPOSITORY/contents/BUILD_ERROR.txt" --input "build-error-request.json"
             exit $exitCode
           }
 
