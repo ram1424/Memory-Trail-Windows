@@ -6,7 +6,7 @@
         MinWidth="760" MinHeight="620"
         WindowStartupLocation="CenterOwner"
         Background="#E8EFF8"
-        FontFamily="Segoe UI Variable Text, Segoe UI"
+        FontFamily="Arial Rounded MT Bold, Arial Rounded MT, Arial"
         UseLayoutRounding="True"
         SnapsToDevicePixels="True"
         TextOptions.TextFormattingMode="Display"

@@ -11,7 +11,7 @@
         ShowInTaskbar="False"
         ShowActivated="False"
         Topmost="False"
-        FontFamily="Segoe UI Variable Text, Segoe UI">
+        FontFamily="Arial Rounded MT Bold, Arial Rounded MT, Arial">
   <Window.Resources>
     <Storyboard x:Key="EntranceStoryboard">
       <DoubleAnimation Storyboard.TargetName="Shell"

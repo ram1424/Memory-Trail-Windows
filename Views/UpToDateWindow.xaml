@@ -12,7 +12,7 @@
         TextOptions.TextRenderingMode="ClearType"
         AllowsTransparency="False"
         Background="#F5F8FE"
-        FontFamily="Segoe UI Variable Text, Segoe UI">
+        FontFamily="Arial Rounded MT Bold, Arial Rounded MT, Arial">
   <Border CornerRadius="24" BorderBrush="#C9D7EA" BorderThickness="1"
           Background="#F5F8FE" ClipToBounds="True">
     <Border.Effect>
