@@ -1,51 +1,31 @@
-## Version 1.3 highlights
+# Memory Trail Version 1.0
 
-### Visual quality and typography
-- Standardized all human-readable Windows UI text on **Segoe UI Variable Text** with Segoe UI only as fallback.
-- Increased undersized labels and supporting text, strengthened secondary-text contrast, and removed visual effects that softened WPF text.
-- Retained ClearType, display text formatting, fixed hinting, pixel snapping, layout rounding, and Per-Monitor-V2 DPI awareness.
+Version 1.0 is the official public baseline for Memory Trail for Windows.
 
-### Today
-- Aligned **Top Apps Today** with **Today at a Glance**.
-- Added real app icons, activity counts, and rank badges to Top Apps Today.
-- Added **Back to Top** for long timelines.
-- Removed artificial activity visibility limits while retaining list virtualization for performance.
+## Key features
 
-### Ask Memory Trail
-- Redesigned shortcut questions into a clearer 3×2 layout with proper Windows vector icons.
-- Increased search/result typography and contrast.
-- Standardized Ask results to equal-height rows with consistent timestamp alignment and truncation.
-- Added real app icons to every result.
-- Removed fixed result caps so the full matching local history can be returned.
-- Added **Back to Top** and kept recycling virtualization enabled for large result sets.
-
-### Navigation
-- Enlarged and bolded Today, Ask Memory Trail, Favorites, Clipboard History, Insights, and Settings.
-- Increased primary navigation icon sizes and improved icon/text alignment.
-- Strengthened contrast and spacing so primary navigation stands out from filters.
-
-### What’s New and secondary windows
-- Corrected What’s New to use Segoe UI Variable.
-- Increased small text sizes and contrast in What’s New and removed a heavy shadow that softened text.
-- Standardized onboarding, privacy, update, splash, history, and cache windows on Segoe UI Variable.
-
-### Reliability
-- Fixed the Windows build failure caused by an ambiguous UI Automation `Condition.TrueCondition` reference.
-- Expanded Microsoft Store workflow triggers so capture/model changes rebuild the Store MSIX.
-- Verified both direct-download ZIP and Store MSIX release paths.
-
-## Microsoft Store submission
-
-- Product: existing **Memory Trail** Store listing
-- Display version: **1.3**
-- MSIX package version: **1.3.0.0**
-- Architecture: **x64**
-- Package identity: **RomanZakharov.MemoryTrail**
-- Publisher identity remains unchanged
-- Upload `Memory-Trail-1.3-x64.msix` to a new update submission in Partner Center
+- Live local activity timeline with app/window context
+- Today at a Glance, Top Apps Today, Key Takeaways, and recent files
+- Ask Memory Trail local search with shortcut questions and unlimited matching results
+- Favorites for saved timeline entries
+- Optional Clipboard History
+- Insights for app usage, active time, activity patterns, focus streaks, and distribution
+- Real app icons throughout timeline/search/dashboard results
+- Modern unified vector icons for Today, Ask Memory Trail, Favorites, Clipboard History, Insights, and Settings
+- Pause capture, exclusions, local JSON export, and flexible history clearing
+- Privacy-first local processing and storage
+- System tray operation and optional Start with Windows
+- Direct-download updates plus Microsoft Store distribution
 
 ## Privacy
 
-Captured timeline history remains local to the PC. Ask Memory Trail continues to search local history without sending captured activity to a cloud search service. Store/update requests do not include timeline entries, clipboard content, window titles, or file paths.
+Captured timeline history remains local to the PC. Ask Memory Trail searches local history and does not send captured timeline entries to a cloud search service.
 
-See `docs/PRIVACY.md` for the complete privacy and data-handling description.
+## Release artifacts
+
+- `Memory-Trail-Windows-1.0-x64.zip`
+- `Memory-Trail-1.0-x64.msix`
+
+## Microsoft Store
+
+The user-facing release is **Version 1.0**. Because Microsoft Store package versions must increase over packages already submitted, the Store manifest uses the next monotonic internal package version while the app's display/informational version remains 1.0.

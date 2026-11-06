@@ -62,7 +62,10 @@ jobs:
           $parsed = [version]$displayVersion
           $patch = if ($parsed.Build -ge 0) { $parsed.Build } else { 0 }
           $packageVersion = "$($parsed.Major).$($parsed.Minor).$patch"
-          $msixVersion = "$($parsed.Major).$($parsed.Minor).$patch.0"
+
+          # Public release is reset to 1.0, but Partner Center requires the
+          # package manifest version to keep increasing for the existing listing.
+          $msixVersion = if ($displayVersion -eq "1.0") { "1.4.0.0" } else { "$($parsed.Major).$($parsed.Minor).$patch.0" }
           $informationalVersion = $displayVersion
           $releaseTag = "v$displayVersion"
 

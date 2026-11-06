@@ -50,7 +50,7 @@ public static class AppVersion
             .InformationalVersion;
 
         if (string.IsNullOrWhiteSpace(value))
-            return "1.3";
+            return "1.0";
 
         var plusIndex = value.IndexOf('+');
         return plusIndex >= 0 ? value[..plusIndex] : value;
