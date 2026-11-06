@@ -907,7 +907,7 @@ public partial class MainWindow : Window
         var topApps = today
             .Where(x => !string.IsNullOrWhiteSpace(x.SourceApp))
             .GroupBy(x => x.SourceApp, StringComparer.OrdinalIgnoreCase)
-            .Select(g => new { Name = g.Key.Trim(), Count = g.Count() })
+            .Select(g => new { Name = g.Key.Trim(), Count = g.Count(), Sample = g.First() })
             .OrderByDescending(x => x.Count)
             .ThenBy(x => x.Name)
             .Take(6)
@@ -915,32 +915,90 @@ public partial class MainWindow : Window
 
         foreach (var app in topApps)
         {
-            var row = new Grid { Margin = new Thickness(0, 0, 0, 8) };
+            var row = new Grid
+            {
+                Height = 46,
+                Margin = new Thickness(0, 0, 0, 7)
+            };
+            row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(42) });
             row.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             row.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
 
-            row.Children.Add(new TextBlock
+            var iconTile = new Border
+            {
+                Width = 34,
+                Height = 34,
+                CornerRadius = new CornerRadius(9),
+                Background = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
+                BorderBrush = new SolidColorBrush(Color.FromRgb(215, 225, 235)),
+                BorderThickness = new Thickness(1),
+                VerticalAlignment = VerticalAlignment.Center
+            };
+
+            iconTile.Child = new Image
+            {
+                Source = AppIconConverter.ResolveAppIcon(app.Name, app.Sample.SourceProcess),
+                Width = 26,
+                Height = 26,
+                Stretch = Stretch.Uniform,
+                SnapsToDevicePixels = true
+            };
+            row.Children.Add(iconTile);
+
+            var labels = new StackPanel
+            {
+                VerticalAlignment = VerticalAlignment.Center,
+                Margin = new Thickness(8, 0, 8, 0)
+            };
+            labels.Children.Add(new TextBlock
             {
                 Text = app.Name,
-                FontSize = 10.5,
+                FontSize = 12.5,
                 FontWeight = FontWeights.SemiBold,
-                Foreground = new SolidColorBrush(Color.FromRgb(20, 29, 43)),
+                Foreground = new SolidColorBrush(Color.FromRgb(16, 24, 39)),
                 TextTrimming = TextTrimming.CharacterEllipsis
             });
-
-            var count = new TextBlock
+            labels.Children.Add(new TextBlock
             {
                 Text = app.Count + (app.Count == 1 ? " activity" : " activities"),
-                FontSize = 9.5,
-                Foreground = new SolidColorBrush(Color.FromRgb(96, 112, 135))
+                FontSize = 11.5,
+                Foreground = new SolidColorBrush(Color.FromRgb(64, 81, 105)),
+                Margin = new Thickness(0, 2, 0, 0)
+            });
+            Grid.SetColumn(labels, 1);
+            row.Children.Add(labels);
+
+            var rank = new Border
+            {
+                MinWidth = 30,
+                Height = 26,
+                CornerRadius = new CornerRadius(13),
+                Background = new SolidColorBrush(Color.FromRgb(234, 242, 255)),
+                VerticalAlignment = VerticalAlignment.Center,
+                Padding = new Thickness(8, 0, 8, 0)
             };
-            Grid.SetColumn(count, 1);
-            row.Children.Add(count);
+            rank.Child = new TextBlock
+            {
+                Text = "#" + (topApps.IndexOf(app) + 1),
+                FontSize = 11.5,
+                FontWeight = FontWeights.SemiBold,
+                Foreground = new SolidColorBrush(Color.FromRgb(49, 117, 196)),
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
+            };
+            Grid.SetColumn(rank, 2);
+            row.Children.Add(rank);
+
             TodayTopAppsPanel.Children.Add(row);
         }
 
         if (topApps.Count == 0)
-            TodayTopAppsPanel.Children.Add(new TextBlock { Text = "No app activity yet.", FontSize = 10, Foreground = new SolidColorBrush(Color.FromRgb(96, 112, 135)) });
+            TodayTopAppsPanel.Children.Add(new TextBlock
+            {
+                Text = "No app activity yet.",
+                FontSize = 11.5,
+                Foreground = new SolidColorBrush(Color.FromRgb(64, 81, 105))
+            });
 
         var hourly = Enumerable.Range(0, 24).Select(h => today.Count(x => x.CreatedAt.Hour == h)).ToArray();
         var max = hourly.Length == 0 ? 0 : hourly.Max();
