@@ -2,6 +2,56 @@
 
 A concise record of production changes. Each release is organized by area so updates are easy to scan.
 
+## Version 1.3
+
+### 🔎 Crystal-clear Windows UI
+- **Segoe UI Variable throughout** — standardized all human-readable text across the main window, onboarding, splash, privacy policy, update dialogs, history/cache dialogs, and What’s New on Segoe UI Variable Text, with Segoe UI only as the fallback.
+- **Higher legibility baseline** — increased undersized labels and supporting text, strengthened secondary-text contrast, and removed soft visual effects that could make WPF text appear washed out.
+- **Sharper rendering** — retained ClearType, display text formatting, fixed hinting, device-pixel snapping, layout rounding, and Per-Monitor-V2 DPI awareness for crisp rendering on high-DPI displays.
+- **Cleaner surfaces** — simplified text-heavy panels and hover states so typography stays sharp rather than being softened by unnecessary rasterized effects.
+
+### 🧭 Stronger navigation
+- **Primary sidebar hierarchy** — Today, Ask Memory Trail, Favorites, Clipboard History, Insights, and Settings now use larger rows, larger icons, bold Segoe UI Variable labels, stronger contrast, and consistent vertical alignment.
+- **Better visual separation** — primary navigation is intentionally more prominent than the compact filter controls below it.
+
+### 🗓 Today dashboard
+- **Top Apps Today aligned** — aligned the right-side Top Apps Today card with Today at a Glance for a cleaner dashboard grid.
+- **Real app icons** — Top Apps Today now uses the same app-icon resolver as the timeline and Ask Memory Trail.
+- **Improved app ranking rows** — added consistent icon tiles, clearer activity counts, and rank badges while keeping the card compact.
+- **Back to Top** — added a persistent jump-to-top control for long timelines.
+- **Unlimited timeline visibility** — removed artificial result limits while retaining WPF list virtualization/recycling for performance.
+
+### 🔍 Ask Memory Trail
+- **Shortcut redesign** — rebuilt suggested questions into a clearer 3×2 layout with proper Windows vector icons instead of text symbols.
+- **Readable search UI** — increased search and result typography, strengthened contrast, and simplified surfaces for better readability.
+- **Uniform result rows** — every Ask result now uses the same fixed height, spacing, truncation, and timestamp alignment.
+- **App icons in results** — each Ask result now displays the originating app icon.
+- **No artificial result caps** — Ask Memory Trail can return the full matching local history rather than stopping at fixed 20/25/30/40-item limits.
+- **Back to Top** — added a jump-to-top control for large result sets.
+- **Virtualized full-history results** — unlimited results remain efficient through recycling virtualization.
+
+### ✨ What’s New & secondary windows
+- **What’s New typography corrected** — removed its plain Segoe UI override and standardized it on Segoe UI Variable Text.
+- **What’s New clarity pass** — increased small text sizes, darkened supporting text, and removed a heavy shadow that softened rendering.
+- **Consistent app-wide font policy** — secondary windows no longer override the primary font with legacy Segoe UI.
+
+### 🛠 Reliability & release pipeline
+- **Windows build regression fixed** — resolved an ambiguous `Condition.TrueCondition` reference in Outlook UI Automation by explicitly targeting `System.Windows.Automation.Condition.TrueCondition`.
+- **Store rebuild coverage improved** — Microsoft Store packaging now rebuilds when capture/model code changes, preventing Store packages from lagging behind direct-download builds.
+- **ZIP and MSIX verified together** — release automation continues to produce the self-contained Windows ZIP and Microsoft Store MSIX from the same release version.
+
+### 🔒 Privacy
+- **Local-first behavior preserved** — captured timeline history, Ask Memory Trail queries, clipboard history, and app/window context continue to be processed and stored locally on the PC.
+- **No cloud requirement added** — the UI and search improvements do not add cloud sync, external data connectors, analytics, or remote AI processing.
+
+### 📦 Release
+- **Version 1.3** — application metadata, About/display version, GitHub release tag, release notes, and Store documentation are aligned to 1.3.
+- **MSIX version 1.3.0.0** — prepared as the next update for the existing Memory Trail Microsoft Store listing.
+- **Direct-download artifact** — GitHub Releases publishes `Memory-Trail-Windows-1.3-x64.zip`.
+- **Store artifact** — GitHub Releases also receives `Memory-Trail-1.3-x64.msix` after Store identity/version verification.
+
+---
+
 ## Version 1.2
 
 ### 🎨 Today, Ask Memory Trail & Insights

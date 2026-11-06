@@ -26,10 +26,10 @@ The Store build is compiled with the `MicrosoftStore` distribution channel. That
 
 ## Store package output
 
-The workflow generates `Memory-Trail-1.2-x64.msix`, validates the Partner Center identity in the manifest, uploads it as a workflow artifact, and attaches it to the matching GitHub release.
+The workflow generates `Memory-Trail-1.3-x64.msix`, validates the Partner Center identity in the manifest, uploads it as a workflow artifact, and attaches it to the matching GitHub release.
 
 The package is intentionally not developer-signed for Store submission; Microsoft Store signs/re-signs MSIX packages during the publishing process. Do not use the unsigned Store package for direct sideload distribution outside Microsoft Store.
 
 ## Versioning
 
-Memory Trail 1.2 is packaged as **1.2.0.0**. Future Store updates must use increasing four-part MSIX versions. Keep the existing Partner Center identity unchanged so updates target the current Memory Trail listing.
+Memory Trail 1.3 is packaged as **1.3.0.0**. Future Store updates must use increasing four-part MSIX versions. Keep the existing Partner Center identity unchanged so updates target the current Memory Trail listing.
