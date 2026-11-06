@@ -790,6 +790,10 @@ public partial class MainWindow : Window
         QuickFiltersBar.Visibility = timelineMode ? Visibility.Visible : Visibility.Collapsed;
         RightSidebarToggleButton.Visibility = timelineMode ? Visibility.Visible : Visibility.Collapsed;
 
+        TodayHeaderIcon.Visibility = timelineMode ? Visibility.Visible : Visibility.Collapsed;
+        FavoritesHeaderIcon.Visibility = _mode == "Favorites" ? Visibility.Visible : Visibility.Collapsed;
+        ClipboardHeaderIcon.Visibility = _mode == "Clipboard" ? Visibility.Visible : Visibility.Collapsed;
+
         if (timelineMode)
         {
             PageTitleText.Text = _dayOffset == 0 ? "Today" : SelectedDay.ToString("dddd");

@@ -207,7 +207,13 @@
           <Button x:Name="TimelineNavButton" Tag="Timeline" Click="NavButton_Click"
                   Style="{StaticResource PrimarySidebarNavStyle}" Margin="0,0,0,5">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-              <Border Width="34" Height="34" CornerRadius="10" Background="#DCEAFF" Margin="0,0,12,0"><TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" Foreground="#176DFF" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <Border Width="34" Height="34" CornerRadius="10" Background="#E8F2FF" Margin="0,0,12,0">
+                <Viewbox Width="18" Height="18"><Canvas Width="24" Height="24">
+                  <Path Data="M3,11 L12,3 L21,11" Stroke="#176DFF" StrokeThickness="2" Fill="Transparent" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                  <Path Data="M6,10.5 V21 H18 V10.5" Stroke="#176DFF" StrokeThickness="2" Fill="Transparent" StrokeLineJoin="Round"/>
+                  <Path Data="M10,21 V15 H14 V21" Stroke="#176DFF" StrokeThickness="2" Fill="Transparent"/>
+                </Canvas></Viewbox>
+              </Border>
               <TextBlock Text="Today" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
             </StackPanel>
           </Button>
@@ -257,14 +263,24 @@
           <Button x:Name="InsightsNavButton" Tag="Insights" Click="NavButton_Click"
                   Style="{StaticResource PrimarySidebarNavStyle}" Margin="0,0,0,5">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-              <Border Width="34" Height="34" CornerRadius="10" Background="#DDF5FA" Margin="0,0,12,0"><TextBlock Text="&#xE9D2;" FontFamily="Segoe MDL2 Assets" Foreground="#17A9C7" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <Border Width="34" Height="34" CornerRadius="10" Background="#E8F8FB" Margin="0,0,12,0">
+                <Viewbox Width="18" Height="18"><Canvas Width="24" Height="24">
+                  <Path Data="M4,20 V13 M10,20 V9 M16,20 V5 M22,20 H2" Stroke="#17A9C7" StrokeThickness="2" Fill="Transparent" StrokeStartLineCap="Round"/>
+                  <Path Data="M4,9 L9,6 L13,9 L20,3" Stroke="#17A9C7" StrokeThickness="1.8" Fill="Transparent" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                </Canvas></Viewbox>
+              </Border>
               <TextBlock Text="Insights" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
             </StackPanel>
           </Button>
           <Button x:Name="SettingsNavButton" Tag="Settings" Click="NavButton_Click"
                   Style="{StaticResource PrimarySidebarNavStyle}">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-              <Border Width="34" Height="34" CornerRadius="10" Background="#E9F0F8" Margin="0,0,12,0"><TextBlock Text="&#xE713;" FontFamily="Segoe MDL2 Assets" Foreground="#6F86A6" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <Border Width="34" Height="34" CornerRadius="10" Background="#F1F4F8" Margin="0,0,12,0">
+                <Viewbox Width="18" Height="18"><Canvas Width="24" Height="24">
+                  <Ellipse Width="7" Height="7" Canvas.Left="8.5" Canvas.Top="8.5" Stroke="#6F86A6" StrokeThickness="2"/>
+                  <Path Data="M12,2 V5 M12,19 V22 M2,12 H5 M19,12 H22 M4.9,4.9 L7,7 M17,17 L19.1,19.1 M19.1,4.9 L17,7 M7,17 L4.9,19.1" Stroke="#6F86A6" StrokeThickness="2" StrokeStartLineCap="Round"/>
+                </Canvas></Viewbox>
+              </Border>
               <TextBlock Text="Settings" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
             </StackPanel>
           </Button>
@@ -378,9 +394,26 @@
         <Grid Grid.Row="0" Grid.ColumnSpan="3" Margin="18,16,16,14">
             <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal">
-              <Border Width="42" Height="42" CornerRadius="12" Background="#DCEBFF" Margin="0,0,12,0">
-                <TextBlock Text="&#xE787;" FontFamily="Segoe MDL2 Assets" FontSize="17" Foreground="#1677FF"
-                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+              <Border Width="42" Height="42" CornerRadius="12" Background="#E8F2FF" Margin="0,0,12,0">
+                <Grid>
+                  <Viewbox x:Name="TodayHeaderIcon" Width="21" Height="21" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Canvas Width="24" Height="24">
+                      <Path Data="M3,11 L12,3 L21,11" Stroke="#176DFF" StrokeThickness="2" Fill="Transparent" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                      <Path Data="M6,10.5 V21 H18 V10.5" Stroke="#176DFF" StrokeThickness="2" Fill="Transparent" StrokeLineJoin="Round"/>
+                      <Path Data="M10,21 V15 H14 V21" Stroke="#176DFF" StrokeThickness="2" Fill="Transparent"/>
+                    </Canvas>
+                  </Viewbox>
+                  <Viewbox x:Name="FavoritesHeaderIcon" Width="21" Height="21" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+                    <Path Fill="#E8577B" Data="M12,21 C10.7,19.8 4,14.1 4,8.9 C4,5.9 6.2,4 8.7,4 C10.2,4 11.3,4.7 12,5.7 C12.7,4.7 13.8,4 15.3,4 C17.8,4 20,5.9 20,8.9 C20,14.1 13.3,19.8 12,21 Z"/>
+                  </Viewbox>
+                  <Viewbox x:Name="ClipboardHeaderIcon" Width="21" Height="21" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+                    <Canvas Width="24" Height="24">
+                      <Rectangle Width="14" Height="15" Canvas.Left="5" Canvas.Top="6" RadiusX="2.5" RadiusY="2.5" Stroke="#2C9B72" StrokeThickness="2"/>
+                      <Rectangle Width="8" Height="4" Canvas.Left="8" Canvas.Top="3.5" RadiusX="1.5" RadiusY="1.5" Fill="#E8F2FF" Stroke="#2C9B72" StrokeThickness="2"/>
+                      <Path Data="M8,11 L16,11 M8,15 L14,15" Stroke="#2C9B72" StrokeThickness="1.8" StrokeStartLineCap="Round"/>
+                    </Canvas>
+                  </Viewbox>
+                </Grid>
               </Border>
               <StackPanel>
                 <TextBlock x:Name="PageTitleText" Text="Today" FontSize="28" FontWeight="Bold" Foreground="#0D1422"/>
@@ -390,10 +423,11 @@
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
               <Border Background="#F6F9FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="16" Padding="12,7" Margin="0,0,10,0">
-                <StackPanel Orientation="Horizontal">
-                  <Ellipse x:Name="QuickCaptureDot" Width="8" Height="8" Fill="#22C55E" Margin="0,0,7,0"/>
-                  <TextBlock x:Name="QuickCaptureText" Text="Capturing" FontSize="12" FontWeight="SemiBold"/>
-                </StackPanel>
+                <Grid VerticalAlignment="Center">
+                  <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                  <Ellipse x:Name="QuickCaptureDot" Width="8" Height="8" Fill="#22C55E" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                  <TextBlock x:Name="QuickCaptureText" Grid.Column="1" Text="Capturing" FontSize="12" FontWeight="SemiBold" VerticalAlignment="Center" BaselineOffset="0"/>
+                </Grid>
               </Border>
               <Border Background="#F6F9FC" BorderBrush="#D8E1EC" BorderThickness="1" CornerRadius="16">
                 <StackPanel Orientation="Horizontal">
