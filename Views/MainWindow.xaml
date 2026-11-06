@@ -214,21 +214,43 @@
           <Button x:Name="AskMemoryTrailNavButton" Tag="Ask" Click="NavButton_Click"
                   Style="{StaticResource PrimarySidebarNavStyle}" Margin="0,0,0,5">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-              <Border Width="34" Height="34" CornerRadius="10" Background="#E4ECFF" Margin="0,0,12,0"><Viewbox Width="17" Height="17"><Canvas Width="24" Height="24"><Ellipse Width="11" Height="11" Canvas.Left="4" Canvas.Top="4" Stroke="#5573ED" StrokeThickness="2.2"/><Path Data="M13.2,13.2 L20,20" Stroke="#5573ED" StrokeThickness="2.2" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/></Canvas></Viewbox></Border>
+              <Border Width="34" Height="34" CornerRadius="10" Background="#E4ECFF" Margin="0,0,12,0">
+                <Viewbox Width="19" Height="19">
+                  <Canvas Width="24" Height="24">
+                    <Ellipse Width="10" Height="10" Canvas.Left="3.5" Canvas.Top="5" Stroke="#5573ED" StrokeThickness="2.1"/>
+                    <Path Data="M11.2,12.7 L18.6,20.1" Stroke="#5573ED" StrokeThickness="2.1" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/>
+                    <Path Data="M18.5,3 L19.5,5.5 L22,6.5 L19.5,7.5 L18.5,10 L17.5,7.5 L15,6.5 L17.5,5.5 Z" Fill="#7B80F6"/>
+                  </Canvas>
+                </Viewbox>
+              </Border>
               <TextBlock Text="Ask Memory Trail" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
             </StackPanel>
           </Button>
           <Button x:Name="FavoritesNavButton" Tag="Favorites" Click="NavButton_Click"
                   Style="{StaticResource PrimarySidebarNavStyle}" Margin="0,0,0,5">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-              <Border Width="34" Height="34" CornerRadius="10" Background="#E8F2FF" Margin="0,0,12,0"><Viewbox Width="18" Height="18"><Path Fill="#3B8EF0" Data="M12,2.7 L14.85,8.47 L21.22,9.4 L16.61,13.89 L17.7,20.24 L12,17.24 L6.3,20.24 L7.39,13.89 L2.78,9.4 L9.15,8.47 Z"/></Viewbox></Border>
+              <Border Width="34" Height="34" CornerRadius="10" Background="#FFF1F4" Margin="0,0,12,0">
+                <Viewbox Width="19" Height="19">
+                  <Path Fill="#E8577B" Data="M12,21 C10.7,19.8 4,14.1 4,8.9 C4,5.9 6.2,4 8.7,4 C10.2,4 11.3,4.7 12,5.7 C12.7,4.7 13.8,4 15.3,4 C17.8,4 20,5.9 20,8.9 C20,14.1 13.3,19.8 12,21 Z"/>
+                </Viewbox>
+              </Border>
               <TextBlock Text="Favorites" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
             </StackPanel>
           </Button>
           <Button x:Name="ClipboardNavButton" Tag="Clipboard" Click="NavButton_Click"
                   Style="{StaticResource PrimarySidebarNavStyle}" Margin="0,0,0,5">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-              <Border Width="34" Height="34" CornerRadius="10" Background="#E5F1FF" Margin="0,0,12,0"><Viewbox Width="18" Height="18"><Canvas Width="24" Height="24"><Rectangle Width="14" Height="16" Canvas.Left="5" Canvas.Top="5" RadiusX="2" RadiusY="2" Stroke="#3388ED" StrokeThickness="2"/><Rectangle Width="8" Height="4" Canvas.Left="8" Canvas.Top="3" RadiusX="1.5" RadiusY="1.5" Fill="#E5F1FF" Stroke="#3388ED" StrokeThickness="2"/><Path Data="M8,11 L16,11 M8,15 L16,15" Stroke="#3388ED" StrokeThickness="1.8"/></Canvas></Viewbox></Border>
+              <Border Width="34" Height="34" CornerRadius="10" Background="#E8F7F2" Margin="0,0,12,0">
+                <Viewbox Width="19" Height="19">
+                  <Canvas Width="24" Height="24">
+                    <Rectangle Width="14" Height="15" Canvas.Left="5" Canvas.Top="6" RadiusX="2.5" RadiusY="2.5" Stroke="#2C9B72" StrokeThickness="2"/>
+                    <Rectangle Width="8" Height="4" Canvas.Left="8" Canvas.Top="3.5" RadiusX="1.5" RadiusY="1.5" Fill="#E8F7F2" Stroke="#2C9B72" StrokeThickness="2"/>
+                    <Path Data="M8,11 L16,11 M8,15 L14,15" Stroke="#2C9B72" StrokeThickness="1.8" StrokeStartLineCap="Round"/>
+                    <Path Data="M15.5,17.5 A3.2,3.2 0 1 1 18.7,14.3" Stroke="#2C9B72" StrokeThickness="1.6" Fill="Transparent"/>
+                    <Path Data="M18.7,14.3 L18.7,17.2 L15.8,17.2 Z" Fill="#2C9B72"/>
+                  </Canvas>
+                </Viewbox>
+              </Border>
               <TextBlock Text="Clipboard History" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
             </StackPanel>
           </Button>
@@ -701,7 +723,7 @@
           <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
           <StackPanel Orientation="Horizontal">
             <Border Width="48" Height="48" CornerRadius="14" Background="#E9EDFF" Margin="0,0,13,0">
-              <TextBlock Text="&#xE8A5;" FontFamily="Segoe MDL2 Assets" Foreground="#5865F2" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+              <Viewbox Width="22" Height="22" HorizontalAlignment="Center" VerticalAlignment="Center"><Canvas Width="24" Height="24"><Path Data="M12,2 L13.4,7.6 L19,9 L13.4,10.4 L12,16 L10.6,10.4 L5,9 L10.6,7.6 Z" Fill="#5865F2"/><Path Data="M19,14 L19.8,16.2 L22,17 L19.8,17.8 L19,20 L18.2,17.8 L16,17 L18.2,16.2 Z" Fill="#8C78FF"/></Canvas></Viewbox>
             </Border>
             <StackPanel VerticalAlignment="Center">
               <TextBlock Text="Ask Memory Trail" FontSize="29" FontWeight="Bold" Foreground="#080D15"/>
@@ -710,7 +732,7 @@
           </StackPanel>
           <Border Grid.Column="1" Background="#E8F7FB" BorderBrush="#CBE4EC" BorderThickness="1" CornerRadius="16" Padding="12,7" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal">
-              <TextBlock Text="&#xE73E;" FontFamily="Segoe MDL2 Assets" FontSize="12" Foreground="#087EA4" Margin="0,0,6,0"/>
+              <Viewbox Width="13" Height="13" Margin="0,0,6,0"><Path Stroke="#087EA4" StrokeThickness="2" Fill="Transparent" Data="M12,2 A10,10 0 1 1 11.9,2 M12,6 L12,12 L16,14"/></Viewbox>
               <TextBlock Text="Local Search" FontSize="12" FontWeight="SemiBold" Foreground="#087EA4"/>
             </StackPanel>
           </Border>
@@ -721,7 +743,7 @@
             <Border Background="#FFFFFF" BorderBrush="#AFC0D2" BorderThickness="1.25" CornerRadius="14" Padding="14,10">
               <Grid>
                 <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-                <TextBlock Text="&#xE721;" FontFamily="Segoe MDL2 Assets" Foreground="#126FE8" FontSize="18" VerticalAlignment="Center" Margin="0,0,11,0"/>
+                <Viewbox Width="18" Height="18" VerticalAlignment="Center" Margin="0,0,11,0"><Canvas Width="24" Height="24"><Ellipse Width="11" Height="11" Canvas.Left="3.5" Canvas.Top="4.5" Stroke="#126FE8" StrokeThickness="2.2"/><Path Data="M12.3,13.3 L20,21" Stroke="#126FE8" StrokeThickness="2.2" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/></Canvas></Viewbox>
                 <TextBox x:Name="AskMemoryTrailBox" Grid.Column="1" BorderThickness="0" Background="Transparent" Padding="0"
                          FontSize="15" FontWeight="Normal" Foreground="#080D15"
                          KeyDown="AskMemoryTrailBox_KeyDown" ToolTip="What do you want to remember?"/>
@@ -734,37 +756,37 @@
             <UniformGrid Columns="3" Rows="2">
               <Button Tag="What was I doing earlier today?" Click="AskSuggestion_Click" Margin="0,0,8,8" Padding="12,10" HorizontalContentAlignment="Stretch">
                 <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="36"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                  <Border Width="30" Height="30" CornerRadius="8" Background="#E8F2FF"><TextBlock Text="&#xE823;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#126FE8" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                  <Border Width="30" Height="30" CornerRadius="8" Background="#E8F2FF"><Viewbox Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"><Canvas Width="24" Height="24"><Path Data="M6,7 L2.8,10.2 L6,13.4" Stroke="#126FE8" StrokeThickness="2" Fill="Transparent"/><Path Data="M3.2,10.2 C4.8,5.8 10,3.5 14.5,5.3 C19,7.1 21,12.2 19.2,16.5 C17.8,19.8 14.6,21.5 11.4,21" Stroke="#126FE8" StrokeThickness="2" Fill="Transparent"/></Canvas></Viewbox></Border>
                   <TextBlock Grid.Column="1" Text="What was I doing earlier today?" FontSize="12.5" FontWeight="SemiBold" Foreground="#101827" TextWrapping="Wrap" VerticalAlignment="Center"/>
                 </Grid>
               </Button>
               <Button Tag="Show my activity from this week" Click="AskSuggestion_Click" Margin="0,0,8,8" Padding="12,10" HorizontalContentAlignment="Stretch">
                 <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="36"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                  <Border Width="30" Height="30" CornerRadius="8" Background="#EEF0FF"><TextBlock Text="&#xE787;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#5B62F6" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                  <Border Width="30" Height="30" CornerRadius="8" Background="#EEF0FF"><Viewbox Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"><Canvas Width="24" Height="24"><Rectangle Width="18" Height="17" Canvas.Left="3" Canvas.Top="4" RadiusX="2" RadiusY="2" Stroke="#5B62F6" StrokeThickness="2"/><Path Data="M3,9 L21,9 M8,2.5 L8,6 M16,2.5 L16,6" Stroke="#5B62F6" StrokeThickness="2"/></Canvas></Viewbox></Border>
                   <TextBlock Grid.Column="1" Text="Show my activity from this week" FontSize="12.5" FontWeight="SemiBold" Foreground="#101827" TextWrapping="Wrap" VerticalAlignment="Center"/>
                 </Grid>
               </Button>
               <Button Tag="Find files I worked on recently" Click="AskSuggestion_Click" Margin="0,0,0,8" Padding="12,10" HorizontalContentAlignment="Stretch">
                 <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="36"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                  <Border Width="30" Height="30" CornerRadius="8" Background="#FFF4DD"><TextBlock Text="&#xE8B7;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#B77900" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                  <Border Width="30" Height="30" CornerRadius="8" Background="#FFF4DD"><Viewbox Width="17" Height="17" HorizontalAlignment="Center" VerticalAlignment="Center"><Path Fill="#D69800" Data="M2,6 C2,4.9 2.9,4 4,4 H9 L11,6 H20 C21.1,6 22,6.9 22,8 V18 C22,19.1 21.1,20 20,20 H4 C2.9,20 2,19.1 2,18 Z"/></Viewbox></Border>
                   <TextBlock Grid.Column="1" Text="Find files I worked on recently" FontSize="12.5" FontWeight="SemiBold" Foreground="#101827" TextWrapping="Wrap" VerticalAlignment="Center"/>
                 </Grid>
               </Button>
               <Button Tag="What emails did I view recently?" Click="AskSuggestion_Click" Margin="0,0,8,0" Padding="12,10" HorizontalContentAlignment="Stretch">
                 <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="36"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                  <Border Width="30" Height="30" CornerRadius="8" Background="#E8F7FB"><TextBlock Text="&#xE715;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#0C88A8" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                  <Border Width="30" Height="30" CornerRadius="8" Background="#E8F7FB"><Viewbox Width="17" Height="17" HorizontalAlignment="Center" VerticalAlignment="Center"><Canvas Width="24" Height="24"><Rectangle Width="20" Height="14" Canvas.Left="2" Canvas.Top="5" RadiusX="2" RadiusY="2" Stroke="#0C88A8" StrokeThickness="2"/><Path Data="M3,7 L12,13 L21,7" Stroke="#0C88A8" StrokeThickness="2" Fill="Transparent"/></Canvas></Viewbox></Border>
                   <TextBlock Grid.Column="1" Text="What emails did I view recently?" FontSize="12.5" FontWeight="SemiBold" Foreground="#101827" TextWrapping="Wrap" VerticalAlignment="Center"/>
                 </Grid>
               </Button>
               <Button Tag="What conversations did I have today?" Click="AskSuggestion_Click" Margin="0,0,8,0" Padding="12,10" HorizontalContentAlignment="Stretch">
                 <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="36"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                  <Border Width="30" Height="30" CornerRadius="8" Background="#F0ECFF"><TextBlock Text="&#xE8BD;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#7157C8" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                  <Border Width="30" Height="30" CornerRadius="8" Background="#F0ECFF"><Viewbox Width="17" Height="17" HorizontalAlignment="Center" VerticalAlignment="Center"><Path Fill="#7157C8" Data="M4,4 H20 C21.1,4 22,4.9 22,6 V15 C22,16.1 21.1,17 20,17 H10 L5,21 V17 H4 C2.9,17 2,16.1 2,15 V6 C2,4.9 2.9,4 4,4 Z"/></Viewbox></Border>
                   <TextBlock Grid.Column="1" Text="What conversations did I have today?" FontSize="12.5" FontWeight="SemiBold" Foreground="#101827" TextWrapping="Wrap" VerticalAlignment="Center"/>
                 </Grid>
               </Button>
               <Button Tag="What websites did I visit?" Click="AskSuggestion_Click" Padding="12,10" HorizontalContentAlignment="Stretch">
                 <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="36"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
-                  <Border Width="30" Height="30" CornerRadius="8" Background="#EAF7EE"><TextBlock Text="&#xE774;" FontFamily="Segoe MDL2 Assets" FontSize="14" Foreground="#27824F" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+                  <Border Width="30" Height="30" CornerRadius="8" Background="#EAF7EE"><Viewbox Width="17" Height="17" HorizontalAlignment="Center" VerticalAlignment="Center"><Canvas Width="24" Height="24"><Ellipse Width="20" Height="20" Canvas.Left="2" Canvas.Top="2" Stroke="#27824F" StrokeThickness="2"/><Ellipse Width="10" Height="20" Canvas.Left="7" Canvas.Top="2" Stroke="#27824F" StrokeThickness="1.6"/><Path Data="M2,12 L22,12" Stroke="#27824F" StrokeThickness="1.6"/></Canvas></Viewbox></Border>
                   <TextBlock Grid.Column="1" Text="What websites did I visit?" FontSize="12.5" FontWeight="SemiBold" Foreground="#101827" TextWrapping="Wrap" VerticalAlignment="Center"/>
                 </Grid>
               </Button>
@@ -776,13 +798,13 @@
           <Grid x:Name="AskEmptyState">
             <UniformGrid Columns="3">
               <Border Background="#F6F9FD" BorderBrush="#C9D6E4" BorderThickness="1" CornerRadius="18" Padding="18" Margin="0,0,10,0">
-                <StackPanel><TextBlock Text="&#xE721;" FontFamily="Segoe MDL2 Assets" Foreground="#126FE8" FontSize="19" Margin="0,0,0,12"/><TextBlock Text="Search your day" FontSize="15" FontWeight="Bold"/><TextBlock Text="Find activity by time, app, page, file, email, conversation, or words you remember." FontSize="12" Foreground="#405169" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel>
+                <StackPanel><Viewbox Width="20" Height="20" Margin="0,0,0,12" HorizontalAlignment="Left"><Canvas Width="24" Height="24"><Ellipse Width="11" Height="11" Canvas.Left="3.5" Canvas.Top="4.5" Stroke="#126FE8" StrokeThickness="2.2"/><Path Data="M12.3,13.3 L20,21" Stroke="#126FE8" StrokeThickness="2.2"/></Canvas></Viewbox><TextBlock Text="Search your day" FontSize="15" FontWeight="Bold"/><TextBlock Text="Find activity by time, app, page, file, email, conversation, or words you remember." FontSize="12" Foreground="#405169" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel>
               </Border>
               <Border Background="#F6F9FD" BorderBrush="#C9D6E4" BorderThickness="1" CornerRadius="18" Padding="18" Margin="0,0,10,0">
-                <StackPanel><TextBlock Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" Foreground="#0C88A8" FontSize="19" Margin="0,0,0,12"/><TextBlock Text="Local by design" FontSize="15" FontWeight="Bold"/><TextBlock Text="Search runs against the timeline stored on this PC. Your captured history is not sent to a cloud search service." FontSize="12" Foreground="#405169" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel>
+                <StackPanel><Viewbox Width="20" Height="20" Margin="0,0,0,12" HorizontalAlignment="Left"><Canvas Width="24" Height="24"><Path Data="M12,3 L20,6 V11 C20,16 16.6,20 12,21 C7.4,20 4,16 4,11 V6 Z" Fill="#DDF4F8" Stroke="#0C88A8" StrokeThickness="2"/><Path Data="M8,12 L11,15 L16,9" Stroke="#0C88A8" StrokeThickness="2" Fill="Transparent" StrokeStartLineCap="Round" StrokeEndLineCap="Round"/></Canvas></Viewbox><TextBlock Text="Local by design" FontSize="15" FontWeight="Bold"/><TextBlock Text="Search runs against the timeline stored on this PC. Your captured history is not sent to a cloud search service." FontSize="12" Foreground="#405169" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel>
               </Border>
               <Border Background="#F6F9FD" BorderBrush="#C9D6E4" BorderThickness="1" CornerRadius="18" Padding="18">
-                <StackPanel><TextBlock Text="&#xE8A7;" FontFamily="Segoe MDL2 Assets" Foreground="#B77900" FontSize="19" Margin="0,0,0,12"/><TextBlock Text="Open the trail" FontSize="15" FontWeight="Bold"/><TextBlock Text="Review matching activity and inspect the exact captured context without an artificial result cap." FontSize="12" Foreground="#405169" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel>
+                <StackPanel><Viewbox Width="20" Height="20" Margin="0,0,0,12" HorizontalAlignment="Left"><Canvas Width="24" Height="24"><Path Data="M5,19 L19,5 M11,5 H19 V13" Stroke="#B77900" StrokeThickness="2.2" Fill="Transparent"/><Rectangle Width="14" Height="14" Canvas.Left="3" Canvas.Top="7" RadiusX="2" RadiusY="2" Stroke="#B77900" StrokeThickness="1.8"/></Canvas></Viewbox><TextBlock Text="Open the trail" FontSize="15" FontWeight="Bold"/><TextBlock Text="Review matching activity and inspect the exact captured context without an artificial result cap." FontSize="12" Foreground="#405169" TextWrapping="Wrap" Margin="0,7,0,0"/></StackPanel>
               </Border>
             </UniformGrid>
           </Grid>
