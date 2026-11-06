@@ -1,6 +1,6 @@
 # Memory Trail Changelog
 
-## Version 1.0 — Official Release
+## Version 1.4 — Official Release
 
 Memory Trail 1.0 is the official Windows release baseline.
 
@@ -89,7 +89,7 @@ Memory Trail 1.0 is the official Windows release baseline.
 - Source-visible packaging and privacy implementation.
 
 ### Release Artifacts
-- Direct download: `Memory-Trail-Windows-1.0-x64.zip`
-- Microsoft Store package: `Memory-Trail-1.0-x64.msix`
+- Direct download: `Memory-Trail-Windows-1.4-x64.zip`
+- Microsoft Store package: `Memory-Trail-1.4-x64.msix`
 
 ---

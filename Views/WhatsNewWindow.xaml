@@ -31,10 +31,10 @@
           </Border>
           <StackPanel Grid.Column="1" VerticalAlignment="Center">
             <Border Background="#E7F0FF" BorderBrush="#C7DBFA" BorderThickness="1" CornerRadius="10" Padding="9,4" HorizontalAlignment="Left">
-              <TextBlock x:Name="VersionBadgeText" Text="VERSION 1.0" FontSize="11.5" FontWeight="Bold" Foreground="#2F72D8"/>
+              <TextBlock x:Name="VersionBadgeText" Text="VERSION 1.4" FontSize="11.5" FontWeight="Bold" Foreground="#2F72D8"/>
             </Border>
             <TextBlock Text="Your workday, remembered beautifully." FontSize="28" FontWeight="Bold" Foreground="#101827" Margin="0,7,0,0"/>
-            <TextBlock x:Name="ReleaseSubtitleText" Text="The official Memory Trail 1.0 release" FontSize="14" Foreground="#405169" Margin="0,4,0,0"/>
+            <TextBlock x:Name="ReleaseSubtitleText" Text="The official Memory Trail 1.4 release" FontSize="14" Foreground="#405169" Margin="0,4,0,0"/>
           </StackPanel>
         </Grid>
       </Border>
@@ -88,7 +88,7 @@
 
       <Grid Grid.Row="2" Margin="0,18,0,0">
         <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
-        <TextBlock x:Name="ReleaseFooterText" Text="Memory Trail 1.0" Foreground="#52637A" FontSize="12" VerticalAlignment="Center"/>
+        <TextBlock x:Name="ReleaseFooterText" Text="Memory Trail 1.4" Foreground="#52637A" FontSize="12" VerticalAlignment="Center"/>
         <Button Grid.Column="1" Content="View Changelog" Click="ViewChangelog_Click" Margin="0,0,9,0"/>
         <Button Grid.Column="2" Content="Get Started" Style="{StaticResource PrimaryButtonStyle}" Click="GotIt_Click"/>
       </Grid>

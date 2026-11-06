@@ -1,6 +1,6 @@
-# Memory Trail Version 1.0
+# Memory Trail Version 1.4
 
-Version 1.0 is the official public baseline for Memory Trail for Windows.
+Version 1.4 is the official public baseline for Memory Trail for Windows.
 
 ## Key features
 
@@ -23,9 +23,9 @@ Captured timeline history remains local to the PC. Ask Memory Trail searches loc
 
 ## Release artifacts
 
-- `Memory-Trail-Windows-1.0-x64.zip`
-- `Memory-Trail-1.0-x64.msix`
+- `Memory-Trail-Windows-1.4-x64.zip`
+- `Memory-Trail-1.4-x64.msix`
 
 ## Microsoft Store
 
-The user-facing release is **Version 1.0**. Because Microsoft Store package versions must increase over packages already submitted, the Store manifest uses the next monotonic internal package version while the app's display/informational version remains 1.0.
+The user-facing release is **Version 1.4**. Because Microsoft Store package versions must increase over packages already submitted, the Store manifest uses the next monotonic internal package version while the app's display/informational version remains 1.0.

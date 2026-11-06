@@ -8,7 +8,7 @@
 
 Memory Trail is a privacy-first Windows activity timeline that helps you retrace what you were doing across apps, browsers, email, chat, files, documents, and the clipboard. It turns useful local Windows context into a searchable chronological history without requiring a Memory Trail account, cloud timeline sync, or external data connector.
 
-**Current release: Memory Trail Version 1.0**
+**Current release: Memory Trail Version 1.4**
 
 ## Download
 
@@ -97,17 +97,17 @@ Local data includes timeline history, preferences, exclusions, and optional clip
 
 _All screenshots use generic demo data._
 
-## Version 1.0
+## Version 1.4
 
-Version 1.0 is the official public baseline for Memory Trail for Windows. It includes the complete local activity timeline, Ask Memory Trail, Favorites, Clipboard History, Insights, privacy controls, local storage/export, system-tray operation, Windows startup support, and both direct-download and Microsoft Store distribution.
+Version 1.4 is the official public baseline for Memory Trail for Windows. It includes the complete local activity timeline, Ask Memory Trail, Favorites, Clipboard History, Insights, privacy controls, local storage/export, system-tray operation, Windows startup support, and both direct-download and Microsoft Store distribution.
 
-See [docs/CHANGELOG.md](docs/CHANGELOG.md) for the full Version 1.0 feature changelog.
+See [docs/CHANGELOG.md](docs/CHANGELOG.md) for the full Version 1.4 feature changelog.
 
 ## Distribution
 
 The GitHub release provides:
-- `Memory-Trail-Windows-1.0-x64.zip` — direct-download build
-- `Memory-Trail-1.0-x64.msix` — Microsoft Store submission package
+- `Memory-Trail-Windows-1.4-x64.zip` — direct-download build
+- `Memory-Trail-1.4-x64.msix` — Microsoft Store submission package
 
 The Microsoft Store build relies on Microsoft Store for update delivery. The direct-download build uses Memory Trail's GitHub update flow.
 
