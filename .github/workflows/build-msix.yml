@@ -87,14 +87,50 @@ jobs:
           "PUBLISHER=$publisher" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
           "PUBLISHER_DISPLAY_NAME=$publisherDisplayName" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
           "MSIX_NAME=Memory-Trail-$displayVersion-x64.msix" | Out-File $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Build standards-compliant Windows icon
+        shell: pwsh
+        run: |
+          python Tools/Icons/generate_windows_icon.py .
+
+          $pngRequired = @(
+            "Assets/MemoryTrailIcon.png",
+            "Assets/MemoryTrailIconMaster.png",
+            "Assets/OnboardingIcon.png"
+          )
+          foreach ($path in $pngRequired) {
+            if (-not (Test-Path $path)) { throw "Required branding asset is missing: $path" }
+            if ((Get-Item $path).Length -lt 10000) { throw "Branding PNG is incomplete: $path" }
+          }
+
+          $ico = "Assets/MemoryTrailApp.ico"
+          if (-not (Test-Path $ico)) { throw "Required Windows icon is missing: $ico" }
+          if ((Get-Item $ico).Length -lt 1024) { throw "Windows icon file is unexpectedly small: $ico" }
+
       - name: Restore
         run: dotnet restore MemoryTrail.Windows.csproj -r win-x64
       - name: Publish Microsoft Store build
         shell: pwsh
         run: |
-          $args = @("publish","MemoryTrail.Windows.csproj","-c","Release","-r","win-x64","--self-contained","true","--no-restore","-p:Version=$env:PACKAGE_VERSION","-p:AssemblyVersion=$env:MSIX_VERSION","-p:FileVersion=$env:MSIX_VERSION","-p:InformationalVersion=$env:INFORMATIONAL_VERSION","-p:BuildCommit=$env:GITHUB_SHA","-p:DistributionChannel=MicrosoftStore","-p:PublishSingleFile=true","-p:IncludeNativeLibrariesForSelfExtract=true","-p:EnableCompressionInSingleFile=true","-o","artifacts/store-publish")
+          # IMPORTANT: publish the same application binary as the direct ZIP build.
+          # Store-specific behavior is detected at runtime after packaging.
+          $args = @("publish","MemoryTrail.Windows.csproj","-c","Release","-r","win-x64","--self-contained","true","--no-restore","-p:Version=$env:DISPLAY_VERSION","-p:AssemblyVersion=$env:MSIX_VERSION","-p:FileVersion=$env:MSIX_VERSION","-p:InformationalVersion=$env:DISPLAY_VERSION","-p:BuildCommit=$env:GITHUB_SHA","-p:PublishSingleFile=true","-p:IncludeNativeLibrariesForSelfExtract=true","-p:EnableCompressionInSingleFile=true","-o","artifacts/store-publish")
           & dotnet @args
           if ($LASTEXITCODE -ne 0) { throw "dotnet publish failed" }
+      - name: Verify Store application binary
+        shell: pwsh
+        run: |
+          $exe = "artifacts/store-publish/Memory Trail.exe"
+          if (-not (Test-Path $exe)) { throw "Store publish did not create the Memory Trail executable: $exe" }
+
+          $version = (Get-Item $exe).VersionInfo
+          Write-Host "Store EXE product version: $($version.ProductVersion)"
+          Write-Host "Store EXE file version: $($version.FileVersion)"
+          Write-Host "Store EXE size: $((Get-Item $exe).Length) bytes"
+
+          if ($version.ProductVersion -notlike "$env:DISPLAY_VERSION*") {
+            throw "Store EXE product version does not match display version $env:DISPLAY_VERSION"
+          }
+
       - name: Build MSIX
         shell: pwsh
         run: |

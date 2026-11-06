@@ -17,9 +17,9 @@ public partial class UpToDateWindow : Window
         if (storeManaged)
         {
             HeadlineText.Text = "Microsoft Store has the keys.";
-            SubtitleText.Text = "This copy lets the Store handle updates, so Memory Trail can focus on remembering the important stuff.";
+            SubtitleText.Text = "You’re all set. Microsoft Store handles this copy’s updates while Memory Trail keeps your trail moving.";
             StatusBadgeText.Text = "Store Managed";
-            PunchlineText.Text = "No manual wrenching required. Open Store Updates if you want to watch the pit crew work.";
+            PunchlineText.Text = "Everything is current. The trail is clear, the mountains are calm, and the Store pit crew has update duty covered.";
             PrimaryActionButton.Content = "Open Store Updates";
         }
 

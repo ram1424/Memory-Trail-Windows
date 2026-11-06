@@ -1,4 +1,6 @@
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace MemoryLane.Windows;
@@ -15,8 +17,43 @@ public static class AppVersion
     public static string FriendlyVersion { get; } = FormatFriendly(NormalizedVersion);
     public static string BuildCommit { get; } = ResolveMetadata("BuildCommit");
     public static string DistributionChannel { get; } = ResolveMetadata("DistributionChannel");
+
+    // The exact same executable is shipped in both the direct ZIP and the MSIX.
+    // Store/package behavior is detected at runtime instead of compiling a second UI binary.
     public static bool IsMicrosoftStoreBuild =>
+        IsPackagedApp() ||
         string.Equals(DistributionChannel, "MicrosoftStore", StringComparison.OrdinalIgnoreCase);
+
+    private const int AppModelErrorNoPackage = 15700;
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    private static extern int GetCurrentPackageFullName(ref int packageFullNameLength, StringBuilder? packageFullName);
+
+    private static bool IsPackagedApp()
+    {
+        try
+        {
+            var length = 0;
+            var result = GetCurrentPackageFullName(ref length, null);
+
+            if (result == AppModelErrorNoPackage)
+                return false;
+
+            if (result == 0)
+                return true;
+
+            if (length <= 0)
+                return false;
+
+            var buffer = new StringBuilder(length);
+            result = GetCurrentPackageFullName(ref length, buffer);
+            return result == 0 && buffer.Length > 0;
+        }
+        catch
+        {
+            return false;
+        }
+    }
 
     public static int CompareReleaseTags(string left, string right)
     {
