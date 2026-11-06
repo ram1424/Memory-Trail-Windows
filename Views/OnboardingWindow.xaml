@@ -7,12 +7,12 @@
         MinWidth="860" MinHeight="620"
         WindowStartupLocation="CenterOwner"
         ResizeMode="CanResize"
-        FontFamily="Segoe UI Variable Text, Segoe UI"
-        Background="#C0CEE1">
+        FontFamily="Arial Rounded MT Bold, Arial Rounded MT, Arial"
+        Background="#B8C9DF">
   <Window.Resources>
     <Style x:Key="TourCard" TargetType="Border">
-      <Setter Property="Background" Value="#E6EDF5"/>
-      <Setter Property="BorderBrush" Value="#BAC9DA"/>
+      <Setter Property="Background" Value="#FAFCFF"/>
+      <Setter Property="BorderBrush" Value="#CCD9E7"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="CornerRadius" Value="20"/>
       <Setter Property="Padding" Value="18"/>
@@ -21,8 +21,8 @@
       </Setter>
     </Style>
     <Style x:Key="FeatureCard" TargetType="Border">
-      <Setter Property="Background" Value="#E1E9F3"/>
-      <Setter Property="BorderBrush" Value="#B9C8D9"/>
+      <Setter Property="Background" Value="#F7FAFF"/>
+      <Setter Property="BorderBrush" Value="#CCD9E7"/>
       <Setter Property="BorderThickness" Value="1"/>
       <Setter Property="CornerRadius" Value="18"/>
       <Setter Property="Padding" Value="16"/>
@@ -49,16 +49,16 @@
   <Grid>
     <Grid.Background>
       <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-        <GradientStop Color="#D3DEEC" Offset="0"/>
-        <GradientStop Color="#C2D0E2" Offset="0.58"/>
-        <GradientStop Color="#B3C4DA" Offset="1"/>
+        <GradientStop Color="#F4F8FF" Offset="0"/>
+        <GradientStop Color="#E3EDF9" Offset="0.58"/>
+        <GradientStop Color="#D0E0F2" Offset="1"/>
       </LinearGradientBrush>
     </Grid.Background>
 
     <Border Margin="20" Background="#DCE6F2" BorderBrush="#B2C2D5" BorderThickness="1"
-            CornerRadius="24" Padding="0">
+            CornerRadius="30" Padding="0">
       <Border.Effect>
-        <DropShadowEffect BlurRadius="34" ShadowDepth="10" Opacity="0.15"/>
+        <DropShadowEffect BlurRadius="38" ShadowDepth="8" Opacity="0.18" Color="#36516F"/>
       </Border.Effect>
       <Grid>
         <Grid.RowDefinitions>
