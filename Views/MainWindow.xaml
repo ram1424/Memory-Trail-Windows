@@ -288,8 +288,6 @@
             </StackPanel>
           </Button>
         </StackPanel>
-          </Button>
-        </StackPanel>
 
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Margin="0,14,0,8">
           <StackPanel>
