@@ -48,6 +48,16 @@
       <Setter Property="Margin" Value="0,2,0,0"/>
     </Style>
 
+    <Style x:Key="PrimarySidebarNavStyle" TargetType="Button" BasedOn="{StaticResource NavButtonStyle}">
+      <Setter Property="Height" Value="48"/>
+      <Setter Property="Padding" Value="10,0"/>
+      <Setter Property="Margin" Value="0,0,0,7"/>
+      <Setter Property="FontSize" Value="14"/>
+      <Setter Property="FontWeight" Value="Bold"/>
+      <Setter Property="Foreground" Value="#0B1320"/>
+      <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+    </Style>
+
     <Style x:Key="FilterNavStyle" TargetType="Button" BasedOn="{StaticResource NavButtonStyle}">
       <Setter Property="Padding" Value="11,9"/>
       <Setter Property="Margin" Value="0,0,0,2"/>
@@ -195,45 +205,45 @@
 
         <StackPanel Grid.Row="1">
           <Button x:Name="TimelineNavButton" Tag="Timeline" Click="NavButton_Click"
-                  Style="{StaticResource NavButtonStyle}" Margin="0,0,0,5">
-            <StackPanel Orientation="Horizontal">
-              <Border Width="28" Height="28" CornerRadius="9" Background="#DCEAFF" Margin="0,0,9,0"><TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" Foreground="#176DFF" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
-              <TextBlock Text="Today"/>
+                  Style="{StaticResource PrimarySidebarNavStyle}" Margin="0,0,0,5">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+              <Border Width="34" Height="34" CornerRadius="10" Background="#DCEAFF" Margin="0,0,12,0"><TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" Foreground="#176DFF" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <TextBlock Text="Today" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
             </StackPanel>
           </Button>
           <Button x:Name="AskMemoryTrailNavButton" Tag="Ask" Click="NavButton_Click"
-                  Style="{StaticResource NavButtonStyle}" Margin="0,0,0,5">
-            <StackPanel Orientation="Horizontal">
-              <Border Width="28" Height="28" CornerRadius="9" Background="#E4ECFF" Margin="0,0,9,0"><TextBlock Text="&#xE721;" FontFamily="Segoe MDL2 Assets" Foreground="#5573ED" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
-              <TextBlock Text="Ask Memory Trail"/>
+                  Style="{StaticResource PrimarySidebarNavStyle}" Margin="0,0,0,5">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+              <Border Width="34" Height="34" CornerRadius="10" Background="#E4ECFF" Margin="0,0,12,0"><TextBlock Text="&#xE721;" FontFamily="Segoe MDL2 Assets" Foreground="#5573ED" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <TextBlock Text="Ask Memory Trail" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
             </StackPanel>
           </Button>
           <Button x:Name="FavoritesNavButton" Tag="Favorites" Click="NavButton_Click"
-                  Style="{StaticResource NavButtonStyle}" Margin="0,0,0,5">
-            <StackPanel Orientation="Horizontal">
-              <Border Width="28" Height="28" CornerRadius="9" Background="#E8F2FF" Margin="0,0,9,0"><TextBlock Text="&#xE735;" FontFamily="Segoe MDL2 Assets" Foreground="#3B8EF0" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
-              <TextBlock Text="Favorites"/>
+                  Style="{StaticResource PrimarySidebarNavStyle}" Margin="0,0,0,5">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+              <Border Width="34" Height="34" CornerRadius="10" Background="#E8F2FF" Margin="0,0,12,0"><TextBlock Text="&#xE735;" FontFamily="Segoe MDL2 Assets" Foreground="#3B8EF0" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <TextBlock Text="Favorites" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
             </StackPanel>
           </Button>
           <Button x:Name="ClipboardNavButton" Tag="Clipboard" Click="NavButton_Click"
-                  Style="{StaticResource NavButtonStyle}" Margin="0,0,0,5">
-            <StackPanel Orientation="Horizontal">
-              <Border Width="28" Height="28" CornerRadius="9" Background="#E5F1FF" Margin="0,0,9,0"><TextBlock Text="&#xE77F;" FontFamily="Segoe MDL2 Assets" Foreground="#3388ED" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
-              <TextBlock Text="Clipboard History"/>
+                  Style="{StaticResource PrimarySidebarNavStyle}" Margin="0,0,0,5">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+              <Border Width="34" Height="34" CornerRadius="10" Background="#E5F1FF" Margin="0,0,12,0"><TextBlock Text="&#xE77F;" FontFamily="Segoe MDL2 Assets" Foreground="#3388ED" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <TextBlock Text="Clipboard History" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
             </StackPanel>
           </Button>
           <Button x:Name="InsightsNavButton" Tag="Insights" Click="NavButton_Click"
-                  Style="{StaticResource NavButtonStyle}" Margin="0,0,0,5">
-            <StackPanel Orientation="Horizontal">
-              <Border Width="28" Height="28" CornerRadius="9" Background="#DDF5FA" Margin="0,0,9,0"><TextBlock Text="&#xE9D2;" FontFamily="Segoe MDL2 Assets" Foreground="#17A9C7" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
-              <TextBlock Text="Insights"/>
+                  Style="{StaticResource PrimarySidebarNavStyle}" Margin="0,0,0,5">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+              <Border Width="34" Height="34" CornerRadius="10" Background="#DDF5FA" Margin="0,0,12,0"><TextBlock Text="&#xE9D2;" FontFamily="Segoe MDL2 Assets" Foreground="#17A9C7" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <TextBlock Text="Insights" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
             </StackPanel>
           </Button>
           <Button x:Name="SettingsNavButton" Tag="Settings" Click="NavButton_Click"
-                  Style="{StaticResource NavButtonStyle}">
-            <StackPanel Orientation="Horizontal">
-              <Border Width="28" Height="28" CornerRadius="9" Background="#E9F0F8" Margin="0,0,9,0"><TextBlock Text="&#xE713;" FontFamily="Segoe MDL2 Assets" Foreground="#6F86A6" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
-              <TextBlock Text="Settings"/>
+                  Style="{StaticResource PrimarySidebarNavStyle}">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+              <Border Width="34" Height="34" CornerRadius="10" Background="#E9F0F8" Margin="0,0,12,0"><TextBlock Text="&#xE713;" FontFamily="Segoe MDL2 Assets" Foreground="#6F86A6" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/></Border>
+              <TextBlock Text="Settings" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
             </StackPanel>
           </Button>
         </StackPanel>
